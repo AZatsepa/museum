@@ -8,7 +8,6 @@
 	<head>
 		<title>Народний музей Ізюмщини</title>
 		<meta charset="utf-8" />
-		<%= javascript_include_tag "application", "data-turbolinks-track" => "reload" %>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -364,13 +363,19 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/skel-viewport.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<!-- <script src="app/assets/javascripts/jquery.min.js"></script> -->
+			<%= javascript_include_tag 'jquery.min', cache: true %>
+			<!-- <script src="app/assets/javascripts/jquery.dropotron.min.js"></script> -->
+			<%= javascript_include_tag "jquery.dropotron.min", cache: true %>
+			<!-- <script src="app/assets/javascripts/skel.min.js"></script> -->
+			<%= javascript_include_tag 'skel.min', cache: true %>
+			<!-- <script src="app/assets/javascripts/skel-viewport.min.js"></script> -->
+			<%= javascript_include_tag 'skel-viewport.min', cache: true %>
+			<!-- <script src="app/assets/javascripts/util.js"></script> -->
+			<%= javascript_include_tag 'util', cache: true %>
+			<!--[if lte IE 8]><%= javascript_include_tag 'respond.min', cache: true %><script src="app/assets/javascripts/ie/respond.min.js"></script><![endif]-->
+			<!-- <script src="app/assets/javascripts/main.js"></script> -->
+			<%= javascript_include_tag 'main', cache: true %>
 
 	</body>
 </html>
