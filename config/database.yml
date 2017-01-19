@@ -82,7 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: deuga41m714jmb
-  username: mvgwwzhxyrjnmu
-  # password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
-  password: b4fac804dd9d9002221397682e65bd88a601037b73ce913d855a37b72aa6616e
+  database: museum_production
+  username: museum
+  password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
