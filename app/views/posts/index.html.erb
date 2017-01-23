@@ -1,9 +1,15 @@
 
   <div class="wrapper">
     <div class="header">
-      <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+      <%= form_tag posts_path, :method => "get", id: "search-form" do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
         <%= submit_tag "Search" %>
+      <% end %>
+
+      <% if @posts.present? %>
+        <%= render @posts %>
+      <% else %>
+        <%= render @posts %>
       <% end %>
       <ul id="navbar">
         <li><a href="#">Головна</a></li>
