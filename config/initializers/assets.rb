@@ -8,12 +8,5 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-# Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( jquery.min.js )
-Rails.application.config.assets.precompile += %w( jquery.dropotron.min.js )
-Rails.application.config.assets.precompile += %w( skel.min.js )
-Rails.application.config.assets.precompile += %w( skel-viewport.min.js )
-Rails.application.config.assets.precompile += %w( util.js )
-Rails.application.config.assets.precompile += %w( respond.min.js )
-Rails.application.config.assets.precompile += %w( main.js )
-
+Rails.application.config.assets.precompile += %w( reset.css )
+Rails.application.config.assets.precompile += %w( style.css )
