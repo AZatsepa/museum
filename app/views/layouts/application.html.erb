@@ -19,7 +19,7 @@
         <% end %>
         <ul id="navbar">
           <li><%= link_to "Головна", root_path %></li>
-          <li><%= link_to "Статті" %></li>
+          <li><%= link_to "Статті", posts_path %></li>
           <li><%= link_to "Галерея" %></li>
           <% if user_signed_in? %>
             <li><span>Профіль</span>
