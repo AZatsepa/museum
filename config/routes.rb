@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   get 'results', to: 'results#index', as: 'results'
   get 'users/profile', as: 'user_root'
   
-  root 'posts#index'
+  root 'pages#index'
 end
