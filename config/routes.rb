@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   get 'results', to: 'results#index', as: 'results'
+  get 'users/profile', as: 'user_root'
   
   root 'posts#index'
 end

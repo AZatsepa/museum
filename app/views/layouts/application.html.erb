@@ -3,11 +3,12 @@
 <head>
   <title>Народний музей Ізюмщини</title>
   <meta charset="utf-8">
-    <%= stylesheet_link_tag    'reset', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag    'reset', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
   <body>
     <div class="wrapper">
@@ -17,20 +18,30 @@
           <%= submit_tag "Пошук", name: nil %>
         <% end %>
         <ul id="navbar">
-          <li><a href="#">Головна</a></li>
-          <li><a href="#">Статті</a></li>
-          <li><a href="#">Галерея</a></li>
-          <li><a href="#">Вхід</a>
+          <li><%= link_to "Головна", root_path %></li>
+          <li><%= link_to "Статті" %></li>
+          <li><%= link_to "Галерея" %></li>
+          <% if user_signed_in? %>
+            <li><span>Профіль</span>
             <ul>
-              <li><a href="#">Редагувати профіль</a></li>
-              <li><a href="#">Видалити профіль</a></li>
-               <li><a href="#">Вийти</a></li>
+              <li><%= link_to "Редагувати профіль", edit_user_registration_path %></li>
+              <li><%= link_to "Видалити профіль", user_registration_path, :confirm => "Ви впевнені?", :method => :delete %></li>
+              <li><%= link_to "Вийти", destroy_user_session_path %></li>
             </ul>
+          <% else %>
+            <li><%= link_to 'Увійти', new_user_session_path %></li>
+            <li><%= link_to 'Зареєструватися', new_user_registration_path %></li>
+              <% end %>
           </li>
-          <li><a href="#">Про нас</a></li>
+          <li><%= link_to "Про нас" %></li>
         </ul>
       </div>
-    <%= yield %>
+      <div class="left_column">
+        <%= yield :left_column %>
+      </div>
+      <div class="right_column">
+        <%= yield :right_column %>
+      </div>
       <div class="footer">
     
       </div>
