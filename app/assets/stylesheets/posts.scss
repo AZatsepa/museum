@@ -8,6 +8,19 @@
   border-radius: 3px;
   border: 2px solid #000;
 
+  .post-title-show {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  .post-body-show {
+    margin: 0 15px 10px;
+  }
+
+  p {
+    padding: 10px 5px 0px 5px;
+  }
+
   h1 {
     margin-top: 10px;
     text-align: center;

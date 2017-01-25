@@ -10,14 +10,14 @@
           <div class="post-body">
             <%= p.body %>
           </div>
-            <% if p.comments %>
+            <% if p.comments.count > 0 %>
               <div class="post-comments">
-                <% p.comments.each do |comment| %>
-                  <p>Коментар:</p>
-                  <div class="post-comment-view">
-                    <%= comment.text %>
-                  </div>
-                <% end %>
+                <p>Коменти:</p>
+                  <% p.comments.each do |comment| %>
+                    <div class="post-comment-view">
+                      <%= comment.text %>
+                    </div>
+                  <% end %>
               </div>
             <% end %>
           </div>
