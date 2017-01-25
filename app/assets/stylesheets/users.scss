@@ -1,3 +1,33 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-data {
+  background-color: #F5F5F5;
+  margin: 20px 0px 0px 30px;
+  border-radius: 3px;
+  border: 2px solid #000;
+
+  h2 {
+    text-align: center;
+    font-size: 2em;
+  }
+
+  .field, .actions {
+    margin: 5px 0px 5px 30px;
+  }
+
+  a {
+    font-weight: 1.1em;
+    display: inline-block;
+    color: #808080;
+    margin: 0px 0px 10px 30px;
+  }
+  
+  input {
+    background-color:  #D3D3D3;
+    border-radius: 5px;
+  }
+
+}
+
