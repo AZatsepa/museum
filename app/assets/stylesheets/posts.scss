@@ -2,4 +2,63 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.posts {
+  background-color: #F5F5F5;
+  margin: 20px 0px 0px 30px;
+  border-radius: 3px;
+  border: 2px solid #000;
 
+  h1 {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.25em;
+  }
+
+  a {
+    font-weight: 1.1em;
+    display: inline-block;
+    color: #808080;
+    margin: 5px 0px 10px 15px;
+  }
+
+  form {
+    padding-left: 10px;
+
+    p {
+      padding: 10px 5px 0px 5px;
+    }
+
+  }
+
+  .post-view {
+    border-bottom: 1px solid #000;
+
+    p {
+      margin-left: 10px;
+    }
+
+    .post-title {
+      border: 2px solid #000;
+      margin: 5px;
+      border-radius: 3px;
+    }
+
+    .post-body {
+      border: 2px solid #000;
+      margin: 5px;
+      border-radius: 3px;
+
+    }
+
+    .post-comments {
+      margin-left: 15px;
+
+    }
+
+    .post-comment-view {
+      border: 2px solid #000;
+      border-radius: 3px;
+      margin: 0px 10px 2px 0px;
+    }
+  }
+}
