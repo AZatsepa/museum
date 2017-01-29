@@ -1,0 +1,11 @@
+<div class="comment-field">
+  <%= form_for [@post, @comment] do |f| -%>
+    <div class="comment-form">
+      <%= f.label :text, "Коментар" %>
+    </div>
+    <div class="comment-button">
+      <%= f.text_field :text %>
+    </div>
+    <%= f.submit "Відправити" %>
+  <% end %>
+</div>

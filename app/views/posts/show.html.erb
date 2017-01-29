@@ -1,10 +1,25 @@
-<% content_for :left_column do %>
-  <div class="posts">
+<div class="posts">
+
     <div class="post-title-show">
       <%= @post.title %>
     </div>
+
     <div class='post-body-show'>
       <%= @post.body %>    
     </div>
-  </div>
-<% end %>
+    <p>Автор статті: <%= @user.nickname %></p>
+      <% if @post.comments.count > 0 %>
+        <div class="comments-list">
+          <%= @post.comments.each do |comment| %>
+            <p>Автор коменту:</p>
+            <%= comment.user.email %>
+            <p>Комент:</p>
+            <%= comment.text %>
+          <% end %>
+        </div>
+      <% end %>
+      
+    <%= link_to "Додати комент", post_comments_path(@post) %>
+    <%= button_to "Видалити пост", post_path(@post), data: { confirm: "Ви впевнені?" }, method: :delete %>
+</div>
+
