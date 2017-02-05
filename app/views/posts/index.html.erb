@@ -1,10 +1,9 @@
-<% content_for :left_column do %>
   <div class="posts">
     <% @posts.each do |p| %>
         <div class="post-view">
           <p>Заголовок:</p>
           <div class="post-title">
-            <%= p.title %>
+             <%= link_to "#{p.title}", post_path(p) %>
           </div>
           <p>Текст:</p>
           <div class="post-body">
@@ -23,4 +22,3 @@
           </div>
     <% end %>
   </div>
-<% end %>

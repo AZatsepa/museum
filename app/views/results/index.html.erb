@@ -1,8 +1,6 @@
-<% content_for :left_column do %>
   <h3>Результати пошуку за запитом <em><%= params[:query]%></em></h3>
   <% @search_results.each do |result| %>
     <h4><%= link_to result.title, result %></h4>
     <div><%= result.body.html_safe %></div>
     <hr>
   <% end %>
-<% end %>

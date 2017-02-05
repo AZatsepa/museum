@@ -28,7 +28,7 @@
           </li>
           <li><%= link_to "Галерея" %></li>
           <% if user_signed_in? %>
-            <li><span>Профіль</span>
+            <li><%= link_to "Профіль", user_root_path %>
             <ul>
               <li><%= link_to "Редагувати профіль", edit_user_registration_path %></li>
               <li><%= link_to "Видалити профіль", user_registration_path, :confirm => "Ви впевнені?", :method => :delete %></li>
@@ -39,15 +39,10 @@
             <li><%= link_to 'Зареєструватися', new_user_registration_path %></li>
               <% end %>
           </li>
-          <li><%= link_to "Про нас" %></li>
+          <li><%= link_to "Про нас", about_path %></li>
         </ul>
       </div>
-      <div class="left_column">
-        <%= yield :left_column %>
-      </div>
-      <div class="right_column">
-        <%= yield :right_column %>
-      </div>
+      <%= yield %>
       <div class="footer">
     
       </div>

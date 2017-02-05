@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = User.find(@post.user_id)
+    @comments = Comment.where(post_id: @post.id)
   end
 
   def new
@@ -17,6 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
+    @post.user_id = current_user.id
     if @post.save
       redirect_to @post
     else

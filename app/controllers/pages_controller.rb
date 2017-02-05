@@ -8,4 +8,8 @@ class PagesController < ApplicationController
       @posts = Post.all.order('created_at DESC')
     end
   end
+
+  def about
+  	
+  end
 end

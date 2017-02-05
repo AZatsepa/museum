@@ -1,0 +1,133 @@
+@charset "UTF-8";
+/* line 1, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #A9A9A9;
+}
+
+/* line 6, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.wrapper {
+  margin: auto;
+  min-height: 100%;
+  background: url("background.jpg");
+  background-attachment: fixed;
+  background-size: 100%;
+}
+@font-face {
+  /* line 6, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+  .wrapper {
+    font-family: 'Yakutovich';
+    /* Имя шрифта */
+    src: url("Yakutovich.ttf");
+    /* Путь к файлу со шрифтом */
+  }
+}
+/* line 18, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header {
+  color: #808080;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  min-height: 40px;
+}
+
+/* line 27, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header form {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 360px;
+}
+
+/* line 34, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header input {
+  color: #A9A9A9;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  padding: 5px 2px 5px 30px;
+  background: url("search.png") no-repeat scroll 0% 50%;
+}
+
+/* line 46, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header input[type=submit] {
+  padding: 4px 2px 4px;
+  background-image: none;
+}
+
+/* line 51, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar {
+  height: 30px;
+  float: right;
+  min-width: 470px;
+  text-align: center;
+}
+
+/* line 59, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul {
+  display: none;
+  position: absolute;
+  top: 100;
+}
+
+/* line 65, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar li:hover ul {
+  display: block;
+  background-color: rgba(169, 169, 169, 0.5);
+  border-radius: 5px;
+}
+
+/* line 71, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar, #navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* line 77, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar li {
+  display: inline-block;
+  float: left;
+  position: relative;
+  line-height: 30px;
+}
+
+/* line 84, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul li {
+  float: none;
+}
+
+/* line 88, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar li a {
+  display: block;
+  padding: 6px;
+  width: 135px;
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #DCDCDC;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* line 105, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul li {
+  float: none;
+}
+
+/* line 109, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar a:hover {
+  color: #fff;
+  background-color: rgba(169, 169, 169, 0.5);
+  border-radius: 5px;
+}
+
+/* line 115, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul li:hover {
+  color: #fff;
+}
+
+/* line 120, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.left_column {
+  min-height: 500px;
+  width: 800px;
+}

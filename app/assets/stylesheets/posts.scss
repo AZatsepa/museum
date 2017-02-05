@@ -3,8 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .posts {
+  min-height: 50px;
   background-color: #F5F5F5;
-  margin: 20px 0px 0px 30px;
+  margin: 20px 30px 0px 30px;
   border-radius: 3px;
   border: 2px solid #000;
 
@@ -18,7 +19,7 @@
   }
 
   p {
-    padding: 10px 5px 0px 5px;
+    padding: 10px 5px 0px 15px;
   }
 
   h1 {
@@ -35,7 +36,8 @@
   }
 
   form {
-    padding-left: 10px;
+    // padding-left: 10px;
+    margin: 10px 0px 10px 15px;
 
     p {
       padding: 10px 5px 0px 5px;

@@ -1,0 +1,321 @@
+/* line 5, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts {
+  min-height: 50px;
+  background-color: #F5F5F5;
+  margin: 20px 30px 0px 30px;
+  border-radius: 3px;
+  border: 2px solid #000;
+}
+/* line 12, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-title-show {
+  margin: 10px 0 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+/* line 17, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-body-show {
+  margin: 0 15px 10px;
+}
+/* line 21, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts p {
+  padding: 10px 5px 0px 15px;
+}
+/* line 25, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts h1 {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.25em;
+}
+/* line 31, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts a {
+  font-weight: 1.1em;
+  display: inline-block;
+  color: #808080;
+  margin: 5px 0px 10px 15px;
+}
+/* line 38, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts form {
+  margin: 10px 0px 10px 15px;
+}
+/* line 42, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts form p {
+  padding: 10px 5px 0px 5px;
+}
+/* line 48, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-view {
+  border-bottom: 1px solid #000;
+}
+/* line 51, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-view p {
+  margin-left: 10px;
+}
+/* line 55, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-title {
+  border: 2px solid #000;
+  margin: 5px;
+  border-radius: 3px;
+}
+/* line 61, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-body {
+  border: 2px solid #000;
+  margin: 5px;
+  border-radius: 3px;
+}
+/* line 68, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-comments {
+  margin-left: 15px;
+}
+/* line 73, /home/donets/projects/museum_2/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-comment-view {
+  border: 2px solid #000;
+  border-radius: 3px;
+  margin: 0px 10px 2px 0px;
+}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* line 7, /home/donets/projects/museum_2/app/assets/stylesheets/reset.css.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 28, /home/donets/projects/museum_2/app/assets/stylesheets/reset.css.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 32, /home/donets/projects/museum_2/app/assets/stylesheets/reset.css.scss */
+body {
+  line-height: 1;
+}
+
+/* line 35, /home/donets/projects/museum_2/app/assets/stylesheets/reset.css.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 38, /home/donets/projects/museum_2/app/assets/stylesheets/reset.css.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 41, /home/donets/projects/museum_2/app/assets/stylesheets/reset.css.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 46, /home/donets/projects/museum_2/app/assets/stylesheets/reset.css.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@charset "UTF-8";
+/* line 1, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #A9A9A9;
+}
+
+/* line 6, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.wrapper {
+  margin: auto;
+  min-height: 100%;
+  background: url("background.jpg");
+  background-attachment: fixed;
+  background-size: 100%;
+}
+@font-face {
+  /* line 6, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+  .wrapper {
+    font-family: 'Yakutovich';
+    /* Имя шрифта */
+    src: url("Yakutovich.ttf");
+    /* Путь к файлу со шрифтом */
+  }
+}
+/* line 18, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header {
+  color: #808080;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  min-height: 40px;
+}
+
+/* line 27, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header form {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 360px;
+}
+
+/* line 34, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header input {
+  color: #A9A9A9;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  padding: 5px 2px 5px 30px;
+  background: url("search.png") no-repeat scroll 0% 50%;
+}
+
+/* line 46, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.header input[type=submit] {
+  padding: 4px 2px 4px;
+  background-image: none;
+}
+
+/* line 51, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar {
+  height: 30px;
+  float: right;
+  min-width: 470px;
+  text-align: center;
+}
+
+/* line 59, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul {
+  display: none;
+  position: absolute;
+  top: 100;
+}
+
+/* line 65, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar li:hover ul {
+  display: block;
+  background-color: rgba(169, 169, 169, 0.5);
+  border-radius: 5px;
+}
+
+/* line 71, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar, #navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* line 77, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar li {
+  display: inline-block;
+  float: left;
+  position: relative;
+  line-height: 30px;
+}
+
+/* line 84, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul li {
+  float: none;
+}
+
+/* line 88, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar li a {
+  display: block;
+  padding: 6px;
+  width: 135px;
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #DCDCDC;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* line 105, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul li {
+  float: none;
+}
+
+/* line 109, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar a:hover {
+  color: #fff;
+  background-color: rgba(169, 169, 169, 0.5);
+  border-radius: 5px;
+}
+
+/* line 115, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+#navbar ul li:hover {
+  color: #fff;
+}
+
+/* line 120, /home/donets/projects/museum_2/app/assets/stylesheets/style.css.scss */
+.left_column {
+  min-height: 500px;
+  width: 800px;
+}
+/* line 5, /home/donets/projects/museum_2/app/assets/stylesheets/users.scss */
+.user-data {
+  min-height: 50px;
+  background-color: #F5F5F5;
+  margin: 20px 30px 0px 30px;
+  border-radius: 3px;
+  border: 2px solid #000;
+}
+/* line 12, /home/donets/projects/museum_2/app/assets/stylesheets/users.scss */
+.user-data h2, .user-data h3 {
+  text-align: center;
+  font-size: 1.1em;
+}
+/* line 18, /home/donets/projects/museum_2/app/assets/stylesheets/users.scss */
+.user-data .delete {
+  padding: 3px 0px 0px 30px;
+  border-top: 1px solid #000;
+}
+/* line 22, /home/donets/projects/museum_2/app/assets/stylesheets/users.scss */
+.user-data .delete p {
+  margin: 3px 0px;
+}
+/* line 27, /home/donets/projects/museum_2/app/assets/stylesheets/users.scss */
+.user-data .field, .user-data .actions {
+  margin: 5px 0px 5px 30px;
+}
+/* line 31, /home/donets/projects/museum_2/app/assets/stylesheets/users.scss */
+.user-data a {
+  font-weight: 1.1em;
+  display: inline-block;
+  color: #808080;
+  margin: 0px 0px 10px 30px;
+}
+/* line 38, /home/donets/projects/museum_2/app/assets/stylesheets/users.scss */
+.user-data input {
+  background-color: #D3D3D3;
+  border-radius: 5px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+/*
+*/
