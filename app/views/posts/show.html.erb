@@ -7,13 +7,13 @@
     <div class='post-body-show'>
       <%= @post.body %>    
     </div>
-    <p>Автор статті: <%= @user.nickname %></p>
+    <p>Автор статті: <%= @post.user_id %></p>
       <% if @comments.count > 0 %>
         <div class="post-comments">
           <p>Коменти:</p><br>
             <% @comments.each do |comment| %>
               <div class="post-comment-user-view">
-                Автор: <%= comment.user.nickname %>
+                Автор: <%= comment.user_id %>
               </div>
               <div class="post-comment-view">
                 <p>Текст коменту:</p>
