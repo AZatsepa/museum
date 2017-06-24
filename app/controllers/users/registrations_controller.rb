@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_action :configure_sign_up_params, only: [:create]
-# before_action :configure_account_update_params, only: [:update]
-  skip_before_filter :verify_authenticity_token, :only => :destroy
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
+  skip_before_action :verify_authenticity_token, only: :destroy
 
   # GET /resource/sign_up
   # def new
@@ -21,12 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     @user = current_user
-    if @user.update_attributes(user_params)
-      # redirect_to @user
-      render 'edit'      
-    else
-      render 'edit'      
-    end
+    render 'edit' if @user.update_attributes(user_params)
   end
 
   # DELETE /resource
@@ -64,6 +59,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-  
 end
