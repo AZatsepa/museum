@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def index
-    @comment = Comment.all  
+    @comment = Comment.all
   end
 
   def show
@@ -9,18 +9,18 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    # render form to browser, who will send to update method 
+    # render form to browser, who will send to update method
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     if @comment.save
       redirect_to @post
     else
-      render 'edit'      
+      render 'edit'
     end
   end
 
   def new
-    # render form to browser, who will send to create method 
+    # render form to browser, who will send to create method
     @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
@@ -33,15 +33,11 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @post
     else
-      render 'new'      
+      render 'new'
     end
-    
   end
 
-
-  def update
-    
-  end
+  def update; end
 
   def destroy
     @post = Post.find(params[:post_id])

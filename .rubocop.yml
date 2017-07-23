@@ -1,0 +1,24 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/seeds.rb'
+    - 'db/migrate/*'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/backtrace_silencers.rb'
+
+Rails:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Exclude:
+    - 'bin/spring'
+
+Style/ConditionalAssignment:
+  Exclude:
+    - 'app/controllers/pages_controller.rb'
