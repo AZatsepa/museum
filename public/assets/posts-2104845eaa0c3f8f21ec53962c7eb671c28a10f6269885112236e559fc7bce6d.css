@@ -1,0 +1,77 @@
+/* line 5, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts {
+  min-height: 50px;
+  background-color: #F5F5F5;
+  margin: 20px 30px 0px 30px;
+  border-radius: 3px;
+  border: 2px solid #000;
+}
+/* line 12, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-title-show {
+  margin: 10px 0 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+/* line 17, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-body-show {
+  margin: 0 15px 10px;
+}
+/* line 21, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts p {
+  padding: 10px 5px 0px 15px;
+}
+/* line 25, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts h1 {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.25em;
+}
+/* line 31, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts a {
+  font-weight: 1.1em;
+  display: inline-block;
+  color: #808080;
+  margin: 5px 0px 10px 15px;
+}
+/* line 38, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts form {
+  margin: 10px 0px 10px 15px;
+}
+/* line 42, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts form p {
+  padding: 10px 5px 0px 5px;
+}
+/* line 48, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-view {
+  border-bottom: 1px solid #000;
+}
+/* line 51, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-view p {
+  margin-left: 10px;
+}
+/* line 55, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-title {
+  border: 2px solid #000;
+  margin: 5px;
+  border-radius: 3px;
+}
+/* line 61, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-body {
+  border: 2px solid #000;
+  margin: 5px;
+  border-radius: 3px;
+}
+/* line 68, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-comments {
+  margin-left: 15px;
+}
+/* line 73, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-comment-user-view {
+  margin: 0 10px 0 20px;
+}
+/* line 77, /home/donets/projects/museum/app/assets/stylesheets/posts.scss */
+.posts .post-view .post-comment-view {
+  border: 2px solid #000;
+  border-radius: 3px;
+  margin: 0px 10px 2px 10px;
+}
