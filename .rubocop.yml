@@ -5,6 +5,8 @@ AllCops:
     - 'db/migrate/*'
     - 'config/initializers/devise.rb'
     - 'config/initializers/backtrace_silencers.rb'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
 
 Rails:
   Enabled: true
@@ -20,5 +22,4 @@ Lint/AssignmentInCondition:
     - 'bin/spring'
 
 Style/ConditionalAssignment:
-  Exclude:
-    - 'app/controllers/pages_controller.rb'
+  Enabled: false

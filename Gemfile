@@ -7,8 +7,10 @@ end
 
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'execjs'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'paperclip'
 gem 'pg', '~> 0.18'
 gem 'pg_search'
 gem 'puma',         '~> 3.0'
@@ -24,6 +26,7 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -34,4 +37,4 @@ group :development do
   gem 'web-console',           '>= 3.3.0'
 end
 
-ruby '2.3.1'
+ruby '2.4.1'

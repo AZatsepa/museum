@@ -9,5 +9,15 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css,
 # and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w[reset.css.scss]
-Rails.application.config.assets.precompile += %w[style.css.scss]
+Rails.application.config.assets.precompile += %w[comments.scss
+                                                 comparising.scss
+                                                 pages.scss
+                                                 posts.scss
+                                                 reset.css.scss
+                                                 results.scss
+                                                 style.css.scss
+                                                 users.scss
+                                                 modernizr.js
+                                                 jquery-2.1.1.js
+                                                 jquery.mobile.custom.min.js
+                                                 main.js]

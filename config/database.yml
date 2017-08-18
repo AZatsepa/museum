@@ -1,6 +1,8 @@
 default: &default
   adapter: postgresql
+#  username: <%= ENV['MUSEUM_DATABASE_USERNAME'] %>
   username: postgres
+#  password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
   password: postgres
   database: museum_db
   encoding: unicode
