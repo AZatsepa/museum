@@ -20,4 +20,6 @@ Rails.application.config.assets.precompile += %w[comments.scss
                                                  modernizr.js
                                                  jquery-2.1.1.js
                                                  jquery.mobile.custom.min.js
+                                                 jquery.imagemapster.js
+                                                 mapshower.js
                                                  main.js]
