@@ -10,6 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery.maphilight
+//= require mapshower
+//= require modernizr
+//= require main
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks

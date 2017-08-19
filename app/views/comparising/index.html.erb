@@ -1,36 +1,12 @@
 <body>
 <figure class="cd-image-container">
-  <%= image_tag 'web-1780.jpg', alt: 'Original Image' %>
+  <%= image_tag 'web-1940.jpg', alt: 'Original Image' %>
   <span class="cd-image-label" data-type="original">1940-ві рр</span>
 
   <div class="cd-resize-img">
-    <%= image_tag 'web-1940.jpg', alt: 'Modified Image', usemap: '#img-modified-jpg' %>
+    <%= image_tag 'web-1780.jpg', alt: 'Modified Image', usemap: '#img-modified-jpg' %>
     <map id="img-modified" name="img-modified">
-      <area id="place_1" shape="poly" alt="1" coords="1636,2588,1716,2848,2404,2808,2444,2752,2428,2452" nohref title="Обывательское строение" />
-      <area id="place_2" shape="poly" alt="" coords="1724,2860,1800,3292,2424,3088,2400,2812" nohref title="Обывательское строение">
-      <area id="place_3" shape="poly" alt="1" coords="1636,2588,1716,2848,2404,2808,2444,2752,2428,2452" nohref title="Обывательское строение" />
-      <area id="place_4" shape="poly" alt="" coords="1724,2860,1800,3292,2424,3088,2400,2812" nohref title="Обывательское строение" />
-      <area id="place_5" shape="poly" alt="" coords="2432,2452,2540,2424,2636,2904,2628,3480,2296,3560,2304,3128,2424,3092,2404,2812,2448,2752" nohref title="Обывательское строение" />
-      <area id="place_6" shape="poly" alt="" coords="1800,3292,2308,3128,2296,3552,1952,3660" nohref title="Обывательское строение" />
-      <area id="place_7" shape="poly" alt="" coords="1944,3668,2140,4172,2656,4124,2624,3484" nohref title="Обывательское строение" />
-      <area id="place_8" shape="poly" alt="" coords="2360,4164,2380,4456,2680,4424,2656,4124" nohref title="Обывательское строение" />
-      <area id="place_9" shape="poly" alt="" coords="2140,4184,2368,4812,2676,4752,2672,4432,2372,4452,2356,4160" nohref title="Обывательское строение" />
-      <area id="place_10" shape="poly" alt="" coords="2688,3204,2696,3820,3156,3808,3284,3024,2896,2932,2892,3184" nohref title="Обывательское строение" />
-      <area id="place_11" shape="poly" alt="" coords="3464,3084,3272,3756,3844,3716,3952,3220" nohref title="Обывательское строение" />
-      <area id="place_12" shape="poly" alt="" coords="4172,3180,4016,3636,4568,3524,4620,3232,4644,3228,4724,2820,4652,2820,4520,2852" nohref title="Обывательское строение" />
-      <area id="place_13" shape="poly" alt="" coords="2856,2520,2952,2240,3228,1964,3904,1852,3924,1880,4468,1780,4564,2448,3900,2520" nohref title="Обывательское строение" />
-      <area id="place_14" shape="poly" alt="" coords="2732,4344,2748,4760,3188,4760,3204,4312" nohref title="Обывательское строение" />
-      <area id="place_15" shape="poly" alt="" coords="3304,3860,3240,4748,3712,4768,3780,3968" nohref title="Обывательское строение" />
-      <area id="place_16" shape="poly" alt="" coords="3248,4804,3236,4956,3692,4968,3704,4812" nohref title="Обывательское строение" />
-      <area id="place_17" shape="poly" alt="" coords="3644,4988,3636,5060,3684,5056,3684,4984" nohref title="Обывательское строение" />
-      <area id="place_18" shape="poly" alt="" coords="3788,5004,3792,5052,3892,5060,3896,5008" nohref title="Обывательское строение" />
-      <area id="place_19" shape="poly" alt="" coords="3692,5060,3740,5068,3748,5256,3684,5260" nohref title="Обывательское строение" />
-      <area id="place_20" shape="poly" alt="" coords="3928,4016,3916,4160,3980,4164,3988,4016" nohref title="Обывательское строение" />
-      <area id="place_21" shape="poly" alt="" coords="3908,4272,3876,4580,4212,4592,4212,4548,3932,4532,3960,4284" nohref title="Обывательское строение" />
-      <area id="place_22" shape="poly" alt="" coords="4264,4540,4264,4588,4360,4592,4364,4544" nohref title="Обывательское строение" />
-      <area id="place_23" shape="poly" alt="" coords="3924,4704,4732,4708,4724,4968,3904,4980" nohref title="Обывательское строение" />
-      <area id="place_24" shape="poly" alt="" coords="5148,3884,5144,3980,5216,3984,5216,3876" nohref title="Обывательское строение" />
-      <area id="place_25" shape="poly" alt="" coords="5128,4392,5092,4988,5148,4992,5184,4384" nohref title="Обывательское строение" />
+      <area data-key="place_1" shape="poly" alt="1" coords="100,100,100,200,200,200,200,100" nohref title="Обывательское строение" />
       <area shape="default" nohref="nohref" alt="" />
     </map>
     <span class="cd-image-label" data-type="modified">1782 р</span>
@@ -38,9 +14,7 @@
   <span class="cd-handle"></span>
 </figure>
 
-<%= javascript_include_tag 'jquery-2.1.1.js', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'jquery.mobile.custom.min.js', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'jquery.imagemapster.js', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'mapshower.js', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'main.js', 'data-turbolinks-track': 'reload' %>
 </body>
