@@ -1,0 +1,38 @@
+/* line 5, /home/donets/projects/test-of-museum/app/assets/stylesheets/users.scss */
+.user-data {
+  min-height: 50px;
+  background-color: #F5F5F5;
+  margin: 20px 30px 0px 30px;
+  border-radius: 3px;
+  border: 2px solid #000;
+}
+/* line 12, /home/donets/projects/test-of-museum/app/assets/stylesheets/users.scss */
+.user-data h2, .user-data h3 {
+  text-align: center;
+  font-size: 1.1em;
+}
+/* line 18, /home/donets/projects/test-of-museum/app/assets/stylesheets/users.scss */
+.user-data .delete {
+  padding: 3px 0px 0px 30px;
+  border-top: 1px solid #000;
+}
+/* line 22, /home/donets/projects/test-of-museum/app/assets/stylesheets/users.scss */
+.user-data .delete p {
+  margin: 3px 0px;
+}
+/* line 27, /home/donets/projects/test-of-museum/app/assets/stylesheets/users.scss */
+.user-data .field, .user-data .actions {
+  margin: 5px 0px 5px 30px;
+}
+/* line 31, /home/donets/projects/test-of-museum/app/assets/stylesheets/users.scss */
+.user-data a {
+  font-weight: 1.1em;
+  display: inline-block;
+  color: #808080;
+  margin: 0px 0px 10px 30px;
+}
+/* line 38, /home/donets/projects/test-of-museum/app/assets/stylesheets/users.scss */
+.user-data input {
+  background-color: #D3D3D3;
+  border-radius: 5px;
+}

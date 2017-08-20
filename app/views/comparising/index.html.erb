@@ -1,20 +1,22 @@
 <body>
 <figure class="cd-image-container">
-  <%= image_tag 'web-1940.jpg', alt: 'Original Image' %>
+  <%= image_tag 'web-1940.jpg', alt: 'New' %>
   <span class="cd-image-label" data-type="original">1940-ві рр</span>
 
   <div class="cd-resize-img">
-    <%= image_tag 'web-1780.jpg', alt: 'Modified Image', usemap: '#img-modified-jpg' %>
-    <map id="img-modified" name="img-modified">
-      <area data-key="place_1" shape="poly" alt="1" coords="100,100,100,200,200,200,200,100" nohref title="Обывательское строение" />
-      <area shape="default" nohref="nohref" alt="" />
+    <%= image_tag 'web-1782.jpg', alt: 'Old', usemap: '#map-1782' %>
+    <map name="map-1782">
+      <area shape="poly" alt="Проба" coords="249, 394, 368, 372, 370, 416, 365, 427, 259, 432" title="Обывательское строение">
+      <area shape="poly" alt="Проба" coords="763, 512, 766, 510, 769, 509, 773, 510, 774, 507, 776, 504, 783, 505, 786, 507, 785, 511, 790, 511, 793, 514, 793, 522, 789, 525, 783, 526, 782, 529, 779, 532, 773, 531, 770, 528, 771, 523, 765, 523, 762, 520" title="Преображенський собор.">
     </map>
     <span class="cd-image-label" data-type="modified">1782 р</span>
   </div>
   <span class="cd-handle"></span>
 </figure>
 
-<%= javascript_include_tag 'jquery.mobile.custom.min.js', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'mapshower.js', 'data-turbolinks-track': 'reload' %>
+<script>
+    $('img[usemap]').maphilight();
+</script>
+
 <%= javascript_include_tag 'main.js', 'data-turbolinks-track': 'reload' %>
 </body>

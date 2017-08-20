@@ -1,10 +1,8 @@
 default: &default
   adapter: postgresql
-#  username: <%= ENV['MUSEUM_DATABASE_USERNAME'] %>
-  username: postgres
-#  password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
-  password: postgres
-  database: museum_db
+  username: <%= ENV['MUSEUM_DATABASE_USERNAME'] %>
+  password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
+  database: <%= ENV['MUSEUM_DATABASE_DEV_NAME'] %>
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
@@ -13,10 +11,10 @@ development:
 
 test:
   <<: *default
-  database: museum_test
+  database: <%= ENV['MUSEUM_DATABASE_TEST_NAME'] %>
 
 production:
   <<: *default
-  database: museum_production
-  username: museum
+  database: <%= ENV['MUSEUM_DATABASE_PROD_NAME'] %>
+  username: <%= ENV['MUSEUM_DATABASE_USERNAME'] %>
   password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>

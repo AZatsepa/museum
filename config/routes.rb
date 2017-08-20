@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get 'users/show', as: 'user_root'
   get 'about', to: 'pages#about', as: 'about'
   get 'comparising/1780', to: 'comparising#fortress_1780'
+  get 'maps/1782', to: 'maps#map_1782'
 end

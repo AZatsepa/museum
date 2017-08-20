@@ -1,0 +1,10 @@
+/* line 5, /home/donets/projects/test-of-museum/app/assets/stylesheets/pages.scss */
+.user-data h1 {
+  text-align: center;
+}
+/* line 9, /home/donets/projects/test-of-museum/app/assets/stylesheets/pages.scss */
+.user-data p {
+  margin: 5px 0px;
+  padding-left: 10px;
+  text-indent: 20px;
+}
