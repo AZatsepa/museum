@@ -84,3 +84,4 @@ function updateLabel(label, resizeElement, position) {
         ( label.offset().left > resizeElement.offset().left + resizeElement.outerWidth() ) ? label.removeClass('is-hidden') : label.addClass('is-hidden') ;
     }
 }
+;

@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery.maphilight
 //= require turbolinks
-//= require mapshower
 //= require modernizr
 //= require main
 //= require_tree .
