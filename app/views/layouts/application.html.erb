@@ -11,7 +11,6 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'modernizr.js', 'data-turbolinks-track': 'reload' %>
-  <link media="screen" href="demo/styles/demo.css" type="text/css" rel="stylesheet" />
 </head>
 
   <body>
@@ -22,38 +21,28 @@
           <%= submit_tag "Пошук", name: nil %>
         <% end %>
         <ul id="navbar">
-          <li><%#= link_to "Головна", root_path %></li>
-          <li><%= link_to "Головна" %></li>
+          <li><%= link_to "Головна", root_path %></li>
           <li><%#= link_to "Статті", posts_path %>
-          <li><%= link_to "Статті", %>
             <% if user_signed_in? %>
               <ul>
                 <li><%#= link_to "Створити статтю", new_post_path %></li>
-                <li><%= link_to "Створити статтю" %></li>
               </ul>
             <% end %>
           </li>
           <li><%= link_to "Галерея", comparising_1780_path %></li>
           <% if user_signed_in? %>
             <li><%#= link_to "Профіль", user_root_path %>
-            <li><%= link_to "Профіль" %>
             <ul>
               <li><%#= link_to "Редагувати профіль", edit_user_registration_path %></li>
-              <li><%= link_to "Редагувати профіль" # %></li>
               <li><%#= link_to "Видалити профіль", user_registration_path, :confirm => "Ви впевнені?", :method => :delete %></li>
-              <li><%= link_to "Видалити профіль" %></li>
               <li><%#= link_to "Вийти", destroy_user_session_path %></li>
-              <li><%= link_to "Вийти"  %></li>
             </ul>
           <% else %>
             <li><%#= link_to 'Увійти', new_user_session_path %></li>
-            <li><%= link_to 'Увійти', %></li>
             <li><%#= link_to 'Зареєструватися', new_user_registration_path %></li>
-            <li><%= link_to 'Зареєструватися' %></li>
-              <% end %>
+          <% end %>
           </li>
-          <li><%#= link_to "Про нас", about_path %></li>
-          <li><%= link_to "Про нас" %></li>
+          <li><%= link_to "Про нас", about_path %></li>
         </ul>
       </div>
       <%= yield %>
