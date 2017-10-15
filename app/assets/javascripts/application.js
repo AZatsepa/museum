@@ -15,5 +15,6 @@
 //= require jquery.maphilight
 //= require turbolinks
 //= require modernizr
+//= require imagemapster
 //= require main
 //= require_tree .

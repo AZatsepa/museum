@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   get 'results', to: 'results#index', as: 'results'
   get 'users/show', as: 'user_root'
   get 'about', to: 'pages#about', as: 'about'
-  get 'comparising/1780', to: 'comparising#fortress_1780'
+  get 'comparison/fortress_1782', to: 'comparison#fortress_1782'
   get 'maps/1782', to: 'maps#map_1782'
 end

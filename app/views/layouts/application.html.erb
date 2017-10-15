@@ -6,43 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tag %>
-  <%= stylesheet_link_tag    'reset', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'modernizr.js', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    :reset, media: :all, 'data-turbolinks-track': :reload %>
+  <%= stylesheet_link_tag    :style, media: :all, 'data-turbolinks-track': :reload %>
+  <%= stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track': :reload %>
+  <%= javascript_include_tag :application, 'data-turbolinks-track': :reload %>
+  <%= javascript_include_tag :modernizr, 'data-turbolinks-track': :reload %>
 </head>
 
   <body>
     <div class="wrapper">
       <div class="header">
-        <%= form_tag results_path, method: :get, role: 'search' do %>
+        <%= form_tag results_path, method: :get, role: :search do %>
           <%= text_field_tag :query, params[:query] %>
-          <%= submit_tag "Пошук", name: nil %>
+          <%= submit_tag 'Пошук', name: nil %>
         <% end %>
         <ul id="navbar">
-          <li><%= link_to "Головна", root_path %></li>
+          <li><%= link_to 'Головна', root_path %></li>
           <li><%#= link_to "Статті", posts_path %>
-            <% if user_signed_in? %>
-              <ul>
+            <%# if user_signed_in? %>
+              <!--<ul>-->
                 <li><%#= link_to "Створити статтю", new_post_path %></li>
-              </ul>
-            <% end %>
+              <!--</ul>-->
+            <%# end %>
           </li>
-          <li><%= link_to "Галерея", comparising_1780_path %></li>
-          <% if user_signed_in? %>
+          <li><%= link_to 'Галерея', comparison_fortress_1782_path %></li>
+          <%# if user_signed_in? %>
             <li><%#= link_to "Профіль", user_root_path %>
             <ul>
               <li><%#= link_to "Редагувати профіль", edit_user_registration_path %></li>
               <li><%#= link_to "Видалити профіль", user_registration_path, :confirm => "Ви впевнені?", :method => :delete %></li>
               <li><%#= link_to "Вийти", destroy_user_session_path %></li>
             </ul>
-          <% else %>
+          <%# else %>
             <li><%#= link_to 'Увійти', new_user_session_path %></li>
             <li><%#= link_to 'Зареєструватися', new_user_registration_path %></li>
-          <% end %>
+          <%# end %>
           </li>
-          <li><%= link_to "Про нас", about_path %></li>
+          <li><%= link_to 'Про нас', about_path %></li>
         </ul>
       </div>
       <%= yield %>
