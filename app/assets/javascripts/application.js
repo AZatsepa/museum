@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.maphilight
-//= require turbolinks
+//= //require turbolinks
+// TODO: add turbolinks!
 //= require modernizr
-//= require imagemapster
 //= require main
 //= require_tree .
