@@ -1,6 +1,12 @@
 rvm:
   - 2.4.1
-script: "RAILS_ENV=test MUSEUM_DATABASE_USERNAME=test bundle exec rails db:create"
-script: "RAILS_ENV=test bundle exec rails db:migrate"
+services:
+  - postgresql
+env:
+  - "RAILS_ENV=test"
+  - "MUSEUM_DATABASE_TEST_NAME=travis_ci_test"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+script: " bundle exec rails db:migrate"
 #script: ""
 script: "bundle exec rspec"
