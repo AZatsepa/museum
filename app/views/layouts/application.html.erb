@@ -13,41 +13,6 @@
 </head>
 
   <body>
-    <div class="wrapper">
-      <div class="header">
-        <%= form_tag results_path, method: :get, role: :search do %>
-          <%= text_field_tag :query, params[:query] %>
-          <%= submit_tag 'Пошук', name: nil %>
-        <% end %>
-        <ul id="navbar">
-          <li><%= link_to 'Головна', root_path %></li>
-          <li><%#= link_to "Статті", posts_path %>
-            <%# if user_signed_in? %>
-              <!--<ul>-->
-                <li><%#= link_to "Створити статтю", new_post_path %></li>
-              <!--</ul>-->
-            <%# end %>
-          </li>
-          <li><%= link_to 'Галерея', comparison_fortress_1782_path %></li>
-          <%# if user_signed_in? %>
-            <li><%#= link_to "Профіль", user_root_path %>
-            <ul>
-              <li><%#= link_to "Редагувати профіль", edit_user_registration_path %></li>
-              <li><%#= link_to "Видалити профіль", user_registration_path, :confirm => "Ви впевнені?", :method => :delete %></li>
-              <li><%#= link_to "Вийти", destroy_user_session_path %></li>
-            </ul>
-          <%# else %>
-            <li><%#= link_to 'Увійти', new_user_session_path %></li>
-            <li><%#= link_to 'Зареєструватися', new_user_registration_path %></li>
-          <%# end %>
-          </li>
-          <li><%= link_to 'Про нас', about_path %></li>
-        </ul>
-      </div>
       <%= yield %>
-      <div class="footer">
-    
-      </div>
-    </div>
   </body>
 </html>
