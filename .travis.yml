@@ -1,3 +1,6 @@
 rvm:
   - 2.4.1
+script: "bundle exec rails db:create"
+script: "bundle exec rails db:migrate"
+#script: ""
 script: "bundle exec rspec"
