@@ -3,10 +3,8 @@ rvm:
 services:
   - postgresql
 env:
-  - "RAILS_ENV=test"
   - "MUSEUM_DATABASE_TEST_NAME=travis_ci_test"
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 script: " bundle exec rails db:migrate"
-#script: ""
 script: "bundle exec rspec"
