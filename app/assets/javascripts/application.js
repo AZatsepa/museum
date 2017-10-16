@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.maphilight
-//= //require turbolinks
-// TODO: add turbolinks!
-//= require modernizr
+//= require turbolinks
 //= require main
+//= require hilight
 //= require_tree .
