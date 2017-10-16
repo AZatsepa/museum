@@ -8,3 +8,4 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 script: " bundle exec rails db:migrate"
 script: "bundle exec rspec"
+script: "bundle exec rubocop ."
