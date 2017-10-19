@@ -1,0 +1,11 @@
+figure.cd-image-container
+  = image_tag 'web-1943.jpg', alt: 'New', usemap: '#map-1943'
+  span.cd-image-label data-type="original"  1943 р
+  .cd-resize-img usemap="#map-1782"
+    = image_tag 'web-1782.jpg', alt: 'Old', usemap: '#map-1782'
+    span.cd-image-label data-type="modified"  1782 р
+    map name="map-1782"
+      = render 'plan_1782'
+    map name="map-1943"
+      = render 'photo_1943'
+  span.cd-handle
