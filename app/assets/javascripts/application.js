@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.maphilight
-//= require jquery.mobile.custom.min
+//= require jquery.mobile-git
 //= require turbolinks
 //= require main
 //= require hilight
