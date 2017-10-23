@@ -1,0 +1,11 @@
+figure.cd-image-container
+  = image_tag 'new_layer.png', alt: 'New', usemap: '#map-2017'
+  span.cd-image-label data-type="original"  2017 р
+  .cd-resize-img usemap="#map-2017"
+    = image_tag 'web-1943.jpg', alt: 'Old', usemap: '#map-1943'
+    span.cd-image-label data-type="modified"  1943 р
+    /map name="map-1943"
+    /  = render 'plan_1782'
+    /map name="map-1943"
+    /  = render 'photo_1943'
+  span.cd-handle

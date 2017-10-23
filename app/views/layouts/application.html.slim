@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Народний музей Ізюмщини
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css" /
+    = csrf_meta_tag
+    = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track': :reload
+    = javascript_include_tag :application, 'data-turbolinks-track': :reload
+  body
+    = yield
