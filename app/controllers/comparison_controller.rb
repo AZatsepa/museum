@@ -6,4 +6,8 @@ class ComparisonController < ApplicationController
   def city_1943
     render 'comparison/1943_2017'
   end
+
+  def fortress_on_2017
+    render 'comparison/1782_2017'
+  end
 end

@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: 'about'
   get 'comparison/fortress_1782', to: 'comparison#fortress_1782'
   get 'comparison/city_1943', to: 'comparison#city_1943'
+  get 'comparison/fortress_on_2017', to: 'comparison#fortress_on_2017'
   get 'maps/1782', to: 'maps#map_1782'
 end
