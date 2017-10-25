@@ -206,3 +206,14 @@ header h1 {
   transition: transform 0.3s 0.7s, opacity 0s 0.7s;
 }
 
+ul.horizontal {
+  margin: 0; /* Обнуляем значение отступов */
+  padding: 4px; /* Значение полей */
+}
+ul.horizontal li {
+  display: inline; /* Отображать как строчный элемент */
+  margin-right: 5px; /* Отступ слева */
+  border: 1px solid #000; /* Рамка вокруг текста */
+  padding: 3px; /* Поля вокруг текста */
+}
+

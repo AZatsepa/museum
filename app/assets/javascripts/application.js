@@ -18,3 +18,4 @@
 //= require main
 //= require hilight
 //= require_tree .
+$.mobile.autoInitializePage = false;

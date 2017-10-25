@@ -10,4 +10,12 @@ html
     = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track': :reload
     = javascript_include_tag :application, 'data-turbolinks-track': :reload
   body
+    .navbar
+      ul.horizontal
+        li
+          = link_to '1782-1943', comparison_fortress_1782_path, 'data-no-turbolink' => true
+        li
+          = link_to '1943-2017', comparison_city_1943_path, 'data-no-turbolink' => true
+        li
+          = link_to '1782-2017', comparison_fortress_on_2017_path, 'data-no-turbolink' => true
     = yield
