@@ -22,6 +22,12 @@ body {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  .description {
+    font-family: Izhitsa;
+    padding: 10px 20px 0;
+    font-size: 22px;
+    line-height: 22px;
+  }
 }
 
 /* General reset */
@@ -211,12 +217,6 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
       width: 100%;
     }
   }
-}
-
-p.description {
-  font-family: Izhitsa;
-  padding: 10px 20px 0;
-  font-size: 18px;
 }
 
 .header {
