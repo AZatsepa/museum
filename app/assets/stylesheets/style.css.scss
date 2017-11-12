@@ -213,16 +213,10 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
   }
 }
 
-.wrapper {
-  margin: auto;
-  height: 100vh;
-  min-width: 440px;
-
-  p.description {
-    font-family: Izhitsa;
-    background: url('parchment.jpg');
-    padding: 10px 20px 0;
-  }
+p.description {
+  font-family: Izhitsa;
+  padding: 10px 20px 0;
+  font-size: 18px;
 }
 
 .header {
