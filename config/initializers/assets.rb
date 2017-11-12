@@ -4,22 +4,23 @@
 Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path
-# Rails.application.config.assets.paths << Emoji.images_path
+Rails.application.config.assets.paths << Rails.root.join('app',
+                                                         'assets',
+                                                         'fonts')
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 
 # Precompile additional assets.
 # application.js, application.css,
 # and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w[comments.scss
-                                                 comparisonscss
+                                                 comparison.scss
                                                  pages.scss
                                                  posts.scss
                                                  reset.css.scss
                                                  results.scss
                                                  style.css.scss
                                                  users.scss
-                                                 modernizr.js
-                                                 jquery-2.1.1.js
-                                                 jquery.mobile.custom.min.js
-                                                 jquery.imagemapster.js
-                                                 mapshower.js
-                                                 main.js]
+                                                 jquery.mobile-git.js
+                                                 main.js
+                                                 hilight.js
+                                                 imageMapResizer.js]

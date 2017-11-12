@@ -1,70 +1,10 @@
-// Place all the styles related to the Comparising controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-/* --------------------------------
-
-Primary style
-
--------------------------------- */
-*, *:after, *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-body {
-  font-size: 100%;
-  font-family: "Open Sans", sans-serif;
-  background: #000000 no-repeat center top;
-}
-
-a {
-  color: #dc717d;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-}
-
-/* --------------------------------
-
-Main components
-
--------------------------------- */
-header {
-  position: relative;
-  height: 160px;
-  line-height: 160px;
-  text-align: center;
-}
-header h1 {
-  font-size: 22px;
-  font-size: 1.375rem;
-  color: #ffffff;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-@media only screen and (min-width: 768px) {
-  header {
-    height: 240px;
-    line-height: 240px;
-  }
-  header h1 {
-    font-size: 32px;
-    font-size: 2rem;
-  }
-}
-
 .cd-image-container {
   position: relative;
   max-width: 100%;
-  min-width: 1280px;
+  min-width: 100%;
   margin: 0em auto;
-  background-color: #f3f4ef; border: 6px solid #dedede;
 }
+
 .cd-image-container img {
   display: block;
 }
@@ -172,17 +112,16 @@ header h1 {
 .cd-handle {
 
   position: absolute;
-  height: 44px;
-  width: 44px;
+  height: 20px;
+  width: 20px;
   /* center the element */
   left: 50%;
   top: 50%;
-  margin-left: -22px;
-  margin-top: -22px;
-  border-radius: 50%;
-  background: #dc717d url("cd-arrows.svg") no-repeat center center;
+  margin-left: -11px;
+  margin-top: -11px;
+  border-radius: 50%;  background: #dc717d url("wood_texture.jpg") no-repeat center center;
   cursor: move;
-  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   opacity: 0;
   -webkit-transform: translate3d(0, 0, 0) scale(0);
   -moz-transform: translate3d(0, 0, 0) scale(0);
@@ -193,6 +132,7 @@ header h1 {
 .cd-handle.draggable {
   /* change background color when element is active */
   background-color: #445b7c;
+  opacity: 0.5;
 }
 .is-visible .cd-handle {
   opacity: 1;
@@ -206,14 +146,4 @@ header h1 {
   transition: transform 0.3s 0.7s, opacity 0s 0.7s;
 }
 
-ul.horizontal {
-  margin: 0; /* Обнуляем значение отступов */
-  padding: 4px; /* Значение полей */
-}
-ul.horizontal li {
-  display: inline; /* Отображать как строчный элемент */
-  margin-right: 5px; /* Отступ слева */
-  border: 1px solid #000; /* Рамка вокруг текста */
-  padding: 3px; /* Поля вокруг текста */
-}
 

@@ -1,11 +1,13 @@
-figure.cd-image-container
-  = image_tag '2017.png', alt: 'New', usemap: '#map-2017'
-  span.cd-image-label data-type="original"  2017 р
-  .cd-resize-img usemap="#map-2017"
-    = image_tag '1943.png', alt: 'Old', usemap: '#map-1943'
-    span.cd-image-label data-type="modified"  1943 р
-    map name="map-2017"
-      /= render 'plan_1782'
-    map name="map-1943"
-      = render 'photo_1943'
-  span.cd-handle
+= render 'header'
+.comparison-wrapper
+  figure.cd-image-container
+    = image_tag '2017.png', alt: 'New', usemap: '#map-2017'
+    span.cd-image-label data-type="original"  2017 р
+    .cd-resize-img usemap="#map-2017"
+      = image_tag '1943.png', alt: 'Old', usemap: '#map-1943'
+      span.cd-image-label data-type="modified"  1943 р
+      map name="map-2017"
+        = render 'photo_2017'
+      map name="map-1943"
+        = render 'photo_1943'
+    span.cd-handle

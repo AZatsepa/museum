@@ -4,6 +4,14 @@
 
     has_canvas = !!document.createElement('canvas').getContext;
 
+    // var respWidth = function() {
+    //     $('figure').width();
+    // };
+    //
+    // var respHeight = function() {
+    //     $('figure').height();
+    // };
+
     // VML: more complex
     has_VML = (function() {
         var a = document.createElement('div');
@@ -245,10 +253,13 @@
             wrap = $('<div></div>').css({
                 display:'block',
                 background:'url("'+this.src+'")',
+                'background-repeat': 'no-repeat',
+                'background-size': 'contain',
+                'background-position': 'center',
                 position:'relative',
                 padding:0,
-                width:this.width,
-                height:this.height
+                width: this.width,
+                height: this.height
             });
             if(options.wrapClass) {
                 if(options.wrapClass === true) {
@@ -354,7 +365,7 @@
         alwaysOn: false,
         neverOn: false,
         groupBy: false,
-        wrapClass: true,
+        wrapClass: 'resp',
         // plenty of shadow:
         shadow: false,
         shadowX: 0,

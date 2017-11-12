@@ -2,20 +2,15 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title Народний музей Ізюмщини
+    title Ізюмська фортеця
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1" name="viewport" /
     link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css" /
     = csrf_meta_tag
     = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track': :reload
     = javascript_include_tag :application, 'data-turbolinks-track': :reload
-  body
-    .navbar
-      ul.horizontal
-        li
-          = link_to '1782-1943', comparison_fortress_1782_path, 'data-no-turbolink' => true
-        li
-          = link_to '1943-2017', comparison_city_1943_path, 'data-no-turbolink' => true
-        li
-          = link_to '1782-2017', comparison_fortress_on_2017_path, 'data-no-turbolink' => true
-    = yield
+  /body
+  /  .wrapper
+  /    .navbar
+  /- binding.pry
+  = yield
