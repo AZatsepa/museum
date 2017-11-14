@@ -22,11 +22,18 @@ body {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  .description {
+  p.description {
     font-family: Izhitsa;
     padding: 10px 20px 0;
     font-size: 22px;
     line-height: 22px;
+    a{
+      color: #000;
+      &:hover{
+        color: red;
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -78,7 +85,7 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
     &:hover{text-decoration: none;}
   }
   img{
-    max-width: 100px;
+    max-width: 200px;
     display: inline-block;
     vertical-align: middle;
     height: auto;
@@ -106,7 +113,7 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
 
 #nav{
   margin: 0;
-  padding: 30px 0 0 0;
+  padding: 50px 0 0 0;
   list-style-type: none;
   font-size: 30px;
   line-height:32px;
@@ -143,7 +150,7 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
     }
   }
 }
-@media screen and (max-width: 1170px){
+@media screen and (max-width: 1270px){
   #nav{
     display: block;
     width: 100%;
