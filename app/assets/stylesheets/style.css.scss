@@ -30,7 +30,7 @@ body {
     a{
       color: #000;
       &:hover{
-        color: red;
+        color: #A20507;
         text-decoration: none;
       }
     }
@@ -97,7 +97,7 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
     font-weight: normal;
     font-size: 40px;
     line-height: 42px;
-    color: red;
+    color: #A20507;
   }
 }
 #content{
@@ -125,7 +125,7 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
   a{
     color: #000;
     &:hover{
-      color: red;
+      color: #A20507;
       text-decoration: none;
     }
   }
@@ -238,7 +238,7 @@ h1 {
     color: #000;
     &:hover {
       text-decoration: none;
-      color: red;
+      color: #A20507;
     }
   }
 }
@@ -268,7 +268,7 @@ ul.horizontal {
       text-decoration: none;
       &:hover {
         text-decoration: none;
-        color: red;
+        color: #A20507;
       }
     }
   }
