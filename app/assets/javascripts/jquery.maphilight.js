@@ -3,15 +3,6 @@
         canvas_style, hex_to_decimal, css3color, is_image_loaded, options_from_area;
 
     has_canvas = !!document.createElement('canvas').getContext;
-
-    // var respWidth = function() {
-    //     $('figure').width();
-    // };
-    //
-    // var respHeight = function() {
-    //     $('figure').height();
-    // };
-
     // VML: more complex
     has_VML = (function() {
         var a = document.createElement('div');

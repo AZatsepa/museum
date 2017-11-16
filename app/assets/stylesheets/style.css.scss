@@ -226,17 +226,19 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
   }
 }
 
-.header {
+h1 {
   text-align: center;
   font-size: 40px;
   font-family: Izhitsa;
   min-height: 40px;
-  padding: 10px 0;
+  padding: 30px 0;
   a {
+    margin: 5px 0px;
     text-decoration: none;
     color: #000;
-    :visited {
-      color: #000;
+    &:hover {
+      text-decoration: none;
+      color: red;
     }
   }
 }
@@ -264,6 +266,10 @@ ul.horizontal {
       font-family: Izhitsa;
       color: #E0EEE0;
       text-decoration: none;
+      &:hover {
+        text-decoration: none;
+        color: red;
+      }
     }
   }
 }
