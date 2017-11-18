@@ -16,7 +16,6 @@ body,html{
 body {
   margin: 0;
   color: #000;
-  min-width:320px;
   font: 12px/14px  'Izhitsa';
   background: url('parchment.jpg') 50% 50%;
   -webkit-background-size: cover;
@@ -27,6 +26,14 @@ body {
     padding: 10px 20px 0;
     font-size: 22px;
     line-height: 22px;
+    &:first-letter {
+      float: left;
+      padding: 7px 7px 0 0;
+      font-size: 44px;
+      font-weight: bold;
+      line-height: 44px;
+      color: #A20507;
+    }
     a{
       color: #000;
       &:hover{
@@ -224,6 +231,22 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
       width: 100%;
     }
   }
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    line-height: normal;
+  }
+  ul.horizontal {
+    li.button {
+      float: none;
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 5px;
+      a {
+        white-space: nowrap;
+      }
+    }
+  }
 }
 
 h1 {
@@ -253,7 +276,6 @@ ul.horizontal {
   margin: 0 0 10px;
   padding: 4px;
   text-align: center;
-  min-width: 440px;
   li {
     box-shadow: 3px 3px 4px #000;
     background: url('wood_texture.jpg');
