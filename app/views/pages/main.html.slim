@@ -1,0 +1,22 @@
+body.home
+  #wrapper
+    #header
+      .h-top
+        .logo
+          a href="#" 
+            = image_tag "fortress.png"
+            span Ізюмська фортеця
+        ul#nav
+          li
+            a href="#"  Плани
+          li
+            a href="#"  Креслення
+          li
+            = link_to 'Порівняння', comparison_path
+          li
+            a href="#"  Світлини
+          li
+            a href="#"  Тексти
+    #content
+      .img-bottom
+        = image_tag "kozackiy-benket.png"

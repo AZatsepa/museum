@@ -1,5 +1,4 @@
 class ResultsController < ApplicationController
-
   def index
     @search_results = Post.search_everywhere(params[:query])
   end
@@ -9,5 +8,4 @@ class ResultsController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :nickname)
   end
-
 end

@@ -1,0 +1,10 @@
+rvm:
+  - 2.4.1
+services:
+  - postgresql
+env:
+  - "MUSEUM_DATABASE_TEST_NAME=travis_ci_test"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+script: " bundle exec rails db:migrate"
+script: "bundle exec rspec && bundle exec rubocop ."

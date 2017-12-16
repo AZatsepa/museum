@@ -1,0 +1,577 @@
+/* line 1, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-image-container {
+  position: relative;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0em auto;
+}
+
+/* line 8, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-image-container img {
+  display: block;
+}
+
+/* line 12, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-image-label {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #ffffff;
+  padding: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  -moz-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  -o-transform: translateY(20px);
+  transform: translateY(20px);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+}
+
+/* line 30, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-image-label.is-hidden {
+  visibility: hidden;
+}
+
+/* line 33, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.is-visible .cd-image-label {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+/* line 42, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-resize-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* line 58, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-resize-img img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+
+/* line 67, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-resize-img .cd-image-label {
+  right: auto;
+  left: 0;
+}
+
+/* line 71, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.is-visible .cd-resize-img {
+  width: 50%;
+  /* bounce in animation of the modified image */
+  -webkit-animation: cd-bounce-in 0.7s;
+  -moz-animation: cd-bounce-in 0.7s;
+  animation: cd-bounce-in 0.7s;
+}
+
+@-webkit-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@-moz-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+/* line 112, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-handle {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  /* center the element */
+  left: 50%;
+  top: 50%;
+  margin-left: -11px;
+  margin-top: -11px;
+  border-radius: 50%;
+  background: #dc717d url("wood_texture.jpg") no-repeat center center;
+  cursor: move;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0) scale(0);
+  -moz-transform: translate3d(0, 0, 0) scale(0);
+  -ms-transform: translate3d(0, 0, 0) scale(0);
+  -o-transform: translate3d(0, 0, 0) scale(0);
+  transform: translate3d(0, 0, 0) scale(0);
+}
+
+/* line 132, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.cd-handle.draggable {
+  /* change background color when element is active */
+  background-color: #445b7c;
+  opacity: 0.5;
+}
+
+/* line 137, /home/donets/projects/test-of-museum/app/assets/stylesheets/comparison.scss */
+.is-visible .cd-handle {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0) scale(1);
+  -moz-transform: translate3d(0, 0, 0) scale(1);
+  -ms-transform: translate3d(0, 0, 0) scale(1);
+  -o-transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0s 0.7s;
+}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* line 7, /home/donets/projects/test-of-museum/app/assets/stylesheets/reset.css.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 28, /home/donets/projects/test-of-museum/app/assets/stylesheets/reset.css.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, main {
+  display: block;
+}
+
+/* line 32, /home/donets/projects/test-of-museum/app/assets/stylesheets/reset.css.scss */
+body {
+  line-height: 1;
+}
+
+/* line 35, /home/donets/projects/test-of-museum/app/assets/stylesheets/reset.css.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 38, /home/donets/projects/test-of-museum/app/assets/stylesheets/reset.css.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 41, /home/donets/projects/test-of-museum/app/assets/stylesheets/reset.css.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 46, /home/donets/projects/test-of-museum/app/assets/stylesheets/reset.css.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@font-face {
+  font-family: 'Izhitsa';
+  src: url("Izhitsa.eot");
+  src: url("Izhitsa.eot?#iefix") format("embedded-opentype"), url("Izhitsa.woff2") format("woff2"), url("Izhitsa.woff") format("woff"), url("Izhitsa.ttf") format("truetype"), url("Izhitsa.svg#Izhitsa") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 13, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+body, html {
+  height: 100%;
+}
+
+/* line 16, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+body {
+  margin: 0;
+  color: #000;
+  min-width: 320px;
+  font: 12px/14px  'Izhitsa';
+  background: url("parchment.jpg") no-repeat 50% 50%;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* line 25, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+body .description {
+  font-family: Izhitsa;
+  padding: 10px 20px 0;
+  font-size: 22px;
+  line-height: 22px;
+}
+
+/* General reset */
+/* line 34, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+form, fieldset {
+  margin: 0;
+  padding: 0;
+  border-style: none;
+}
+
+/* line 39, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+img {
+  border-style: none;
+}
+
+/* line 40, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+input, select, textarea {
+  vertical-align: middle;
+  font: 100% arial, helvetica, sans-serif;
+}
+
+/* line 44, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 46, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+a {
+  color: #034b8f;
+  text-decoration: none;
+}
+
+/* line 47, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 48, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+q {
+  quotes: none;
+}
+
+/* line 49, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+q:before {
+  content: '';
+}
+
+/* line 50, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+q:after {
+  content: '';
+}
+
+/* General settings */
+/* line 53, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+article, aside, audio, canvas, datalist, details, figcaption, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video {
+  display: block;
+}
+
+/* line 57, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+/* line 63, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+#wrapper {
+  width: 100%;
+  padding: 10px 10px 0;
+  min-height: 100%;
+  font-family: Izhitsa;
+}
+
+/* line 69, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.h-top {
+  width: 100%;
+  overflow: hidden;
+  display: table;
+}
+
+/* line 74, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.logo {
+  float: left;
+}
+/* line 76, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.logo a {
+  display: block;
+}
+/* line 78, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.logo a:hover {
+  text-decoration: none;
+}
+/* line 80, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.logo img {
+  max-width: 100px;
+  display: inline-block;
+  vertical-align: middle;
+  height: auto;
+}
+/* line 86, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.logo span {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 20px;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 42px;
+  color: red;
+}
+
+/* line 97, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+#content .img-bottom {
+  margin: 0 -10px;
+}
+/* line 99, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+#content .img-bottom img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+/* line 107, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+#nav {
+  margin: 0;
+  padding: 30px 0 0 0;
+  list-style-type: none;
+  font-size: 30px;
+  line-height: 32px;
+  float: right;
+}
+/* line 114, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+#nav li {
+  float: left;
+  padding: 0 10px;
+}
+/* line 118, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+#nav a {
+  color: #000;
+}
+/* line 120, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+#nav a:hover {
+  color: red;
+  text-decoration: none;
+}
+
+/* line 126, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.holder {
+  width: 100%;
+  overflow: hidden;
+}
+/* line 129, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.holder ul {
+  float: left;
+}
+/* line 132, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.holder img {
+  float: right;
+}
+
+@media screen and (max-width: 1300px) {
+  /* line 137, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  #nav {
+    font-size: 25px;
+  }
+
+  /* line 141, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .logo span {
+    font-size: 50px;
+  }
+}
+@media screen and (max-width: 1170px) {
+  /* line 147, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  #nav {
+    display: block;
+    width: 100%;
+    float: none;
+    text-align: center;
+    font-size: 22px;
+  }
+  /* line 153, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  #nav li {
+    padding: 0 5px;
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+@media screen and (max-width: 1100px) {
+  /* line 162, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .logo, #nav {
+    display: block;
+    width: 100%;
+    padding-top: 0;
+    float: none;
+    text-align: center;
+  }
+
+  /* line 169, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .logo {
+    padding-bottom: 20px;
+  }
+  /* line 171, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .logo img {
+    max-width: 150px;
+  }
+  /* line 174, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .logo span {
+    display: block;
+    font-size: 33px;
+  }
+
+  /* line 180, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  #nav li {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* line 186, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .home {
+    background-repeat: repeat;
+    -webkit-background-size: auto auto;
+    -o-background-size: auto;
+    background-size: auto;
+  }
+  /* line 191, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .home #content {
+    display: none;
+  }
+  /* line 194, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+  .home #header {
+    height: 100%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+/* line 222, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.header {
+  text-align: center;
+  font-size: 40px;
+  font-family: Izhitsa;
+  min-height: 40px;
+  padding: 10px 0;
+}
+/* line 228, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.header a {
+  text-decoration: none;
+  color: #000;
+}
+/* line 231, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.header a :visited {
+  color: #000;
+}
+
+/* line 237, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+.comparison-wrapper {
+  background: url("wood_texture.jpg");
+  padding: 10px;
+  border-radius: 3px;
+}
+
+/* line 243, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+ul.horizontal {
+  margin: 0 0 10px;
+  padding: 4px;
+  text-align: center;
+  min-width: 440px;
+}
+/* line 248, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+ul.horizontal li {
+  box-shadow: 3px 3px 4px #000;
+  background: url("wood_texture.jpg");
+  display: inline;
+  margin-right: 5px;
+  border-radius: 0.35em;
+  padding: 5px;
+  font-size: 20px;
+}
+/* line 256, /home/donets/projects/test-of-museum/app/assets/stylesheets/style.css.scss */
+ul.horizontal li a {
+  font-family: Izhitsa;
+  color: #E0EEE0;
+  text-decoration: none;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+/*
+*/

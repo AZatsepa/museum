@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.maphilight.js
+//= require imageMapResizer.js
+//= require jquery.mobile-git
 //= require turbolinks
+//= require main
+//= require hilight
 //= require_tree .
+$.mobile.autoInitializePage = false;
