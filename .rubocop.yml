@@ -24,3 +24,10 @@ Lint/AssignmentInCondition:
 
 Style/ConditionalAssignment:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/deploy.rb'
