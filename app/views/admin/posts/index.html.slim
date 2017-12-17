@@ -1,0 +1,4 @@
+- @posts.each do |post|
+  .post
+    p= link_to post.title, admin_post_path(post)
+= link_to 'Нова стаття', new_admin_post_path

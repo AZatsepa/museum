@@ -15,6 +15,8 @@
 //= require jquery.maphilight.js
 //= require imageMapResizer.js
 //= require jquery.mobile-git
+//= require jquery.markitup
+//= require markitup_set
 //= require turbolinks
 //= require main
 //= require hilight

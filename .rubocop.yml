@@ -12,6 +12,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Rails/OutputSafety:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 

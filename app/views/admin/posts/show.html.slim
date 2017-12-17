@@ -1,0 +1,22 @@
+.posts
+  .post-title-show
+    = @post.title
+  .post-body-show
+    = markdown(@post.body)
+  p
+    | Автор статті: #{@post.user_id}
+  - if @comments.count > 0
+    .post-comments
+      p Коменти:
+      br/
+      - @comments.each do |comment|
+        .post-comment-user-view
+          | Автор: #{comment.user_id}
+        .post-comment-view
+          p Текст коменту:
+          = comment.text
+        div
+          = link_to 'Видалити', [comment.post, comment], method: :delete, data: { confirm: 'Впевнені?' }
+        br/
+  = link_to "Додати комент", new_admin_post_comment_path(@post)
+  = button_to "Видалити пост", admin_post_path(@post), data: { confirm: "Ви впевнені?" }, method: :delete

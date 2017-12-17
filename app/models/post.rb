@@ -3,6 +3,6 @@ class Post < ApplicationRecord
 
   pg_search_scope :search_everywhere, against: %i[title body]
 
-  belongs_to :user
+  # belongs_to :user
   has_many :comments
 end

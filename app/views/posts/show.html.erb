@@ -5,7 +5,7 @@
     </div>
 
     <div class='post-body-show'>
-      <%= @post.body %>    
+      <%= markdown(@post.body) %>
     </div>
     <p>Автор статті: <%= @post.user_id %></p>
       <% if @comments.count > 0 %>
@@ -17,12 +17,12 @@
               </div>
               <div class="post-comment-view">
                 <p>Текст коменту:</p>
-                <%= comment.text %>
+                <%= markdown(comment.text) %>
               </div>
               <div>
                 <%= link_to 'Видалити', [comment.post, comment],
                                                method: :delete,
-                                               data: {confirm: 'Впевнені?'} %>
+                                               data: { confirm: 'Впевнені?' } %>
               </div><br>
             <% end %>
         </div>
