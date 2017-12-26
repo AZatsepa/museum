@@ -15,6 +15,7 @@ gem 'pg', '~> 0.18'
 gem 'pg_search'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.1'
+gem 'rails-i18n', '~> 5.0.0'
 gem 'redcarpet'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
@@ -26,11 +27,6 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :development, :test do
-  gem 'pry-rails'
-  gem 'rspec-rails'
-end
-
 group :development do
   gem 'listen',                '~> 3.0.5'
   gem 'rubocop',               '~> 0.49.1', require: false
@@ -39,4 +35,16 @@ group :development do
   gem 'web-console',           '>= 3.3.0'
 end
 
+group :development, :test do
+  gem 'byebug'
+  gem 'pry-rails'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rails-controller-testing'
+end
 ruby '2.4.1'

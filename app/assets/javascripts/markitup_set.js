@@ -16,12 +16,12 @@ var mySettings = {
 	onCtrlEnter:  	{keepDefault:false, openWith:'\n<p>', closeWith:'</p>'},
 	onTab:    		{keepDefault:false, replaceWith:'    '},
 	markupSet:  [
-        {name:'Заголовок першого рівня', key:"1", placeHolder:'Your title here...', closeWith:function(markItUp) { return miu.markdownTitle(markItUp, '=') } },
-        {name:'Заголовок другого рівня', key:"2", placeHolder:'Your title here...', closeWith:function(markItUp) { return miu.markdownTitle(markItUp, '-') } },
-        {name:'Заголовок третього рівня', key:"3", openWith:'### ', placeHolder:'Your title here...' },
-        {name:'Заголовок четвертого рівня', key:"4", openWith:'#### ', placeHolder:'Your title here...' },
-        {name:'Заголовок п\'ятого рівня', key:"5", openWith:'##### ', placeHolder:'Your title here...' },
-        {name:'Заголовок шостого рівня', key:"6", openWith:'###### ', placeHolder:'Your title here...' },
+        {name:'Заголовок першого рівня', key:"1", openWith:'# '},
+        {name:'Заголовок другого рівня', key:"2", openWith:'## '},
+        {name:'Заголовок третього рівня', key:"3", openWith:'### '},
+        {name:'Заголовок четвертого рівня', key:"4", openWith:'#### '},
+        {name:'Заголовок п\'ятого рівня', key:"5", openWith:'##### '},
+        {name:'Заголовок шостого рівня', key:"6", openWith:'###### '},
         {separator:'---------------' },
         {name:'Жирний', key:'B', openWith: '**', closeWith: '**' },
         {name:'Курсив', key:'I', openWith:'_', closeWith:'_' },
@@ -38,6 +38,6 @@ var mySettings = {
 	]
 };
 
-$(window).bind("load resize turbolinks:load",function(e){
+$(window).bind("turbolinks:load",function(e){
     $('#post_body').markItUp(mySettings);
 });

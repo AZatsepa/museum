@@ -1,0 +1,8 @@
+uk:
+  activerecord:
+      attributes:
+        post:
+          title: "Заголовок"
+          body: "Текст статті"
+  errors:
+    warning: "Виникли помилки при створенні статті:"

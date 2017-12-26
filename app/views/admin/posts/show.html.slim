@@ -1,11 +1,12 @@
 .posts
   .post-title-show
     = @post.title
+  hr
   .post-body-show
     = markdown(@post.body)
   p
     | Автор статті: #{@post.user_id}
-  - if @comments.count > 0
+  - if @comments.present?
     .post-comments
       p Коменти:
       br/
@@ -18,5 +19,5 @@
         div
           = link_to 'Видалити', [comment.post, comment], method: :delete, data: { confirm: 'Впевнені?' }
         br/
-  = link_to "Додати комент", new_admin_post_comment_path(@post)
-  = button_to "Видалити пост", admin_post_path(@post), data: { confirm: "Ви впевнені?" }, method: :delete
+  = link_to 'Додати комент', new_admin_post_comment_path(@post)
+  = button_to 'Видалити пост', admin_post_path(@post), data: { confirm: 'Ви впевнені?' }, method: :delete

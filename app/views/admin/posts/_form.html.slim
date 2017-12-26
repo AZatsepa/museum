@@ -2,18 +2,17 @@
   - if @post.errors.any?
     #error_explanation
       h2
-        = pluralize(@post.errors.count, 'error')
-        | prohibited this article from being saved:
+        = I18n.t('errors.warning')
       ul
         - @post.errors.full_messages.each do |msg|
           li= msg
   p
-    = f.label :title, "Заголовок"
+    = f.label :title, 'Заголовок'
     br/
     = f.text_field :title
   p
-    = f.label :body, "Текст статті"
+    = f.label :body, 'Текст статті'
     br/
     = f.text_area :body
   p
-    = f.submit "Створити статтю"
+    = f.submit 'Створити статтю'

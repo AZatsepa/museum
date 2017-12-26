@@ -4,7 +4,10 @@ services:
   - postgresql
 env:
   - "MUSEUM_DATABASE_TEST_NAME=travis_ci_test"
+  - "ADMIN_AUTH_NAME=name"
+  - "ADMIN_AUTH_PASSWORD=password"
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 script: " bundle exec rails db:migrate"
-script: "bundle exec rspec && bundle exec rubocop ."
+script: "bundle exec rubocop ."
+script: "bundle exec rspec"

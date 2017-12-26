@@ -24,7 +24,7 @@ module Admin
       if @post.save
         redirect_to [:admin, @post]
       else
-        render @post.errors
+        render 'new'
       end
     end
 

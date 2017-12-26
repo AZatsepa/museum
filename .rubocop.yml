@@ -34,3 +34,4 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'config/deploy.rb'
+    - 'spec/**/*_spec.rb'
