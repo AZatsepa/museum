@@ -1,5 +1,6 @@
 h1
   = link_to 'Ізюмська фортеця', root_path
+h2.post-title-show Статті
 - @posts.each do |post|
   .post
-  = link_to post.title, post_path(post)
+    = link_to post.title, post_path(post)

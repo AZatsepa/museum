@@ -19,3 +19,4 @@
 .idea
 config/database.yml
 ./public/assets
+.env

@@ -344,7 +344,9 @@ ul.horizontal {
 }
 
 .post {
+  display: flex;
   a {
+    padding: 15px auto;
     margin: 10px auto;
     display: block;
     color: #000;

@@ -21,10 +21,5 @@ RSpec.describe PostsController do
       get 'show', params: { id: post.id }
       expect(assigns(:post)).to eq(post)
     end
-
-    it 'should show selected post comments' do
-      get 'show', params: { id: post.id }
-      expect(assigns(:comments)).to eq([comment])
-    end
   end
 end
