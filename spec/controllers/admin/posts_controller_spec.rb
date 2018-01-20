@@ -4,6 +4,7 @@ RSpec.describe Admin::PostsController do
   include AuthHelper
   let(:admin_post) { create(:post) }
   let(:valid_post_params) { { title: 'Updated', body: 'Updated' } }
+  let(:invalid_post_params) { { title: nil, body: nil } }
 
   before use_post: true do
     admin_post
@@ -56,6 +57,12 @@ RSpec.describe Admin::PostsController do
         put 'update', params: { id: admin_post.id, post: valid_post_params }
         expect(response.status).to eql(302)
       end
+
+      it 'should render edit template' do
+        expect(
+          put('update', params: { id: admin_post.id, post: invalid_post_params })
+        ).to render_template('edit')
+      end
     end
 
     describe 'new' do
@@ -75,6 +82,12 @@ RSpec.describe Admin::PostsController do
       it 'should return 302 status' do
         post 'create', params: { post: valid_post_params }
         expect(response.status).to eql(302)
+      end
+
+      it 'should render new template' do
+        expect(
+          post('create', params: { post: invalid_post_params })
+        ).to render_template('new')
       end
     end
   end
