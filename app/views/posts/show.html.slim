@@ -3,4 +3,5 @@
     = @post.title
   .post-body-show
     = markdown(@post.body)
-=link_to 'Назад', posts_path
+h3
+  =link_to I18n.t('titles.back'), posts_path

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
   protected
 
@@ -14,5 +15,9 @@ class ApplicationController < ActionController::Base
                :is_female,
                :date_of_birth)
     end
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 end

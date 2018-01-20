@@ -1,23 +1,12 @@
 .posts
-  .post-title-show
+  h2.text-center
     = @post.title
   hr
-  .post-body-show
     = markdown(@post.body)
-  p
-    | Автор статті: #{@post.user_id}
-  - if @comments.present?
-    .post-comments
-      p Коменти:
-      br/
-      - @comments.each do |comment|
-        .post-comment-user-view
-          | Автор: #{comment.user_id}
-        .post-comment-view
-          p Текст коменту:
-          = comment.text
-        div
-          = link_to 'Видалити', [comment.post, comment], method: :delete, data: { confirm: 'Впевнені?' }
-        br/
-  = link_to 'Додати комент', new_admin_post_comment_path(@post)
-  = button_to 'Видалити пост', admin_post_path(@post), data: { confirm: 'Ви впевнені?' }, method: :delete
+  hr
+  h3.text-center
+    = link_to I18n.t('titles.posts.delete'),
+            admin_post_path(@post),
+            data: { confirm: I18n.t('titles.confirmation') }, method: :delete
+  h3.text-center
+    = link_to I18n.t('titles.posts.all'), admin_posts_path

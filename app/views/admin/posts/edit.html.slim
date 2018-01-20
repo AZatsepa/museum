@@ -1,13 +1,6 @@
-h1 Редагувати статтю
-= form_for [:admin, @post] do |f|
-  p
-    = f.label :title, 'Заголовок'
-    br/
-    = f.text_field :title
-  p
-    = f.label :body, 'Текст статті'
-    br/
-    = f.text_area :body
-  p
-    = f.submit 'Редагувати статтю'
+.posts
+  h1
+  = I18n.t('titles.posts.edit')
+  = render 'form'
+  .posts-margin
   = link_to 'Повернутися', :back
