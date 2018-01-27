@@ -5,16 +5,16 @@ html
     title Ізюмська фортеця
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1" name="viewport" /
+    /! Global site tag (gtag.js) - Google Analytics
+    script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-109506237-1"
+    javascript:
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-109506237-1');
     link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css" /
     = csrf_meta_tag
     = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track': :reload
     = javascript_include_tag :application, 'data-turbolinks-track': :reload
   body
     = yield
-    /! Global site tag (gtag.js) - Google Analytics
-    script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-109506237-1"
-      javascript:
-        | window.dataLayer = window.dataLayer || [];
-        | function gtag(){dataLayer.push(arguments);}
-        | gtag('js', new Date());
-        | gtag('config', 'UA-109506237-1');
