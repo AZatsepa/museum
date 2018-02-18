@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This site was created for peoples who are interested of an old Izjum fortress location.
 
-Things you may want to cover:
+The site is hosted at:
 
-* Ruby version
+[izjum-fortress.herokuapp.com](https://izjum-fortress.herokuapp.com "izjum-fortress.herokuapp.com")
+ 
+Here you can see:
 
-* System dependencies
+* Comparison between the fortress and 1943 year
 
-* Configuration
+* Comparison between the fortress and 2017 year
 
-* Database creation
+* Comparison between 1943 and 2017 years
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

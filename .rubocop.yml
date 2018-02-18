@@ -12,6 +12,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Rails/OutputSafety:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -24,3 +27,11 @@ Lint/AssignmentInCondition:
 
 Style/ConditionalAssignment:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/deploy.rb'
+    - 'spec/**/*_spec.rb'

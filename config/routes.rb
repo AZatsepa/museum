@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   #   get '/users/sign_out' => 'devise/sessions#destroy'
   # end
   #
-  # resources :posts do
-  #   resources :comments
-  # end
+  resources :posts, only: %i[index show] do
+    resources :comments
+  end
 
   # get 'results', to: 'results#index', as: 'results'
   # get 'users/show', as: 'user_root'
@@ -18,4 +18,10 @@ Rails.application.routes.draw do
   get 'comparison', to: 'comparison#index'
   get 'comparison/1782_2017', to: 'comparison#_1782_2017'
   get 'maps/1782', to: 'maps#map_1782'
+  namespace :admin do
+    post 'markdown/preview'
+    resources :posts do
+      resources :comments
+    end
+  end
 end

@@ -2,9 +2,10 @@ rvm:
   - 2.4.1
 services:
   - postgresql
-env:
-  - "MUSEUM_DATABASE_TEST_NAME=travis_ci_test"
 before_script:
+  - export MUSEUM_DATABASE_TEST_NAME=travis_ci_test
+  - export ADMIN_AUTH_NAME=name
+  - export ADMIN_AUTH_PASSWORD=password
   - psql -c 'create database travis_ci_test;' -U postgres
-script: " bundle exec rails db:migrate"
-script: "bundle exec rspec && bundle exec rubocop ."
+script: bundle exec rails db:migrate
+script: bundle exec rspec && bundle exec rubocop .
