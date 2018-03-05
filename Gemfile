@@ -18,6 +18,7 @@ gem 'rails', '~> 5.0.1'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'redcarpet'
 gem 'sass-rails', '~> 5.0'
+gem 'sentry-raven'
 gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -36,10 +37,10 @@ group :development do
 end
 
 group :development, :test do
+  gem 'bundle-audit'
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'pry-rails'
-  gem 'rspec-rails'
 end
 
 group :test do
@@ -47,6 +48,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
+  gem 'rspec-rails'
   gem 'simplecov'
 end
 ruby '2.4.1'
