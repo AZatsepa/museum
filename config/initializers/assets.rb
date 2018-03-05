@@ -8,19 +8,3 @@ Rails.application.config.assets.paths << Rails.root.join('app',
                                                          'assets',
                                                          'fonts')
 Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
-
-# Precompile additional assets.
-# application.js, application.css,
-# and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w[comments.scss
-                                                 comparison.scss
-                                                 pages.scss
-                                                 posts.scss
-                                                 reset.css.scss
-                                                 results.scss
-                                                 style.css.scss
-                                                 users.scss
-                                                 jquery.mobile-git.js
-                                                 main.js
-                                                 hilight.js
-                                                 imageMapResizer.js]

@@ -1,0 +1,12 @@
+.posts
+  h2.text-center
+    = @post.title
+  hr
+    = markdown(@post.body)
+  hr
+  h3.text-center
+    = link_to t('titles.posts.delete'),
+            admin_post_path(@post),
+            data: { confirm: t('titles.confirmation') }, method: :delete
+  h3.text-center
+    = link_to t('titles.posts.all'), admin_posts_path

@@ -1,0 +1,7 @@
+.posts
+  .post-title-show
+    = @post.title
+  .post-body-show
+    = markdown(@post.body)
+h3
+  =link_to t('titles.back'), posts_path
