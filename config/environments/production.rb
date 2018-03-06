@@ -6,6 +6,7 @@ Rails.application.configure do
   config.serve_static_assets = true
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.assets.js_compressor = :uglifier
+  config.i18n.default_locale = :uk
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
