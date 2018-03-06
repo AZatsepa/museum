@@ -1,18 +1,18 @@
+---
 uk:
   activerecord:
-      attributes:
-        post:
-          title: "Заголовок"
-          body: "Текст статті"
+    attributes:
+      post:
+        body: Текст статті
+        title: Заголовок
   errors:
-    warning: "Виникли помилки при створенні статті:"
+    warning: 'Виникли помилки при створенні статті:'
   titles:
-    main: "Ізюмська фортеця"
-    back: "Повернутися назад"
+    back: Повернутися назад
+    confirmation: Ви впевнені?
+    main: Ізюмська фортеця
     posts:
-      all: "Пости"
-      new: "Новий пост"
-      edit: "Редагувати"
-      delete: "Видалити пост"
-    add_comment: "Додати комент"
-    confirmation: "Ви впевнені?"
+      all: Пости
+      delete: Видалити пост
+      edit: Редагувати
+      new: Новий пост
