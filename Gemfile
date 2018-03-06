@@ -40,6 +40,7 @@ group :development, :test do
   gem 'bundle-audit'
   gem 'byebug'
   gem 'dotenv-rails'
+  gem 'i18n-tasks', '~> 0.9.20'
   gem 'pry-rails'
 end
 
