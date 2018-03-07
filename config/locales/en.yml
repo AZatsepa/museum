@@ -1,12 +1,5 @@
 ---
 en:
-  activerecord:
-    attributes:
-      post:
-        body: Body
-        title: Title
-  errors:
-    warning: 'There were errors while creating the article:'
   titles:
     back: Back
     confirmation: Are you sure?
