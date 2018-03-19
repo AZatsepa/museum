@@ -2,8 +2,11 @@
 en:
   titles:
     back: Back
+    comparison: Comparison
     confirmation: Are you sure?
+    images: Images
     main: Izjum fortress
+    plans: Plans
     posts:
       all: Posts
       delete: Remove post

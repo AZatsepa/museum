@@ -9,8 +9,11 @@ uk:
     warning: 'Виникли помилки при створенні статті:'
   titles:
     back: Повернутися назад
+    comparison: Порівняння
     confirmation: Ви впевнені?
+    images: Світлини
     main: Ізюмська фортеця
+    plans: Плани
     posts:
       all: Пости
       delete: Видалити пост

@@ -7,12 +7,14 @@ class Build
     def tasks
       ['rake db:schema:load RAILS_ENV=test > /dev/null',
        'rubocop',
-       'rspec']
+       'bundle audit',
+       'rspec',
+       'cucumber']
     end
 
     def rake(*tasks)
       tasks.each do |task|
-        cmd = if task.include?('bundle exec')
+        cmd = if task.include?('bundle exec') || task.include?('bundle audit')
                 task
               else
                 "bundle exec #{task}"
