@@ -17,6 +17,13 @@ body.home
             a href="#"  Світлини
           li
             = link_to 'Тексти', posts_path
+          - if user_signed_in?
+            - if current_user.admin?
+              li= link_to 'Адмінка', admin_posts_path
+            li= link_to 'Вийти', destroy_user_session_path, method: :delete
+          - else
+            li= link_to 'Увійти', new_user_session_path
+
     #content
       .img-bottom
         = image_tag "kozackiy-benket.png"

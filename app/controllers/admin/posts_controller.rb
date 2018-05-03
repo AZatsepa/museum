@@ -1,6 +1,5 @@
 module Admin
   class PostsController < ApplicationController
-    http_basic_authenticate_with name: ENV['ADMIN_AUTH_NAME'], password: ENV['ADMIN_AUTH_PASSWORD']
     before_action :find_post, except: %i[index new create]
 
     def index
