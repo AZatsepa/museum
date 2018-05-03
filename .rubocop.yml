@@ -35,3 +35,6 @@ Metrics/BlockLength:
   Exclude:
     - 'config/deploy.rb'
     - 'spec/**/*_spec.rb'
+Style/RedundantSelf:
+  Exclude:
+    - 'app/models/*'
