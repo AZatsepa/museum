@@ -12,12 +12,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :authentications, dependent: :destroy
 
-  DEFAULT = 0
-  ADMIN = 1
-
-  def admin?
-    account_type == ADMIN
-  end
+  enum role: { user: 0, admin: 1 }
 
   def self.find_for_oauth(auth)
     authentication = Authentication.find_by(provider: auth.provider, uid: auth.uid.to_s)

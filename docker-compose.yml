@@ -1,0 +1,28 @@
+version: '2'
+
+volumes:
+  db-data:
+    external: false
+
+services:
+  db:
+    env_file: .env
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    image: postgres:9.5
+    volumes:
+      - db-data:/usr/local/psql/data
+  app:
+    environment:
+      MUSEUM_DATABASE_HOST: db
+    env_file: .env
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
