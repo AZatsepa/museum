@@ -13,6 +13,7 @@ development:
 test:
   <<: *default
   database: <%= ENV['MUSEUM_DATABASE_TEST_NAME'] %>
+  host: <%= ENV['MUSEUM_DATABASE_HOST'] %>
 
 production:
   <<: *default

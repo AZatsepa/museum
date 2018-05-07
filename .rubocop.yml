@@ -15,6 +15,10 @@ Rails:
 Rails/OutputSafety:
   Enabled: false
 
+Rails/Output:
+  Exclude:
+    - 'config/unicorn.rb'
+
 Style/ClassAndModuleChildren:
   Enabled: false
 

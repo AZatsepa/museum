@@ -13,9 +13,9 @@ services:
     image: postgres:9.5
     volumes:
       - db-data:/usr/local/psql/data
+    logging:
+      driver: none
   app:
-    environment:
-      MUSEUM_DATABASE_HOST: db
     env_file: .env
     build: .
     volumes:

@@ -11,4 +11,5 @@ WORKDIR /usr/src/app
 COPY Gemfile* ./
 RUN gem install bundler && bundle install
 COPY . .
-CMD ./script/start.sh
+
+CMD bundle exec unicorn -c ./config/unicorn.rb
