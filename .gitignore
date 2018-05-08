@@ -17,7 +17,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 .idea
-config/database.yml
-./public/assets
+public/assets
 .env
 coverage
+:environment

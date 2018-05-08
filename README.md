@@ -14,3 +14,15 @@ Here you can see:
 
 * Comparison between 1943 and 2017 years
 
+Run tests:
+
+_docker-compose run -e 'RAILS_ENV=test' app bundle exec ruby script/ci/travis.rb_
+
+Run app locally in development mode with Docker:
+
+_docker-compose up -d_
+
+Run app locally in production mode with Docker:
+
+_docker-compose -f docker-compose.production.yml up --build -d_
+
