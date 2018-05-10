@@ -1,17 +1,17 @@
-require 'rails_helper'
-
-RSpec.describe Admin::PostsController do
-  include AuthHelper
-  let(:admin_post) { create(:post) }
+describe Admin::PostsController do
+  let(:admin_user) { create(:user, role: :admin) }
+  let(:admin_post) { create(:post, user: admin_user) }
   let(:valid_post_params) { { title: 'Updated', body: 'Updated' } }
   let(:invalid_post_params) { { title: nil, body: nil } }
 
-  before use_post: true do
-    admin_post
+  before do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    sign_in admin_user
   end
 
   describe 'index' do
     it 'should assign @posts' do
+      admin_post
       get 'index'
       expect(assigns(:posts)).to eq([admin_post])
     end
@@ -30,7 +30,8 @@ RSpec.describe Admin::PostsController do
   end
 
   describe 'destroy' do
-    it 'should delete post', use_post: true do
+    it 'should delete post' do
+      admin_post
       expect do
         delete 'destroy', params: { id: admin_post.id }
       end.to change(Post, :count).from(1).to(0)

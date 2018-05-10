@@ -1,8 +1,19 @@
 ---
 en:
+  about_us: About us
+  admin: Admin
   back: Back
   change: Change
+  change_password: Change password
+  click_the_link_below_to_unlock_your_account: 'Click the link below to unlock your account:'
+  comparisons: Comparisons
+  confirm_my_account: Confirm my account
   confirmation: Are you sure?
+  didnt_receive_unlock_instructions: Didn't receive unlock instructions?
+  forgot_you_password: Forgot you password?
+  hi: Hello
+  if_you_didnt_request_this_please_ignore_this_email: If you didn't request this, please ignore this email.
+  new_password: New password
   not_satisfied: Not satisfied?
   registration:
     confirmation:
@@ -12,6 +23,7 @@ en:
     email: Email
     first_name: Last name
     forgot_password_question: Forgot your password?
+    last_changes: Last changes
     last_name: First name
     leave_blank_password: "(leave the field blank if you do not want to change the password)"
     need_password_to_confirm: "(we need your current password to confirm the changes)"
@@ -19,22 +31,43 @@ en:
     password: Password
     password_confirmation: Password confirmation
     password_min: symbols min
+    profile: Profile
+    registered: Registered
     remember_me: Remember me
     resource_name: User
     sign_in: Sign in
+    sign_out: Sign out
     sign_up: Sign up
     title: Registration
     wait_email_confirmation: 'Currently waiting confirmation for:'
+  resend_change_password_instructions: Resend change password instructions
+  resend_confirmation_instructions: Resend confirmation instructions
+  resend_unlock_instructions: Resend unlock instructions
+  search_results: Search results for
+  send: Send
+  sign_in_with: Sign in with
   site_name: Izjum fortress
+  someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Someone has requested a link to change your password. You can do this through the link below.
   titles:
-    back: Back
-    comparison: Comparison
-    confirmation: Are you sure?
-    images: Images
-    main: Izjum fortress
-    plans: Plans
+    comments:
+      add: Add comment
+      delete: Delete comment
+      text: 'Comment:'
+      update: Update
     posts:
       all: Posts
+      body: Body
+      create: Create post
       delete: Remove post
       edit: Edit
       new: New post
+      title: Title
+  unlock_my_account: Unlock my account
+  users:
+    all: Users
+    delete: Delete user
+    edit: Edit user
+  we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: We're contacting you to notify you that your password has been changed.
+  you_can_confirm_your_account_email_through_the_link_below: 'You can confirm your account email through the link below:'
+  your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
+  your_password_wont_change_until_you_access_the_link_above_and_create_a_new_one: Your password won't change until you access the link above and create a new one.

@@ -1,47 +1,37 @@
 class CommentsController < ApplicationController
-  def index
-    @comment = Comment.all
-  end
+  load_and_authorize_resource class: 'Comment'
+  before_action :find_post, only: %i[edit new create update destroy]
+  # load_resource class: 'Post', id_param: :post_id, only: %i[create]
+  # load_and_authorize_resource class: 'Post', id_param: :post_id
 
-  def show
-    @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:id])
-  end
+  def show; end
 
   def edit
-    # render form to browser, who will send to update method
-    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    if @comment.save
-      redirect_to @post
-    else
-      render 'edit'
-    end
   end
 
   def new
-    # render form to browser, who will send to create method
-    @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
-    @comment.post_id = @post.id
+    raise CanCan::AccessDenied unless can? :create, @comment
+    @comment.user = current_user
+    @comment.post = @post
     if @comment.save
-      redirect_to @post
+      redirect_to post_path(@post)
     else
       render 'new'
     end
   end
 
-  def update; end
+  def update
+    return redirect_to post_path(@post) if @comment.update(comment_params)
+    render 'edit'
+  end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:id])
     @comment.destroy
 
     redirect_to post_path(@post)
@@ -51,5 +41,10 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text)
+  end
+
+  def find_post
+    @post = Post.find(params[:post_id])
+    authorize! :read, @post
   end
 end

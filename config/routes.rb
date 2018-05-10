@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :users
+
   # get 'results', to: 'results#index', as: 'results'
   # get 'users/show', as: 'user_root'
   # get 'about', to: 'pages#about', as: 'about'

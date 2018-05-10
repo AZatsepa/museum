@@ -3,7 +3,7 @@ class Build
            'bundle audit',
            'rubocop',
            'rspec',
-           'cucumber' ].freeze
+           'cucumber'].freeze
   class << self
     def success?
       TASKS.each do |task|

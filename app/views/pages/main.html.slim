@@ -1,30 +1,24 @@
-// TODO: translate it
 body.home
   #wrapper
     #header
       .h-top
         .logo
-          a href="#" 
+          a href='#'
             = image_tag 'fortress.png'
-            span Ізюмська фортеця
+            span= t('site_name')
         ul#nav
           li
-            = link_to t('titles.plans'), '#'
+            = link_to t('comparisons'), comparison_path
           li
-            a href="#"  Креслення
-          li
-            = link_to t('titles.comparison'), comparison_path
-          li
-            = link_to t('titles.images'), '#'
-          li
-            = link_to 'Тексти', posts_path
+            = link_to t('titles.posts.all'), posts_path
           - if user_signed_in?
-            li= link_to 'Профіль', edit_user_registration_path(current_user)
+            li= link_to t('registration.profile'), edit_user_registration_path(current_user)
             - if current_user.admin?
-              li= link_to 'Адмінка', admin_posts_path
-            li= link_to 'Вийти', destroy_user_session_path, method: :delete
+              li= link_to t('admin'), admin_posts_path
+              li= link_to t('users.all'), users_path
+            li= link_to t('registration.sign_out'), destroy_user_session_path, method: :delete
           - else
-            li= link_to 'Увійти', new_user_session_path
+            li= link_to t('registration.sign_in'), new_user_session_path
 
     #content
       .img-bottom

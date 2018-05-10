@@ -9,6 +9,8 @@ SimpleCov.start
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include I18nMacros
+  config.include Warden::Test::Helpers
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.before(:suite) do
@@ -21,6 +23,11 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.after(:each) do
+    Warden.test_reset!
+  end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

@@ -46,6 +46,11 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
     - 'lib/tasks/cucumber.rake'
 
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/ability.rb'
+
 Style/RedundantSelf:
   Exclude:
     - 'app/models/*'
