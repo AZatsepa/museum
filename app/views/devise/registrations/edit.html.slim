@@ -1,0 +1,49 @@
+.user-data
+  h2
+    | Редагувати 
+    = resource_name.to_s.humanize
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    .field
+      = f.label :email, t('registration.email')
+      br
+      = f.email_field :email, autofocus: true
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      div
+        | Currently waiting confirmation for: 
+        = resource.unconfirmed_email
+    .field
+      = f.label :nickname, "Нікнейм"
+      br
+      = f.text_field :nickname
+    .field
+      = f.label :password, t('registration.password')
+      i
+        | (залиште поле порожнім, якщо ви не бажаєте змінювати пароль)
+      br
+      = f.password_field :password, autocomplete: :off
+      - if @minimum_password_length
+        br
+        em
+          = @minimum_password_length
+          |  символів щонайменше
+    .field
+      = f.label :password_confirmation, t('registration.password_confirmation')
+      br
+      = f.password_field :password_confirmation, autocomplete: :off
+    .field
+      = f.label :current_password, "Діючий пароль"
+      i
+        | (нам потрібен ваш діючий пароль для підтвердження змін)
+      br
+      = f.password_field :current_password, autocomplete: "off"
+    .actions
+      = f.submit "Змінити"
+  = link_to "Повернутися", :back
+  .delete
+    h3
+      | Видалити акаунт
+    p
+      | Не задоволені? 
+      = button_to "Видалити мій акаунт", registration_path(resource_name), data: { confirm: "Ви впевнені?" },
+                                                                           method: :delete

@@ -22,7 +22,7 @@ class User < ApplicationRecord
     user = User.find_by(email: email)
     unless user
       password = Devise.friendly_token[0, 20]
-      user = User.create!(email: email, password: password, password_confirmation: password)
+      user = create_user!(email, password)
     end
     user.create_authentication(auth)
     user
@@ -30,5 +30,9 @@ class User < ApplicationRecord
 
   def create_authentication(auth)
     self.authentications.create(provider: auth.provider, uid: auth.uid)
+  end
+
+  def self.create_user!(email, password)
+    User.create!(email: email, password: password, confirmed_at: Time.zone.now)
   end
 end

@@ -15,6 +15,7 @@ uk:
     password: Пароль
     password_confirmation: Підтвердження паролю
     password_min: символів мінімум
+    remember_me: Запам'ятати мене
     sign_in: Увійти
     sign_up: Зареєструватися
     title: Реєстрація
