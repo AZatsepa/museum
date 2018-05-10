@@ -25,6 +25,10 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/UnneededPercentQ:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
 Lint/AssignmentInCondition:
   Exclude:
     - 'bin/spring'

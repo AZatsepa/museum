@@ -7,6 +7,17 @@ uk:
         title: Заголовок
   errors:
     warning: 'Виникли помилки при створенні статті:'
+  registration:
+    confirmation:
+      question: Не отримали інструкцій для підтвердження?
+    email: Електронна пошта
+    forgot_password_question: Забули пароль?
+    password: Пароль
+    password_confirmation: Підтвердження паролю
+    password_min: символів мінімум
+    sign_in: Увійти
+    sign_up: Зареєструватися
+    title: Реєстрація
   titles:
     back: Повернутися назад
     confirmation: Ви впевнені?

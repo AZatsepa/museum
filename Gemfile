@@ -45,13 +45,16 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'i18n-tasks', '~> 0.9.20'
+  gem 'letter_opener'
   gem 'pry-rails'
 end
 
 group :test do
+  gem 'capybara', '~> 3.0.3'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'shoulda-matchers'

@@ -1,22 +1,11 @@
 class Build
+  TASKS = ['rake db:schema:load RAILS_ENV=test > /dev/null',
+           'rubocop',
+           'rspec'].freeze
   class << self
-    def run!
-      rake(*tasks)
-    end
-
-    def tasks
-      ['rake db:schema:load RAILS_ENV=test > /dev/null',
-       'rubocop',
-       'rspec']
-    end
-
-    def rake(*tasks)
-      tasks.each do |task|
-        cmd = if task.include?('bundle exec')
-                task
-              else
-                "bundle exec #{task}"
-              end
+    def success?
+      TASKS.each do |task|
+        cmd = task.include?('bundle exec') ? task : "bundle exec #{task}"
         puts "Running command: #{cmd}"
         return false unless system(cmd)
       end
@@ -25,18 +14,10 @@ class Build
   end
 end
 
-#-----------------------------------------------------------------------------------------------------------------------
-# Script starts here
-#-----------------------------------------------------------------------------------------------------------------------
-
-result = Build.run!
-
-failures = result == false
-
-if failures
-  puts 'Museum build FAILED'
-  exit(false)
-else
+if Build.success?
   puts 'Museum build finished successfully'
   exit(true)
+else
+  puts 'Museum build FAILED'
+  exit(false)
 end
