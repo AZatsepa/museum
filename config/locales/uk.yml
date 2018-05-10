@@ -5,24 +5,35 @@ uk:
       post:
         body: Текст статті
         title: Заголовок
+  back: Повернутися
+  change: Змінити
+  confirmation: Ви впевнені?
   errors:
     warning: 'Виникли помилки при створенні статті:'
+  not_satisfied: Не задоволені?
   registration:
     confirmation:
       question: Не отримали інструкцій для підтвердження?
+    current_password: Діючий пароль
+    delete_account: Видалити обліковий запис
     email: Електронна пошта
+    first_name: Прізвище
     forgot_password_question: Забули пароль?
+    last_name: Ім'я
+    leave_blank_password: "(залиште поле порожнім, якщо ви не бажаєте змінювати пароль)"
+    need_password_to_confirm: "(нам потрібен ваш діючий пароль для підтвердження змін)"
+    nickname: Нікнейм
     password: Пароль
     password_confirmation: Підтвердження паролю
     password_min: символів мінімум
     remember_me: Запам'ятати мене
+    resource_name: Користувач
     sign_in: Увійти
     sign_up: Зареєструватися
     title: Реєстрація
+    wait_email_confirmation: 'Очікуємо підтвердження адреси:'
+  site_name: Ізюмська фортеця
   titles:
-    back: Повернутися назад
-    confirmation: Ви впевнені?
-    main: Ізюмська фортеця
     posts:
       all: Пости
       delete: Видалити пост

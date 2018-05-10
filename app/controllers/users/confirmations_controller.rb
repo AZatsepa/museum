@@ -25,4 +25,15 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # def after_confirmation_path_for(resource_name, resource)
   #   super(resource_name, resource)
   # end
+
+  private
+
+  def after_confirmation_path_for(resource_name, resource)
+    if signed_in?(resource_name)
+      root_path(resource)
+    else
+      sign_in(resource)
+      edit_user_registration_path(resource)
+    end
+  end
 end

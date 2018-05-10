@@ -42,6 +42,7 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'config/deploy.rb'
+    - 'config/environments/*rb'
     - 'spec/**/*_spec.rb'
 Style/RedundantSelf:
   Exclude:
