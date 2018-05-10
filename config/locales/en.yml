@@ -1,5 +1,16 @@
 ---
 en:
+  registration:
+    confirmation:
+      question: Didn't receive confirmation instructions?
+    email: Email
+    forgot_password_question: Forgot your password?
+    password: Password
+    password_confirmation: Password confirmation
+    password_min: symbols min
+    sign_in: Sign in
+    sign_up: Sign up
+    title: Registration
   titles:
     back: Back
     comparison: Comparison
