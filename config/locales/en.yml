@@ -1,17 +1,31 @@
 ---
 en:
+  back: Back
+  change: Change
+  confirmation: Are you sure?
+  not_satisfied: Not satisfied?
   registration:
     confirmation:
       question: Didn't receive confirmation instructions?
+    current_password: Current password
+    delete_account: Delete account
     email: Email
+    first_name: Last name
     forgot_password_question: Forgot your password?
+    last_name: First name
+    leave_blank_password: "(leave the field blank if you do not want to change the password)"
+    need_password_to_confirm: "(we need your current password to confirm the changes)"
+    nickname: Nickname
     password: Password
     password_confirmation: Password confirmation
     password_min: symbols min
     remember_me: Remember me
+    resource_name: User
     sign_in: Sign in
     sign_up: Sign up
     title: Registration
+    wait_email_confirmation: 'Currently waiting confirmation for:'
+  site_name: Izjum fortress
   titles:
     back: Back
     comparison: Comparison
