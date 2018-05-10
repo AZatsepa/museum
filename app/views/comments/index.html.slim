@@ -1,0 +1,7 @@
+.comment-field
+  = form_for [@post, @comment] do |f|
+    .comment-form
+      = f.label :text, "Коментар"
+    .comment-button
+      = f.text_field :text
+    = f.submit "Відправити"

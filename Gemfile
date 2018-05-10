@@ -33,6 +33,7 @@ group :production do
 end
 
 group :development do
+  gem 'html2slim'
   gem 'listen',                '~> 3.0.5'
   gem 'rubocop',               '~> 0.49.1', require: false
   gem 'spring'

@@ -1,0 +1,12 @@
+.user-data
+  h2
+    | Забули пароль?
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = devise_error_messages!
+    .field
+      = f.label :email
+      br
+      = f.email_field :email, autofocus: true
+    .actions
+      = f.submit "Надіслати інструкцію зі зміни паролю."
+  = render "devise/shared/links"
