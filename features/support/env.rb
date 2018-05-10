@@ -55,3 +55,8 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+def basic_auth!
+  encoded_login = ["#{ENV['ADMIN_AUTH_NAME']}:#{ENV['ADMIN_AUTH_PASSWORD']}"].pack('m*')
+  page.driver.header 'Authorization', "Basic #{encoded_login}"
+end
