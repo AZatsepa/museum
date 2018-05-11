@@ -5,8 +5,10 @@ uk:
       post:
         body: Текст статті
         title: Заголовок
+  admin: Адмінка
   back: Повернутися
   change: Змінити
+  comparisons: Порівняння
   confirmation: Ви впевнені?
   errors:
     warning: 'Виникли помилки при створенні статті:'
@@ -26,16 +28,30 @@ uk:
     password: Пароль
     password_confirmation: Підтвердження паролю
     password_min: символів мінімум
+    profile: Профіль
     remember_me: Запам'ятати мене
     resource_name: Користувач
     sign_in: Увійти
+    sign_out: Вийти
     sign_up: Зареєструватися
     title: Реєстрація
     wait_email_confirmation: 'Очікуємо підтвердження адреси:'
   site_name: Ізюмська фортеця
   titles:
+    comments:
+      add: Додати комент
+      delete: Видалити комент
+      text: 'Комент:'
+      update: Редагувати
     posts:
       all: Пости
+      body: Текст
+      create: Створити пост
       delete: Видалити пост
       edit: Редагувати
       new: Новий пост
+      title: Заголовок
+  users:
+    all: Користувачі
+    delete: Видалити користувача
+    edit: Редагувати користувача

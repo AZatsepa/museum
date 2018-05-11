@@ -44,6 +44,11 @@ Metrics/BlockLength:
     - 'config/deploy.rb'
     - 'config/environments/*rb'
     - 'spec/**/*_spec.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/ability.rb'
+
 Style/RedundantSelf:
   Exclude:
     - 'app/models/*'

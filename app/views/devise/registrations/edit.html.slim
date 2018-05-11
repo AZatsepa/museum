@@ -45,6 +45,6 @@
   .delete
     h3= t('registration.delete_account')
     p= t('not_satisfied')
-      = button_to t('registration.delete_account'), registration_path(resource_name),
-                                                    data: { confirm: t('confirmation') },
-                                                    method: :delete
+    = button_to t('registration.delete_account'), registration_path(resource_name),
+                                                  data: { confirm: t('confirmation') },
+                                                  method: :delete

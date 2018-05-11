@@ -1,10 +1,9 @@
 module Admin
   class PostsController < ApplicationController
     before_action :find_post, except: %i[index new create]
+    load_and_authorize_resource class: 'Post'
 
-    def index
-      @posts = Post.all
-    end
+    def index; end
 
     def show; end
 

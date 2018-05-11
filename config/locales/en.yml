@@ -1,7 +1,9 @@
 ---
 en:
+  admin: Admin
   back: Back
   change: Change
+  comparisons: Comparisons
   confirmation: Are you sure?
   not_satisfied: Not satisfied?
   registration:
@@ -19,16 +21,30 @@ en:
     password: Password
     password_confirmation: Password confirmation
     password_min: symbols min
+    profile: Profile
     remember_me: Remember me
     resource_name: User
     sign_in: Sign in
+    sign_out: Sign out
     sign_up: Sign up
     title: Registration
     wait_email_confirmation: 'Currently waiting confirmation for:'
   site_name: Izjum fortress
   titles:
+    comments:
+      add: Add comment
+      delete: Delete comment
+      text: 'Comment:'
+      update: Update
     posts:
       all: Posts
+      body: Body
+      create: Create post
       delete: Remove post
       edit: Edit
       new: New post
+      title: Title
+  users:
+    all: Users
+    delete: Delete user
+    edit: Edit user
