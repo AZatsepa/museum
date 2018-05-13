@@ -39,6 +39,8 @@ Metrics/BlockLength:
   Exclude:
     - 'config/deploy.rb'
     - 'spec/**/*_spec.rb'
+    - 'lib/tasks/cucumber.rake'
+
 Style/RedundantSelf:
   Exclude:
     - 'app/models/*'

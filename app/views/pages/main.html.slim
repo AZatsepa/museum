@@ -4,17 +4,17 @@ body.home
       .h-top
         .logo
           a href="#" 
-            = image_tag "fortress.png"
+            = image_tag 'fortress.png'
             span Ізюмська фортеця
         ul#nav
           li
-            a href="#"  Плани
+            = link_to t('titles.plans'), '#'
           li
             a href="#"  Креслення
           li
-            = link_to 'Порівняння', comparison_path
+            = link_to t('titles.comparison'), comparison_path
           li
-            a href="#"  Світлини
+            = link_to t('titles.images'), '#'
           li
             = link_to 'Тексти', posts_path
           - if user_signed_in?
@@ -27,3 +27,5 @@ body.home
     #content
       .img-bottom
         = image_tag "kozackiy-benket.png"
+
+        = image_tag 'kozackiy-benket.png'

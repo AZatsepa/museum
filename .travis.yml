@@ -8,4 +8,4 @@ before_script:
   - export ADMIN_AUTH_NAME=name
   - export ADMIN_AUTH_PASSWORD=password
   - psql -c "create database travis_ci_test;" -U postgres
-script: ' ruby script/ci/travis.rb'
+script: 'bundle exec ruby script/ci/travis.rb'

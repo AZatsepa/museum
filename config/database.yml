@@ -10,7 +10,7 @@ default: &default
 development:
   <<: *default
 
-test:
+test: &test
   <<: *default
   database: <%= ENV['MUSEUM_DATABASE_TEST_NAME'] %>
   host: <%= ENV['MUSEUM_DATABASE_HOST'] %>
@@ -20,3 +20,6 @@ production:
   database: <%= ENV['MUSEUM_DATABASE_PROD_NAME'] %>
   username: <%= ENV['MUSEUM_DATABASE_USERNAME'] %>
   password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test
