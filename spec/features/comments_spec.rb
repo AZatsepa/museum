@@ -1,7 +1,7 @@
 feature 'Comments', %q(
   I want to manage comments
 ) do
-  given(:post) { create(:post) }
+  given(:post) { create(:post, user: user) }
   given(:admin) { create(:user, role: :admin) }
   given(:user) { create(:user, role: :user) }
   given!(:comment) { create(:comment, user: user, post: post) }

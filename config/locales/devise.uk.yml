@@ -57,7 +57,7 @@ uk:
       already_confirmed: вже підтверджено, будь ласка, увійдіть в обліковий запис.
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
-      expired: вже недыйсний, будь ласка, запитайте новий.
+      expired: вже недійсний, будь ласка, запитайте новий.
       not_found: не знайдено
       not_locked: не було заблоковано
       not_saved:

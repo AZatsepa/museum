@@ -1,5 +1,10 @@
-describe Post do
-  let(:post) { build(:post) }
+describe Post, type: :model do
+  let(:user) { create(:user) }
+  let(:post) { build(:post, user: user) }
+
+  it { should belong_to :user }
+  it { should have_many :comments }
+
   context 'valid' do
     it 'should be saved' do
       post.save

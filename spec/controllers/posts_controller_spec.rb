@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PostsController do
   let!(:user) { create(:user) }
-  let!(:post) { create(:post) }
+  let!(:post) { create(:post, user: user) }
   describe 'index action' do
     it 'should assign @posts' do
       get 'index'

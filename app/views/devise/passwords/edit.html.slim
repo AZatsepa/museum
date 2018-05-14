@@ -1,24 +1,19 @@
-// TODO: translate it
 .user-data
-  h2
-    | Змінити пароль
+  h2= t('change_password')
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
     = devise_error_messages!
     = f.hidden_field :reset_password_token
     .field
-      = f.label :password, "Новий пароль"
+      = f.label :password, t('new_password')
       br
       - if @minimum_password_length
-        em
-          | (
-          = @minimum_password_length
-          |  characters minimum)
+        em= t('registration.password_min')
         br
-      = f.password_field :password, autofocus: true, autocomplete: "off"
+      = f.password_field :password, autofocus: true, autocomplete: :off
     .field
-      = f.label :password_confirmation, "Підтвердження паролю"
+      = f.label :password_confirmation, t('registration.password_confirmation')
       br
-      = f.password_field :password_confirmation, autocomplete: "off"
+      = f.password_field :password_confirmation, autocomplete: :off
     .actions
-      = f.submit "Змінити пароль"
-  = render "devise/shared/links"
+      = f.submit t('change')
+  = render 'devise/shared/links'

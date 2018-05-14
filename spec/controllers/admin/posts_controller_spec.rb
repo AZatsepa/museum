@@ -1,11 +1,12 @@
 describe Admin::PostsController do
-  let(:admin_post) { create(:post) }
+  let(:admin_user) { create(:user, role: :admin) }
+  let(:admin_post) { create(:post, user: admin_user) }
   let(:valid_post_params) { { title: 'Updated', body: 'Updated' } }
   let(:invalid_post_params) { { title: nil, body: nil } }
 
   before do
     @request.env['devise.mapping'] = Devise.mappings[:user]
-    sign_in create(:user, role: :admin)
+    sign_in admin_user
   end
 
   describe 'index' do

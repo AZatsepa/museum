@@ -1,7 +1,5 @@
-// TODO: translate it
 .user-data
-  h2
-    | Увійти
+  h2= t('registration.sign_in')
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
       = f.label :email, t('registration.email')
@@ -17,4 +15,4 @@
         = f.label :remember_me, t('registration.remember_me')
     .actions
       = f.submit t('registration.sign_in')
-  = render "devise/shared/links"
+  = render 'devise/shared/links'

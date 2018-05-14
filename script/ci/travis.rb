@@ -1,7 +1,9 @@
 class Build
   TASKS = ['rake db:schema:load RAILS_ENV=test > /dev/null',
+           'bundle audit',
            'rubocop',
-           'rspec'].freeze
+           'rspec',
+           'cucumber'].freeze
   class << self
     def success?
       TASKS.each do |task|

@@ -44,6 +44,8 @@ Metrics/BlockLength:
     - 'config/deploy.rb'
     - 'config/environments/*rb'
     - 'spec/**/*_spec.rb'
+    - 'lib/tasks/cucumber.rake'
+
 
 Metrics/MethodLength:
   Exclude:

@@ -15,6 +15,7 @@ module Admin
 
     def create
       @post = Post.create(post_params)
+      @post.user = current_user
       return redirect_to [:admin, @post] if @post.save
       render 'new'
     end
