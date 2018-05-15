@@ -1,7 +1,7 @@
 feature 'Comments', %q(
   I want to manage comments
 ) do
-  given(:post) { create(:post, user: user) }
+  given!(:post) { create(:post, user: user) }
   given(:admin) { create(:user, role: :admin) }
   given(:user) { create(:user, role: :user) }
   given!(:comment) { create(:comment, user: user, post: post) }
@@ -13,23 +13,15 @@ feature 'Comments', %q(
       visit post_path(post)
     end
 
-    scenario 'Should create comment' do
+    scenario 'Should create comment', js: true do
       fill_in t('titles.comments.text'), with: 'Lorem ipsum'
-      expect { click_on t('titles.comments.add') }.to change(Comment, :count).by(1)
-    end
-
-    context "When someone else's comment" do
-      scenario 'Should delete comment' do
-        expect do
-          find(:xpath, "//div[@class='comment-wrapper'][1]").click_link(t('titles.comments.delete'))
-        end.to change(post.comments, :count).by(-1)
-      end
-
-      scenario 'Should update comment' do
-        find(:xpath, "//div[@class='comment-wrapper'][1]").click_link(t('titles.comments.update'))
-        fill_in t('titles.comments.text'), with: 'Dolor sit ametttt'
-        click_on(t('titles.comments.update'))
-        expect(comment.reload.text).to eql 'Dolor sit ametttt'
+      expect do
+        click_on t('titles.comments.add')
+        sleep 1
+      end.to change(post.comments, :count).by(1)
+      expect(current_path).to eql post_path(post)
+      within '.comments' do
+        expect(page).to have_content 'Lorem ipsum'
       end
     end
   end
@@ -40,54 +32,12 @@ feature 'Comments', %q(
       visit post_path(post)
     end
 
-    scenario 'Should create comments' do
+    scenario 'Should add comments to post', js: true do
       fill_in t('titles.comments.text'), with: 'Lorem ipsum'
-      expect { click_on t('titles.comments.add') }.to change(Comment, :count).by(1)
-    end
-
-    scenario 'Should add comments to post' do
-      fill_in t('titles.comments.text'), with: 'Lorem ipsum'
-      expect { click_on t('titles.comments.add') }.to change(post.comments, :count).by(1)
-    end
-
-    scenario 'Should delete comments' do
       expect do
-        find(:xpath, "//div[@class='comment-wrapper'][1]").click_link(t('titles.comments.delete'))
-      end.to change(post.comments, :count).by(-1)
-    end
-
-    context "When someone else's comment" do
-      scenario 'Link delete should not be present' do
-        expect(page.find(:xpath, "//div[@class='comment-wrapper'][2]")).to_not have_text t('titles.comments.delete')
-      end
-
-      scenario 'Link update should not be present' do
-        expect(page.find(:xpath, "//div[@class='comment-wrapper'][2]")).to_not have_text t('titles.comments.update')
-      end
-    end
-  end
-
-  context 'As unsigned' do
-    background do
-      visit post_path(post)
-    end
-
-    context 'When I want to create comment' do
-      scenario 'Links should not be present' do
-        expect(page).to_not have_text t('titles.comments.add')
-      end
-    end
-
-    context 'When I want to update comment' do
-      scenario 'Links should not be present' do
-        expect(page).to_not have_text t('titles.comments.update')
-      end
-    end
-
-    context 'When I want to delete comment' do
-      scenario 'Links should not be present' do
-        expect(page).to_not have_text t('titles.comments.delete')
-      end
+        click_on t('titles.comments.add')
+        sleep 1
+      end.to change(post.comments, :count).by(1)
     end
   end
 end

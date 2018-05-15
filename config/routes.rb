@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :posts, only: %i[index show] do
     resources :comments
   end
-
   resources :users
 
   # get 'results', to: 'results#index', as: 'results'

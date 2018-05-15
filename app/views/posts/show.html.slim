@@ -4,14 +4,11 @@
   .post-body-show
     = markdown(@post.body)
   .comments
-    - @post.comments.each do |comment|
-      .comment-wrapper
-        .comment
-          = comment.text
-        - if can? :destroy, comment
-          = link_to t('titles.comments.delete'), post_comment_path(@post, comment), method: :delete,
-                                                                                    data: { confirm: t('confirmation') }
-        = link_to t('titles.comments.update'), edit_post_comment_path(@post, comment) if can? :update, comment
-    = render 'new_comment' if can? :create, Comment
+    = render 'comments'
+  - if can? :create, Comment
+    = form_for [@post, @comment], remote: true do |f|
+      = f.label :text, t('titles.comments.text')
+      = f.text_field :text
+      = f.submit t('titles.comments.add'), data: { 'disable-with' => t('saving') }
 h3
   =link_to t('back'), posts_path

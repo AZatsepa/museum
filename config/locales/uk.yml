@@ -50,6 +50,7 @@ uk:
   resend_change_password_instructions: Надіслати інструкцію зі зміни паролю.
   resend_confirmation_instructions: Надіслати інструкції з підтвердження ще раз
   resend_unlock_instructions: Надіслати інструкції з розблокування.
+  saving: Збереження...
   search_results: Результати пошуку за запитом
   send: Надіслати
   sign_in_with: Увійти через
@@ -58,9 +59,7 @@ uk:
   titles:
     comments:
       add: Додати комент
-      delete: Видалити комент
       text: 'Комент:'
-      update: Редагувати
     posts:
       all: Пости
       body: Текст

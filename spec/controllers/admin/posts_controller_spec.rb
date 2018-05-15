@@ -9,7 +9,7 @@ describe Admin::PostsController do
     sign_in admin_user
   end
 
-  describe 'index' do
+  describe 'GET #index' do
     it 'should assign @posts' do
       admin_post
       get 'index'
@@ -22,14 +22,14 @@ describe Admin::PostsController do
     end
   end
 
-  describe 'show' do
+  describe 'GET #show' do
     it 'should show selected post' do
       get 'show', params: { id: admin_post.id }
       expect(assigns(:post)).to eq(admin_post)
     end
   end
 
-  describe 'destroy' do
+  describe 'DELETE #destroy' do
     it 'should delete post' do
       admin_post
       expect do
@@ -43,47 +43,56 @@ describe Admin::PostsController do
     end
   end
 
-  describe 'update' do
+  describe 'PATCH #update' do
     it 'should update post' do
-      put 'update', params: { id: admin_post.id, post: valid_post_params }
+      patch 'update', params: { id: admin_post.id, post: valid_post_params }
       expect(admin_post.reload.title).to eql(valid_post_params[:title])
     end
 
     it 'should return 302 status' do
-      put 'update', params: { id: admin_post.id, post: valid_post_params }
+      patch 'update', params: { id: admin_post.id, post: valid_post_params }
       expect(response).to have_http_status(302)
     end
 
     it 'should render edit template' do
       expect(
-        put('update', params: { id: admin_post.id, post: invalid_post_params })
+        patch(:update, params: { id: admin_post.id, post: invalid_post_params })
       ).to render_template('edit')
     end
   end
 
-  describe 'new' do
+  describe 'GET #new' do
     it 'should assigns new post' do
-      get 'new'
+      get :new
       expect(assigns(:post)).to be_a Post
     end
   end
 
-  describe 'create' do
-    it 'should create post' do
-      expect do
-        post 'create', params: { post: valid_post_params }
-      end.to change(Post, :count).from(0).to(1)
+  describe 'POST #create' do
+    context 'when valid' do
+      it 'should create post' do
+        expect do
+          post :create, params: { post: valid_post_params }
+        end.to change(Post, :count).from(0).to(1)
+      end
+
+      it 'should redirect to posts_path' do
+        post :create, params: { post: valid_post_params }
+        expect(post(:create, params: { post: valid_post_params })).to redirect_to(admin_post_path(assigns(:post).id))
+      end
+
+      it 'should return 302 status' do
+        post :create, params: { post: valid_post_params }
+        expect(response).to have_http_status(302)
+      end
     end
 
-    it 'should return 302 status' do
-      post 'create', params: { post: valid_post_params }
-      expect(response).to have_http_status(302)
-    end
-
-    it 'should render new template' do
-      expect(
-        post('create', params: { post: invalid_post_params })
-      ).to render_template('new')
+    context 'when invalid' do
+      it 'should render new template' do
+        expect(
+          post(:create, params: { post: invalid_post_params })
+        ).to render_template(:new)
+      end
     end
   end
 end

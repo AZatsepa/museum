@@ -20,5 +20,10 @@ RSpec.describe PostsController do
       get 'show', params: { id: post.id }
       expect(assigns(:post)).to eq(post)
     end
+
+    it 'should should assign new comment' do
+      get 'show', params: { id: post.id }
+      expect(assigns(:comment)).to be_a_new(Comment)
+    end
   end
 end

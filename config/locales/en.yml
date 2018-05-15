@@ -43,6 +43,7 @@ en:
   resend_change_password_instructions: Resend change password instructions
   resend_confirmation_instructions: Resend confirmation instructions
   resend_unlock_instructions: Resend unlock instructions
+  saving: Saving...
   search_results: Search results for
   send: Send
   sign_in_with: Sign in with
@@ -51,9 +52,7 @@ en:
   titles:
     comments:
       add: Add comment
-      delete: Delete comment
       text: 'Comment:'
-      update: Update
     posts:
       all: Posts
       body: Body

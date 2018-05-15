@@ -17,7 +17,7 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'paperclip'
 gem 'pg', '~> 0.18'
 gem 'pg_search'
-gem 'puma', '~> 3.0'
+gem 'puma'
 gem 'rails', '~> 5.0.1'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'redcarpet'
@@ -52,14 +52,16 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.0.3'
+  gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
+  gem 'poltergeist'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'
 end

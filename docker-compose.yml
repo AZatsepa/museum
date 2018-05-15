@@ -16,10 +16,12 @@ services:
     logging:
       driver: none
   app:
-    env_file: .env
     build: .
     volumes:
       - .:/usr/src/app
+    env_file: .env
+    environment:
+      - 'MUSEUM_DATABASE_HOST=db'
     ports:
       - '3000:3000'
     depends_on:
