@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  def index
-    @posts = Post.all
-  end
+  load_and_authorize_resource
+
+  def index; end
 
   def show
-    @post = Post.find(params[:id])
+    @comment = @post.comments.build
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PostsController do
   let!(:user) { create(:user) }
-  let!(:post) { create(:post) }
+  let!(:post) { create(:post, user: user) }
   describe 'index action' do
     it 'should assign @posts' do
       get 'index'
@@ -19,6 +19,11 @@ RSpec.describe PostsController do
     it 'should show selected post' do
       get 'show', params: { id: post.id }
       expect(assigns(:post)).to eq(post)
+    end
+
+    it 'should should assign new comment' do
+      get 'show', params: { id: post.id }
+      expect(assigns(:comment)).to be_a_new(Comment)
     end
   end
 end

@@ -1,0 +1,20 @@
+.user-data
+  table
+    tr
+      td= t('registration.nickname')
+      td= @user.nickname
+    tr
+      td= t('registration.email')
+      td= @user.email
+    tr
+      td= t('registration.first_name')
+      td= @user.first_name
+    tr
+      td= t('registration.last_name')
+      td= @user.last_name
+    tr
+      td= t('registration.registered')
+      td= @user.created_at
+    tr
+      td= t('registration.last_changes')
+      td= @user.updated_at

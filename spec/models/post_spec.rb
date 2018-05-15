@@ -1,13 +1,22 @@
-describe Post do
-  let(:post) { build(:post) }
-  context 'valid' do
+describe Post, type: :model do
+  let(:user) { create(:user) }
+  let(:post) { build(:post, user: user) }
+
+  it { should belong_to :user }
+  it { should have_many :comments }
+
+  it { should validate_presence_of :title }
+  it { should validate_presence_of :body }
+  it { should validate_presence_of :user }
+
+  context 'when valid' do
     it 'should be saved' do
       post.save
       expect(post.errors.messages.size).to eql 0
     end
   end
 
-  context 'invalid' do
+  context 'when invalid' do
     it 'should not be saved with empty title' do
       post.title = nil
       expect(post).not_to be_valid

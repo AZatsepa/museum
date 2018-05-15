@@ -25,6 +25,10 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/UnneededPercentQ:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
 Lint/AssignmentInCondition:
   Exclude:
     - 'bin/spring'
@@ -38,8 +42,14 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'config/deploy.rb'
+    - 'config/environments/*rb'
     - 'spec/**/*_spec.rb'
     - 'lib/tasks/cucumber.rake'
+
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/ability.rb'
 
 Style/RedundantSelf:
   Exclude:

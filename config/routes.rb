@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                                    confirmations: 'users/confirmations' }
   root 'pages#main'
   #
   # devise_scope :user do
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i[index show] do
     resources :comments
   end
+  resources :users
 
   # get 'results', to: 'results#index', as: 'results'
   # get 'users/show', as: 'user_root'

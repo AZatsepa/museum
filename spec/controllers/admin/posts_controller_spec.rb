@@ -1,17 +1,17 @@
-require 'rails_helper'
-
-RSpec.describe Admin::PostsController do
-  include AuthHelper
-  let(:admin_post) { create(:post) }
+describe Admin::PostsController do
+  let(:admin_user) { create(:user, role: :admin) }
+  let(:admin_post) { create(:post, user: admin_user) }
   let(:valid_post_params) { { title: 'Updated', body: 'Updated' } }
   let(:invalid_post_params) { { title: nil, body: nil } }
 
-  before use_post: true do
-    admin_post
+  before do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    sign_in admin_user
   end
 
-  describe 'index' do
+  describe 'GET #index' do
     it 'should assign @posts' do
+      admin_post
       get 'index'
       expect(assigns(:posts)).to eq([admin_post])
     end
@@ -22,15 +22,16 @@ RSpec.describe Admin::PostsController do
     end
   end
 
-  describe 'show' do
+  describe 'GET #show' do
     it 'should show selected post' do
       get 'show', params: { id: admin_post.id }
       expect(assigns(:post)).to eq(admin_post)
     end
   end
 
-  describe 'destroy' do
-    it 'should delete post', use_post: true do
+  describe 'DELETE #destroy' do
+    it 'should delete post' do
+      admin_post
       expect do
         delete 'destroy', params: { id: admin_post.id }
       end.to change(Post, :count).from(1).to(0)
@@ -42,47 +43,56 @@ RSpec.describe Admin::PostsController do
     end
   end
 
-  describe 'update' do
+  describe 'PATCH #update' do
     it 'should update post' do
-      put 'update', params: { id: admin_post.id, post: valid_post_params }
+      patch 'update', params: { id: admin_post.id, post: valid_post_params }
       expect(admin_post.reload.title).to eql(valid_post_params[:title])
     end
 
     it 'should return 302 status' do
-      put 'update', params: { id: admin_post.id, post: valid_post_params }
+      patch 'update', params: { id: admin_post.id, post: valid_post_params }
       expect(response).to have_http_status(302)
     end
 
     it 'should render edit template' do
       expect(
-        put('update', params: { id: admin_post.id, post: invalid_post_params })
+        patch(:update, params: { id: admin_post.id, post: invalid_post_params })
       ).to render_template('edit')
     end
   end
 
-  describe 'new' do
+  describe 'GET #new' do
     it 'should assigns new post' do
-      get 'new'
+      get :new
       expect(assigns(:post)).to be_a Post
     end
   end
 
-  describe 'create' do
-    it 'should create post' do
-      expect do
-        post 'create', params: { post: valid_post_params }
-      end.to change(Post, :count).from(0).to(1)
+  describe 'POST #create' do
+    context 'when valid' do
+      it 'should create post' do
+        expect do
+          post :create, params: { post: valid_post_params }
+        end.to change(Post, :count).from(0).to(1)
+      end
+
+      it 'should redirect to posts_path' do
+        post :create, params: { post: valid_post_params }
+        expect(post(:create, params: { post: valid_post_params })).to redirect_to(admin_post_path(assigns(:post).id))
+      end
+
+      it 'should return 302 status' do
+        post :create, params: { post: valid_post_params }
+        expect(response).to have_http_status(302)
+      end
     end
 
-    it 'should return 302 status' do
-      post 'create', params: { post: valid_post_params }
-      expect(response).to have_http_status(302)
-    end
-
-    it 'should render new template' do
-      expect(
-        post('create', params: { post: invalid_post_params })
-      ).to render_template('new')
+    context 'when invalid' do
+      it 'should render new template' do
+        expect(
+          post(:create, params: { post: invalid_post_params })
+        ).to render_template(:new)
+      end
     end
   end
 end

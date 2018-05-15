@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type' /
-    title Ізюмська фортеця
+    title= t('site_name')
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1" name="viewport" /
     /! Global site tag (gtag.js) - Google Analytics
@@ -24,11 +24,13 @@ html
     link href='//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'
     = javascript_include_tag src: '//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
     = csrf_meta_tag
-    = stylesheet_link_tag    :application, media: :all, 'data-turbolinks-track': :reload
-    = javascript_include_tag :application, 'data-turbolinks-track': :reload
+    = stylesheet_link_tag    :application, media: :all
+    = javascript_include_tag :application
   body
     /! Google Tag Manager (noscript)
     noscript
       iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NRSBRPD" style="display:none;visibility:hidden" width="0" 
     /! End Google Tag Manager (noscript)
+    p.notice= notice
+    p.alert= alert
     = yield

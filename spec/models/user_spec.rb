@@ -1,7 +1,9 @@
-describe User do
+describe User, type: :model do
   let(:user) { build(:user) }
 
   it { should have_many :authentications }
+  it { should have_many :posts }
+  it { should have_many :comments }
 
   it 'should be saved' do
     user.save

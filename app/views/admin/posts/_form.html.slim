@@ -2,17 +2,17 @@
   - if @post.errors.any?
     #error_explanation
       h2
-        = I18n.t('errors.warning')
+        = t('errors.warning')
       ul
         - @post.errors.full_messages.each do |msg|
           li= msg
   p
-    = f.label :title, 'Заголовок'
+    = f.label :title, t('titles.posts.title')
     br/
     = f.text_field :title
   p
-    = f.label :body, 'Текст статті'
+    = f.label :body, t('titles.posts.body')
     br/
     = f.text_area :body
   p
-    = f.submit 'Створити статтю'
+    = f.submit t('titles.posts.create')

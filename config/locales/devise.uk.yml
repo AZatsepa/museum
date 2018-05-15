@@ -1,0 +1,67 @@
+uk:
+  devise:
+    confirmations:
+      confirmed: Вашу електронну адресу успішно підтверджено.
+      send_instructions: Ви отримаєте інструкції з підтвердження електронної адреси протягом декількох хвилин.
+      send_paranoid_instructions: Ви отримаєте інструкції з підтвердження електронної адреси протягом декількох хвилин, якщо ваша електронна адреса присутня в базі даних.
+    failure:
+      already_authenticated: Ви вже зареєстровані.
+      inactive: Ваш обліковий запис ще не активовано.
+      invalid: "Invalid %{authentication_keys} or password."
+      invalid: "Invalid %{authentication_keys} or password."
+      locked: Ваш обліковий запис заблоковано
+      last_attempt: Ви маєте останню спробу перед тим, як ваш обліковий запис буде заблоковано.
+      not_found_in_database: "Invalid %{authentication_keys} or password."
+      not_found_in_database: "Invalid %{authentication_keys} or password."
+      timeout: Термін дії сесії вичерпано. Будь ласка, увійдіть наново для продовження.
+      unauthenticated: Ви маєте увійти або зареєструватися для продовження.
+      unconfirmed: Ви маєте підтвердити вашу еелектронну адресу для продовження.
+    mailer:
+      confirmation_instructions:
+        subject: Інструкції з підтвердження
+      reset_password_instructions:
+        subject: Інструкції зі скидання паролю
+      unlock_instructions:
+        subject: Інструкції з розблокування
+      password_change:
+        subject: Пароль змінено
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: Ви не можете отримати доступ до цієї сторінки, не виконавши інструкції з листа для зміни пароля. Якщо вам надійшов лист для зміни пароля, переконайтеся, що ви використали повне посилання.
+      send_instructions: Ви отримаєте листа з інструкціями зі зкидання паролю протягом декількох хвилин.
+      send_paranoid_instructions: Ви отримаєте листа з інструкціями зі зкидання паролю протягом декількох хвилин, якщо у вас вже існує обліковий запис.
+      updated: Ваш пароль було успішно змінено. Ви вже увійшли в обліковий запис.
+      updated_not_active: Ваш пароль було успішно змінено.
+    registrations:
+      destroyed: Щасти вам! Ваш обліковий запис успішно деактивовано. Сподіваємося побачити вас ще.
+      signed_up: Вітаємо! Реєстрацію облікового запису здійснено успішно.
+      signed_up_but_inactive: Ви успішно зареєструвалися. Увійдіть для активації облікового запису.
+      signed_up_but_locked: Ви успішно зареєструвалися, але не можете увійти через те, що ваш обліковий запис заблоковано.
+      signed_up_but_unconfirmed: На вашу адресу електронної пошти надіслано листа з посиланням для підтвердження. Будь ласка, перейдіть за посиланням, щоб активувати свій обліковий запис.
+      update_needs_confirmation: Ви успішно оновили свій обліковий запис, але ми повинні підтвердити вашу нову електронну адресу. Будь ласка, перевірте свою електронну пошту та перейдіть за посиланням, щоб підтвердити свою нову електронну адресу.
+      updated: Ваш обліковий запис було успішно оновлено.
+    sessions:
+      signed_in: Вхід в обліковий запис здійснено успішно.
+      signed_out: Вихід з облікового запису здійснено успішно.
+      already_signed_out: Вихід з облікового запису вже було здійснено.
+    unlocks:
+      send_instructions: Ви отримаєте листа з інструкціями з розблокування вашого облікового запису протягом декількох хвилин.
+      send_paranoid_instructions: Якщо ваш обліковий запис вже існує, ви отримаєте інструкції з його розблокування протягом декількох хвилин.
+      unlocked: Ваш обліковий запис було успішно розблоковано. Будь ласка, увійдйть в нього для продовження.
+  errors:
+    messages:
+      already_confirmed: вже підтверджено, будь ласка, увійдіть в обліковий запис.
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: вже недійсний, будь ласка, запитайте новий.
+      not_found: не знайдено
+      not_locked: не було заблоковано
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

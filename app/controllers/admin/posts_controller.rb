@@ -1,10 +1,9 @@
 module Admin
   class PostsController < ApplicationController
     before_action :find_post, except: %i[index new create]
+    load_and_authorize_resource class: 'Post'
 
-    def index
-      @posts = Post.all
-    end
+    def index; end
 
     def show; end
 
@@ -16,6 +15,7 @@ module Admin
 
     def create
       @post = Post.create(post_params)
+      @post.user = current_user
       return redirect_to [:admin, @post] if @post.save
       render 'new'
     end

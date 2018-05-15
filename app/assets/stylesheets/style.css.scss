@@ -16,13 +16,14 @@ body,html{
 body {
   margin: 0;
   color: #000;
-  font: 12px/14px  'Izhitsa';
+  //font: 12px/14px  'Izhitsa';
+  font: 12px/14px  'Arial';
   background: url('parchment.jpg') 50% 50%;
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   p.description {
-    font-family: Izhitsa;
+    //font-family: Izhitsa;
     padding: 10px 20px 0;
     font-size: 22px;
     line-height: 22px;
@@ -78,7 +79,7 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
   width: 100%;
   padding:10px 10px 0;
   min-height: 100%;
-  font-family: Izhitsa;
+  //font-family: Izhitsa;
 }
 .h-top{
   width: 100%;
@@ -252,7 +253,7 @@ article ,aside ,audio,canvas,datalist,details,figcaption,figure,footer,header,hg
 h1 {
   text-align: center;
   font-size: 40px;
-  font-family: Izhitsa;
+  //font-family: Izhitsa;
   min-height: 40px;
   padding: 30px 0;
   a {
@@ -285,7 +286,7 @@ ul.horizontal {
     padding: 5px;
     font-size: 20px;
     a {
-      font-family: Izhitsa;
+      //font-family: Izhitsa;
       color: #E0EEE0;
       text-decoration: none;
       &:hover {
@@ -326,7 +327,7 @@ ul.horizontal {
     margin: 10px auto;
     font-size: 16px;
     a {
-      font-family: Izhitsa;
+      //font-family: Izhitsa;
       color: #000;
       text-decoration: none;
       &:hover {

@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'cancancan', '~> 2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'execjs'
@@ -16,7 +17,7 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'paperclip'
 gem 'pg', '~> 0.18'
 gem 'pg_search'
-gem 'puma', '~> 3.0'
+gem 'puma'
 gem 'rails', '~> 5.0.1'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'redcarpet'
@@ -33,6 +34,7 @@ group :production do
 end
 
 group :development do
+  gem 'html2slim'
   gem 'listen',                '~> 3.0.5'
   gem 'rubocop',               '~> 0.49.1', require: false
   gem 'spring'
@@ -45,16 +47,21 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'i18n-tasks', '~> 0.9.20'
+  gem 'letter_opener'
   gem 'pry-rails'
 end
 
 group :test do
+  gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'launchy'
+  gem 'poltergeist'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'
 end
