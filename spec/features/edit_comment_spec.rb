@@ -5,6 +5,8 @@ feature 'Comment editing', %q(
   I'd like to be able to edit my comment
 ) do
   given(:user) { create(:user) }
+  given(:admin) { create(:user, role: :admin) }
+  given(:another_user) { create(:user) }
   given(:post) { create(:post, user: user) }
   given!(:comment) { create(:comment, post: post, user: user) }
 
@@ -18,33 +20,63 @@ feature 'Comment editing', %q(
   end
 
   context 'Authenticated user' do
-    background do
-      login_as(user, scope: :user, run_callbacks: false)
-      visit post_path(post)
-    end
+    context 'when his comment' do
+      background do
+        login_as(user, scope: :user, run_callbacks: false)
+        visit post_path(post)
+      end
 
-    scenario "sees '#{t('titles.comments.edit')}' link" do
-      within '.comments' do
-        expect(page).to have_link t('titles.comments.edit')
+      scenario "sees '#{t('titles.comments.edit')}' link" do
+        within '.comments' do
+          expect(page).to have_link t('titles.comments.edit')
+        end
+      end
+
+      scenario 'tries to edit', js: true do
+        click_on t('titles.comments.edit')
+        fill_in 'comment_text', with: 'edited comment'
+        click_on t('change')
+
+        within '.comments' do
+          expect(page).to_not have_content comment.text
+          expect(page).to have_content 'edited comment'
+          expect(page).to_not have_selector 'textarea'
+        end
       end
     end
 
-    scenario 'tries to edit his comment', js: true do
-      click_on t('titles.comments.edit')
-      fill_in 'comment_text', with: 'edited comment'
-      click_on t('change')
+    context "when other user's comment" do
+      background do
+        login_as(another_user, scope: :user, run_callbacks: false)
+        visit post_path(post)
+      end
 
-      within '.comments' do
-        expect(page).to_not have_content comment.text
-        expect(page).to have_content 'edited comment'
-        expect(page).to_not have_selector 'textarea'
+      scenario 'tries to edit' do
+        within '.comments' do
+          expect(page).to_not have_link t('titles.comments.edit')
+        end
       end
     end
-
-    scenario "tries to edit other user's comment"
   end
 
   context 'Admin user' do
-    scenario "tries to edit other user's comment"
+    context "when other user's comment" do
+      background do
+        login_as(admin, scope: :user, run_callbacks: false)
+        visit post_path(post)
+      end
+
+      scenario 'tries to edit', js: true do
+        click_on t('titles.comments.edit')
+        fill_in 'comment_text', with: 'edited comment'
+        click_on t('change')
+
+        within '.comments' do
+          expect(page).to_not have_content comment.text
+          expect(page).to have_content 'edited comment'
+          expect(page).to_not have_selector 'textarea'
+        end
+      end
+    end
   end
 end

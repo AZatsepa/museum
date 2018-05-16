@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    authorize! :update, @comment
     @post = @comment.post
     @comment.update(comment_params)
   end

@@ -2,7 +2,7 @@
   .comment data-comment-id="#{comment.id}"
     = comment.text
     - if user_signed_in?
-      p= link_to t('titles.comments.edit'), '', class: 'edit-comment-link', data: { comment_id: comment.id }
+      p= link_to t('titles.comments.edit'), '', class: 'edit-comment-link', data: { comment_id: comment.id } if can? :update, comment
       p= form_for [@post, comment], remote: true, html: { id: "edit-comment-#{comment.id}" } do |f|
         = f.text_area :text
         = f.submit t('change')
