@@ -16,7 +16,9 @@ Here you can see:
 
 Run tests:
 
-_docker-compose run -e 'RAILS_ENV=test' app bundle exec ruby script/ci/travis.rb_
+_docker-compose run app bash_
+
+_bundle exec ruby script/ci/travis.rb_
 
 Run app locally in development mode with Docker:
 
