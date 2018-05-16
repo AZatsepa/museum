@@ -36,4 +36,30 @@ describe CommentsController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH #update' do
+    let(:comment) { create(:comment, post: comment_post, user: user) }
+
+    it 'should assigns comment to @comment' do
+      patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
+      expect(assigns(:comment)).to eql comment
+    end
+
+    it 'should assigns post to @post' do
+      patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
+      expect(assigns(:post)).to eql comment_post
+    end
+
+    it 'should update comment' do
+      patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
+      comment.reload
+      expect(comment.text).to eql('updated text')
+    end
+
+    it 'should render edit template' do
+      expect(
+        patch(:update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true)
+      ).to render_template :update
+    end
+  end
 end

@@ -5,21 +5,7 @@ html
     title= t('site_name')
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1" name="viewport" /
-    /! Global site tag (gtag.js) - Google Analytics
-    script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-109506237-1"
-    javascript:
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-109506237-1');
-    /! Google Tag Manager
-    javascript:
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-NRSBRPD');
-    /! End Google Tag Manager  
+    = render 'shared/google_tag_manager' if Rails.env.production?
     link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css" /
     link href='//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'
     = javascript_include_tag src: '//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
@@ -27,10 +13,7 @@ html
     = stylesheet_link_tag    :application, media: :all
     = javascript_include_tag :application
   body
-    /! Google Tag Manager (noscript)
-    noscript
-      iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NRSBRPD" style="display:none;visibility:hidden" width="0" 
-    /! End Google Tag Manager (noscript)
+    = render 'shared/google_tag_manager_noscript' if Rails.env.production?
     p.notice= notice
     p.alert= alert
     = yield

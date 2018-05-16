@@ -4,6 +4,11 @@ RUN apt-get update -yqq \
   && apt-get install -yqq --no-install-recommends \
     postgresql-client \
     nodejs \
+    qt5-default \
+    libqt5webkit5-dev \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-tools \
+    gstreamer1.0-x \
   && apt-get -q clean \
   && rm -rf /var/lib/apt/lists
 
@@ -17,8 +22,8 @@ RUN \
   cp bin/phantomjs /usr/local/bin/ && \
   cd /tmp && \
   rm -rf /tmp/phantomjs
-RUN cd /usr/src/app && gem install bundler && bundle install
-RUN bundle exec rails db:create
-RUN bundle exec rails db:migrate
+RUN gem install bundler && bundle install
 COPY . .
+# TODO: find solution for using webkit in Docker
+ENV CAPYBARA_DRIVER poltergeist
 CMD ./script/start.sh
