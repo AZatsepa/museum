@@ -63,6 +63,10 @@ GEM
     capybara-webkit (1.15.0)
       capybara (>= 2.3, < 4.0)
       json
+    carrierwave (1.2.2)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     climate_control (0.2.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -378,6 +382,7 @@ DEPENDENCIES
   cancancan (~> 2.0)
   capybara
   capybara-webkit
+  carrierwave
   coffee-rails (~> 4.2)
   cucumber-rails
   database_cleaner
