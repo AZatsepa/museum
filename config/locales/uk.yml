@@ -62,6 +62,7 @@ uk:
   titles:
     comments:
       add: Додати комент
+      delete: Видалити комент
       edit: Редагувати комент
       text: 'Комент:'
     posts:

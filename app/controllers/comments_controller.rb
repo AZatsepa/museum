@@ -10,6 +10,11 @@ class CommentsController < ApplicationController
     @comment.update(comment_params)
   end
 
+  def destroy
+    @post = @comment.post
+    @comment.destroy
+  end
+
   private
 
   def comment_params

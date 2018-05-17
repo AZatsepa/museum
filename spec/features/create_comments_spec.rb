@@ -1,5 +1,5 @@
 require_relative 'feature_helper'
-feature 'Comments', %q(
+feature 'Create comments', %q(
   I want to manage comments
 ) do
   given!(:post) { create(:post, user: user) }

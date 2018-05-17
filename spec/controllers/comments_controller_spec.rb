@@ -132,4 +132,92 @@ describe CommentsController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:comment) { create(:comment, post: comment_post, user: user) }
+    let!(:other_users_comment) { create(:comment, post: comment_post, user: another_user) }
+
+    context 'when user' do
+      context 'when own comment' do
+        before do
+          @request.env['devise.mapping'] = Devise.mappings[:user]
+          sign_in user
+        end
+        it 'should assigns comment to @comment' do
+          delete :destroy, params: { id: comment, post_id: comment_post }, xhr: true
+          expect(assigns(:comment)).to eql comment
+        end
+
+        it 'should assigns post to @post' do
+          delete :destroy, params: { id: comment, post_id: comment_post }, xhr: true
+          expect(assigns(:post)).to eql comment_post
+        end
+
+        it 'should destroy comment' do
+          expect do
+            delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          end.to change(Comment, :count).by(-1)
+        end
+
+        it 'should render destroy template' do
+          expect(
+            delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          ).to render_template :destroy
+        end
+      end
+
+      context "when other user's comment" do
+        before do
+          @request.env['devise.mapping'] = Devise.mappings[:user]
+          sign_in user
+        end
+
+        it 'should not assigns post to @post' do
+          delete(:destroy, params: { id: other_users_comment, post_id: comment_post }, xhr: true)
+          expect(assigns(:post)).to be_nil
+        end
+
+        it 'should not destroy comment' do
+          expect do
+            delete(:destroy, params: { id: other_users_comment, post_id: comment_post }, xhr: true)
+          end.to_not change(Comment, :count)
+        end
+
+        it 'should not render destroy template' do
+          expect(
+            delete(:destroy, params: { id: other_users_comment, post_id: comment_post }, xhr: true)
+          ).to_not render_template :destroy
+        end
+      end
+
+      context 'when admin' do
+        before do
+          @request.env['devise.mapping'] = Devise.mappings[:user]
+          sign_in admin
+        end
+
+        it 'should assigns comment to @comment' do
+          delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          expect(assigns(:comment)).to eql comment
+        end
+
+        it 'should assigns post to @post' do
+          delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          expect(assigns(:post)).to eql comment_post
+        end
+
+        it 'should destroy comment' do
+          expect do
+            delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          end.to change(Comment, :count).by(-1)
+        end
+
+        it 'should render destroy template' do
+          expect(
+            delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          ).to render_template :destroy
+        end
+      end
+    end
+  end
 end
