@@ -1,12 +1,11 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params.merge!(user: current_user))
   end
 
   def update
-    @comment = Comment.find(params[:id])
-    authorize! :update, @comment
     @post = @comment.post
     @comment.update(comment_params)
   end
