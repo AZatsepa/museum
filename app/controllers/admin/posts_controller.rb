@@ -1,7 +1,6 @@
 module Admin
   class PostsController < ApplicationController
-    before_action :find_post, except: %i[index new create]
-    load_and_authorize_resource class: 'Post'
+    load_and_authorize_resource
 
     def index; end
 
@@ -17,12 +16,12 @@ module Admin
       @post = Post.create(post_params)
       @post.user = current_user
       return redirect_to [:admin, @post] if @post.save
-      render 'new'
+      render :new
     end
 
     def update
       return redirect_to [:admin, @post] if @post.update(post_params)
-      render 'edit'
+      render :edit
     end
 
     def destroy
@@ -34,10 +33,6 @@ module Admin
 
     def post_params
       params.require(:post).permit(:title, :body)
-    end
-
-    def find_post
-      @post = Post.find(params[:id])
     end
   end
 end

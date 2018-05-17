@@ -4,5 +4,5 @@ class Comment < ApplicationRecord
 
   validates :user, presence: :true
   validates :post, presence: :true
-  validates :text, presence: true
+  validates :text, presence: { message: I18n.t('errors.comment.text.blank') }
 end

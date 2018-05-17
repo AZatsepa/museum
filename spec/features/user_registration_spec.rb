@@ -1,3 +1,5 @@
+require_relative 'feature_helper'
+
 feature 'User registration', %q(
   In order to registration
   I want to create a new account

@@ -1,3 +1,4 @@
+require_relative 'feature_helper'
 feature 'Posts', %q(
   In order to creating posts
   I want to manage posts

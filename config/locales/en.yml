@@ -10,6 +10,10 @@ en:
   confirm_my_account: Confirm my account
   confirmation: Are you sure?
   didnt_receive_unlock_instructions: Didn't receive unlock instructions?
+  errors:
+    comment:
+      text:
+        blank: Can't be blank
   forgot_you_password: Forgot you password?
   hi: Hello
   if_you_didnt_request_this_please_ignore_this_email: If you didn't request this, please ignore this email.
@@ -52,6 +56,8 @@ en:
   titles:
     comments:
       add: Add comment
+      delete: Delete comment
+      edit: Edit comment
       text: 'Comment:'
     posts:
       all: Posts

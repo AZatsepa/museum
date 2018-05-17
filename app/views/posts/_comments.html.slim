@@ -1,4 +1,3 @@
-- @post.comments.each do |comment|
-  .comment-wrapper
-    .comment
-      = comment.text
+- @post.comments.order(:created_at).each do |comment|
+  = render comment
+

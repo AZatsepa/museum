@@ -16,6 +16,9 @@ uk:
   confirmation: Ви впевнені?
   didnt_receive_unlock_instructions: Не отримали інструкцій з розблокування?
   errors:
+    comment:
+      text:
+        blank: Hе може бути порожнім
     warning: 'Виникли помилки при створенні статті:'
   forgot_you_password: Забули пароль?
   hi: Вітаємо
@@ -59,6 +62,8 @@ uk:
   titles:
     comments:
       add: Додати комент
+      delete: Видалити комент
+      edit: Редагувати комент
       text: 'Комент:'
     posts:
       all: Пости

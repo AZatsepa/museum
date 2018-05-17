@@ -7,8 +7,9 @@
     = render 'comments'
   - if can? :create, Comment
     = form_for [@post, @comment], remote: true do |f|
-      = f.label :text, t('titles.comments.text')
-      = f.text_field :text
+      = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
+      .comment-errors
+      = f.text_field :text, id: 'new_comment_text'
       = f.submit t('titles.comments.add'), data: { 'disable-with' => t('saving') }
 h3
   =link_to t('back'), posts_path
