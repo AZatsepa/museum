@@ -54,6 +54,10 @@ en:
   site_name: Izjum fortress
   someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Someone has requested a link to change your password. You can do this through the link below.
   titles:
+    attachments:
+      add: Add attachment
+      delete: Delete attachment
+      name: 'Attachments:'
     comments:
       add: Add comment
       delete: Delete comment

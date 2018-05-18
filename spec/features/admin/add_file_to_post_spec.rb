@@ -15,9 +15,9 @@ feature 'Add files to posts', %q(
   scenario 'User adds file when create post' do
     fill_in t('titles.posts.title'), with: 'New post title'
     fill_in t('titles.posts.body'), with: 'New post body'
-    attach_file 'Plan', "#{Rails.root}/app/assets/images/1782.png"
+    attach_file 'post_attachments_attributes_0_file', Rails.root.join('app', 'assets', 'images', '1782.png')
     click_on t('titles.posts.create')
 
-    expect(page).to have_content '1782.png'
+    expect(page).to have_link '1782.png', href: '/uploads/attachment/file/1/1782.png'
   end
 end

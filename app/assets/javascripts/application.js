@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
+//= require jquery_nested_form
 //= require jquery.maphilight.js
 //= require imageMapResizer.js
 //= require jquery.mobile-git
