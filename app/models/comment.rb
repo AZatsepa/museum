@@ -1,6 +1,8 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
+  has_many :attachments, as: :attachable
+  accepts_nested_attributes_for :attachments, allow_destroy: true, reject_if: ->(a) { a[:file].blank? }
 
   validates :user, presence: :true
   validates :post, presence: :true

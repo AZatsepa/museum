@@ -60,6 +60,10 @@ uk:
   site_name: Ізюмська фортеця
   someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Хтось зробив запит зміни вашого пароля. Ви можете зробити це за посиланням нижче.
   titles:
+    attachments:
+      add: Додати вкладення
+      delete: Видалити вкладення
+      name: 'Вкладення:'
     comments:
       add: Додати комент
       delete: Видалити комент

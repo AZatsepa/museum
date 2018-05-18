@@ -1,9 +1,18 @@
 - if comment.persisted?
   .comment data-comment-id="#{comment.id}"
     = comment.text
+    ul
+      - comment.attachments.each do |a|
+        li= link_to a.file.file.identifier, a.file.url
     - if user_signed_in?
-      p= link_to t('titles.comments.edit'), '', class: 'edit-comment-link', data: { comment_id: comment.id } if can? :update, comment
-      p= link_to t('titles.comments.delete'), post_comment_path(@post, comment), class: 'delete-comment-link', data: { comment_id: comment.id }, method: :delete, remote: true if can? :destroy, comment
-      p= form_for [@post, comment], remote: true, html: { id: "edit-comment-#{comment.id}" } do |f|
+      - if can? :update, comment
+        p= link_to t('titles.comments.edit'), '', class: 'edit-comment-link', data: { comment_id: comment.id }
+      - if can? :destroy, comment
+        p= link_to t('titles.comments.delete'), post_comment_path(@post, comment), class: 'delete-comment-link',
+                                                                                   data: { comment_id: comment.id },
+                                                                                   method: :delete,
+                                                                                   remote: true
+      p= nested_form_for [@post, comment], remote: true, html: { id: "edit-comment-#{comment.id}" } do |f|
         = f.text_area :text
+        = render 'shared/attachment_form', f: f
         = f.submit t('change')

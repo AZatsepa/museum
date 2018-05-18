@@ -66,6 +66,15 @@ describe Admin::PostsController do
       get :new
       expect(assigns(:post)).to be_a Post
     end
+
+    it 'should build new attachments to post' do
+      get :new
+      expect(assigns(:post).attachments.first).to be_a_new Attachment
+    end
+
+    it 'should render new template' do
+      expect(get(:new)).to render_template :new
+    end
   end
 
   describe 'POST #create' do

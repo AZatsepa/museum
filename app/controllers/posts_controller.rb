@@ -5,5 +5,6 @@ class PostsController < ApplicationController
 
   def show
     @comment = @post.comments.build
+    @comment.attachments.build
   end
 end

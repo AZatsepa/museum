@@ -3,6 +3,9 @@
     = @post.title
   hr
     = markdown(@post.body)
+  ul
+    - @post.attachments.each do |a|
+      li= link_to a.file.file.identifier, a.file.url
   hr
   h3.text-center
     = link_to t('titles.posts.delete'),
