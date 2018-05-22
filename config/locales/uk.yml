@@ -19,7 +19,6 @@ uk:
     comment:
       text:
         blank: Hе може бути порожнім
-    warning: 'Виникли помилки при створенні статті:'
   forgot_you_password: Забули пароль?
   hi: Вітаємо
   if_you_didnt_request_this_please_ignore_this_email: Якщо ви не робили цього, будь ласка, ігноруйте це повідомлення.
@@ -70,12 +69,12 @@ uk:
       edit: Редагувати комент
       text: 'Комент:'
     posts:
+      add: Додати пост
       all: Пости
       body: Текст
       create: Створити пост
       delete: Видалити пост
       edit: Редагувати
-      new: Новий пост
       title: Заголовок
   unlock_my_account: Розблокувати мій обліковий запис
   users:

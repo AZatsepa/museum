@@ -8,13 +8,41 @@ feature 'Posts', %q(
   given(:user) { create(:user, role: :user) }
 
   context 'when user admin' do
-    scenario 'should create post' do
+    scenario 'should create post', js: true do
       login_as(admin, scope: :user, run_callbacks: false)
       visit admin_posts_path
-      click_on t('titles.posts.new')
+      find('#add_post_btn').click
       fill_in t('titles.posts.title'), with: 'Lorem ipsum'
       fill_in t('titles.posts.body'), with: 'Dolor sit amet'
-      expect { click_on t('titles.posts.create') }.to change(Post, :count).by(1)
+      expect do
+        click_on t('titles.posts.create')
+        sleep 1
+      end.to change(Post, :count).by(1)
+    end
+  end
+
+  context 'multiple sessions' do
+    scenario "post appears on another user's page" do
+      Capybara.using_session('admin') do
+        login_as(admin, scope: :user, run_callbacks: false)
+        visit admin_posts_path
+      end
+
+      Capybara.using_session('guest') do
+        visit posts_path
+      end
+
+      Capybara.using_session('admin') do
+        find('#add_post_btn').click
+        fill_in t('titles.posts.title'), with: 'Lorem ipsum'
+        fill_in t('titles.posts.body'), with: 'Dolor sit amet'
+        click_on t('titles.posts.create')
+        expect(page).to have_content 'Lorem ipsum'
+      end
+
+      Capybara.using_session('admin') do
+        expect(page).to have_content 'Lorem ipsum'
+      end
     end
   end
 

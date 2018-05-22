@@ -1,6 +1,5 @@
 .posts
-  h1
-  = t('titles.posts.edit')
-  = render 'form'
+  h1= t('titles.posts.edit')
+  .edit-post= render 'form', button: t('titles.posts.edit')
   .posts-margin
   = link_to t('back'), :back

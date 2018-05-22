@@ -38,6 +38,6 @@ var mySettings = {
 	]
 };
 
-$(window).bind("turbolinks:load",function(e){
+$(window).bind("load turbolinks:load",function(e){
     $('#post_body').markItUp(mySettings);
 });

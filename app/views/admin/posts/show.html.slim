@@ -9,7 +9,6 @@
   hr
   h3.text-center
     = link_to t('titles.posts.delete'),
-            admin_post_path(@post),
-            data: { confirm: t('confirmation') }, method: :delete
+            admin_post_path(@post), data: { confirm: t('confirmation') }, method: :delete
   h3.text-center
     = link_to t('titles.posts.all'), admin_posts_path

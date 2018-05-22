@@ -22,5 +22,9 @@
 //= require turbolinks
 //= require main
 //= require hilight
+//= require action_cable
 //= require_tree .
+
+var App = App || {};
+App.cable = ActionCable.createConsumer();
 $.mobile.autoInitializePage = false;

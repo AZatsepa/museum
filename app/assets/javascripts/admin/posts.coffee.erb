@@ -1,0 +1,53 @@
+$(document).on 'load turbolinks:load', ->
+  postForm = $('#post_form')
+  addPostBtn = $('#add_post_btn')
+  postsList = $('.admin-posts-list tbody')
+
+  addPostBtn.on 'click', (e) ->
+    e.preventDefault()
+    postForm.show()
+    postForm.find('.cancel-btn').one 'click', ->
+      postForm.hide()
+
+  postForm.on 'submit', ->
+    $('.text-danger').each (i, e) ->
+      $(e).remove()
+
+  postForm.on 'ajax:success', (e, data, status, xhr) ->
+    if window.location.pathname.match(/admin\/posts$/)
+      confirmation = '<%= I18n.t('confirmation') %>'
+      str = """
+            <tr>
+              <td>
+                <a href="/admin/posts/#{data.id}">#{data.title}</a>
+              </td>
+              <td>
+                <a class="btn btn-link" href="/admin/posts/#{data.id}/edit">
+                  <span class="glyphicon glyphicon-pencil">
+                  </span>
+                </a>
+              </td>
+              <td>
+                <a data-confirm="#{confirmation}" class="btn btn-link" rel="nofollow" data-method="delete" href="/admin/posts/#{data.id}">
+                  <span class="glyphicon glyphicon-trash">
+                  </span>
+                </a>
+              </td>
+            </tr>
+            """
+
+      postsList.append str
+      $('#post_title').val ''
+      $('#post_body').val ''
+      postForm.hide()
+    else
+      window.location.pathname = "/admin/posts/#{data.id}"
+
+  postForm.on 'ajax:error', (e, xhr, status, error) ->
+    errors = xhr.responseJSON
+    if errors.title
+      errors.title.map (message) ->
+        $('#post_title').before("<p class=\"text-danger\">#{message}</p>")
+    if errors.body
+      errors.body.map (message) ->
+        $('#markItUpPost_body').before("<p class=\"text-danger\">#{message}</p>")

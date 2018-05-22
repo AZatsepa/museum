@@ -1,8 +1,11 @@
 module Admin
   class PostsController < ApplicationController
     load_and_authorize_resource
+    after_action :publish_post, only: %i[create]
 
-    def index; end
+    def index
+      @post = Post.new
+    end
 
     def show; end
 
@@ -13,14 +16,20 @@ module Admin
     def edit; end
 
     def create
-      @post = Post.new(post_params.merge!(user: current_user))
-      return redirect_to [:admin, @post] if @post.save
-      render :new
+      @post = current_user.posts.build(post_params)
+      if @post.save
+        render json: @post
+      else
+        render json: @post.errors.full_messages, status: :unprocessable_entity
+      end
     end
 
     def update
-      return redirect_to [:admin, @post] if @post.update(post_params)
-      render :edit
+      if @post.update(post_params)
+        render json: @post, format: :json
+      else
+        render json: @post.errors, status: :unprocessable_entity
+      end
     end
 
     def destroy
@@ -32,6 +41,16 @@ module Admin
 
     def post_params
       params.require(:post).permit(:title, :body, attachments_attributes: %i[file])
+    end
+
+    def publish_post
+      return if @post.errors.any?
+      ActionCable.server.broadcast(
+        'posts',
+        ApplicationController.render(
+          partial: 'posts/post', locals: { post: @post }
+        )
+      )
     end
   end
 end

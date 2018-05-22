@@ -64,12 +64,12 @@ en:
       edit: Edit comment
       text: 'Comment:'
     posts:
+      add: Add post
       all: Posts
       body: Body
       create: Create post
       delete: Remove post
       edit: Edit
-      new: New post
       title: Title
   unlock_my_account: Unlock my account
   users:

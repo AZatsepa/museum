@@ -1,11 +1,4 @@
-= nested_form_for [:admin, @post] do |f|
-  - if @post.errors.any?
-    #error_explanation
-      h2
-        = t('errors.warning')
-      ul
-        - @post.errors.full_messages.each do |msg|
-          li= msg
+#post_form= nested_form_for [:admin, @post], remote: true, data: { type: :json } do |f|
   p
     = f.label :title, t('titles.posts.title')
     br
@@ -14,6 +7,12 @@
     = f.label :body, t('titles.posts.body')
     br
     = f.text_area :body
-    = render 'shared/attachment_form', f: f
+  p= t('titles.attachments.name')
+  p= f.fields_for :attachments do |a|
+    = a.file_field :file
+    = a.link_to_remove t('titles.attachments.delete')
+  = f.link_to_add t('titles.attachments.add'), :attachments
   p
-    = f.submit t('titles.posts.create')
+    = f.submit button, id: 'post_submit'
+  p
+    a.cancel-btn Cancel

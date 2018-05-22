@@ -49,31 +49,31 @@ describe Admin::PostsController do
       expect(admin_post.reload.title).to eql(valid_post_params[:title])
     end
 
-    it 'should return 302 status' do
-      patch 'update', params: { id: admin_post.id, post: valid_post_params }
-      expect(response).to have_http_status(302)
+    it 'should return updated post as JSON' do
+      patch :update, params: { id: admin_post.id, post: { title: 'Updated title' } }, xhr: true
+      expect(JSON.parse(response.body)['title']).to eql 'Updated title'
     end
 
-    it 'should render edit template' do
-      expect(
-        patch(:update, params: { id: admin_post.id, post: invalid_post_params })
-      ).to render_template('edit')
+    it 'should render error messages' do
+      patch :update, params: { id: admin_post.id, post: invalid_post_params }, xhr: true
+      expect(JSON.parse(response.body)).to eql('title' => ["can't be blank"], 'body' => ["can't be blank"])
+    end
+
+    it 'should return 422 status' do
+      patch :update, params: { id: admin_post.id, post: invalid_post_params }, xhr: true
+      expect(response).to have_http_status(422)
     end
   end
 
   describe 'GET #new' do
     it 'should assigns new post' do
-      get :new
+      get :new, xhr: true
       expect(assigns(:post)).to be_a Post
     end
 
     it 'should build new attachments to post' do
-      get :new
+      get :new, xhr: true
       expect(assigns(:post).attachments.first).to be_a_new Attachment
-    end
-
-    it 'should render new template' do
-      expect(get(:new)).to render_template :new
     end
   end
 
@@ -81,26 +81,32 @@ describe Admin::PostsController do
     context 'when valid' do
       it 'should create post' do
         expect do
-          post :create, params: { post: valid_post_params }
+          post :create, params: { post: attributes_for(:post) }, xhr: true
         end.to change(Post, :count).from(0).to(1)
       end
 
-      it 'should redirect to posts_path' do
-        post :create, params: { post: valid_post_params }
-        expect(post(:create, params: { post: valid_post_params })).to redirect_to(admin_post_path(assigns(:post).id))
+      it 'should render post as JSON' do
+        post :create, params: { post: attributes_for(:post) }, xhr: true
+        expect(JSON.parse(response.body)['title']).to eql attributes_for(:post)[:title]
+        expect(JSON.parse(response.body)['body']).to eql attributes_for(:post)[:body]
+        expect(JSON.parse(response.body)['user_id']).to eql admin_user.id
       end
 
-      it 'should return 302 status' do
-        post :create, params: { post: valid_post_params }
-        expect(response).to have_http_status(302)
+      it 'should return 200 status' do
+        post :create, params: { post: attributes_for(:post) }, xhr: true
+        expect(response).to have_http_status(200)
       end
     end
 
     context 'when invalid' do
-      it 'should render new template' do
-        expect(
-          post(:create, params: { post: invalid_post_params })
-        ).to render_template(:new)
+      it 'should render error messages' do
+        post(:create, params: { post: invalid_post_params }, xhr: true)
+        expect(JSON.parse(response.body)).to eql(["Title can't be blank", "Body can't be blank"])
+      end
+
+      it 'should return 422 status' do
+        post :create, params: { post: invalid_post_params }, xhr: true
+        expect(response).to have_http_status(422)
       end
     end
   end
