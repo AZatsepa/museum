@@ -33,6 +33,16 @@ Lint/AssignmentInCondition:
   Exclude:
     - 'bin/spring'
 
+Layout/SpaceInsideBrackets:
+  Exclude:
+    - 'config/environments/production.rb'
+
+Style/StringLiterals:
+  Exclude:
+    - 'bin/yarn'
+    - 'config/environments/production.rb'
+    - 'config/puma.rb'
+
 Style/ConditionalAssignment:
   Enabled: false
 

@@ -5,7 +5,7 @@ feature 'Add files to posts', %q(
   As an admin
   I'd like to be able to attach files
 ) do
-  given(:admin) { create(:user, role: :admin) }
+  given(:admin) { create(:user, :admin) }
 
   background do
     login_as(admin, scope: :user, run_callbacks: false)

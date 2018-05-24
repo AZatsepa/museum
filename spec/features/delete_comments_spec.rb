@@ -4,7 +4,7 @@ feature 'Delete comments', %q(
   I want to manage comments
 ) do
   given(:user) { create(:user) }
-  given(:admin) { create(:user, role: :admin) }
+  given(:admin) { create(:user, :admin) }
   given(:another_user) { create(:user) }
   given(:post) { create(:post, user: user) }
   given!(:comment) { create(:comment, post: post, user: user) }

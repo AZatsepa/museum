@@ -1,7 +1,7 @@
 describe CommentsController, type: :controller do
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
-  let(:admin) { create(:user, role: :admin) }
+  let(:admin) { create(:user, :admin) }
   let(:comment_post) { create(:post, user: user) }
 
   describe 'POST #create' do
