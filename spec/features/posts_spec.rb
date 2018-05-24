@@ -22,7 +22,7 @@ feature 'Posts', %q(
   end
 
   context 'multiple sessions' do
-    scenario "post appears on another user's page" do
+    scenario "post appears on another user's page", js: true do
       Capybara.using_session('admin') do
         login_as(admin, scope: :user, run_callbacks: false)
         visit admin_posts_path

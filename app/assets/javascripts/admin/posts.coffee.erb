@@ -15,28 +15,7 @@ $(document).on 'load turbolinks:load', ->
 
   postForm.on 'ajax:success', (e, data, status, xhr) ->
     if window.location.pathname.match(/admin\/posts$/)
-      confirmation = '<%= I18n.t('confirmation') %>'
-      str = """
-            <tr>
-              <td>
-                <a href="/admin/posts/#{data.id}">#{data.title}</a>
-              </td>
-              <td>
-                <a class="btn btn-link" href="/admin/posts/#{data.id}/edit">
-                  <span class="glyphicon glyphicon-pencil">
-                  </span>
-                </a>
-              </td>
-              <td>
-                <a data-confirm="#{confirmation}" class="btn btn-link" rel="nofollow" data-method="delete" href="/admin/posts/#{data.id}">
-                  <span class="glyphicon glyphicon-trash">
-                  </span>
-                </a>
-              </td>
-            </tr>
-            """
-
-      postsList.append str
+      postsList.append(JST['admin/post']({data: data, confirmation: '<%= I18n.t('confirmation') %>'}))
       $('#post_title').val ''
       $('#post_body').val ''
       postForm.hide()

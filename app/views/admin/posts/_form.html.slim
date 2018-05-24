@@ -7,11 +7,7 @@
     = f.label :body, t('titles.posts.body')
     br
     = f.text_area :body
-  p= t('titles.attachments.name')
-  p= f.fields_for :attachments do |a|
-    = a.file_field :file
-    = a.link_to_remove t('titles.attachments.delete')
-  = f.link_to_add t('titles.attachments.add'), :attachments
+  = render 'shared/attachment_form', f: f
   p
     = f.submit button, id: 'post_submit'
   p

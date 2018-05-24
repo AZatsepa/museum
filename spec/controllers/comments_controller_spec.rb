@@ -17,10 +17,10 @@ describe CommentsController, type: :controller do
         end.to change(comment_post.comments, :count).by(1)
       end
 
-      it 'should render create template' do
-        expect(
-          post(:create, params: { comment: attributes_for(:comment), post_id: comment_post }, xhr: true)
-        ).to render_template :create
+      it 'should render comment as JSON' do
+        post :create, params: { comment: attributes_for(:comment), post_id: comment_post }, xhr: true
+        expect(JSON.parse(response.body)['text']).to eql attributes_for(:comment)[:text]
+        expect(JSON.parse(response.body)['user_id']).to eql user.id
       end
     end
 
@@ -31,10 +31,14 @@ describe CommentsController, type: :controller do
         end.to_not change(Comment, :count)
       end
 
-      it 'should render create template' do
-        expect(
-          post(:create, params: { comment: attributes_for(:invalid_comment), post_id: comment_post }, xhr: true)
-        ).to render_template :create
+      it 'should render error messages' do
+        post :create, params: { comment: attributes_for(:invalid_comment), post_id: comment_post }, xhr: true
+        expect(JSON.parse(response.body)).to eql(["Text Can't be blank"])
+      end
+
+      it 'should return 422 status' do
+        post :create, params: { comment: attributes_for(:invalid_comment), post_id: comment_post }, xhr: true
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -65,10 +69,9 @@ describe CommentsController, type: :controller do
           expect(comment.text).to eql('updated text')
         end
 
-        it 'should render edit template' do
-          expect(
-            patch(:update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true)
-          ).to render_template :update
+        it 'should render @comment as JSON' do
+          patch(:update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true)
+          expect(JSON.parse(response.body).keys).to match_array %w[id user_id post_id text attachments]
         end
       end
 
@@ -124,10 +127,9 @@ describe CommentsController, type: :controller do
           expect(comment.text).to eql('updated text')
         end
 
-        it 'should render edit template' do
-          expect(
-            patch(:update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true)
-          ).to render_template :update
+        it 'should render @comment as JSON' do
+          patch(:update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true)
+          expect(JSON.parse(response.body).keys).to match_array %w[id user_id post_id text attachments]
         end
       end
     end

@@ -87,9 +87,7 @@ describe Admin::PostsController do
 
       it 'should render post as JSON' do
         post :create, params: { post: attributes_for(:post) }, xhr: true
-        expect(JSON.parse(response.body)['title']).to eql attributes_for(:post)[:title]
-        expect(JSON.parse(response.body)['body']).to eql attributes_for(:post)[:body]
-        expect(JSON.parse(response.body)['user_id']).to eql admin_user.id
+        expect(JSON.parse(response.body).keys).to match_array %w[id title body user_id comments attachments]
       end
 
       it 'should return 200 status' do

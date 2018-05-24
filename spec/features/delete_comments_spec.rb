@@ -55,6 +55,32 @@ feature 'Delete comments', %q(
   end
 
   context 'Admin user' do
+    context 'multiple sessions' do
+      scenario "comment appears on another user's page", js: true do
+        Capybara.using_session('user') do
+          login_as(admin, scope: :user, run_callbacks: false)
+          visit post_path(post)
+          expect(page).to have_content comment.text
+        end
+
+        Capybara.using_session('guest') do
+          visit post_path(post)
+          expect(page).to have_content comment.text
+        end
+
+        Capybara.using_session('user') do
+          expect do
+            click_on t('titles.comments.delete')
+            sleep 1
+          end.to change(post.comments, :count).by(-1)
+        end
+
+        Capybara.using_session('guest') do
+          expect(page).to_not have_content comment.text
+        end
+      end
+    end
+
     context "when other user's comment" do
       background do
         login_as(admin, scope: :user, run_callbacks: false)

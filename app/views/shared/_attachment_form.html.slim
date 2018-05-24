@@ -1,5 +1,10 @@
 p= t('titles.attachments.name')
 p= f.fields_for :attachments do |a|
-  = a.file_field :file
-  = a.link_to_remove t('titles.attachments.delete')
+  - if a.object.new_record?
+    = a.file_field :file
+    = a.link_to_remove t('titles.attachments.delete')
+  - else
+    p= a.object.file.file.identifier
+    = a.check_box :_destroy
+    | Delete
 = f.link_to_add t('titles.attachments.add'), :attachments

@@ -24,6 +24,7 @@
 //= require hilight
 //= require action_cable
 //= require_tree .
+//= require_tree ../templates
 
 var App = App || {};
 App.cable = ActionCable.createConsumer();

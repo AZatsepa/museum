@@ -26,7 +26,7 @@ module Admin
 
     def update
       if @post.update(post_params)
-        render json: @post, format: :json
+        render json: @post
       else
         render json: @post.errors, status: :unprocessable_entity
       end
@@ -40,7 +40,7 @@ module Admin
     private
 
     def post_params
-      params.require(:post).permit(:title, :body, attachments_attributes: %i[file])
+      params.require(:post).permit(:title, :body, attachments_attributes: %i[file _destroy id])
     end
 
     def publish_post
