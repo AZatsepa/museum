@@ -1,6 +1,7 @@
 h1
   = link_to t('site_name'), root_path
 h2.post-title-show= t('titles.posts.all')
-- @posts.each do |post|
-  .post
-    = link_to post.title, post_path(post)
+.posts-list
+  - @posts.each do |post|
+    .post
+      = link_to post.title, post_path(post)

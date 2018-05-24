@@ -10,11 +10,12 @@ end
 
 Then 'I create new post' do
   expect do
-    click_on 'New post'
+    find('#add_post_btn').click
     fill_in I18n.t('titles.posts.title'), with: 'First post title'
     fill_in I18n.t('titles.posts.body'), with: 'First post body'
     click_on I18n.t('titles.posts.create')
-  end.to change(Post, :count).from(1).to(2)
+    sleep 1
+  end.to change(Post, :count).by(1)
 end
 
 Then 'I see posts' do
@@ -32,8 +33,9 @@ Then 'I edit post' do
   post = Post.first
   find("a[href='#{edit_admin_post_path(post)}']").click
   expect do
-    fill_in I18n.t('titles.posts.title'), with: 'Edited post title'
-    click_on I18n.t('titles.posts.create')
+    fill_in 'post_title', with: 'Edited post title'
+    click_on I18n.t('titles.posts.edit')
+    sleep 1
     post.reload
   end.to change(post, :title).to('Edited post title')
 end
@@ -47,5 +49,6 @@ Then 'I delete post' do
   visit admin_posts_path
   expect do
     find("a[href='#{admin_post_path(Post.first)}'][data-method='delete']").click
+    sleep 1
   end.to change(Post, :count).from(2).to(1)
 end

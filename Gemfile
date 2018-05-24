@@ -5,11 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'active_model_serializers'
 gem 'cancancan', '~> 2.0'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'execjs'
+gem 'gon'
+gem 'i18n-js'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'nested_form'
@@ -26,6 +29,7 @@ gem 'redcarpet'
 gem 'remotipart'
 gem 'sass-rails', '~> 5.0'
 gem 'sentry-raven'
+gem 'skim'
 gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -42,7 +46,7 @@ group :development do
   gem 'rubocop',               '~> 0.49.1', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console',           '>= 3.3.0'
 end
 
 group :development, :test do
