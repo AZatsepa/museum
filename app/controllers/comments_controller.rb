@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
   before_action :set_comment_post
   after_action :change_comments
 
+  respond_to :json
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params.merge!(user: current_user))
@@ -23,7 +25,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
+    respond_with(@comment.destroy)
   end
 
   private

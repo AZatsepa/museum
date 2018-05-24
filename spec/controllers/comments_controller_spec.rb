@@ -161,10 +161,9 @@ describe CommentsController, type: :controller do
           end.to change(Comment, :count).by(-1)
         end
 
-        it 'should render destroy template' do
-          expect(
-            delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
-          ).to render_template :destroy
+        it 'should return no content status' do
+          delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          expect(response.status).to eql 204
         end
       end
 
@@ -214,10 +213,9 @@ describe CommentsController, type: :controller do
           end.to change(Comment, :count).by(-1)
         end
 
-        it 'should render destroy template' do
-          expect(
-            delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
-          ).to render_template :destroy
+        it 'should return no content status' do
+          delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
+          expect(response.status).to eql 204
         end
       end
     end
