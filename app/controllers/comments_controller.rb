@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
-  after_action :change_comments, only: %i[create update destroy]
+  before_action :set_comment_post
+  after_action :change_comments
 
   def create
     @post = Post.find(params[:post_id])
@@ -13,7 +14,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @post = @comment.post
     @comment.update(comment_params)
     if @comment.save
       render json: @comment
@@ -23,7 +23,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post = @comment.post
     @comment.destroy
   end
 
@@ -31,6 +30,14 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text, attachments_attributes: %i[file _destroy id])
+  end
+
+  def set_comment_post
+    @post = if params[:action].eql?('create')
+              Post.find(params[:post_id])
+            else
+              @comment.post
+            end
   end
 
   def change_comments
