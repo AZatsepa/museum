@@ -4,8 +4,8 @@ feature 'Posts', %q(
   I want to manage posts
 ) do
   given(:post) { create(:post, user: user) }
-  given(:admin) { create(:user, role: :admin) }
-  given(:user) { create(:user, role: :user) }
+  given(:admin) { create(:user, :admin) }
+  given(:user) { create(:user, :user) }
 
   context 'when user admin' do
     scenario 'should create post', js: true do

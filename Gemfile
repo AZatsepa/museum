@@ -6,14 +6,15 @@ git_source(:github) do |repo_name|
 end
 
 gem 'active_model_serializers'
-gem 'cancancan', '~> 2.0'
+gem 'bootsnap', require: false
+gem 'cancancan'
 gem 'carrierwave'
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 gem 'devise'
 gem 'execjs'
 gem 'gon'
 gem 'i18n-js'
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'nested_form'
 gem 'omniauth'
@@ -23,17 +24,17 @@ gem 'paperclip'
 gem 'pg', '~> 0.18'
 gem 'pg_search'
 gem 'puma'
-gem 'rails', '~> 5.0.1'
-gem 'rails-i18n', '~> 5.0.0'
+gem 'rails', '~> 5.2'
+gem 'rails-i18n'
 gem 'redcarpet'
 gem 'remotipart'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 gem 'sentry-raven'
 gem 'skim'
 gem 'slim-rails'
-gem 'turbolinks', '~> 5'
+gem 'turbolinks'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'unicorn'
 
 group :production do
@@ -42,18 +43,18 @@ end
 
 group :development do
   gem 'html2slim'
-  gem 'listen',                '~> 3.0.5'
-  gem 'rubocop',               '~> 0.49.1', require: false
+  gem 'listen'
+  gem 'rubocop', '~> 0.49.1', require: false
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console',           '>= 3.3.0'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :development, :test do
   gem 'bundle-audit'
   gem 'byebug'
   gem 'dotenv-rails'
-  gem 'i18n-tasks', '~> 0.9.20'
+  gem 'i18n-tasks'
   gem 'letter_opener'
   gem 'pry-rails'
 end
@@ -71,4 +72,4 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov'
 end
-ruby '2.4.1'
+ruby '2.5.1'

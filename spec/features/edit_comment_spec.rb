@@ -5,7 +5,7 @@ feature 'Comment editing', %q(
   I'd like to be able to edit my comment
 ) do
   given(:user) { create(:user) }
-  given(:admin) { create(:user, role: :admin) }
+  given(:admin) { create(:user, :admin) }
   given(:another_user) { create(:user) }
   given(:post) { create(:post, user: user) }
   given!(:comment) { create(:comment, post: post, user: user) }

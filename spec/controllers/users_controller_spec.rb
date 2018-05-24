@@ -1,6 +1,6 @@
 describe UsersController, type: :controller do
   let!(:user) { create(:user) }
-  let!(:admin) { create(:user, role: :admin) }
+  let!(:admin) { create(:user, :admin) }
 
   describe 'GET #index' do
     context 'when admin' do

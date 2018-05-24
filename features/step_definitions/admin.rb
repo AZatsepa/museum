@@ -1,5 +1,5 @@
 Given 'I have post and go to admin' do
-  user = FactoryBot.create(:user, role: :admin)
+  user = FactoryBot.create(:user, :admin)
   FactoryBot.create(:post, user: user)
   visit new_user_session_path
   fill_in I18n.t('registration.email'), with: user.email
