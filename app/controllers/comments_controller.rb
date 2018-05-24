@@ -37,7 +37,9 @@ class CommentsController < ApplicationController
     return if @comment.errors.any?
     ActionCable.server.broadcast(
       "comments_for_post_#{params[:post_id]}",
-      comment: CommentSerializer.new(@comment), action: params[:action], comment_id: params[:id]
+      comment: CommentSerializer.new(@comment),
+      action: params[:action],
+      comment_id: params[:id]
     )
   end
 end

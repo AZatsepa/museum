@@ -3,7 +3,6 @@ $(document).on 'load turbolinks:load', ->
 
   App.cable.subscriptions.create 'PostsChannel', {
     connected: ->
-      console.log 'Posts connected!'
       @perform 'follow'
     ,
     received: (data) ->

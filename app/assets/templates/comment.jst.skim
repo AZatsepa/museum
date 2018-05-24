@@ -1,30 +1,28 @@
-.comment[id="comment_#{@comment.id}"]
-  = @comment.text
+.comment[id="comment_#{@data.comment.id}"]
+  = @data.comment.text
   ul
-    - for attachment in @comment.attachments
+    - for attachment in @data.comment.attachments
       li
         a[href=attachment.url] = attachment.filename
-  p
-    a.edit-comment-link[data-comment-id=@comment.id href=""] = @edit_link
-  p
-    a.delete-comment-link[data-comment-id=@comment.id data-remote="true" rel="nofollow" data-method="delete" data-confirm=@confirmation href="/posts/#{@comment.post_id}/comments/#{@comment.id}"] =@delete_link
-
-  form.edit_comment[enctype="multipart/form-data" action="/posts/#{@comment.post_id}/comments/#{@comment.id}" accept-charset="UTF-8" data-remote="true" method="post" id="edit-comment-#{@comment.id}"]
-    input[name="utf8" type="hidden" value="✓"]
-    input[type="hidden" name="_method" value="patch"]
-    textarea#comment_text[name="comment[text]"] = @comment.text
+  - if (gon.user_id is @data.comment.user_id) or (gon.user_role is 'admin')
     p
-      |  Вкладення:
-    .fields
-      - @comment.attachments.forEach (attachment, i) ->
-        p = attachment.filename
-        input[name="comment[attachments_attributes][#{i}][_destroy]" type="hidden" value="0"]
-        input[id="comment_attachments_attributes_#{i}__destroy" type="checkbox" value="1" name="comment[attachments_attributes][#{i}][_destroy]"]
-        |  Delete
-        input[type="hidden" value="#{attachment.id}" name="comment[attachments_attributes][#{i}][id]" id="comment_attachments_attributes_#{i}_id"]
+      a.edit-comment-link[data-comment-id=@data.comment.id href=""] =I18n.t('titles.comments.edit')
+    p
+      a.delete-comment-link[data-comment-id=@data.comment.id data-remote="true" rel="nofollow" data-method="delete" data-confirm="#{I18n.t('confirmation')}" href="/posts/#{@data.comment.post_id}/comments/#{@data.comment.id}"] =I18n.t('titles.comments.delete')
 
-    a.add_nested_fields[data-association="attachments" data-blueprint-id="attachments_fields_blueprint" href="javascript:void(0)"]
-      |  Додати вкладення
-    input[type="submit" name="commit" value="Змінити" data-disable-with="Змінити"]
-    #attachments_fields_blueprint[style="display: none" data-blueprint="<div class=&quot;fields&quot;><input type=&quot;file&quot; name=&quot;comment[attachments_attributes][new_attachments][file]&quot; id=&quot;comment_attachments_attributes_new_attachments_file&quot; /><input type=&quot;hidden&quot; value=&quot;false&quot; name=&quot;comment[attachments_attributes][new_attachments][_destroy]&quot; id=&quot;comment_attachments_attributes_new_attachments__destroy&quot; /><a class=&quot;remove_nested_fields&quot; data-association=&quot;attachments&quot; href=&quot;javascript:void(0)&quot;>Видалити вкладення</a></div>"]
+    form.edit_comment[enctype="multipart/form-data" action="/posts/#{@data.comment.post_id}/comments/#{@data.comment.id}" accept-charset="UTF-8" data-remote="true" method="post" id="edit-comment-#{@data.comment.id}"]
+      input[name="utf8" type="hidden" value="✓"]
+      input[type="hidden" name="_method" value="patch"]
+      textarea#comment_text[name="comment[text]"] = @data.comment.text
+      p=I18n.t('titles.attachments.name')
+      .fields
+        - @data.comment.attachments.forEach (attachment, i) ->
+          p = attachment.filename
+          input[name="comment[attachments_attributes][#{i}][_destroy]" type="hidden" value="0"]
+          input[id="comment_attachments_attributes_#{i}__destroy" type="checkbox" value="1" name="comment[attachments_attributes][#{i}][_destroy]"]=I18n.t('delete')
+          input[type="hidden" value="#{attachment.id}" name="comment[attachments_attributes][#{i}][id]" id="comment_attachments_attributes_#{i}_id"]
+
+      a.add_nested_fields[data-association="attachments" data-blueprint-id="attachments_fields_blueprint" href="javascript:void(0)"]=I18n.t('titles.attachments.add')
+      input[type="submit" name="commit" value=I18n.t('change') data-disable-with=I18n.t('change')]
+      #attachments_fields_blueprint[style="display: none" data-blueprint="<div class=&quot;fields&quot;><input type=&quot;file&quot; name=&quot;comment[attachments_attributes][new_attachments][file]&quot; id=&quot;comment_attachments_attributes_new_attachments_file&quot; /><input type=&quot;hidden&quot; value=&quot;false&quot; name=&quot;comment[attachments_attributes][new_attachments][_destroy]&quot; id=&quot;comment_attachments_attributes_new_attachments__destroy&quot; /><a class=&quot;remove_nested_fields&quot; data-association=&quot;attachments&quot; href=&quot;javascript:void(0)&quot;>#{I18n.t('titles.attachments.delete')}</a></div>"]
 

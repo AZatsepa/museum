@@ -47,6 +47,8 @@ feature 'Create comments', %q(
 
       Capybara.using_session('guest') do
         expect(page).to have_content 'Lorem ipsum'
+        expect(page).to_not have_content t('titles.comments.edit')
+        expect(page).to_not have_content t('titles.comments.delete')
       end
     end
 
