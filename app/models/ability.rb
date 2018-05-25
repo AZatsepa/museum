@@ -1,14 +1,31 @@
 class Ability
   include CanCan::Ability
+  ADMIN_CONTROLLER = 'Admin'.freeze
+  attr_reader :user, :controller_namespace
 
   def initialize(user, controller_namespace)
-    user ||= User.new
-    if user.admin?
-      can :manage, :all
+    @user = user
+    @controller_namespace = controller_namespace
+    if user
+      user.admin? ? admin_abilities : user_abilities
     else
-      can :read, [Post, Comment] unless controller_namespace == 'Admin'
-      can :create, Comment if user.confirmed?
-      can %i[update destroy], Comment, user_id: user.id
+      guest_abilities
     end
+  end
+
+  def guest_abilities
+    return if controller_namespace == ADMIN_CONTROLLER
+    can :read, [Post, Comment]
+  end
+
+  def admin_abilities
+    can :manage, :all
+  end
+
+  def user_abilities
+    return if controller_namespace == ADMIN_CONTROLLER
+    guest_abilities
+    can :create, Comment
+    can %i[update destroy], Comment, user: user
   end
 end
