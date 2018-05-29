@@ -1,4 +1,5 @@
 describe CommentsController, type: :controller do
+  COMMENT_ALLOWED_FIELDS = %w[id user_id post_id text attachments created_at updated_at].freeze
   let(:user) { create(:user) }
   let(:another_user) { create(:user) }
   let(:admin) { create(:user, :admin) }
@@ -17,10 +18,11 @@ describe CommentsController, type: :controller do
         end.to change(comment_post.comments, :count).by(1)
       end
 
-      it 'should render comment as JSON' do
-        post :create, params: { comment: attributes_for(:comment), post_id: comment_post }, xhr: true
-        expect(JSON.parse(response.body)['text']).to eql attributes_for(:comment)[:text]
-        expect(JSON.parse(response.body)['user_id']).to eql user.id
+      COMMENT_ALLOWED_FIELDS.each do |field|
+        it "response should contain #{field}" do
+          post :create, params: { comment: attributes_for(:comment), post_id: comment_post }, xhr: true
+          expect(response.body).to have_json_path("comment/#{field}")
+        end
       end
     end
 
@@ -33,7 +35,7 @@ describe CommentsController, type: :controller do
 
       it 'should render error messages' do
         post :create, params: { comment: attributes_for(:invalid_comment), post_id: comment_post }, xhr: true
-        expect(JSON.parse(response.body)).to eql(["Text Can't be blank"])
+        expect(response.body).to be_json_eql(["Text Can't be blank"].to_json)
       end
 
       it 'should return 422 status' do
@@ -52,26 +54,26 @@ describe CommentsController, type: :controller do
         before do
           @request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in user
+          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
         end
         it 'should assigns comment to @comment' do
-          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
           expect(assigns(:comment)).to eql comment
         end
 
         it 'should assigns post to @post' do
-          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
           expect(assigns(:post)).to eql comment_post
         end
 
         it 'should update comment' do
-          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
           comment.reload
           expect(comment.text).to eql('updated text')
         end
 
-        it 'should render @comment as JSON' do
-          patch(:update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true)
-          expect(JSON.parse(response.body).keys).to match_array %w[id user_id post_id text attachments]
+        COMMENT_ALLOWED_FIELDS.each do |field|
+          it "response should contain #{field}" do
+            comment.reload
+            expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
+          end
         end
       end
 
@@ -109,27 +111,27 @@ describe CommentsController, type: :controller do
         before do
           @request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in admin
+          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
         end
 
         it 'should assigns comment to @comment' do
-          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
           expect(assigns(:comment)).to eql comment
         end
 
         it 'should assigns post to @post' do
-          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
           expect(assigns(:post)).to eql comment_post
         end
 
         it 'should update comment' do
-          patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
           comment.reload
           expect(comment.text).to eql('updated text')
         end
 
-        it 'should render @comment as JSON' do
-          patch(:update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true)
-          expect(JSON.parse(response.body).keys).to match_array %w[id user_id post_id text attachments]
+        COMMENT_ALLOWED_FIELDS.each do |field|
+          it "response should contain #{field}" do
+            comment.reload
+            expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
+          end
         end
       end
     end

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         get 'me', to: 'profiles#me'
         get 'other_users', to: 'profiles#other_users'
       end
+      resources :posts
     end
   end
 

@@ -1,4 +1,5 @@
 describe Admin::PostsController do
+  POST_ALLOWED_FIELDS = %w[id title body user_id comments attachments created_at updated_at].freeze
   let(:admin_user) { create(:user, :admin) }
   let(:admin_post) { create(:post, user: admin_user) }
   let(:valid_post_params) { { title: 'Updated', body: 'Updated' } }
@@ -51,12 +52,12 @@ describe Admin::PostsController do
 
     it 'should return updated post as JSON' do
       patch :update, params: { id: admin_post.id, post: { title: 'Updated title' } }, xhr: true
-      expect(JSON.parse(response.body)['title']).to eql 'Updated title'
+      expect(response.body).to be_json_eql('Updated title'.to_json).at_path('post/title')
     end
 
     it 'should render error messages' do
       patch :update, params: { id: admin_post.id, post: invalid_post_params }, xhr: true
-      expect(JSON.parse(response.body)).to eql('title' => ["can't be blank"], 'body' => ["can't be blank"])
+      expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
     end
 
     it 'should return 422 status' do
@@ -85,9 +86,11 @@ describe Admin::PostsController do
         end.to change(Post, :count).from(0).to(1)
       end
 
-      it 'should render post as JSON' do
-        post :create, params: { post: attributes_for(:post) }, xhr: true
-        expect(JSON.parse(response.body).keys).to match_array %w[id title body user_id comments attachments]
+      POST_ALLOWED_FIELDS.each do |field|
+        it "response should contain #{field}" do
+          post :create, params: { post: attributes_for(:post) }, xhr: true
+          expect(response.body).to have_json_path("post/#{field}")
+        end
       end
 
       it 'should return 200 status' do
@@ -99,7 +102,7 @@ describe Admin::PostsController do
     context 'when invalid' do
       it 'should render error messages' do
         post(:create, params: { post: invalid_post_params }, xhr: true)
-        expect(JSON.parse(response.body)).to eql(["Title can't be blank", "Body can't be blank"])
+        expect(response.body).to be_json_eql(["Title can't be blank", "Body can't be blank"].to_json)
       end
 
       it 'should return 422 status' do
