@@ -5,7 +5,7 @@ feature 'Create comments', %q(
   given!(:post) { create(:post, user: user) }
   given!(:post2) { create(:post, user: user) }
   given(:admin) { create(:user, :admin) }
-  given(:user) { create(:user, :user) }
+  given(:user) { create(:user) }
   given(:comment) { create(:comment, user: user, post: post) }
   given!(:admins_comment) { create(:comment, user: admin, post: post) }
 

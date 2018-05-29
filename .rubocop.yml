@@ -5,6 +5,7 @@ AllCops:
     - 'db/migrate/*'
     - 'config/initializers/devise.rb'
     - 'config/initializers/backtrace_silencers.rb'
+    - 'config/initializers/doorkeeper.rb'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
     - 'vendor/**/*'
@@ -55,6 +56,7 @@ Metrics/BlockLength:
     - 'config/environments/*rb'
     - 'spec/**/*_spec.rb'
     - 'lib/tasks/cucumber.rake'
+    - 'config/routes.rb'
 
 
 Metrics/MethodLength:

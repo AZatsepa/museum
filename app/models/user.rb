@@ -12,6 +12,13 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :authentications, dependent: :destroy
+  has_many :oauth_access_grants, class_name: 'Doorkeeper::AccessGrant',
+                                 foreign_key: :resource_owner_id,
+                                 dependent: :delete_all
+
+  has_many :oauth_access_tokens, class_name: 'Doorkeeper::AccessToken',
+                                 foreign_key: :resource_owner_id,
+                                 dependent: :delete_all
 
   enum role: { user: 0, admin: 1 }
 

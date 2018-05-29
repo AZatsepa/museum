@@ -5,7 +5,7 @@ feature 'Posts', %q(
 ) do
   given(:post) { create(:post, user: user) }
   given(:admin) { create(:user, :admin) }
-  given(:user) { create(:user, :user) }
+  given(:user) { create(:user) }
 
   context 'when user admin' do
     scenario 'should create post', js: true do

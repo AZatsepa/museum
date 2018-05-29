@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
                                     confirmations: 'users/confirmations' }
   root 'pages#main'
@@ -24,6 +25,14 @@ Rails.application.routes.draw do
     post 'markdown/preview'
     resources :posts do
       resources :comments
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resource :profiles do
+        get 'me', to: 'profiles#me'
+      end
     end
   end
 
