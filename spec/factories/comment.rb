@@ -1,9 +1,11 @@
 FactoryBot.define do
   factory :comment do
     text 'Comment text'
-  end
+    post { create(:post) }
+    user { create(:user) }
 
-  factory :invalid_comment, class: 'Comment' do
-    text nil
+    trait :invalid do
+      text nil
+    end
   end
 end

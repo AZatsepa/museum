@@ -1,7 +1,6 @@
 describe CommentsController, type: :controller do
   COMMENT_ALLOWED_FIELDS = %w[id user_id post_id text attachments created_at updated_at].freeze
   let(:user) { create(:user) }
-  let(:another_user) { create(:user) }
   let(:admin) { create(:user, :admin) }
   let(:comment_post) { create(:post, user: user) }
 
@@ -29,17 +28,17 @@ describe CommentsController, type: :controller do
     context 'when invalid' do
       it 'should not create comment' do
         expect do
-          post :create, params: { comment: attributes_for(:invalid_comment), post_id: comment_post }, xhr: true
+          post :create, params: { comment: attributes_for(:comment, :invalid), post_id: comment_post }, xhr: true
         end.to_not change(Comment, :count)
       end
 
       it 'should render error messages' do
-        post :create, params: { comment: attributes_for(:invalid_comment), post_id: comment_post }, xhr: true
+        post :create, params: { comment: attributes_for(:comment, :invalid), post_id: comment_post }, xhr: true
         expect(response.body).to be_json_eql(["Text Can't be blank"].to_json)
       end
 
       it 'should return 422 status' do
-        post :create, params: { comment: attributes_for(:invalid_comment), post_id: comment_post }, xhr: true
+        post :create, params: { comment: attributes_for(:comment, :invalid), post_id: comment_post }, xhr: true
         expect(response).to have_http_status(422)
       end
     end
@@ -47,7 +46,7 @@ describe CommentsController, type: :controller do
 
   describe 'PATCH #update' do
     let(:comment) { create(:comment, post: comment_post, user: user) }
-    let(:other_users_comment) { create(:comment, post: comment_post, user: another_user) }
+    let(:other_users_comment) { create(:comment, post: comment_post) }
 
     context 'when user' do
       context 'when own comment' do
@@ -139,7 +138,7 @@ describe CommentsController, type: :controller do
 
   describe 'DELETE #destroy' do
     let!(:comment) { create(:comment, post: comment_post, user: user) }
-    let!(:other_users_comment) { create(:comment, post: comment_post, user: another_user) }
+    let!(:other_users_comment) { create(:comment, post: comment_post) }
 
     context 'when user' do
       context 'when own comment' do

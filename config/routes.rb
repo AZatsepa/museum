@@ -35,7 +35,7 @@ Rails.application.routes.draw do
         get 'other_users', to: 'profiles#other_users'
       end
       resources :posts do
-        resources :comments, shallow: true, only: %i[index]
+        resources :comments, shallow: true, only: %i[index show]
       end
     end
   end
