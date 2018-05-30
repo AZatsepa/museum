@@ -30,12 +30,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :profiles do
+      resource :profiles, only: %i[me other_users] do
         get 'me', to: 'profiles#me'
         get 'other_users', to: 'profiles#other_users'
       end
-      resources :posts do
-        resources :comments, shallow: true, only: %i[index show]
+      resources :posts, shallow: true, only: %i[index show create] do
+        resources :comments, only: %i[index show create]
       end
     end
   end
