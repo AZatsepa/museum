@@ -4,13 +4,10 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password 'password'
     confirmed_at { Time.zone.now }
+    role 'user'
 
     trait :admin do
       role 'admin'
-    end
-
-    trait :user do
-      role 'user'
     end
   end
 end

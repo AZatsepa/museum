@@ -27,7 +27,7 @@ describe Ability do
   end
 
   describe 'for user' do
-    let(:user) { create(:user, :user) }
+    let(:user) { create(:user) }
 
     context 'when not Admin controller' do
       let(:controller_namespace) { nil }
@@ -35,7 +35,7 @@ describe Ability do
       it { should_not be_able_to :manage, :all }
 
       context "other user's resources" do
-        let(:other_user) { create(:user, :user) }
+        let(:other_user) { create(:user) }
         let(:other_users_post) { create(:post, user: other_user) }
         let(:other_users_comment) { create(:comment, post: other_users_post, user: other_user) }
 
