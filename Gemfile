@@ -77,5 +77,6 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'webmock'
 end
 ruby '2.5.1'
