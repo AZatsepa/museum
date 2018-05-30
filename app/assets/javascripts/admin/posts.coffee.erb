@@ -20,7 +20,7 @@ $(document).on 'load turbolinks:load', ->
       $('#post_body').val ''
       postForm.hide()
     else
-      window.location.pathname = "/admin/posts/#{data.id}"
+      window.location.pathname = "/admin/posts/#{data.post.id}"
 
   postForm.on 'ajax:error', (e, xhr, status, error) ->
     errors = xhr.responseJSON

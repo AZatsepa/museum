@@ -28,13 +28,13 @@ describe 'Profile API' do
 
       ALLOWED_FIELDS.each do |field|
         it "should contain #{field}" do
-          expect(response.body).to be_json_eql(me.send(field.to_sym).to_json).at_path(field)
+          expect(response.body).to be_json_eql(me.send(field.to_sym).to_json).at_path("user/#{field}")
         end
       end
 
       FORBIDDEN_FIELDS.each do |field|
         it "should not contain #{field}" do
-          expect(response.body).to_not have_json_path(field)
+          expect(response.body).to_not have_json_path("user/#{field}")
         end
       end
     end
@@ -65,24 +65,24 @@ describe 'Profile API' do
       end
 
       it "should return #{OTHER_USERS_COUNT} profiles" do
-        expect(response.body).to have_json_size(OTHER_USERS_COUNT)
+        expect(response.body).to have_json_size(OTHER_USERS_COUNT).at_path('users')
       end
 
       it 'should not return current user' do
         (0...OTHER_USERS_COUNT).each do |index|
-          expect(response.body).to_not be_json_eql(me.id.to_json).at_path("#{index}/id")
+          expect(response.body).to_not be_json_eql(me.id.to_json).at_path("users/#{index}/id")
         end
       end
 
       ALLOWED_FIELDS.each do |field|
         it "should contain #{field}" do
-          expect(response.body).to be_json_eql(User.first.send(field.to_sym).to_json).at_path("0/#{field}")
+          expect(response.body).to be_json_eql(User.first.send(field.to_sym).to_json).at_path("users/0/#{field}")
         end
       end
 
       FORBIDDEN_FIELDS.each do |field|
         it "should not contain #{field}" do
-          expect(response.body).to_not have_json_path("0/#{field}")
+          expect(response.body).to_not have_json_path("users/0/#{field}")
         end
       end
     end
