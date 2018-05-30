@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'API Comments' do
   COMMENT_ALLOWED_FIELDS = %w[id user_id post_id text attachments created_at updated_at].freeze
   describe 'GET /api/v1/comments/:id' do
@@ -15,6 +17,8 @@ describe 'API Comments' do
       end
     end
 
+    it_behaves_like 'API Authenticable'
+
     context 'authorized' do
       before { get "/api/v1/comments/#{comment.id}", params: { format: :json, access_token: access_token.token } }
 
@@ -27,6 +31,10 @@ describe 'API Comments' do
           expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
         end
       end
+    end
+
+    def do_request(options = {})
+      get "/api/v1/comments/#{comment.id}", params: { format: :json }.merge(options)
     end
   end
 
@@ -47,6 +55,8 @@ describe 'API Comments' do
         expect(response.status).to eql 401
       end
     end
+
+    it_behaves_like 'API Authenticable'
 
     context 'authorized' do
       context 'when valid' do
@@ -98,6 +108,11 @@ describe 'API Comments' do
           expect(response.body).to be_json_eql(["Can't be blank"].to_json).at_path('errors/text')
         end
       end
+    end
+
+    def do_request(options = {})
+      post "/api/v1/posts/#{user_post.id}/comments", params: { comment: attributes_for(:comment),
+                                                               format: :json }.merge(options)
     end
   end
 end

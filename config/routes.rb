@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
@@ -30,10 +32,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :profiles, only: %i[me other_users] do
-        get 'me', to: 'profiles#me'
-        get 'other_users', to: 'profiles#other_users'
-      end
       resources :posts, shallow: true, only: %i[index show create] do
         resources :comments, only: %i[index show create]
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe UsersController, type: :controller do
   let!(:user) { create(:user) }
   let!(:admin) { create(:user, :admin) }
@@ -10,7 +12,7 @@ describe UsersController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
 
       it 'should assigns @users' do
@@ -46,7 +48,7 @@ describe UsersController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
 
       it 'should assigns @user' do
@@ -82,7 +84,7 @@ describe UsersController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
 
       it 'should assigns @edit' do

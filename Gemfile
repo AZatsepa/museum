@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -47,7 +49,7 @@ end
 group :development do
   gem 'html2slim'
   gem 'listen'
-  gem 'rubocop', '~> 0.49.1', require: false
+  gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 describe CommentsController, type: :controller do
-  COMMENT_ALLOWED_FIELDS = %w[id user_id post_id text attachments created_at updated_at].freeze
+  comment_allowed_fields = %w[id user_id post_id text attachments created_at updated_at]
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
   let(:comment_post) { create(:post, user: user) }
@@ -17,7 +19,7 @@ describe CommentsController, type: :controller do
         end.to change(comment_post.comments, :count).by(1)
       end
 
-      COMMENT_ALLOWED_FIELDS.each do |field|
+      comment_allowed_fields.each do |field|
         it "response should contain #{field}" do
           post :create, params: { comment: attributes_for(:comment), post_id: comment_post }, xhr: true
           expect(response.body).to have_json_path("comment/#{field}")
@@ -68,7 +70,7 @@ describe CommentsController, type: :controller do
           expect(comment.text).to eql('updated text')
         end
 
-        COMMENT_ALLOWED_FIELDS.each do |field|
+        comment_allowed_fields.each do |field|
           it "response should contain #{field}" do
             comment.reload
             expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
@@ -126,7 +128,7 @@ describe CommentsController, type: :controller do
           expect(comment.text).to eql('updated text')
         end
 
-        COMMENT_ALLOWED_FIELDS.each do |field|
+        comment_allowed_fields.each do |field|
           it "response should contain #{field}" do
             comment.reload
             expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")

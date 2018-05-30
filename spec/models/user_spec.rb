@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe User, type: :model do
   let(:user) { build(:user) }
 
