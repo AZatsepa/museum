@@ -9,6 +9,7 @@ AllCops:
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
     - 'vendor/**/*'
+    - 'bin/*'
 
 Rails:
   Enabled: true
@@ -21,7 +22,8 @@ Rails/Output:
     - 'config/unicorn.rb'
 
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Exclude:
+    - 'features/support/locale.rb'
 
 Style/Documentation:
   Enabled: false
@@ -30,29 +32,11 @@ Style/UnneededPercentQ:
   Exclude:
     - 'spec/**/*_spec.rb'
 
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'bin/spring'
-
-Layout/SpaceInsideBrackets:
-  Exclude:
-    - 'config/environments/production.rb'
-
-Style/StringLiterals:
-  Exclude:
-    - 'bin/yarn'
-    - 'config/environments/production.rb'
-    - 'config/puma.rb'
-
-Style/ConditionalAssignment:
-  Enabled: false
-
 Metrics/LineLength:
   Max: 120
 
 Metrics/BlockLength:
   Exclude:
-    - 'config/deploy.rb'
     - 'config/environments/*rb'
     - 'spec/**/*_spec.rb'
     - 'lib/tasks/cucumber.rake'
@@ -65,4 +49,4 @@ Metrics/MethodLength:
 
 Style/RedundantSelf:
   Exclude:
-    - 'app/models/*'
+#    - 'app/models/*'

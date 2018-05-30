@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Comment, type: :model do
   let(:user) { create(:user) }
   let(:post) { create(:post, user: user) }

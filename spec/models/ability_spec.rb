@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Ability do
   subject(:ability) { described_class.new(user, controller_namespace) }
   let(:post_user) { create(:user) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Post, type: :model do
   let(:user) { create(:user) }
   let(:post) { build(:post, user: user) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given 'I go to comparisons' do
   visit root_path
   click_on 'Comparison'

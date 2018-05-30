@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'feature_helper'
 feature 'Create comments', %q(
   I want to manage comments

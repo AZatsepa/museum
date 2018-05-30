@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   include PgSearch
 
   pg_search_scope :search_everywhere, against: %i[title body]
 
   belongs_to :user
-  has_many :comments
-  has_many :attachments, as: :attachable
+  has_many :comments, dependent: :destroy
+  has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true, reject_if: ->(a) { a[:file].blank? }
 
   validates :title, presence: true

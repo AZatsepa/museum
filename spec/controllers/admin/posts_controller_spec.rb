@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 describe Admin::PostsController do
-  POST_ALLOWED_FIELDS = %w[id title body user_id comments attachments created_at updated_at].freeze
+  post_allowed_fields = %w[id title body user_id comments attachments created_at updated_at]
   let(:admin_user) { create(:user, :admin) }
   let(:admin_post) { create(:post, user: admin_user) }
   let(:valid_post_params) { { title: 'Updated', body: 'Updated' } }
@@ -86,7 +88,7 @@ describe Admin::PostsController do
         end.to change(Post, :count).from(0).to(1)
       end
 
-      POST_ALLOWED_FIELDS.each do |field|
+      post_allowed_fields.each do |field|
         it "response should contain #{field}" do
           post :create, params: { post: attributes_for(:post) }, xhr: true
           expect(response.body).to have_json_path("post/#{field}")

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Ability
   include CanCan::Ability
-  ADMIN_CONTROLLER = 'Admin'.freeze
+  ADMIN_CONTROLLER = 'Admin'
   attr_reader :user, :controller_namespace
 
   def initialize(user, controller_namespace)

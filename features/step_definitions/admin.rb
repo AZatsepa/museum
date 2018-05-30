@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given 'I have post and go to admin' do
   user = FactoryBot.create(:user, :admin)
   FactoryBot.create(:post, user: user)

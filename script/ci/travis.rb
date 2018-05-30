@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Build
   TASKS = ['rake db:schema:load RAILS_ENV=test > /dev/null',
            'bundle audit',
