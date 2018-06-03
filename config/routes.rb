@@ -25,9 +25,12 @@ Rails.application.routes.draw do
   get 'maps/1782', to: 'maps#map_1782'
   namespace :admin do
     post 'markdown/preview'
+    get 'main', to: 'admin#main'
     resources :posts do
       resources :comments
     end
+
+    resources :users
   end
 
   namespace :api do

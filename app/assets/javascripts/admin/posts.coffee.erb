@@ -10,6 +10,7 @@ $(document).on 'load turbolinks:load', ->
     "<input data-attachment_number=\"#{lastInd}\" id=\"post_attachments_attributes_#{lastInd}_file\"" +
         " name=\"post[attachments_attributes][#{lastInd}][file]\" type=\"file\">" +
         "<a class=\"remove_file\" data-file_number=\"#{lastInd}\" href=\"#\">Delete attachment</a>"
+  adminPostsLink = $('#admin_posts')
 
   addPostBtn.on 'click', (e) ->
     e.preventDefault()
@@ -90,3 +91,14 @@ $(document).on 'load turbolinks:load', ->
     if fileInputs.length
       lastInd = fileInputs.last().data('attachment_number') + 1
     $('.attachments').append(attachmentField(lastInd))
+
+  adminPostsLink.on 'click', (e) ->
+    e.preventDefault()
+    $.get({
+      url: adminPostsLink.attr('href')
+      success: (data, textStatus) ->
+#        debugger
+        $('#resources_table').append(JST['admin/foo']({data: data}))
+      error: (e, xhr, status, error) ->
+        debugger
+    })

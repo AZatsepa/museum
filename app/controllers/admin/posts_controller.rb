@@ -10,13 +10,13 @@ module Admin
       @post = Post.new
     end
 
-    def show
-      @post = Post.find(params[:id])
-    end
+    def show; end
 
     def new
       @post_form = PostForm.new
     end
+
+    def edit; end
 
     def create
       @post_form = PostForm.new(post_params.merge(user: current_user))

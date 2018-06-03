@@ -1,0 +1,31 @@
+header
+  nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+    a.navbar-brand[href="#"]= t('site_name')
+    button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+    #navbarsExampleDefault.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item.active
+          = link_to 'Головна', root_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('comparisons'), comparison_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'Мапи та плани', maps_1782_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('titles.posts.all'), posts_path, class: 'nav-link'
+        li.nav-item.dropdown
+          a#dropdown01.nav-link.dropdown-toggle[href="https://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+            | Language
+          .dropdown-menu[aria-labelledby="dropdown01"]
+            = link_to 'English', root_path(locale: :en), class: 'dropdown-item'
+            = link_to 'Ukrainian', root_path(locale: :uk), class: 'dropdown-item'
+        - if user_signed_in?
+          li.nav-item= link_to t('registration.profile'), user_path(current_user), class: 'nav-link'
+          - if current_user.admin?
+            li.nav-item= link_to t('admin'), admin_main_path, class: 'nav-link'
+          li.nav-item= link_to t('registration.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'
+        - else
+          li.nav-item= link_to t('registration.sign_in'), new_user_session_path, class: 'nav-link'
+      form.form-inline.my-2.my-lg-0
+        input.form-control.mr-sm-2[type="text" placeholder="#{t('search')}" aria-label="#{t('search')}"]
+        button.btn.btn-outline-success.my-2.my-sm-0[type="submit"]= t('search')

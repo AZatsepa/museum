@@ -1,20 +1,19 @@
-.user-data
-  table
-    tr
-      td= t('registration.nickname')
-      td= @user.nickname
-    tr
-      td= t('registration.email')
-      td= @user.email
-    tr
-      td= t('registration.first_name')
-      td= @user.first_name
-    tr
-      td= t('registration.last_name')
-      td= @user.last_name
-    tr
-      td= t('registration.registered')
-      td= @user.created_at
-    tr
-      td= t('registration.last_changes')
-      td= @user.updated_at
+table.table
+  tr.row
+    td.col-3= t('registration.nickname')
+    td.col= @user.nickname
+  tr.row
+    td.col-3= t('registration.email')
+    td.col= @user.email
+  tr.row
+    td.col-3= t('registration.first_name')
+    td.col= @user.first_name
+  tr.row
+    td.col-3= t('registration.last_name')
+    td.col= @user.last_name
+  tr.row
+    td.col-3= t('registration.registered')
+    td.col= @user.created_at
+  tr.row
+    td.col-3= t('registration.last_changes')
+    td.col= @user.updated_at

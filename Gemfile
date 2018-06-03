@@ -9,6 +9,7 @@ end
 
 gem 'active_model_serializers'
 gem 'bootsnap', require: false
+gem 'bootstrap'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'coffee-rails'

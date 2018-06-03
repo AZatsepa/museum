@@ -19,9 +19,9 @@ describe Admin::PostsController do
       expect(assigns(:posts)).to eq([admin_post])
     end
 
-    it 'responds to html by default' do
+    it 'responds to json by default' do
       get 'index'
-      expect(response.content_type).to eq 'text/html'
+      expect(response.content_type).to eq 'application/json'
     end
   end
 
@@ -40,9 +40,9 @@ describe Admin::PostsController do
       end.to change(Post, :count).from(1).to(0)
     end
 
-    it 'should return 302 status' do
+    it 'should return 204 status' do
       delete 'destroy', params: { id: admin_post.id }
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(204)
     end
   end
 

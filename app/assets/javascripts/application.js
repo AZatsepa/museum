@@ -23,6 +23,8 @@
 //= require action_cable
 //= require i18n
 //= require i18n/translations
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .
 //= require_tree ../templates
 
