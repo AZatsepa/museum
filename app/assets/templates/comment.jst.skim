@@ -15,14 +15,12 @@
       input[type="hidden" name="_method" value="patch"]
       textarea#comment_text[name="comment[text]"] = @data.comment.text
       p=I18n.t('titles.attachments.name')
-      .fields
-        - @data.comment.attachments.forEach (attachment, i) ->
-          p = attachment.filename
-          input[name="comment[attachments_attributes][#{i}][_destroy]" type="hidden" value="0"]
-          input[id="comment_attachments_attributes_#{i}__destroy" type="checkbox" value="1" name="comment[attachments_attributes][#{i}][_destroy]"]=I18n.t('delete')
-          input[type="hidden" value="#{attachment.id}" name="comment[attachments_attributes][#{i}][id]" id="comment_attachments_attributes_#{i}_id"]
+      - @data.comment.attachments.forEach (attachment, i) ->
+        p = attachment.filename
+        input[name="comment[attachments_attributes][#{i}][_destroy]" type="hidden" value="0"]
+        input[id="comment_attachments_attributes_#{i}__destroy" type="checkbox" value="0" name="comment[attachments_attributes][#{i}][_destroy]"] =I18n.t('titles.attachments.delete')
+        input[type="hidden" value="#{attachment.id}" name="comment[attachments_attributes][#{i}][id]" id="comment_attachments_attributes_#{i}_id"]
 
-      a.add_nested_fields[data-association="attachments" data-blueprint-id="attachments_fields_blueprint" href="javascript:void(0)"]=I18n.t('titles.attachments.add')
+      a.add_nested_field[href='#'] = t('titles.attachments.add')
       input[type="submit" name="commit" value=I18n.t('change') data-disable-with=I18n.t('change')]
-      #attachments_fields_blueprint[style="display: none" data-blueprint="<div class=&quot;fields&quot;><input type=&quot;file&quot; name=&quot;comment[attachments_attributes][new_attachments][file]&quot; id=&quot;comment_attachments_attributes_new_attachments_file&quot; /><input type=&quot;hidden&quot; value=&quot;false&quot; name=&quot;comment[attachments_attributes][new_attachments][_destroy]&quot; id=&quot;comment_attachments_attributes_new_attachments__destroy&quot; /><a class=&quot;remove_nested_fields&quot; data-association=&quot;attachments&quot; href=&quot;javascript:void(0)&quot;>#{I18n.t('titles.attachments.delete')}</a></div>"]
 

@@ -102,7 +102,7 @@ describe Admin::PostsController do
     context 'when invalid' do
       it 'should render error messages' do
         post(:create, params: { post: invalid_post_params }, xhr: true)
-        expect(response.body).to be_json_eql(["Title can't be blank", "Body can't be blank"].to_json)
+        expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
       end
 
       it 'should return 422 status' do

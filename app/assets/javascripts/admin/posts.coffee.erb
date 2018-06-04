@@ -1,7 +1,9 @@
 $(document).on 'load turbolinks:load', ->
   postForm = $('#post_form')
+  newPostForm = $('#new_post_form')
   addPostBtn = $('#add_post_btn')
   postsList = $('.admin-posts-list tbody')
+  addFileLink = $('#add_file')
 
   addPostBtn.on 'click', (e) ->
     e.preventDefault()
@@ -9,24 +11,45 @@ $(document).on 'load turbolinks:load', ->
     postForm.find('.cancel-btn').one 'click', ->
       postForm.hide()
 
-  postForm.on 'submit', ->
-    $('.text-danger').each (i, e) ->
-      $(e).remove()
+  newPostForm.submit (e) ->
+    e.preventDefault()
+    $('.text-danger').each (i, elem) ->
+      $(elem).remove()
+    formData = new FormData(this);
 
-  postForm.on 'ajax:success', (e, data, status, xhr) ->
-    if window.location.pathname.match(/admin\/posts$/)
-      postsList.append(JST['admin/post']({data: data, confirmation: '<%= I18n.t('confirmation') %>'}))
-      $('#post_title').val ''
-      $('#post_body').val ''
-      postForm.hide()
-    else
-      window.location.pathname = "/admin/posts/#{data.post.id}"
+    $.ajax
+      url: window.location.pathname
+      type: 'POST'
+      data: formData
+      success: (data) ->
+        if window.location.pathname.match(/admin\/posts$/)
+          postsList.append(JST['admin/post']({data: data}))
+          $('#post_title').val ''
+          $('#post_body').val ''
+          postForm.hide()
+        else
+          window.location.pathname = "/admin/posts/#{data.post.id}"
+      error: (e, xhr, status) ->
+        errors = e.responseJSON
+        if errors.title
+          errors.title.map (message) ->
+            $('#post_form_title').before("<p class=\"text-danger\">#{message}</p>")
+        if errors.body
+          errors.body.map (message) ->
+            $('#markItUpPost_form_body').before("<p class=\"text-danger\">#{message}</p>")
+      cache: false
+      contentType: false
+      processData: false
 
-  postForm.on 'ajax:error', (e, xhr, status, error) ->
-    errors = xhr.responseJSON
-    if errors.title
-      errors.title.map (message) ->
-        $('#post_title').before("<p class=\"text-danger\">#{message}</p>")
-    if errors.body
-      errors.body.map (message) ->
-        $('#markItUpPost_body').before("<p class=\"text-danger\">#{message}</p>")
+  $('.attachments').on 'click', '.remove_file', (e) ->
+    e.preventDefault()
+    fileNumber = $(e.currentTarget).data('file_number')
+    $("#post_form_attachments_attributes_#{fileNumber}_file").val('')
+
+  addFileLink.on 'click', (e) ->
+    e.preventDefault()
+    attachmentsListLast = $('.attachments').find("input[type='file']").last()
+    lastInd = attachmentsListLast.data('attachmentNumber') + 1
+    $('.attachments').append("<input data-attachment_number=\"#{lastInd}\" id=\"post_form_attachments_attributes_#{lastInd}_file\"" +
+                             " name=\"post_form[attachments_attributes][#{lastInd}][file]\" type=\"file\">" +
+                             "<a class=\"remove_file\" data-file_number=\"#{lastInd}\" href=\"#\">Delete attachment</a>")

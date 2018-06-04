@@ -22,5 +22,6 @@ module Museum
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.0
+    config.paths.add Rails.root.join('lib', 'forms').to_s, eager_load: true
   end
 end

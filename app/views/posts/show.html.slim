@@ -4,16 +4,16 @@
       = @post.title
     .post-body-show
       = markdown(@post.body)
-    ul.attachments
+    ul.attachments-list
       - @post.attachments.each do |a|
         li= link_to a.file.file.identifier, a.file.url
     .comments
       = render 'comments'
     - if can? :create, Comment
-      = nested_form_for [@post, @comment], remote: true, data: { type: :json } do |f|
+      = form_for [@post, @comment_form], as: :comment, url: post_comments_path(@post), authenticity_token: true  do |f|
         = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
         .comment-errors
         = f.text_field :text, id: 'new_comment_text'
-        = render 'shared/attachment_form', f: f
-        = f.submit t('titles.comments.add'), data: { 'disable-with' => t('saving') }
+        = render 'shared/attachments_form',  f: f
+        = f.submit t('titles.comments.add')
 h3=link_to t('back'), posts_path

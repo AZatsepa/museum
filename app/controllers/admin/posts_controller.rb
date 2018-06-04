@@ -2,25 +2,29 @@ module Admin
   class PostsController < ApplicationController
     load_and_authorize_resource
     after_action :publish_post, only: %i[create]
+    # respond_to :json
 
     def index
+      @post_form = PostForm.new
       @post = Post.new
     end
 
     def show; end
 
     def new
+      @post_form = PostForm.new
       @post.attachments.build
     end
 
     def edit; end
 
     def create
-      @post = current_user.posts.build(post_params)
-      if @post.save
-        render json: @post
+      @post_form = PostForm.new(post_params.merge(current_user: current_user))
+      @post_form.save
+      if @post_form.save
+        render json: @post = @post_form.post
       else
-        render json: @post.errors.full_messages, status: :unprocessable_entity
+        render json: @post_form.errors.messages, status: :unprocessable_entity
       end
     end
 
@@ -40,7 +44,8 @@ module Admin
     private
 
     def post_params
-      params.require(:post).permit(:title, :body, attachments_attributes: %i[file _destroy id])
+      object_params = params[:post] || params.require(:post_form)
+      object_params.permit(:title, :body, attachments_attributes: %i[file _destroy id])
     end
 
     def publish_post

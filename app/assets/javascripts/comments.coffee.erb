@@ -5,6 +5,7 @@ $(document).on 'load turbolinks:load', ->
   commentForm = $('#new_comment')
   postId = $('#post-wrapper').data('post_id')
   commentsList = $('.comments')
+  addFileLink = $('#add_comment_file')
   commentView = (data) ->
     JST['comment']({data: data})
   createComment = (data) ->
@@ -15,6 +16,9 @@ $(document).on 'load turbolinks:load', ->
 
   destroyComment = (data) ->
     $("#comment_#{data.comment_id}").remove();
+  attachmentField = (lastInd) ->
+    "<input data-attachment-number=\"#{lastInd}\" id=\"comment_attachments_attributes_#{lastInd}_file\" name=\"comment[attachments_attributes][#{lastInd}][file]\" type=\"file\">" +
+    "<a class=\"remove_file\" data-file_number=\"#{lastInd}\" href=\"#\">#{I18n.t('titles.attachments.delete')}</a>"
 
   $(document).on 'click', '.edit-comment-link', (e) ->
     e.preventDefault();
@@ -22,18 +26,39 @@ $(document).on 'load turbolinks:load', ->
     commentId = $(this).data('commentId')
     $('form#edit-comment-' + commentId).show()
 
-  commentForm.on 'ajax:success', (e, data, status, xhr) ->
-    $('#new_comment_text').val('')
-    $('#new_comment .fields input').val('');
+  commentForm.submit (e) ->
+    e.preventDefault()
+    $('.text-danger').each (i, elem) ->
+      $(elem).remove()
+    formData = new FormData(this);
 
-  commentForm.on 'ajax:error', (e, xhr, status, error) ->
-    errors = xhr.responseJSON
-    errors.map (message) ->
-      $('.comment-errors').append("<p class=\"text-danger\">#{message}</p>")
+    $.ajax
+      url: window.location.pathname + '/comments'
+      type: 'POST'
+      data: formData
+      success: ->
+        $('#new_comment_text').val('')
+        $('#new_comment .attachments input').val('');
+        $('#new_comment .attachments').find('input, a').each (i, elem) ->
+          elem.remove() if i isnt 0
+      error: (e, xhr, status) ->
+        errors = xhr.responseJSON
+        errors.map (message) ->
+          $('.comment-errors').append("<p class=\"text-danger\">#{message}</p>")
+      cache: false
+      contentType: false
+      processData: false
 
-  commentForm.on 'submit', ->
-    $('.text-danger').each (i, e) ->
-      $(e).remove()
+  $('.attachments').on 'click', '.remove_file', (e) ->
+    e.preventDefault()
+    fileNumber = $(e.currentTarget).data('file_number')
+    $("#comment_attachments_attributes_#{fileNumber}_file").val('')
+
+  $('.add_nested_field').on 'click', (e) ->
+    e.preventDefault()
+    lastAttachment = $(e.currentTarget).parent().find("input[type='file']").last()
+    lastInd = lastAttachment.data('attachment-number') + 1
+    $(e.currentTarget).parent().append(attachmentField(lastInd))
 
   App.cable.subscriptions.create { channel: 'CommentsChannel', post_id: postId }, {
     connected: ->

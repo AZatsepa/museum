@@ -16,7 +16,6 @@ feature 'Add files to posts', %q(
     find('#add_post_btn').click
     fill_in t('titles.posts.title'), with: 'Lorem ipsum'
     fill_in t('titles.posts.body'), with: 'Dolor sit amet'
-    click_on t('titles.attachments.add')
     find('form input[type="file"]').set(Rails.root.join('app', 'assets', 'images', '1782.png'))
     expect do
       click_on t('titles.posts.create')
