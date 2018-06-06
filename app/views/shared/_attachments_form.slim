@@ -1,0 +1,7 @@
+.attachments
+  = f.fields_for :attachments, f.object.attachments do |nf|
+    - if nf.object.persisted?
+      p= nf.object.file.file.identifier
+      = nf.check_box :_destroy
+      = t('titles.attachments.delete')
+a.add_comment_attachment[href='#'] = t('titles.attachments.add')

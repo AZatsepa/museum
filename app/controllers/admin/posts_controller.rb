@@ -6,31 +6,31 @@ module Admin
     after_action :publish_post, only: %i[create]
 
     def index
+      @post_form = PostForm.new
       @post = Post.new
     end
 
     def show; end
 
     def new
-      @post.attachments.build
+      @post_form = PostForm.new
     end
 
-    def edit; end
-
     def create
-      @post = current_user.posts.build(post_params)
-      if @post.save
-        render json: @post
+      @post_form = PostForm.new(post_params.merge(current_user: current_user))
+      if @post_form.save
+        render json: @post = @post_form.object
       else
-        render json: @post.errors.full_messages, status: :unprocessable_entity
+        render json: @post_form.errors.messages, status: :unprocessable_entity
       end
     end
 
     def update
-      if @post.update(post_params)
-        render json: @post
+      @post_form = PostForm.new(post_params.merge(object: @post, current_user: current_user))
+      if @post_form.update
+        redirect_to admin_post_path(@post_form.object)
       else
-        render json: @post.errors, status: :unprocessable_entity
+        render json: @post_form.errors.messages, status: :unprocessable_entity
       end
     end
 
@@ -46,7 +46,7 @@ module Admin
     end
 
     def publish_post
-      return if @post.errors.any?
+      return if @post_form.errors.any?
       ActionCable.server.broadcast(
         'posts',
         ApplicationController.render(

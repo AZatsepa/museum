@@ -11,5 +11,9 @@ before_script:
   - export ADMIN_AUTH_NAME=name
   - export ADMIN_AUTH_PASSWORD=password
   - psql -c "create database travis_ci_test;" -U postgres
-  - sudo apt install xvfb  xauth qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+  - cd /usr/local/share
+  - sudo wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+  - sudo tar xjf phantomjs-2.1.1-linux-x86_64.tar.bz2
+  - export PATH="$PATH:/usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/"
+  - cd $TRAVIS_BUILD_DIR
 script: 'bundle exec ruby script/ci/travis.rb'

@@ -14,7 +14,6 @@ uk:
   comparisons: Порівняння
   confirm_my_account: Підтвердити мій обліковий запис
   confirmation: Ви впевнені?
-  delete: Видалити
   didnt_receive_unlock_instructions: Не отримали інструкцій з розблокування?
   errors:
     comment:
@@ -53,7 +52,6 @@ uk:
   resend_change_password_instructions: Надіслати інструкцію зі зміни паролю.
   resend_confirmation_instructions: Надіслати інструкції з підтвердження ще раз
   resend_unlock_instructions: Надіслати інструкції з розблокування.
-  saving: Збереження...
   search_results: Результати пошуку за запитом
   send: Надіслати
   sign_in_with: Увійти через

@@ -85,6 +85,6 @@ feature 'Create comments', %q(
     visit post_path(post)
     click_on t('titles.comments.add')
     sleep 1
-    expect(page).to have_content t('errors.comment.text.blank')
+    expect(page).to have_content "Text can't be blank"
   end
 end

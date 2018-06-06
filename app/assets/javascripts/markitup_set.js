@@ -39,5 +39,6 @@ var mySettings = {
 };
 
 $(window).bind("load turbolinks:load",function(e){
+    $('#post_form_body').markItUp(mySettings);
     $('#post_body').markItUp(mySettings);
 });

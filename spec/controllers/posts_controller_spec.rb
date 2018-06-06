@@ -22,12 +22,8 @@ RSpec.describe PostsController do
       expect(assigns(:post)).to eq(post)
     end
 
-    it 'should should assign new comment' do
-      expect(assigns(:comment)).to be_a_new(Comment)
-    end
-
-    it 'should build new attachments to comment' do
-      expect(assigns(:comment).attachments.first).to be_a_new Attachment
+    it 'should should assign new comment_form' do
+      expect(assigns(:comment_form).class).to eql CommentForm
     end
   end
 end

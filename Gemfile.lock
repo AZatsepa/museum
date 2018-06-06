@@ -64,13 +64,13 @@ GEM
       thor (~> 0.18)
     byebug (10.0.2)
     cancancan (2.2.0)
-    capybara (3.1.0)
+    capybara (3.2.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      xpath (~> 3.0)
+      xpath (~> 3.1)
     capybara-webkit (1.15.0)
       capybara (>= 2.3, < 4.0)
       json
@@ -81,6 +81,7 @@ GEM
     case_transform (0.2)
       activesupport
     climate_control (0.2.0)
+    cliver (0.3.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -214,7 +215,6 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nested_form (0.3.2)
     nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -253,6 +253,10 @@ GEM
       activerecord (>= 4.2)
       activesupport (>= 4.2)
       arel (>= 6)
+    poltergeist (1.18.1)
+      capybara (>= 2.1, < 4)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -307,7 +311,6 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
-    remotipart (1.4.2)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
@@ -422,7 +425,7 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    xpath (3.0.0)
+    xpath (3.1.0)
       nokogiri (~> 1.8)
 
 PLATFORMS
@@ -456,7 +459,6 @@ DEPENDENCIES
   launchy
   letter_opener
   listen
-  nested_form
   oj
   oj_mimic_json
   omniauth
@@ -465,6 +467,7 @@ DEPENDENCIES
   paperclip
   pg (~> 0.18)
   pg_search
+  poltergeist
   pry-rails
   puma
   rails (~> 5.2)
@@ -472,7 +475,6 @@ DEPENDENCIES
   rails-i18n
   rails_12factor
   redcarpet
-  remotipart
   rspec-rails
   rubocop
   sass-rails
