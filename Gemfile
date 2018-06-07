@@ -64,7 +64,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-webkit'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'

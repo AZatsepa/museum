@@ -88,5 +88,5 @@ $(document).on 'load turbolinks:load', ->
     e.preventDefault()
     fileInputs = $('.attachments').find("input[type='file']")
     if fileInputs.length
-      lastInd = fileInputs.last().data('attachment-number') + 1
+      lastInd = fileInputs.last().data('attachment_number') + 1
     $('.attachments').append(attachmentField(lastInd))

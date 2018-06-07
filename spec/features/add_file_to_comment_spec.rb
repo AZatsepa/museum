@@ -9,7 +9,6 @@ feature 'Add files to comments', %q(
 ) do
   given(:user) { create(:user) }
   given(:post) { create(:post, user: user) }
-  # given!(:comment) { create(:comment, user: user, post: post) }
 
   background do
     login_as(user, scope: :user, run_callbacks: false)

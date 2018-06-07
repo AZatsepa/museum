@@ -2,10 +2,7 @@
 
 class CommentForm < BaseForm
   attr_accessor :text,
-                :attachments_attributes,
-                :post,
-                :current_user,
-                :object
+                :post
 
   validates :text, presence: true
 

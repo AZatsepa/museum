@@ -19,9 +19,9 @@
                                                              html: { id: "edit-comment-#{comment.id}",
                                                                      class: 'edit_comment' },
                                                              data: { comment_id: comment.id },
-                                                             # authenticity_token: true,
                                                              remote: true do |f|
         .comment-errors
         = f.text_area :text, value: comment.text
         = render 'shared/attachments_form', f: f
+        a.add_comment_attachment[href='#'] = t('titles.attachments.add')
         = f.submit t('change')

@@ -2,15 +2,18 @@
 
 module Admin
   class PostsController < ApplicationController
-    load_and_authorize_resource
+    load_and_authorize_resource except: %i[create]
     after_action :publish_post, only: %i[create]
 
     def index
+      @posts = Post.all
       @post_form = PostForm.new
       @post = Post.new
     end
 
-    def show; end
+    def show
+      @post = Post.find(params[:id])
+    end
 
     def new
       @post_form = PostForm.new
@@ -18,8 +21,10 @@ module Admin
 
     def create
       @post_form = PostForm.new(post_params.merge(current_user: current_user))
+      @post = @post_form.object
+      authorize! :create, @post
       if @post_form.save
-        render json: @post = @post_form.object
+        render json: @post
       else
         render json: @post_form.errors.messages, status: :unprocessable_entity
       end
@@ -35,6 +40,7 @@ module Admin
     end
 
     def destroy
+      @post = Post.find(params[:id])
       @post.destroy
       redirect_to admin_posts_path
     end

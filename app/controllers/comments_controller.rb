@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: %i[create]
   before_action :set_comment_post
   after_action :change_comments, only: %i[destroy]
   after_action :change_comments_by_form, only: %i[create update]
@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
   def create
     @comment_form = CommentForm.new(comment_params.merge(current_user: current_user, post: @post))
     @comment = @comment_form.object
+    authorize! :create, @comment
     if @comment_form.save
       render json: @comment
     else

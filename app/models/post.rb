@@ -8,7 +8,6 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
-  accepts_nested_attributes_for :attachments, allow_destroy: true, reject_if: ->(a) { a[:file].blank? }
 
   validates :title, presence: true
   validates :body, presence: true

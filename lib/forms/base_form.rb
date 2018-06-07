@@ -2,11 +2,22 @@
 
 class BaseForm
   include ActiveModel::Model
-
-  delegate :attachments, to: :object
+  attr_accessor :attachments,
+                :object,
+                :current_user
+  attr_reader :attachments_attributes
 
   def initialize(attributes = {})
     super attributes
+    @attachments = @attachments || @object&.attachments || []
+  end
+
+  def attachments_attributes=(attributes)
+    @attachments = @attachments || @object&.attachments || []
+    @attachments_attributes = attributes
+    @attachments_attributes.each do |_i, attachment_params|
+      @attachments.push(Attachment.new(attachable: @object, file: attachment_params[:file]))
+    end
   end
 
   def update
@@ -20,23 +31,26 @@ class BaseForm
   private
 
   def update_attachments
-    return unless attachments_attributes
-    attachments_attributes.each_pair do |_k, v|
-      attachments.build(v) if v[:_destroy].nil?
-      destroy_attachments!(v)
+    attachments.each do |attachment|
+      attachment.attachable = object
+      attachment.save
+    end
+    destroy_attachments! if attachments_attributes.present?
+  end
+
+  def destroy_attachments!
+    attachments_attributes.each do |_i, hash|
+      object.attachments.each { |att| att.destroy if att.id == hash[:id].to_i } if destroy_attachment?(hash)
     end
   end
 
-  def destroy_attachments!(hash)
-    attachments.each { |att| att.destroy if att.id == hash[:id].to_i } if destroy_attachment?(hash)
-  end
-
   def destroy_attachment?(hash)
-    hash[:_destroy] == 'on' || hash[:_destroy] == '1'
+    %w[on 1].include?(hash[:_destroy])
   end
 
   def save_object
+    return false unless object.save
     update_attachments
-    object.save
+    true
   end
 end

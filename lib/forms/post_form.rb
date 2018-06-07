@@ -2,11 +2,7 @@
 
 class PostForm < BaseForm
   attr_accessor :title,
-                :body,
-                :attachments_attributes,
-                :object,
-                :current_user
-
+                :body
   validates :title, :body, :current_user, presence: true
 
   def initialize(attributes = {})
