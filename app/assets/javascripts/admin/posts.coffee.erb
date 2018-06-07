@@ -1,9 +1,15 @@
 $(document).on 'load turbolinks:load', ->
   postForm = $('#post_form')
-  newPostForm = $('#new_post_form')
+  newPostForm = $('#new_post')
   addPostBtn = $('#add_post_btn')
   postsList = $('.admin-posts-list tbody')
   addFileLink = $('#add_file')
+  editPostForm = $('#edit_post')
+  attachmentField = (lastInd) ->
+    lastInd = lastInd || 0
+    "<input data-attachment_number=\"#{lastInd}\" id=\"post_attachments_attributes_#{lastInd}_file\"" +
+        " name=\"post[attachments_attributes][#{lastInd}][file]\" type=\"file\">" +
+        "<a class=\"remove_file\" data-file_number=\"#{lastInd}\" href=\"#\">Delete attachment</a>"
 
   addPostBtn.on 'click', (e) ->
     e.preventDefault()
@@ -40,6 +46,38 @@ $(document).on 'load turbolinks:load', ->
       cache: false
       contentType: false
       processData: false
+  editPostForm.on 'ajax:error', (e, xhr, status) ->
+    errors = xhr.responseJSON
+    if errors.title
+      errors.title.map (message) ->
+        $('#post_title').before("<p class=\"text-danger\">#{message}</p>")
+    if errors.body
+      errors.body.map (message) ->
+        $('#markItUpPost_body').before("<p class=\"text-danger\">#{message}</p>")
+
+
+  editPostForm.submit (e) ->
+    $('.text-danger').each (i, e) ->
+      $(e).remove()
+    formData = new FormData(this);
+    postId = $(this).data('postId')
+
+    $.ajax
+      url: "/admin/posts/#{postId}"
+      type: 'PATCH'
+      data: formData
+      error: (e, xhr, status) ->
+        errors = xhr.responseJSON
+        if errors.title
+          errors.title.map (message) ->
+            $('#post_title').before("<p class=\"text-danger\">#{message}</p>")
+        if errors.body
+          errors.body.map (message) ->
+            $('#markItUpPost_body').before("<p class=\"text-danger\">#{message}</p>")
+      cache: false
+      contentType: false
+      processData: false
+    false
 
   $('.attachments').on 'click', '.remove_file', (e) ->
     e.preventDefault()
@@ -48,8 +86,7 @@ $(document).on 'load turbolinks:load', ->
 
   addFileLink.on 'click', (e) ->
     e.preventDefault()
-    attachmentsListLast = $('.attachments').find("input[type='file']").last()
-    lastInd = attachmentsListLast.data('attachmentNumber') + 1
-    $('.attachments').append("<input data-attachment_number=\"#{lastInd}\" id=\"post_form_attachments_attributes_#{lastInd}_file\"" +
-                             " name=\"post_form[attachments_attributes][#{lastInd}][file]\" type=\"file\">" +
-                             "<a class=\"remove_file\" data-file_number=\"#{lastInd}\" href=\"#\">Delete attachment</a>")
+    fileInputs = $('.attachments').find("input[type='file']")
+    if fileInputs.length
+      lastInd = fileInputs.last().data('attachment-number') + 1
+    $('.attachments').append(attachmentField(lastInd))

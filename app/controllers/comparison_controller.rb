@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ComparisonController < ApplicationController
   def index; end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Authentication < ApplicationRecord
   self.table_name = 'authenticates'
   belongs_to :user

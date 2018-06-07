@@ -4,7 +4,4 @@
       p= nf.object.file.file.identifier
       = nf.check_box :_destroy
       = t('titles.attachments.delete')
-    - else
-      = nf.file_field :file, data: { attachment_number: nf.index }
-      = link_to t('titles.attachments.delete'), '#', data: { file_number: nf.index }
-  a.add_nested_field[href='#'] = t('titles.attachments.add')
+a.add_comment_attachment[href='#'] = t('titles.attachments.add')

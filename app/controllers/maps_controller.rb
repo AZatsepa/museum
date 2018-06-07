@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MapsController < ApplicationController
   def map_1782
     render 'maps/1782'

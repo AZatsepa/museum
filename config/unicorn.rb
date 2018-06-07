@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV['RAILS_ENV'] == 'development'
   worker_processes 1
   timeout 10_000

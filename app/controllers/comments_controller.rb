@@ -1,27 +1,30 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   load_and_authorize_resource
   before_action :set_comment_post
-  after_action :change_comments
+  after_action :change_comments, only: %i[destroy]
+  after_action :change_comments_by_form, only: %i[create update]
 
   respond_to :json
 
   def create
     @comment_form = CommentForm.new(comment_params.merge(current_user: current_user, post: @post))
-    @comment = @comment_form.comment
+    @comment = @comment_form.object
     if @comment_form.save
       render json: @comment
     else
-      render json: @comment_form.errors.messages, status: :unprocessable_entity
+      render json: @comment_form.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def update
-    @comment_form = CommentForm.new(comment_params.merge(comment: @comment, post: @post))
-    @comment = @comment_form.comment
+    @comment_form = CommentForm.new(comment_params.merge(object: @comment, post: @post))
+    @comment = @comment_form.object
     if @comment_form.update
-      render json: @comment
+      render json: @comment.reload
     else
-      render json: @comment_form.errors.messages, status: :unprocessable_entity
+      render json: @comment_form.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -50,6 +53,15 @@ class CommentsController < ApplicationController
       comment: CommentSerializer.new(@comment),
       action: params[:action],
       comment_id: @comment.id
+    )
+  end
+
+  def change_comments_by_form
+    return if @comment_form.errors.any?
+    ActionCable.server.broadcast(
+      "comments_for_post_#{params[:post_id]}", comment: CommentSerializer.new(@comment_form.object.reload),
+                                               action: params[:action],
+                                               comment_id: @comment_form.object.id
     )
   end
 end

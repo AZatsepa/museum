@@ -1,20 +1,12 @@
+# frozen_string_literal: true
+
 describe 'Posts API' do
   POSTS_COUNT = 5
-  POST_ALLOWED_FIELDS = %w[id title body user_id comments attachments created_at updated_at].freeze
-  COMMENT_ALLOWED_FIELDS = %w[id text post_id user_id created_at updated_at].freeze
+  post_allowed_fields = %w[id title body user_id comments attachments created_at updated_at]
+  comment_allowed_fields = %w[id text post_id user_id created_at updated_at]
 
   describe 'GET /posts' do
-    context 'unauthorized' do
-      it 'should return 401 status if there is no access token' do
-        get '/api/v1/posts', params: { format: :json }
-        expect(response.status).to eql 401
-      end
-
-      it 'should return 401 status if access token is invalid' do
-        get '/api/v1/posts', params: { format: :json, access_token: '1234' }
-        expect(response.status).to eql 401
-      end
-    end
+    it_behaves_like 'API Authenticable'
 
     context 'authorized' do
       let(:user) { create(:user) }
@@ -33,7 +25,7 @@ describe 'Posts API' do
         expect(response.body).to have_json_size(POSTS_COUNT).at_path('posts')
       end
 
-      POST_ALLOWED_FIELDS.each do |field|
+      post_allowed_fields.each do |field|
         it "should contain #{field}" do
           expect(response.body).to be_json_eql(post.send(field.to_sym).to_json).at_path("posts/0/#{field}")
         end
@@ -44,13 +36,17 @@ describe 'Posts API' do
           expect(response.body).to have_json_size(1).at_path('posts/0/comments')
         end
 
-        COMMENT_ALLOWED_FIELDS.each do |field|
+        comment_allowed_fields.each do |field|
           it "should contain #{field}" do
             expect(response.body).to(be_json_eql(comment.send(field.to_sym).to_json)
                                        .at_path("posts/0/comments/0/#{field}"))
           end
         end
       end
+    end
+
+    def do_request(_options = {})
+      get '/api/v1/posts', params: { format: :json }
     end
   end
 
@@ -61,17 +57,7 @@ describe 'Posts API' do
     let(:post) { posts.first }
     let!(:comment) { create(:comment, user: user, post: post) }
 
-    context 'unauthorized' do
-      it 'should return 401 status if there is no access token' do
-        get "/api/v1/posts/#{post.id}", params: { format: :json }
-        expect(response.status).to eql 401
-      end
-
-      it 'should return 401 status if access token is invalid' do
-        get "/api/v1/posts/#{post.id}", params: { format: :json, access_token: '1234' }
-        expect(response.status).to eql 401
-      end
-    end
+    it_behaves_like 'API Authenticable'
 
     context 'authorized' do
       before { get "/api/v1/posts/#{post.id}", params: { format: :json, access_token: access_token.token } }
@@ -80,7 +66,7 @@ describe 'Posts API' do
         expect(response).to be_successful
       end
 
-      POST_ALLOWED_FIELDS.each do |field|
+      post_allowed_fields.each do |field|
         it "should contain #{field}" do
           expect(response.body).to be_json_eql(post.send(field.to_sym).to_json).at_path("post/#{field}")
         end
@@ -91,13 +77,17 @@ describe 'Posts API' do
           expect(response.body).to have_json_size(1).at_path('post/comments')
         end
 
-        COMMENT_ALLOWED_FIELDS.each do |field|
+        comment_allowed_fields.each do |field|
           it "should contain #{field}" do
             expect(response.body).to(be_json_eql(comment.send(field.to_sym).to_json)
                                        .at_path("post/comments/0/#{field}"))
           end
         end
       end
+    end
+
+    def do_request(_options = {})
+      get "/api/v1/posts/#{post.id}", params: { format: :json }
     end
   end
 
@@ -108,17 +98,7 @@ describe 'Posts API' do
     let!(:comments) { create_list(:comment, 5, user: user, post: post) }
     let(:comment) { comments.first }
 
-    context 'unauthorized' do
-      it 'should return 401 status if there is no access token' do
-        get "/api/v1/posts/#{post.id}/comments", params: { format: :json }
-        expect(response.status).to eql 401
-      end
-
-      it 'should return 401 status if access token is invalid' do
-        get "/api/v1/posts/#{post.id}/comments", params: { format: :json, access_token: '1234' }
-        expect(response.status).to eql 401
-      end
-    end
+    it_behaves_like 'API Authenticable'
 
     context 'authorized' do
       before { get "/api/v1/posts/#{post.id}/comments", params: { format: :json, access_token: access_token.token } }
@@ -131,12 +111,17 @@ describe 'Posts API' do
         expect(response.body).to have_json_size(5).at_path('comments')
       end
 
-      COMMENT_ALLOWED_FIELDS.each do |field|
+      comment_allowed_fields.each do |field|
         it "should contain #{field}" do
+          # binding.pry
           expect(response.body).to(be_json_eql(comment.send(field.to_sym).to_json)
                                      .at_path("comments/0/#{field}"))
         end
       end
+    end
+
+    def do_request(_options = {})
+      get "/api/v1/posts/#{post.id}/comments", params: { format: :json }
     end
   end
 
@@ -146,21 +131,13 @@ describe 'Posts API' do
     let(:admin_access_token) { create(:access_token, resource_owner_id: admin.id) }
 
     context 'unauthorized' do
-      it 'should return 401 status if there is no access token' do
-        post '/api/v1/posts', params: { post: attributes_for(:post), format: :json }
-        expect(response.status).to eql 401
-      end
-
-      it 'should return 401 status if access token is invalid' do
-        post '/api/v1/posts', params: { post: attributes_for(:post), acces_token: '1234', format: :json }
-        expect(response.status).to eql 401
-      end
-
       it 'should return 401 status if access token is invalid' do
         post '/api/v1/posts', params: { post: attributes_for(:post), acces_token: access_token.token, format: :json }
         expect(response.status).to eql 401
       end
     end
+
+    it_behaves_like 'API Authenticable'
 
     context 'authorized' do
       context 'when valid' do
@@ -182,7 +159,7 @@ describe 'Posts API' do
           end.to change(Post, :count).by(1)
         end
 
-        POST_ALLOWED_FIELDS.each do |field|
+        post_allowed_fields.each do |field|
           it "should contain #{field}" do
             expect(response.body).to have_json_path("post/#{field}")
           end
@@ -214,6 +191,10 @@ describe 'Posts API' do
           end
         end
       end
+    end
+
+    def do_request(_options = {})
+      post '/api/v1/posts', params: { post: attributes_for(:post), format: :json }
     end
   end
 end

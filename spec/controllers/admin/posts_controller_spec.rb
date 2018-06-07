@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 describe Admin::PostsController do
-  POST_ALLOWED_FIELDS = %w[id title body user_id comments attachments created_at updated_at].freeze
+  post_allowed_fields = %w[id title body user_id comments attachments created_at updated_at]
   let(:admin_user) { create(:user, :admin) }
   let(:admin_post) { create(:post, user: admin_user) }
   let(:valid_post_params) { { title: 'Updated', body: 'Updated' } }
@@ -50,11 +52,6 @@ describe Admin::PostsController do
       expect(admin_post.reload.title).to eql(valid_post_params[:title])
     end
 
-    it 'should return updated post as JSON' do
-      patch :update, params: { id: admin_post.id, post: { title: 'Updated title' } }, xhr: true
-      expect(response.body).to be_json_eql('Updated title'.to_json).at_path('post/title')
-    end
-
     it 'should render error messages' do
       patch :update, params: { id: admin_post.id, post: invalid_post_params }, xhr: true
       expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
@@ -71,11 +68,6 @@ describe Admin::PostsController do
       get :new, xhr: true
       expect(assigns(:post)).to be_a Post
     end
-
-    it 'should build new attachments to post' do
-      get :new, xhr: true
-      expect(assigns(:post).attachments.first).to be_a_new Attachment
-    end
   end
 
   describe 'POST #create' do
@@ -86,7 +78,7 @@ describe Admin::PostsController do
         end.to change(Post, :count).from(0).to(1)
       end
 
-      POST_ALLOWED_FIELDS.each do |field|
+      post_allowed_fields.each do |field|
         it "response should contain #{field}" do
           post :create, params: { post: attributes_for(:post) }, xhr: true
           expect(response.body).to have_json_path("post/#{field}")

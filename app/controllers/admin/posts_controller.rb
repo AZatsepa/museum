@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Admin
   class PostsController < ApplicationController
     load_and_authorize_resource
     after_action :publish_post, only: %i[create]
-    # respond_to :json
 
     def index
       @post_form = PostForm.new
@@ -13,26 +14,23 @@ module Admin
 
     def new
       @post_form = PostForm.new
-      @post.attachments.build
     end
-
-    def edit; end
 
     def create
       @post_form = PostForm.new(post_params.merge(current_user: current_user))
-      @post_form.save
       if @post_form.save
-        render json: @post = @post_form.post
+        render json: @post = @post_form.object
       else
         render json: @post_form.errors.messages, status: :unprocessable_entity
       end
     end
 
     def update
-      if @post.update(post_params)
-        render json: @post
+      @post_form = PostForm.new(post_params.merge(object: @post, current_user: current_user))
+      if @post_form.update
+        redirect_to admin_post_path(@post_form.object)
       else
-        render json: @post.errors, status: :unprocessable_entity
+        render json: @post_form.errors.messages, status: :unprocessable_entity
       end
     end
 
@@ -44,12 +42,11 @@ module Admin
     private
 
     def post_params
-      object_params = params[:post] || params.require(:post_form)
-      object_params.permit(:title, :body, attachments_attributes: %i[file _destroy id])
+      params.require(:post).permit(:title, :body, attachments_attributes: %i[file _destroy id])
     end
 
     def publish_post
-      return if @post.errors.any?
+      return if @post_form.errors.any?
       ActionCable.server.broadcast(
         'posts',
         ApplicationController.render(
