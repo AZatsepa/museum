@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   respond_to :json
 
   def create
-    @comment_form = CommentForm.new(comment_params.merge(current_user: current_user, post: @post))
+    @comment_form = CommentForm.new(comment_params.merge(user: current_user, post: @post))
     @comment = @comment_form.object
     authorize! :create, @comment
     if @comment_form.save
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment_form = CommentForm.new(comment_params.merge(object: @comment, post: @post))
+    @comment_form = CommentForm.new(comment_params.merge(object: @comment, post: @post, user: current_user))
     @comment = @comment_form.object
     if @comment_form.update
       render json: @comment.reload

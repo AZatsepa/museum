@@ -4,11 +4,11 @@ class CommentForm < BaseForm
   attr_accessor :text,
                 :post
 
-  validates :text, presence: true
+  validates :text, :post, presence: true
 
   def initialize(attributes = {})
     super attributes
-    @object ||= Comment.new(text: text, user: current_user, post: post)
+    @object ||= Comment.new(text: text, user: user, post: post)
     @text ||= @object.text
   end
 

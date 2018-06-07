@@ -4,8 +4,10 @@ class BaseForm
   include ActiveModel::Model
   attr_accessor :attachments,
                 :object,
-                :current_user
+                :user
   attr_reader :attachments_attributes
+
+  validates :user, presence: true
 
   def initialize(attributes = {})
     super attributes
@@ -16,6 +18,7 @@ class BaseForm
     @attachments = @attachments || @object&.attachments || []
     @attachments_attributes = attributes
     @attachments_attributes.each do |_i, attachment_params|
+      next if attachment_params[:file].blank?
       @attachments.push(Attachment.new(attachable: @object, file: attachment_params[:file]))
     end
   end
@@ -35,10 +38,11 @@ class BaseForm
       attachment.attachable = object
       attachment.save
     end
-    destroy_attachments! if attachments_attributes.present?
+    destroy_attachments!
   end
 
   def destroy_attachments!
+    return if attachments_attributes.blank?
     attachments_attributes.each do |_i, hash|
       object.attachments.each { |att| att.destroy if att.id == hash[:id].to_i } if destroy_attachment?(hash)
     end
