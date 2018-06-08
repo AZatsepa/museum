@@ -6,7 +6,6 @@ module Admin
     after_action :publish_post, only: %i[create]
 
     def index
-      @posts = Post.all
       @post_form = PostForm.new
       @post = Post.new
     end
@@ -40,7 +39,6 @@ module Admin
     end
 
     def destroy
-      @post = Post.find(params[:id])
       @post.destroy
       redirect_to admin_posts_path
     end

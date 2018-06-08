@@ -113,7 +113,6 @@ describe 'Posts API' do
 
       comment_allowed_fields.each do |field|
         it "should contain #{field}" do
-          # binding.pry
           expect(response.body).to(be_json_eql(comment.send(field.to_sym).to_json)
                                      .at_path("comments/0/#{field}"))
         end
