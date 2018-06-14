@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment_form = CommentForm.new(comment_params.merge(user: current_user, post: @post))
-    @comment = @comment_form.object
+    @comment = @comment_form.model
     authorize! :create, @comment
     if @comment_form.save
       render json: @comment
@@ -20,8 +20,8 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment_form = CommentForm.new(comment_params.merge(object: @comment, post: @post, user: current_user))
-    @comment = @comment_form.object
+    @comment_form = CommentForm.new(comment_params.merge(model: @comment, post: @post, user: current_user))
+    @comment = @comment_form.model
     if @comment_form.update
       render json: @comment.reload
     else
@@ -60,9 +60,9 @@ class CommentsController < ApplicationController
   def change_comments_by_form
     return if @comment_form.errors.any?
     ActionCable.server.broadcast(
-      "comments_for_post_#{params[:post_id]}", comment: CommentSerializer.new(@comment_form.object.reload),
+      "comments_for_post_#{params[:post_id]}", comment: CommentSerializer.new(@comment_form.model.reload),
                                                action: params[:action],
-                                               comment_id: @comment_form.object.id
+                                               comment_id: @comment_form.model.id
     )
   end
 end

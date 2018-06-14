@@ -23,7 +23,7 @@ describe CommentForm, type: :model do
   it { should validate_presence_of :user }
 
   it 'should update comment' do
-    comment_form = build(:comment_form, object: comment, text: 'Changed text')
+    comment_form = build(:comment_form, model: comment, text: 'Changed text')
     expect do
       comment_form.update
     end.to change(comment, :text).from('Comment text').to('Changed text')
@@ -40,11 +40,11 @@ describe CommentForm, type: :model do
 
   private
 
-  def form_attributes(object)
+  def form_attributes(model)
     { user: user,
       post: post,
-      object: object,
+      model: model,
       attachments_attributes: { 0 => { _destroy: 'on',
-                                       id: object.attachments.first.id } } }
+                                       id: model.attachments.first.id } } }
   end
 end

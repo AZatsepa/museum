@@ -20,7 +20,7 @@ module Admin
 
     def create
       @post_form = PostForm.new(post_params.merge(user: current_user))
-      @post = @post_form.object
+      @post = @post_form.model
       authorize! :create, @post
       if @post_form.save
         render json: @post
@@ -30,9 +30,9 @@ module Admin
     end
 
     def update
-      @post_form = PostForm.new(post_params.merge(object: @post, user: current_user))
+      @post_form = PostForm.new(post_params.merge(model: @post, user: current_user))
       if @post_form.update
-        redirect_to admin_post_path(@post_form.object)
+        redirect_to admin_post_path(@post_form.model)
       else
         render json: @post_form.errors.messages, status: :unprocessable_entity
       end

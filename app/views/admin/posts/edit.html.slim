@@ -1,13 +1,13 @@
 .posts
   h1= t('titles.posts.edit')
   .edit-post
-    = form_for PostForm.new(object: @post), as: :post,
-                                            url: admin_post_path(@post),
-                                            method: :patch,
-                                            html: { id: 'edit_post' },
-                                            data: { post_id: @post.id },
-                                            remote: true,
-                                            authenticity_token: true do |f|
+    = form_for PostForm.new(model: @post), as: :post,
+                                           url: admin_post_path(@post),
+                                           method: :patch,
+                                           html: { id: 'edit_post' },
+                                           data: { post_id: @post.id },
+                                           remote: true,
+                                           authenticity_token: true do |f|
       p
         = f.label :title, t('titles.posts.title')
         br

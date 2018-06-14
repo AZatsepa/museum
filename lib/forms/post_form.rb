@@ -7,14 +7,17 @@ class PostForm < BaseForm
 
   def initialize(attributes = {})
     super attributes
-    @object ||= Post.new(title: title, body: body, user: user)
-    @title ||= @object.title
-    @body ||= @object.body
+    @title ||= model.title
+    @body ||= model.body
   end
 
   def update
-    object.title = title
-    object.body = body
+    model.title = title
+    model.body = body
     save
+  end
+
+  def model
+    @model ||= Post.new(title: title, body: body, user: user)
   end
 end

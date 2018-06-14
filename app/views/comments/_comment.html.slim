@@ -13,13 +13,13 @@
                                                                                confirm: t('confirmation') },
                                                                        method: :delete,
                                                                        remote: true
-      p= form_for [@post, CommentForm.new(object: comment)], as: :comment,
-                                                             url: post_comment_path(@post, comment),
-                                                             method: :patch,
-                                                             html: { id: "edit-comment-#{comment.id}",
-                                                                     class: 'edit_comment' },
-                                                             data: { comment_id: comment.id },
-                                                             remote: true do |f|
+      p= form_for [@post, CommentForm.new(model: comment)], as: :comment,
+                                                            url: post_comment_path(@post, comment),
+                                                            method: :patch,
+                                                            html: { id: "edit-comment-#{comment.id}",
+                                                                    class: 'edit_comment' },
+                                                            data: { comment_id: comment.id },
+                                                            remote: true do |f|
         .comment-errors
         = f.text_area :text, value: comment.text
         = render 'shared/attachments_form', f: f

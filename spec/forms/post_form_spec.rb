@@ -22,7 +22,7 @@ describe PostForm, type: :model do
   it { should validate_presence_of :user }
 
   it 'should update post' do
-    post_form = build(:post_form, object: post, title: 'Changed title')
+    post_form = build(:post_form, model: post, title: 'Changed title')
     expect do
       post_form.update
     end.to change(post, :title).from('Post title').to('Changed title')
@@ -39,10 +39,10 @@ describe PostForm, type: :model do
 
   private
 
-  def form_attributes(object)
+  def form_attributes(model)
     { user: user,
-      object: object,
+      model: model,
       attachments_attributes: { 0 => { _destroy: 'on',
-                                       id: object.attachments.first.id } } }
+                                       id: model.attachments.first.id } } }
   end
 end

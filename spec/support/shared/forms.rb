@@ -9,8 +9,8 @@ shared_examples_for 'form with attachment' do
 
   it 'should destroy attachment' do
     subject_with_file.save
-    object = subject_with_file.object
-    form2 = described_class.new(form_attributes(object))
+    model = subject_with_file.model
+    form2 = described_class.new(form_attributes(model))
     expect do
       form2.update
     end.to change(Attachment, :count).by(-1)

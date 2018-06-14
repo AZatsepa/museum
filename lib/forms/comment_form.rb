@@ -8,12 +8,15 @@ class CommentForm < BaseForm
 
   def initialize(attributes = {})
     super attributes
-    @object ||= Comment.new(text: text, user: user, post: post)
-    @text ||= @object.text
+    @text ||= model.text
   end
 
   def update
-    object.text = text
+    model.text = text
     save
+  end
+
+  def model
+    @model ||= Comment.new(text: text, user: user, post: post)
   end
 end
