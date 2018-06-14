@@ -52,11 +52,6 @@ describe Admin::PostsController do
       expect(admin_post.reload.title).to eql(valid_post_params[:title])
     end
 
-    it 'should return updated post as JSON' do
-      patch :update, params: { id: admin_post.id, post: { title: 'Updated title' } }, xhr: true
-      expect(response.body).to be_json_eql('Updated title'.to_json).at_path('post/title')
-    end
-
     it 'should render error messages' do
       patch :update, params: { id: admin_post.id, post: invalid_post_params }, xhr: true
       expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
@@ -72,11 +67,6 @@ describe Admin::PostsController do
     it 'should assigns new post' do
       get :new, xhr: true
       expect(assigns(:post)).to be_a Post
-    end
-
-    it 'should build new attachments to post' do
-      get :new, xhr: true
-      expect(assigns(:post).attachments.first).to be_a_new Attachment
     end
   end
 
@@ -104,7 +94,7 @@ describe Admin::PostsController do
     context 'when invalid' do
       it 'should render error messages' do
         post(:create, params: { post: invalid_post_params }, xhr: true)
-        expect(response.body).to be_json_eql(["Title can't be blank", "Body can't be blank"].to_json)
+        expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
       end
 
       it 'should return 422 status' do

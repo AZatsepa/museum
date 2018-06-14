@@ -9,11 +9,19 @@
         p= link_to t('titles.comments.edit'), '', class: 'edit-comment-link', data: { comment_id: comment.id }
       - if can? :destroy, comment
         p= link_to t('titles.comments.delete'), post_comment_path(@post, comment), class: 'delete-comment-link',
-                                                                                   data: { comment_id: comment.id,
-                                                                                           confirm: t('confirmation') },
-                                                                                   method: :delete,
-                                                                                   remote: true
-      p= nested_form_for [@post, comment], remote: true, html: { id: "edit-comment-#{comment.id}" }, data: { type: :json } do |f|
-        = f.text_area :text
-        = render 'shared/attachment_form', f: f
+                                                                       data: { comment_id: comment.id,
+                                                                               confirm: t('confirmation') },
+                                                                       method: :delete,
+                                                                       remote: true
+      p= form_for [@post, CommentForm.new(model: comment)], as: :comment,
+                                                            url: post_comment_path(@post, comment),
+                                                            method: :patch,
+                                                            html: { id: "edit-comment-#{comment.id}",
+                                                                    class: 'edit_comment' },
+                                                            data: { comment_id: comment.id },
+                                                            remote: true do |f|
+        .comment-errors
+        = f.text_area :text, value: comment.text
+        = render 'shared/attachments_form', f: f
+        a.add_comment_attachment[href='#'] = t('titles.attachments.add')
         = f.submit t('change')

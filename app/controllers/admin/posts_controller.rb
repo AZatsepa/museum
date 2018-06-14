@@ -2,35 +2,39 @@
 
 module Admin
   class PostsController < ApplicationController
-    load_and_authorize_resource
+    load_and_authorize_resource except: %i[create]
     after_action :publish_post, only: %i[create]
 
     def index
+      @post_form = PostForm.new
       @post = Post.new
     end
 
-    def show; end
-
-    def new
-      @post.attachments.build
+    def show
+      @post = Post.find(params[:id])
     end
 
-    def edit; end
+    def new
+      @post_form = PostForm.new
+    end
 
     def create
-      @post = current_user.posts.build(post_params)
-      if @post.save
+      @post_form = PostForm.new(post_params.merge(user: current_user))
+      @post = @post_form.model
+      authorize! :create, @post
+      if @post_form.save
         render json: @post
       else
-        render json: @post.errors.full_messages, status: :unprocessable_entity
+        render json: @post_form.errors.messages, status: :unprocessable_entity
       end
     end
 
     def update
-      if @post.update(post_params)
-        render json: @post
+      @post_form = PostForm.new(post_params.merge(model: @post, user: current_user))
+      if @post_form.update
+        redirect_to admin_post_path(@post_form.model)
       else
-        render json: @post.errors, status: :unprocessable_entity
+        render json: @post_form.errors.messages, status: :unprocessable_entity
       end
     end
 
@@ -46,7 +50,7 @@ module Admin
     end
 
     def publish_post
-      return if @post.errors.any?
+      return if @post_form.errors.any?
       ActionCable.server.broadcast(
         'posts',
         ApplicationController.render(

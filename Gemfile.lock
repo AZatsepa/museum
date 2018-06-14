@@ -64,16 +64,13 @@ GEM
       thor (~> 0.18)
     byebug (10.0.2)
     cancancan (2.2.0)
-    capybara (3.1.0)
+    capybara (3.2.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      xpath (~> 3.0)
-    capybara-webkit (1.15.0)
-      capybara (>= 2.3, < 4.0)
-      json
+      xpath (~> 3.1)
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -81,6 +78,7 @@ GEM
     case_transform (0.2)
       activesupport
     climate_control (0.2.0)
+    cliver (0.3.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -93,20 +91,20 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
-    cucumber (3.1.0)
+    cucumber (3.1.1)
       builder (>= 2.1.2)
       cucumber-core (~> 3.1.0)
-      cucumber-expressions (~> 5.0.4)
+      cucumber-expressions (~> 6.0.0)
       cucumber-wire (~> 0.0.1)
       diff-lcs (~> 1.3)
-      gherkin (~> 5.0)
+      gherkin (~> 5.1.0)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.2)
     cucumber-core (3.1.0)
       backports (>= 3.8.0)
       cucumber-tag_expressions (~> 1.1.0)
       gherkin (>= 5.0.0)
-    cucumber-expressions (5.0.18)
+    cucumber-expressions (6.0.0)
     cucumber-rails (1.6.0)
       capybara (>= 1.1.2, < 4)
       cucumber (>= 3.0.2, < 4)
@@ -144,8 +142,8 @@ GEM
       i18n (>= 0.7)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.23)
-    gherkin (5.0.0)
+    ffi (1.9.25)
+    gherkin (5.1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gon (6.2.0)
@@ -160,7 +158,7 @@ GEM
       hpricot
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
-    i18n-js (3.0.5)
+    i18n-js (3.0.8)
       i18n (>= 0.6.6, < 2)
     i18n-tasks (0.9.21)
       activesupport (>= 4.0.2)
@@ -172,6 +170,7 @@ GEM
       parser (>= 2.2.3.0)
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
+    jaro_winkler (1.5.1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -214,7 +213,6 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nested_form (0.3.2)
     nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -224,7 +222,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    oj (3.6.0)
+    oj (3.6.2)
     oj_mimic_json (1.0.1)
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
@@ -248,11 +246,15 @@ GEM
     parallel (1.12.1)
     parser (2.5.1.0)
       ast (~> 2.4.0)
-    pg (0.21.0)
+    pg (1.0.0)
     pg_search (2.1.2)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
       arel (>= 6)
+    poltergeist (1.18.1)
+      capybara (>= 2.1, < 4)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -307,7 +309,6 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
-    remotipart (1.4.2)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
@@ -334,7 +335,8 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
-    rubocop (0.56.0)
+    rubocop (0.57.1)
+      jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5)
       powerpack (~> 0.1)
@@ -402,9 +404,9 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.10)
+    uglifier (4.1.11)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.3.3)
+    unicode-display_width (1.4.0)
     unicorn (5.4.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -415,14 +417,14 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webmock (3.4.1)
+    webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    xpath (3.0.0)
+    xpath (3.1.0)
       nokogiri (~> 1.8)
 
 PLATFORMS
@@ -435,7 +437,6 @@ DEPENDENCIES
   byebug
   cancancan
   capybara
-  capybara-webkit
   carrierwave
   coffee-rails
   cucumber-rails
@@ -456,15 +457,15 @@ DEPENDENCIES
   launchy
   letter_opener
   listen
-  nested_form
   oj
   oj_mimic_json
   omniauth
   omniauth-facebook (~> 5.0.0)
   omniauth-google-oauth2 (~> 0.5.3)
   paperclip
-  pg (~> 0.18)
+  pg
   pg_search
+  poltergeist
   pry-rails
   puma
   rails (~> 5.2)
@@ -472,7 +473,6 @@ DEPENDENCIES
   rails-i18n
   rails_12factor
   redcarpet
-  remotipart
   rspec-rails
   rubocop
   sass-rails

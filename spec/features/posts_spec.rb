@@ -10,7 +10,7 @@ feature 'Posts', %q(
   given(:user) { create(:user) }
 
   context 'when user admin' do
-    scenario 'should create post', js: true do
+    scenario 'should create post' do
       login_as(admin, scope: :user, run_callbacks: false)
       visit admin_posts_path
       find('#add_post_btn').click
@@ -18,7 +18,6 @@ feature 'Posts', %q(
       fill_in t('titles.posts.body'), with: 'Dolor sit amet'
       expect do
         click_on t('titles.posts.create')
-        sleep 1
       end.to change(Post, :count).by(1)
     end
   end

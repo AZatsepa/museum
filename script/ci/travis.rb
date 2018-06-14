@@ -9,7 +9,7 @@ class Build
   class << self
     def success?
       TASKS.each do |task|
-        cmd = task.include?('xvfb-run -a bundle exec') ? task : "xvfb-run -a bundle exec #{task}"
+        cmd = task.include?('bundle exec') ? task : "bundle exec #{task}"
         puts "Running command: #{cmd}"
         return false unless system(cmd)
       end

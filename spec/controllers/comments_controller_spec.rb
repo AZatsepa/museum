@@ -36,7 +36,7 @@ describe CommentsController, type: :controller do
 
       it 'should render error messages' do
         post :create, params: { comment: attributes_for(:comment, :invalid), post_id: comment_post }, xhr: true
-        expect(response.body).to be_json_eql(["Text Can't be blank"].to_json)
+        expect(response.body).to be_json_eql(["Text can't be blank"].to_json)
       end
 
       it 'should return 422 status' do

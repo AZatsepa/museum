@@ -71,6 +71,7 @@ feature 'Comment editing', %q(
       scenario 'tries to edit', js: true do
         click_on t('titles.comments.edit')
         fill_in 'comment_text', with: 'edited comment'
+        fill_in 'new_comment_text', with: 'edited comment'
         click_on t('change')
 
         within '.comments' do

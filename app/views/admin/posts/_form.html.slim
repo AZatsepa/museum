@@ -1,14 +1,13 @@
-#post_form= nested_form_for [:admin, @post], remote: true, data: { type: :json } do |f|
+#post_form= form_for @post_form, as: :post, url: admin_posts_path, authenticity_token: true do |f|
   p
     = f.label :title, t('titles.posts.title')
     br
-    = f.text_field :title
+    = f.text_field :title, value: @post.title
   p
     = f.label :body, t('titles.posts.body')
     br
-    = f.text_area :body
-  = render 'shared/attachment_form', f: f
-  p
-    = f.submit button, id: 'post_submit'
-  p
-    a.cancel-btn Cancel
+    = f.text_area :body, value: @post.body
+  = render 'shared/attachments_form', f: f
+  a.add_post_attachment[href='#' id='add_file'] = t('titles.attachments.add')
+  br
+  = f.submit t('titles.posts.create'), id: 'post_form_submit'
