@@ -15,7 +15,7 @@ feature 'Delete comments', %q(
     scenario 'Unauthenticated user tries to delete comment', js: true do
       visit post_path(post)
       within '.comments' do
-        expect(page).to_not have_link t('titles.comments.delete')
+        expect(page).to_not have_css 'a.delete-comment-link'
       end
     end
   end
@@ -29,12 +29,12 @@ feature 'Delete comments', %q(
 
       scenario "sees '#{t('titles.comments.delete')}' link" do
         within '.comments' do
-          expect(page).to have_link t('titles.comments.delete')
+          expect(page).to have_css 'a.delete-comment-link'
         end
       end
 
       scenario 'tries to delete', js: true do
-        click_on t('titles.comments.delete')
+        find('a.delete-comment-link').click
 
         within '.comments' do
           expect(page).to_not have_content comment.text
@@ -50,7 +50,7 @@ feature 'Delete comments', %q(
 
       scenario 'tries to edit' do
         within '.comments' do
-          expect(page).to_not have_link t('titles.comments.delete')
+          expect(page).to_not have_css 'a.delete-comment-link'
         end
       end
     end
@@ -72,7 +72,7 @@ feature 'Delete comments', %q(
 
         Capybara.using_session('user') do
           expect do
-            click_on t('titles.comments.delete')
+            find('a.delete-comment-link').click
             sleep 1
           end.to change(post.comments, :count).by(-1)
         end
@@ -90,7 +90,7 @@ feature 'Delete comments', %q(
       end
 
       scenario 'tries to delete', js: true do
-        click_on t('titles.comments.delete')
+        find('a.delete-comment-link').click
 
         within '.comments' do
           expect(page).to_not have_content comment.text

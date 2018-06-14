@@ -15,12 +15,12 @@ describe Admin::PostsController do
   describe 'GET #index' do
     it 'should assign @posts' do
       admin_post
-      get 'index'
+      get 'index', xhr: true
       expect(assigns(:posts)).to eq([admin_post])
     end
 
     it 'responds to json by default' do
-      get 'index'
+      get 'index', xhr: true
       expect(response.content_type).to eq 'application/json'
     end
   end

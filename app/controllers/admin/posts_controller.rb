@@ -2,12 +2,14 @@
 
 module Admin
   class PostsController < ApplicationController
-    load_and_authorize_resource except: %i[create]
+    load_and_authorize_resource except: %i[index create]
     after_action :publish_post, only: %i[create]
 
     def index
+      @posts = Post.all.includes(:user)
       @post_form = PostForm.new
       @post = Post.new
+      authorize! :read, @posts
     end
 
     def show; end
@@ -23,7 +25,7 @@ module Admin
       @post = @post_form.model
       authorize! :create, @post
       if @post_form.save
-        render json: @post
+        redirect_to action: :index
       else
         render json: @post_form.errors.messages, status: :unprocessable_entity
       end
@@ -31,11 +33,8 @@ module Admin
 
     def update
       @post_form = PostForm.new(post_params.merge(model: @post, user: current_user))
-      if @post_form.update
-        redirect_to admin_post_path(@post_form.model)
-      else
-        render json: @post_form.errors.messages, status: :unprocessable_entity
-      end
+      @post_form.update
+      respond_with(@post, location: admin_post_path(@post))
     end
 
     def destroy

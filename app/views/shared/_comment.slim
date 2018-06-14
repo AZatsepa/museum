@@ -1,0 +1,28 @@
+- if comment.persisted?
+  .border-bottom.comment[id="comment_#{comment.id}"]
+    = comment.text
+    - if comment.attachments.present?
+      - comment.attachments.each do |a|
+        .row
+          = link_to a.file.url, class: 'col p-2' do
+            = image_tag a.file.url, size: '250x200'
+    - if user_signed_in?
+      .row
+        - if can? :update, comment
+          a.btn.btn-link.fa.fa-pencil.edit-comment-link data-comment_id="#{comment.id}"
+        - if can? :destroy, comment
+          = link_to '', post_comment_path(@post, comment), class: 'btn btn-link fa fa-trash delete-comment-link',
+                  data: { comment_id: comment.id, confirm: t('confirmation') },
+                  method: :delete,
+                  remote: true
+      .row
+        .col= nested_form_for [@post, comment], remote: true, html: { id: "edit-comment-#{comment.id}", class: 'edit_comment col' }, data: { type: :json } do |f|
+          .form-group
+            = f.text_area :text, class: 'form-control', rows: 15
+            .form-group
+              = render 'shared/attachment_form', f: f
+            .form-group
+              = f.submit t('change')
+    .row
+      .col-3.p-3 = "#{t('titles.author')}: #{comment.user.name}"
+      .col-9.p-3 = "Created at: #{comment.created_at}"

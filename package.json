@@ -1,0 +1,25 @@
+{
+  "name": "museum",
+  "version": "1.0.0",
+  "description": "This site was created for peoples who are interested of an old Izjum fortress location.",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-config-airbnb": "^16.1.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-jquery": "^1.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AZatsepa/museum.git"
+  },
+  "author": "Donets",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AZatsepa/museum/issues"
+  },
+  "homepage": "https://github.com/AZatsepa/museum#readme"
+}

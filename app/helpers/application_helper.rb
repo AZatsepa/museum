@@ -12,4 +12,8 @@ module ApplicationHelper
                 space_after_headers: true }
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
+
+  def add_active_class(path)
+    'active' if current_page?(path)
+  end
 end

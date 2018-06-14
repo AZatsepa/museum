@@ -1,19 +1,30 @@
-table.table
-  tr.row
-    td.col-3= t('registration.nickname')
-    td.col= @user.nickname
-  tr.row
-    td.col-3= t('registration.email')
-    td.col= @user.email
-  tr.row
-    td.col-3= t('registration.first_name')
-    td.col= @user.first_name
-  tr.row
-    td.col-3= t('registration.last_name')
-    td.col= @user.last_name
-  tr.row
-    td.col-3= t('registration.registered')
-    td.col= @user.created_at
-  tr.row
-    td.col-3= t('registration.last_changes')
-    td.col= @user.updated_at
+.row.align-items-center.justify-content-center
+  .col-6.opacity-light.mt-5
+    .row
+      .col-md-3.text-center.border-right
+        = image_tag(@user.image, class: 'avatar mt-4')
+      .col-md-9
+        table.table.table-user-information
+          tbody
+            tr.row
+              td.col-3= t('registration.nickname')
+              td.col= @user.nickname
+            tr.row
+              td.col-3= t('registration.email')
+              td.col= @user.email
+            tr.row
+              td.col-3= t('registration.first_name')
+              td.col= @user.first_name
+            tr.row
+              td.col-3= t('registration.last_name')
+              td.col= @user.last_name
+            tr.row
+              td.col-3= t('registration.registered')
+              td.col= @user.created_at
+            tr.row
+              td.col-3= t('registration.last_changes')
+              td.col= @user.updated_at
+            tr.row
+              td.col.text-left
+                = link_to edit_user_registration_path(@user), class: 'btn btn-secondary' do
+                  span.fa.fa-pencil

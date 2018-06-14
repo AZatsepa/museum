@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require datatables
 //= require jquery.maphilight.js
 //= require imageMapResizer.js
 //= require jquery.mobile-git

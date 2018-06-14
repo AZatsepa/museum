@@ -15,13 +15,18 @@ uk:
   confirm_my_account: Підтвердити мій обліковий запис
   confirmation: Ви впевнені?
   didnt_receive_unlock_instructions: Не отримали інструкцій з розблокування?
+  english: English
   errors:
     comment:
       text:
         blank: Hе може бути порожнім
+  facebook-group: Народний музей Ізюмщини
   forgot_you_password: Забули пароль?
   hi: Вітаємо
   if_you_didnt_request_this_please_ignore_this_email: Якщо ви не робили цього, будь ласка, ігноруйте це повідомлення.
+  language: Мова
+  main: Головна
+  maps_and_plans: Мапи та плани
   new_password: Новий пароль
   not_satisfied: Не задоволені?
   registration:
@@ -60,15 +65,21 @@ uk:
   site_name: Ізюмська фортеця
   someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Хтось зробив запит зміни вашого пароля. Ви можете зробити це за посиланням нижче.
   titles:
+    edit_profile: Редагувати профіль
     attachments:
-      add: Додати вкладення
-      delete: Видалити вкладення
-      name: 'Вкладення:'
+      add: Додати світлину
+      delete: Видалити світлину
+      name: Світлина
+      names: 'Світлини:'
+    author: Автор
     comments:
       add: Додати комент
+      all: Коменти
       delete: Видалити комент
       edit: Редагувати комент
       text: 'Комент:'
+    users:
+      all: Користувачі
     posts:
       add: Додати пост
       all: Пости
@@ -77,6 +88,7 @@ uk:
       delete: Видалити пост
       edit: Редагувати
       title: Заголовок
+  ukrainian: Українська
   unlock_my_account: Розблокувати мій обліковий запис
   users:
     all: Користувачі

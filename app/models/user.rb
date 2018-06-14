@@ -46,4 +46,12 @@ class User < ApplicationRecord
   def self.create_user!(email, password)
     User.create!(email: email, password: password, confirmed_at: Time.zone.now)
   end
+
+  def name
+    nickname || first_name + ' ' + last_name
+  end
+
+  def image
+    image_url || 'noavatar.png'
+  end
 end

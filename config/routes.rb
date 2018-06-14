@@ -3,7 +3,8 @@
 Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
-                                    confirmations: 'users/confirmations' }
+                                    confirmations: 'users/confirmations',
+                                    registrations: 'users/registrations' }
   root 'pages#main'
   #
   # devise_scope :user do
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i[index show] do
     resources :comments
   end
-  resources :users
+  resources :users, only: %i[show]
 
   # get 'results', to: 'results#index', as: 'results'
   # get 'users/show', as: 'user_root'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments
     end
-
+    resources :comments
     resources :users
   end
 

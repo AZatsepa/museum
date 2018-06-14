@@ -1,0 +1,37 @@
+$(document).on('load turbolinks:load', function () {
+    let postForm = $('form#new_post');
+    let addPostBtn = $('#add_post_btn');
+    let adminPostsLink = $('#admin_posts');
+
+    addPostBtn.on('click', function (e) {
+        e.preventDefault();
+        $(this).hide();
+        postForm.show();
+        postForm.find('.cancel-btn').one('click', function () {
+            postForm.hide();
+            addPostBtn.show();
+        });
+    });
+
+    postForm.on('submit', function () {
+        $('.text-danger').each(function (i, e) {
+            $(e).remove();
+        });
+    });
+
+    adminPostsLink.on('click', function(e) {
+        e.preventDefault();
+        $.get({
+            url: adminPostsLink.attr('href'),
+            success: function (data) {
+                $('#resources_table').append(JST['admin/posts_list']({data: data}));
+            }
+        });
+    });
+
+    $("#admin_posts_table").DataTable({
+        paging: false,
+        searching: false,
+        info: false
+    });
+});

@@ -10,13 +10,18 @@ en:
   confirm_my_account: Confirm my account
   confirmation: Are you sure?
   didnt_receive_unlock_instructions: Didn't receive unlock instructions?
+  english: English
   errors:
     comment:
       text:
         blank: Can't be blank
+  facebook-group: People's Museum of Izyumshchyna
   forgot_you_password: Forgot you password?
   hi: Hello
   if_you_didnt_request_this_please_ignore_this_email: If you didn't request this, please ignore this email.
+  language: Language
+  main: Main
+  maps_and_plans: Maps and plans
   new_password: New password
   not_satisfied: Not satisfied?
   registration:
@@ -53,12 +58,18 @@ en:
   site_name: Izjum fortress
   someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Someone has requested a link to change your password. You can do this through the link below.
   titles:
+    edit_profile: Edit profile
     attachments:
-      add: Add attachment
-      delete: Delete attachment
-      name: 'Attachments:'
+      add: Add image
+      delete: Delete image
+      name: Image
+      names: 'Images:'
+    author: Author
+    users:
+      all: Users
     comments:
       add: Add comment
+      all: Comments
       delete: Delete comment
       edit: Edit comment
       text: 'Comment:'
@@ -70,6 +81,7 @@ en:
       delete: Remove post
       edit: Edit
       title: Title
+  ukrainian: Українська
   unlock_my_account: Unlock my account
   users:
     all: Users

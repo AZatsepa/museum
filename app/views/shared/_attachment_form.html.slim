@@ -1,0 +1,14 @@
+p= t('titles.attachments.names')
+p= f.fields_for :attachments do |a|
+  - if a.object.new_record?
+    .form-group
+      .custom-file
+        = a.file_field :file, class: 'custom-file-input'
+        = a.label :file, t('titles.attachments.name'), class: 'custom-file-label'
+      = a.link_to_remove t('titles.attachments.delete')
+  - else
+    .form-check.form-control
+      = a.object.file.file.identifier
+      = a.check_box :_destroy
+      span.fa.fa-trash
+= f.link_to_add t('titles.attachments.add'), :attachments

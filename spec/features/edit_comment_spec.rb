@@ -28,14 +28,14 @@ feature 'Comment editing', %q(
         visit post_path(post)
       end
 
-      scenario "sees '#{t('titles.comments.edit')}' link" do
+      scenario 'sees edit link' do
         within '.comments' do
-          expect(page).to have_link t('titles.comments.edit')
+          expect(page).to have_css 'a.edit-comment-link'
         end
       end
 
       scenario 'tries to edit', js: true do
-        click_on t('titles.comments.edit')
+        find('a.edit-comment-link').click
         fill_in 'comment_text', with: 'edited comment'
         click_on t('change')
 
@@ -69,7 +69,7 @@ feature 'Comment editing', %q(
       end
 
       scenario 'tries to edit', js: true do
-        click_on t('titles.comments.edit')
+        find('a.edit-comment-link').click
         fill_in 'comment_text', with: 'edited comment'
         fill_in 'new_comment_text', with: 'edited comment'
         click_on t('change')

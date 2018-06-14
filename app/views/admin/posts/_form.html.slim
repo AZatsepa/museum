@@ -1,13 +1,12 @@
 #post_form= form_for @post_form, as: :post, url: admin_posts_path, authenticity_token: true do |f|
-  p
-    = f.label :title, t('titles.posts.title')
-    br
-    = f.text_field :title, value: @post.title
-  p
-    = f.label :body, t('titles.posts.body')
-    br
-    = f.text_area :body, value: @post.body
-  = render 'shared/attachments_form', f: f
-  a.add_post_attachment[href='#' id='add_file'] = t('titles.attachments.add')
-  br
-  = f.submit t('titles.posts.create'), id: 'post_form_submit'
+  .form-group.text-center.align-items-center.justify-content-center
+    = f.label :title, t('titles.posts.title'), class: 'control-label'
+    = f.text_field :title, class: 'form-control'
+    .form-group.text-center.align-items-center.justify-content-center
+      = f.label :body, t('titles.posts.body'), class: 'control-label'
+      = f.text_area :body, class: 'form-control'
+    = render 'shared/attachment_form', f: f
+    a.add_post_attachment[href='#' id='add_file'] = t('titles.attachments.add')
+    .form-group
+      = f.submit button, id: 'post_submit', class: 'btn btn-primary'
+      a.btn.btn-danger.cancel-btn Cancel

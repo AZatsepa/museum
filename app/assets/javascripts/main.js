@@ -1,4 +1,4 @@
-  jQuery(document).on('turbolinks:load', function(document){
+  jQuery(document).on('load turbolinks:load', function(document){
     //check if the .cd-image-container is in the viewport
     //if yes, animate it
     checkPosition($('.cd-image-container'));

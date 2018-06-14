@@ -19,6 +19,7 @@ gem 'execjs'
 gem 'gon'
 gem 'i18n-js'
 gem 'jbuilder'
+gem 'jquery-datatables'
 gem 'jquery-rails'
 gem 'oj'
 gem 'oj_mimic_json'
@@ -46,6 +47,7 @@ group :production do
 end
 
 group :development do
+  gem 'bullet'
   gem 'html2slim'
   gem 'listen'
   gem 'rubocop', require: false
