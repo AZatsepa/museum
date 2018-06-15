@@ -12,10 +12,8 @@
       .d-flex.justify-content-center.align-items-center.container
         = form_for PostForm.new(model: @post), as: :post,
                 url: admin_post_path(@post),
-                method: :patch,
-                html: { id: 'edit_post' },
+                html: { id: :edit_post },
                 data: { post_id: @post.id },
-                remote: true,
                 authenticity_token: true do |f|
           p
             = f.label :title, t('titles.posts.title')

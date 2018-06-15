@@ -16,13 +16,19 @@
                   method: :delete,
                   remote: true
       .row
-        .col= nested_form_for [@post, comment], remote: true, html: { id: "edit-comment-#{comment.id}", class: 'edit_comment col' }, data: { type: :json } do |f|
+        .col= form_for [@post, CommentForm.new(model: comment)], as: :comment,
+                                                                 url: post_comment_path(@post, comment),
+                                                                 remote: true,
+                                                                 html: { id: "edit-comment-#{comment.id}",
+                                                                         class: 'edit_comment col' },
+                                                                 data: { type: :json,
+                                                                         comment_id: comment.id  } do |f|
           .form-group
             = f.text_area :text, class: 'form-control', rows: 15
-            .form-group
-              = render 'shared/attachment_form', f: f
-            .form-group
-              = f.submit t('change')
+          .form-group
+            = render 'shared/attachments_form', f: f
+          .form-group
+            = f.submit t('change')
     .row
       .col-3.p-3 = "#{t('titles.author')}: #{comment.user.name}"
       .col-9.p-3 = "Created at: #{comment.created_at}"

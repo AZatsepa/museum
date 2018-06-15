@@ -1,8 +1,8 @@
-const mapHilight = () => {
-  $('img[usemap]').maphilight();
-  $('map').imageMapResize();
+var mapHilight = function() {
+    $('img[usemap]').maphilight();
+    $('map').imageMapResize();
 };
 
-$(window).bind('load resize turbolinks:load', () => {
-  mapHilight();
+$(window).bind("load resize turbolinks:load",function(e){
+    mapHilight();
 });

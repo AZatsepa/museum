@@ -5,7 +5,7 @@
     .form-group.text-center.align-items-center.justify-content-center
       = f.label :body, t('titles.posts.body'), class: 'control-label'
       = f.text_area :body, class: 'form-control'
-    = render 'shared/attachment_form', f: f
+    = render 'shared/attachments_form', f: f
     a.add_post_attachment[href='#' id='add_file'] = t('titles.attachments.add')
     .form-group
       = f.submit button, id: 'post_submit', class: 'btn btn-primary'

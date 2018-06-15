@@ -9,10 +9,15 @@
         = link_to t('titles.users.all'), admin_users_path
     .col-sm-10
       .row.text-left
-        = nested_form_for [:admin, @comment], html: { class: 'col' } do |f|
+        = form_for CommentForm.new(model: @comment), as: :comment,
+                                                     url: admin_comment_path(@comment),
+                                                     method: :patch,
+                                                     html: { class: 'col',
+                                                             id: 'edit_admin_comment' } do |f|
           .form-group
             = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
             .comment-errors
             = f.text_area :text, id: 'new_comment_text', class: 'form-control form-control-lg', rows: 5
-            = render 'shared/attachment_form', f: f
+            = render 'shared/attachments_form', f: f
+            a.add_comment_attachment[href='#'] = t('titles.attachments.add')
           = f.submit t('titles.comments.edit'), data: { 'disable-with' => t('saving') }

@@ -17,29 +17,35 @@
             .col-lg-9.p-3
               .post-body-show
                 = markdown(@post.body)
-              ul.attachments
+              ul.list-group.attachments
                 - @post.attachments.each do |a|
-                  li= link_to a.file.file.identifier, a.file.url
+                  li.list-group-item= link_to a.file.url do
+                    = image_tag a.file.url, height: '200'
           .row.text-left.p-3
             .col-lg-9
               .comments
                 - @post.comments.includes(:attachments, :user).order(:created_at).each do |comment|
                   = render 'shared/comment', comment: comment
-              - if can? :create, Comment
+              .row.text-left
                 .row.text-left
-                  = nested_form_for [@post, @post.comments.build], remote: true, data: { type: :json }, html: { class: 'col' } do |f|
+                  = form_for @comment_form, as: :comment,
+                                            url: admin_comments_path,
+                                            authenticity_token: true,
+                                            html: { id: 'new_post_comment_form' } do |f|
                     .form-group
+                      = f.hidden_field :post_id, value: @post.id
                       = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
                       .comment-errors
                       = f.text_area :text, id: 'new_comment_text', class: 'form-control form-control-lg', rows: 5
-                      = render 'shared/attachment_form', f: f
+                      = render 'shared/attachments_form', f: f
+                      a.add_comment_attachment[href='#'] = t('titles.attachments.add')
                     = f.submit t('titles.comments.add'), data: { 'disable-with' => t('saving') }
           .row.border-bottom
             .col-6
               = link_to t('titles.posts.edit'), edit_admin_post_path(@post), class: 'btn btn-secondary'
             .col-6
               = link_to t('titles.posts.delete'), admin_post_path(@post), method: :delete,
-                                                                        data: { confirm: t('confirmation') },
-                                                                        class: 'btn btn-danger'
+                                                                          data: { confirm: t('confirmation') },
+                                                                          class: 'btn btn-danger'
           .row.border-bottom
             = link_to t('back'), :back, class: 'btn btn-secondary'

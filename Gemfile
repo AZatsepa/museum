@@ -47,7 +47,6 @@ group :production do
 end
 
 group :development do
-  gem 'bullet'
   gem 'html2slim'
   gem 'listen'
   gem 'rubocop', require: false
@@ -57,6 +56,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'bullet'
   gem 'bundle-audit'
   gem 'byebug'
   gem 'dotenv-rails'

@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$(document).on 'load turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   commentForm = $('#new_comment')
   postId = $('#post-wrapper').data('post_id')
   commentsList = $('.comments')
@@ -18,13 +18,16 @@ $(document).on 'load turbolinks:load', ->
     $("#comment_#{data.comment_id}").remove();
   attachmentField = (lastInd) ->
     lastInd = lastInd || 0
-    "<input data-attachment-number=\"#{lastInd}\" id=\"comment_attachments_attributes_#{lastInd}_file\" name=\"comment[attachments_attributes][#{lastInd}][file]\" type=\"file\">" +
+    "<div class=\"custom-file\">" +
+    "<input type=\"file\" class=\"custom-file-input\" id=\"comment_attachments_attributes_#{lastInd}_file\" name=\"comment[attachments_attributes][#{lastInd}][file]\" data-attachment-number=\"#{lastInd}\">" +
+    "<label class=\"custom-file-label\" for=\"comment_attachments_attributes_#{lastInd}_file\"> #{I18n.t('choose_file')} </label>" +
+    "</div>" +
     "<a class=\"remove_file\" data-file_number=\"#{lastInd}\" href=\"#\">#{I18n.t('titles.attachments.delete')}</a>"
 
   $(document).on 'click', '.edit-comment-link', (e) ->
     e.preventDefault();
     $(this).hide();
-    commentId = $(this).data('commentId')
+    commentId = $(this).data('comment_id')
     $('form#edit-comment-' + commentId).show()
 
   commentForm.submit (e) ->
@@ -50,15 +53,58 @@ $(document).on 'load turbolinks:load', ->
       processData: false
     false
 
+  $('form#new_post_comment_form').on 'submit', (e) ->
+    $('.text-danger').each (i, elem) ->
+      $(elem).remove()
+    formData = new FormData(this)
+
+    $.ajax
+      url: $(this).attr('action')
+      type: 'POST'
+      data: formData
+      success: (data) ->
+        $('#new_comment_text').val('')
+        $('#new_comment .attachments input').val('');
+        $('#new_comment .attachments').find('input, a').each (i, elem) ->
+          elem.remove() if i isnt 0
+        createComment(data)
+      error: (e, xhr, status) ->
+        errors = e.responseJSON
+        for message in errors
+          $('.comment-errors').append("<p class=\"text-danger\">#{message}</p>")
+      cache: false
+      contentType: false
+      processData: false
+    false
+
+  $('form#edit_admin_comment').on 'submit', (e) ->
+    $('.text-danger').each (i, elem) ->
+      $(elem).remove()
+    formData = new FormData(this)
+
+    $.ajax
+      url: $(this).attr('action')
+      type: 'POST'
+      data: formData
+      error: (e, xhr, status) ->
+        errors = e.responseJSON
+        for message in errors
+          $('.comment-errors').append("<p class=\"text-danger\">#{message}</p>")
+      cache: false
+      contentType: false
+      processData: false
+    false
+
   $('.comments').on 'submit', '.edit_comment', (e) ->
     form = $(this)
+    debugger
     formData = new FormData(this)
 
     $('.text-danger', this).each (i, elem) ->
       $(elem).remove()
 
     $.ajax
-      url: window.location.pathname + '/comments/' + form.data('commentId')
+      url: form.attr('action')
       type: 'PATCH'
       data: formData
       success: (data)->

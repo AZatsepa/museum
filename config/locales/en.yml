@@ -5,6 +5,7 @@ en:
   back: Back
   change: Change
   change_password: Change password
+  choose_file: Choose file
   click_the_link_below_to_unlock_your_account: 'Click the link below to unlock your account:'
   comparisons: Comparisons
   confirm_my_account: Confirm my account
@@ -23,7 +24,6 @@ en:
   main: Main
   maps_and_plans: Maps and plans
   new_password: New password
-  not_satisfied: Not satisfied?
   registration:
     confirmation:
       question: Didn't receive confirmation instructions?
@@ -43,7 +43,6 @@ en:
     profile: Profile
     registered: Registered
     remember_me: Remember me
-    resource_name: User
     sign_in: Sign in
     sign_out: Sign out
     sign_up: Sign up
@@ -52,27 +51,25 @@ en:
   resend_change_password_instructions: Resend change password instructions
   resend_confirmation_instructions: Resend confirmation instructions
   resend_unlock_instructions: Resend unlock instructions
+  saving: Saving...
+  search: Search
   search_results: Search results for
   send: Send
   sign_in_with: Sign in with
   site_name: Izjum fortress
   someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Someone has requested a link to change your password. You can do this through the link below.
   titles:
-    edit_profile: Edit profile
     attachments:
       add: Add image
       delete: Delete image
-      name: Image
-      names: 'Images:'
     author: Author
-    users:
-      all: Users
     comments:
       add: Add comment
       all: Comments
       delete: Delete comment
       edit: Edit comment
       text: 'Comment:'
+    edit_profile: Edit profile
     posts:
       add: Add post
       all: Posts
@@ -81,12 +78,10 @@ en:
       delete: Remove post
       edit: Edit
       title: Title
+    users:
+      all: Users
   ukrainian: Українська
   unlock_my_account: Unlock my account
-  users:
-    all: Users
-    delete: Delete user
-    edit: Edit user
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: We're contacting you to notify you that your password has been changed.
   you_can_confirm_your_account_email_through_the_link_below: 'You can confirm your account email through the link below:'
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Your account has been locked due to an excessive number of unsuccessful sign in attempts.

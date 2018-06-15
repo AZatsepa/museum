@@ -4,15 +4,17 @@ module Admin
   class PostsController < ApplicationController
     load_and_authorize_resource except: %i[index create]
     after_action :publish_post, only: %i[create]
+    respond_to :html
 
     def index
       @posts = Post.all.includes(:user)
       @post_form = PostForm.new
-      @post = Post.new
       authorize! :read, @posts
     end
 
-    def show; end
+    def show
+      @comment_form = CommentForm.new
+    end
 
     def new
       @post_form = PostForm.new
@@ -33,8 +35,11 @@ module Admin
 
     def update
       @post_form = PostForm.new(post_params.merge(model: @post, user: current_user))
-      @post_form.update
-      respond_with(@post, location: admin_post_path(@post))
+      if @post_form.update
+        redirect_to action: :show
+      else
+        render json: @post_form.errors.messages, status: :unprocessable_entity
+      end
     end
 
     def destroy

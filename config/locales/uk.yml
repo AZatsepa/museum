@@ -10,6 +10,7 @@ uk:
   back: Повернутися
   change: Змінити
   change_password: Змінити пароль
+  choose_file: Обрати файл
   click_the_link_below_to_unlock_your_account: 'Перейдіть за цим посиланням для підтвердження вашого облікового запису:'
   comparisons: Порівняння
   confirm_my_account: Підтвердити мій обліковий запис
@@ -28,7 +29,6 @@ uk:
   main: Головна
   maps_and_plans: Мапи та плани
   new_password: Новий пароль
-  not_satisfied: Не задоволені?
   registration:
     confirmation:
       question: Не отримали інструкцій для підтвердження?
@@ -48,7 +48,6 @@ uk:
     profile: Профіль
     registered: Зареєстрований
     remember_me: Запам'ятати мене
-    resource_name: Користувач
     sign_in: Увійти
     sign_out: Вийти
     sign_up: Зареєструватися
@@ -65,12 +64,9 @@ uk:
   site_name: Ізюмська фортеця
   someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Хтось зробив запит зміни вашого пароля. Ви можете зробити це за посиланням нижче.
   titles:
-    edit_profile: Редагувати профіль
     attachments:
       add: Додати світлину
       delete: Видалити світлину
-      name: Світлина
-      names: 'Світлини:'
     author: Автор
     comments:
       add: Додати комент
@@ -78,8 +74,7 @@ uk:
       delete: Видалити комент
       edit: Редагувати комент
       text: 'Комент:'
-    users:
-      all: Користувачі
+    edit_profile: Редагувати профіль
     posts:
       add: Додати пост
       all: Пости
@@ -88,12 +83,10 @@ uk:
       delete: Видалити пост
       edit: Редагувати
       title: Заголовок
+    users:
+      all: Користувачі
   ukrainian: Українська
   unlock_my_account: Розблокувати мій обліковий запис
-  users:
-    all: Користувачі
-    delete: Видалити користувача
-    edit: Редагувати користувача
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: Повідомляємо вам, що ваш пароль було змінено.
   you_can_confirm_your_account_email_through_the_link_below: 'Ви можете підтвердити вашу електронну адресу за цим посиланням:'
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Ваш обліковий запис було заблоковано через високу кількість неправильних спроб входу.
