@@ -21,6 +21,6 @@ feature 'Edit comments', %q(
       fill_in 'new_comment_text', with: 'Edited text'
       click_on t('titles.comments.edit')
       sleep 1
-    end.to change(comment.reload, :text)
+    end.to change { comment.reload.text }.from('Comment text').to('Edited text')
   end
 end
