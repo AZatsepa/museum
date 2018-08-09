@@ -1,0 +1,22 @@
+.table-responsive
+  table.table.table-striped.table-sm
+    thead
+      tr
+        th = I18n.t('titles.posts.title')
+        th = I18n.t('titles.posts.edit')
+        th = I18n.t('titles.posts.delete')
+    tbody
+      - @data.forEach (post, index) ->
+        tr
+          td
+            a[href="#"] = post.title
+          td
+            a.btn.btn-link[href="#"]
+              span.glyphicon.glyphicon-pencil
+          / td= link_to edit_admin_post_path(post), class: 'btn btn-link'
+          / span.glyphicon.glyphicon-pencil
+          td
+            a.btn.btn-link[href="#"]
+              span.glyphicon.glyphicon-trash
+a#add_post_btn.btn.btn-dark.fixed-action-btn = I18n.t('titles.posts.add')
+    / .new-post= render 'admin/posts/form', locals: { button: t('titles.posts.create'), post: current_user.posts.build }

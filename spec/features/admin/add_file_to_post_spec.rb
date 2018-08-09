@@ -20,7 +20,7 @@ feature 'Add files to posts', %q(
     fill_in t('titles.posts.body'), with: 'Dolor sit amet'
     click_on t('titles.attachments.add')
     attach_file 'post_attachments_attributes_0_file',
-                Rails.root.join('app', 'assets', 'images', '1782.png'),
+                Rails.root.join('app', 'javascript', 'images', '1782.png'),
                 visible: false
     expect do
       click_on t('titles.posts.create')

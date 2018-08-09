@@ -19,7 +19,7 @@ feature 'Add files to comments', %q(
     fill_in t('titles.comments.text'), with: 'Lorem ipsum edited'
     click_on t('titles.attachments.add')
     attach_file 'comment_attachments_attributes_0_file',
-                Rails.root.join('app', 'assets', 'images', '1782.png'),
+                Rails.root.join('app', 'javascript', 'images', '1782.png'),
                 visible: false
     expect do
       click_on t('titles.comments.add')

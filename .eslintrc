@@ -8,5 +8,11 @@
     "window": true,
     "$": true,
     "jQuery": true
+  },
+  "env": {
+    "es6": true
+  },
+  "rules": {
+    "max-len": [ 1, 120 ]
   }
 }

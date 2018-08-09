@@ -7,7 +7,7 @@ describe PostForm, type: :model do
     ActionDispatch::Http::UploadedFile.new(
       filename: '1782.png',
       type: 'image/png',
-      tempfile: File.new(Rails.root.join('app', 'assets', 'images', '1782.png'))
+      tempfile: File.new(Rails.root.join('app', 'javascript', 'images', '1782.png'))
     )
   end
   let(:subject_with_file) do

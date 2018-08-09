@@ -9,7 +9,6 @@ end
 
 gem 'active_model_serializers'
 gem 'bootsnap', require: false
-gem 'bootstrap'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'coffee-rails'
@@ -17,10 +16,7 @@ gem 'devise'
 gem 'doorkeeper'
 gem 'execjs'
 gem 'gon'
-gem 'i18n-js'
 gem 'jbuilder'
-gem 'jquery-datatables'
-gem 'jquery-rails'
 gem 'oj'
 gem 'oj_mimic_json'
 gem 'omniauth'
@@ -41,6 +37,7 @@ gem 'turbolinks'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier'
 gem 'unicorn'
+gem 'webpacker'
 
 group :production do
   gem 'rails_12factor'

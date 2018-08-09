@@ -6,7 +6,7 @@
     .row.border-bottom.align-items-center.justify-content-center
       .col-lg-9.p-3
         .post-body-show
-          = markdown(@post.body)
+          = @post.body.html_safe
         ul.attachments
           - @post.attachments.each do |a|
             li= link_to a.file.url, class: 'col p-2'

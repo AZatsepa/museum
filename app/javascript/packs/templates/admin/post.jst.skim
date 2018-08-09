@@ -1,0 +1,9 @@
+tr
+  td
+    a href="/admin/posts/#{@data.post.id}" = @data.post.title
+  td
+    a.btn.btn-link href="/admin/posts/#{@data.post.id}/edit"
+      span class="glyphicon glyphicon-pencil"
+  td
+    a.btn.btn-link data-confirm=@confirmation rel="nofollow" data-method="delete" href="/admin/posts/#{@data.post.id}"
+      span class="glyphicon glyphicon-trash"
