@@ -1,2 +1,2 @@
-release: bundle exec rails assets:precompile
-web: bundle exec rails server -p $PORT
+web: bundle exec rails server -p 3000
+frontend: bin/webpack-dev-server

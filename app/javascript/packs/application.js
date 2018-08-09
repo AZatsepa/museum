@@ -22,6 +22,7 @@ import '../images/background.jpg';
 import '../src/application.scss';
 
 import './cable';
+import './hello_vue';
 import './comments';
 import './imageMapResizer';
 import './jquery.maphilight';
