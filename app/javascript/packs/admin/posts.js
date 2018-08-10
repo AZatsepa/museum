@@ -10,33 +10,6 @@ $(document).on('turbolinks:load', () => {
             <a class="remove_file" data-file_number="${lastIndex}" href="#">${I18n.t('titles.attachments.delete')}</a>`; // eslint-disable-line no-undef
   }
 
-  addPostBtn.on('click', function (e) {
-    const btn = $(this);
-    e.preventDefault();
-    btn.hide();
-    postForm.show();
-    postForm.find('.cancel-btn').one('click', () => {
-      postForm.hide();
-      btn.show();
-    });
-  });
-
-  postForm.submit(function () {
-    $('.text-danger').each((i, elem) => {
-      $(elem).remove();
-    });
-
-    $.ajax({
-      url: window.location.pathname,
-      type: 'POST',
-      data: new FormData(this), // eslint-disable-line no-undef
-      cache: false,
-      contentType: false,
-      processData: false,
-    });
-    return false;
-  });
-
   $('form#edit_post').on('submit', function () {
     const url = $(this).attr('action');
     $('.text-danger').each((i, elem) => {
@@ -67,22 +40,22 @@ $(document).on('turbolinks:load', () => {
     });
   });
 
-  $('.attachments').on('click', '.remove_file', (e) => {
-    e.preventDefault();
-    const fileNumber = $(e.currentTarget).data('file_number');
-    $(`#post_form_attachments_attributes_${fileNumber}_file`).val('');
-  });
-
-  $('.add_post_attachment').on('click', (e) => {
-    e.preventDefault();
-    const form = $(e.currentTarget).parent();
-    const fileInputs = form.find("input[type='file']");
-    let lastInd;
-    if (fileInputs.length) {
-      lastInd = fileInputs.last().data('attachment-number') + 1;
-    } else {
-      lastInd = 0;
-    }
-    form.find('.attachments').append(attachmentField(lastInd));
-  });
+  // $('.attachments').on('click', '.remove_file', (e) => {
+  //   e.preventDefault();
+  //   const fileNumber = $(e.currentTarget).data('file_number');
+  //   $(`#post_form_attachments_attributes_${fileNumber}_file`).val('');
+  // });
+  //
+  // $('.add_post_attachment').on('click', (e) => {
+  //   e.preventDefault();
+  //   const form = $(e.currentTarget).parent();
+  //   const fileInputs = form.find("input[type='file']");
+  //   let lastInd;
+  //   if (fileInputs.length) {
+  //     lastInd = fileInputs.last().data('attachment-number') + 1;
+  //   } else {
+  //     lastInd = 0;
+  //   }
+  //   form.find('.attachments').append(attachmentField(lastInd));
+  // });
 });

@@ -1,0 +1,82 @@
+<template>
+    <div class="d-flex justify-content-center align-items-center container">
+      <% include ActionView::Helpers %>
+      <div class="markdown" id="post_form">
+        <form class="new_post" style="display: block;">
+          <div class="form-group text-center align-items-center justify-content-center">
+            <label class="control-label">Заголовок</label>
+            <input class="form-control" type="text" v-model="post.title">
+            <div class="form-group text-center align-items-center justify-content-center">
+              <label class="control-label" for="post_body">Текст</label>
+              <textarea class="form-control" v-model="post.body" id="post_body"></textarea>
+            </div>
+            <div v-for="(attachment, index) in post.attachments_attributes"
+                              class="attachments"
+                              :attachment="attachment"
+                              :key="index">
+              <div>
+                <div class="custom-file">
+                  <input type="file"
+                         class="custom-file-input"
+                         @change="onImageSelected($event, attachment)">
+                  <label class="custom-file-label">
+                    <%= t('choose_file') %>
+                  </label>
+                </div>
+                <a class="remove_file">Remove Attachment</a>
+              </div>
+            </div>
+            <a class="add_post_attachment" href="#" id="add_file" @click.prevent="addAttachment">Додати світлину</a>
+            <div class="form-group">
+              <button class="btn btn-success" @click.prevent="createPost">
+                <%= t('titles.posts.create') %>
+              </button>
+              <button class="btn btn-danger cancel-btn" @click.prevent="$store.commit('createAdminPostFormHide')">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        post: {
+          attachments_attributes: [],
+        },
+      };
+    },
+    mounted() {
+      $('#post_body').markItUp(this.$store.state.myHtmlSettings);
+    },
+    methods: {
+      createPost() {
+        this.$http.post('/admin/posts', this.post).then((response) => {
+          Turbolinks.visit('/admin/posts');
+          this.$store.commit('createAdminPostFormHide');
+        },
+         (response) => {
+          console.log(response);
+        });
+      },
+      addAttachment() {
+        this.post.attachments_attributes.push({
+          id: null,
+          file: '',
+          _destroy: null,
+        });
+      },
+      onImageSelected(event, attachment) {
+        attachment.file = event.target.files[0];
+      },
+    },
+  };
+</script>
+
+<style scoped>
+
+</style>

@@ -7,18 +7,33 @@
 
 import TurbolinksAdapter from 'vue-turbolinks';
 import Vue from 'vue';
-import App from './components/app.vue';
+import Vuex from 'vuex';
+import VueResource from 'vue-resource';
+import PostsIndex from './components/admin/PostsIndex.vue.erb';
+import store from './store';
 
 Vue.use(TurbolinksAdapter);
+Vue.use(VueResource);
+Vue.use(Vuex);
 
 document.addEventListener('turbolinks:load', () => {
-  const el = document.body.appendChild(document.createElement('hello'));
-  const app = new Vue({
-    el,
-    render: h => h(App),
-  });
+  Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-  console.log(app);
+  const el = document.getElementById('vue-elem');
+
+  if (el !== null) {
+    const posts = JSON.parse(el.dataset.posts);
+    const adminPostsIndex = new Vue({
+      el,
+      store,
+      components: {
+        PostsIndex,
+      },
+      data() {
+        return { posts };
+      },
+    });
+  }
 });
 
 

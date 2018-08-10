@@ -1,0 +1,42 @@
+<template>
+  <div id="admin_posts_table">
+    <div class="container-fluid opacity-light mh-100">
+      <% include ActionView::Helpers %>
+      <div class="col-sm-10">
+      <table class="table border-bottom border-bottom" id="admin_posts_table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <post-row v-for="(post, index) in posts" :post="post" :key="index"></post-row>
+        </tbody>
+      </table>
+      <button class="btn btn-light fixed-action-btn mb-2"
+              @click.prevent="$store.commit('createAdminPostFormShow')"
+              v-if="!$store.state.createAdminPostForm">
+        <%= t('titles.posts.add') %>
+      </button>
+    </div>
+      <post-form v-if="$store.state.createAdminPostForm"></post-form>
+    </div>
+  </div>
+</template>
+
+<script>
+  import PostRow from './PostRow.vue.erb';
+  import PostForm from './PostForm.vue.erb';
+
+  export default {
+    props: ['posts'],
+    components: {
+      PostRow,
+      PostForm,
+    },
+  };
+</script>
