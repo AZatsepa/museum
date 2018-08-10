@@ -7,33 +7,5 @@
         = link_to t('titles.comments.all'), admin_comments_path
       .border-bottom.p-2
         = link_to t('titles.users.all'), admin_users_path
-    .col-sm-10
-      table.table.border-bottom#admin_posts_table.border-bottom
-        thead
-          tr
-            th
-              | Id
-            th
-              | Author
-            th
-              | Title
-            th
-              | Edit
-            th
-              | Delete
-        tbody
-          - @posts.each do |post|
-            tr
-              th= post.id
-              th= post.user.name
-              th= link_to post.title, admin_post_path(post)
-              th
-                = link_to edit_admin_post_path(post), class: 'btn btn-link'
-                  span.fa.fa-pencil
-              th
-                = link_to admin_post_path(post), method: :delete, class: 'btn btn-danger', data: { confirm: t('confirmation') }
-                  span.fa.fa-trash
-      a#add_post_btn.btn.btn-light.fixed-action-btn.mb-2
-        = t('titles.posts.add')
-      .d-flex.justify-content-center.align-items-center.container
-        = render 'form', button: t('titles.posts.create'), post: current_user.posts.build
+    #vue-elem.col-sm-10
+      = content_tag 'posts-index', nil, data: { posts: @posts.to_json } do

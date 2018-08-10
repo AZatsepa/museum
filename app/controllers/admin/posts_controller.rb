@@ -26,10 +26,12 @@ module Admin
       @post_form = PostForm.new(post_params.merge(user: current_user))
       @post = @post_form.model
       authorize! :create, @post
-      if @post_form.save
-        redirect_to action: :index
-      else
-        render json: @post_form.errors.messages, status: :unprocessable_entity
+      respond_to do |format|
+        if @post_form.save
+          format.json { render json: @post }
+        else
+          format.json { render json: @post_form.errors.messages, status: :unprocessable_entity }
+        end
       end
     end
 

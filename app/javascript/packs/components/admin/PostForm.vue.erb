@@ -1,0 +1,43 @@
+<template>
+    <div class="d-flex justify-content-center align-items-center container">
+      <% include Rails.application.routes.url_helpers %>
+      <% include ActionView::Helpers %>
+      <div class="markdown" id="post_form">
+        <form class="new_post" style="display: block;">
+          <div class="form-group text-center align-items-center justify-content-center">
+            <label class="control-label">Заголовок</label>
+            <input class="form-control" type="text" v-model="post.title">
+            <div class="form-group text-center align-items-center justify-content-center">
+              <label class="control-label" for="post_body">Текст</label>
+              <textarea class="form-control" v-model="post.body" id="post_body"></textarea>
+            </div>
+            <div class="attachments">
+
+            </div>
+            <a class="add_post_attachment" href="#" id="add_file">Додати світлину</a>
+            <div class="form-group">
+              <button class="btn btn-success">
+                <%= t('titles.posts.create') %>
+              </button>
+              <button class="btn btn-danger cancel-btn" @click.prevent="$store.commit('createAdminPostFormHide')">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</template>
+
+<script>
+  export default {
+    props: ['post'],
+    mounted() {
+      $('#post_body').markItUp(this.$store.state.myHtmlSettings);
+    },
+  };
+</script>
+
+<style scoped>
+
+</style>

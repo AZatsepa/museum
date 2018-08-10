@@ -30,7 +30,7 @@ import './markitup';
 import './localizations';
 import './main';
 import './markitup_html';
-import './posts.coffee';
+import './posts';
 import './hilight';
 import './admin/posts';
 import './admin/comments';

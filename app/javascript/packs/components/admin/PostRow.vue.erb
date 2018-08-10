@@ -1,0 +1,29 @@
+<template>
+  <tr>
+    <th>{{ post.id }}</th>
+    <th>{{ post.author.name }}</th>
+    <th>
+      <a :href="`/admin/posts/${post.id}?locale=uk`">1 post</a>
+    </th>
+    <th>
+      <a class="btn btn-link" :href="`/admin/posts/${post.id}/edit?locale=uk`">
+        <span class="fa fa-pencil"></span>
+      </a>
+    </th>
+    <th>
+      <a class="btn btn-danger" data-confirm="Ви впевнені?" rel="nofollow" data-method="delete" :href="`/admin/posts/${post.id}?locale=uk`">
+        <span class="fa fa-trash"></span>
+      </a>
+    </th>
+  </tr>
+</template>
+
+<script>
+  export default {
+    props: ['post'],
+  };
+</script>
+
+<style scoped>
+
+</style>
