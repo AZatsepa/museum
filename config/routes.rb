@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       resources :posts, shallow: true, only: %i[index show create] do
         resources :comments, only: %i[index show create]
       end
+      # devise_for :users, controllers: { registrations: 'api/v1/users/registrations' },
+      #                    skip: %i[sessions password]
     end
   end
 

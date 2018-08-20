@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require action_cable
-//= require i18n
-//= require i18n/translations
 //= require_tree .
 //= require_tree ../templates
 
