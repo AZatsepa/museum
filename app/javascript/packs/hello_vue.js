@@ -16,19 +16,29 @@ Vue.use(TurbolinksAdapter);
 Vue.use(VueResource);
 Vue.use(Vuex);
 
-document.addEventListener('turbolinks:load', () => {
-  Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+export const eventBus = new Vue();
 
-  const el = document.getElementById('admin_posts_table');
+document.addEventListener('turbolinks:load', () => {
+  if (process.env.NODE_ENV !== 'test') {
+    Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  }
+
+  const el = document.getElementById('vue-elem');
 
   if (el !== null) {
+    const posts = JSON.parse(el.dataset.posts);
     const adminPostsIndex = new Vue({
       el,
       store,
       components: {
         PostsIndex,
       },
-    }).$mount('#vue-elem');
+      data() {
+        return {
+          posts,
+        };
+      },
+    });
   }
 });
 

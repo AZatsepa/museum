@@ -1,54 +1,57 @@
 <template>
   <div id="admin_posts_table">
     <div class="container-fluid opacity-light mh-100">
-    <% include Rails.application.routes.url_helpers %>
-    <% include ActionView::Helpers %>
-    <div class="row">
-      <div class="col-sm-2 border-right">
-        <div class="border-bottom p-2">
-          <%= link_to t('titles.posts.all'), admin_posts_path %>
-        </div>
-        <div class="border-bottom p-2">
-          <%= link_to t('titles.comments.all'), admin_comments_path %>
-        </div>
-        <div class="border-bottom p-2">
-          <%= link_to t('titles.users.all'), admin_users_path %>
-        </div>
-      </div>
+      <% include ActionView::Helpers %>
       <div class="col-sm-10">
-        <table class="table border-bottom border-bottom" id="admin_posts_table">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Author</th>
-              <th>Title</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <post-row v-for="post in posts" :post="post" :key="post"></post-row>
-          </tbody>
-        </table>
-        <button class="btn btn-light fixed-action-btn mb-2" @click.prevent="$store.commit('createAdminPostFormShow')">
-          <%= t('titles.posts.add') %>
-        </button>
-        <post-form v-if="$store.state.createAdminPostForm" :post="{}"></post-form>
-      </div>
+      <table class="table border-bottom border-bottom" id="admin_posts_table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <post-row v-for="(post, index) in myPosts" :post="post" :key="index"></post-row>
+        </tbody>
+      </table>
+      <button class="btn btn-light fixed-action-btn mb-2"
+              id="add_post_btn"
+              @click.prevent="$store.commit('createAdminPostFormShow')"
+              v-if="!$store.state.createAdminPostForm">
+        <%= t('titles.posts.add') %>
+      </button>
     </div>
-  </div>
+      <post-form v-if="$store.state.createAdminPostForm"></post-form>
+    </div>
   </div>
 </template>
 
 <script>
   import PostRow from './PostRow.vue.erb';
   import PostForm from './PostForm.vue.erb';
+  import { eventBus } from '../../hello_vue';
 
-  // const posts = JSON.parse(el.dataset.posts);
   export default {
+    props: ['posts'],
+    data() {
+      return {
+        myPosts: this.posts,
+      };
+    },
     components: {
       PostRow,
       PostForm,
+    },
+    created() {
+      eventBus.$on('postDeleted', (id) => {
+        this.myPosts = this.myPosts.filter(post =>  post.id !== id );
+      });
+      eventBus.$on('postCreated', (post) => {
+        this.myPosts.push(post);
+      });
     },
   };
 </script>

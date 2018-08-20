@@ -1,9 +1,9 @@
 <template>
   <tr>
     <th>{{ post.id }}</th>
-    <th>{{ post.author.name }}</th>
+    <th>{{ post.user_id }}</th>
     <th>
-      <a :href="`/admin/posts/${post.id}?locale=uk`">1 post</a>
+      <a :href="`/admin/posts/${post.id}?locale=uk`">{{ post.title }}</a>
     </th>
     <th>
       <a class="btn btn-link" :href="`/admin/posts/${post.id}/edit?locale=uk`">
@@ -11,7 +11,7 @@
       </a>
     </th>
     <th>
-      <a class="btn btn-danger" data-confirm="Ви впевнені?" rel="nofollow" data-method="delete" :href="`/admin/posts/${post.id}?locale=uk`">
+      <a class="btn btn-danger" @click.prevent="deletePost">
         <span class="fa fa-trash"></span>
       </a>
     </th>
@@ -19,8 +19,19 @@
 </template>
 
 <script>
+  import { eventBus } from '../../hello_vue';
+
   export default {
     props: ['post'],
+    methods: {
+      deletePost() {
+        this.$http.delete(`/admin/posts/${this.post.id}`).then(response => {
+          eventBus.$emit('postDeleted', this.post.id);
+        },  response => {
+          console.log(response);
+        })
+      },
+    },
   };
 </script>
 

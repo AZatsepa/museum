@@ -7,7 +7,7 @@ module Admin
     respond_to :html
 
     def index
-      @posts = Post.all.includes(:user)
+      @posts = Post.all
       @post_form = PostForm.new
       authorize! :read, @posts
     end
@@ -46,7 +46,6 @@ module Admin
 
     def destroy
       @post.destroy
-      redirect_to admin_posts_path
     end
 
     private

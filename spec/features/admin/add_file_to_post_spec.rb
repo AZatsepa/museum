@@ -16,12 +16,10 @@ feature 'Add files to posts', %q(
 
   scenario 'User adds file when create post', js: true do
     find('#add_post_btn').click
-    fill_in t('titles.posts.title'), with: 'Lorem ipsum'
-    fill_in t('titles.posts.body'), with: 'Dolor sit amet'
+    find('#post_title').set(Faker::Lorem.word)
+    find('#post_body').set(Faker::Lorem.word)
     click_on t('titles.attachments.add')
-    attach_file 'post_attachments_attributes_0_file',
-                Rails.root.join('app', 'javascript', 'images', '1782.png'),
-                visible: false
+    find('input[type="file"]').set(Rails.root.join('app', 'javascript', 'images', '1782.png'))
     expect do
       click_on t('titles.posts.create')
       sleep 1

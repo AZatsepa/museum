@@ -32,7 +32,6 @@ import './main';
 import './markitup_html';
 import './posts';
 import './hilight';
-import './admin/posts';
 import './admin/comments';
 import './admin/users';
 

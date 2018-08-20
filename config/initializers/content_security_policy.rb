@@ -20,6 +20,8 @@ Rails.application.config.content_security_policy do |policy|
                        'http://localhost:3035',
                        'ws://localhost:3035',
                        'ws://localfortress.com:3000'
+  elsif Rails.env.test?
+    policy.script_src :self, :https, :unsafe_eval
   else
     policy.script_src :self, :https
   end
