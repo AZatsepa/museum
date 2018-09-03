@@ -63,19 +63,19 @@ describe Admin::PostsController do
     context 'when valid' do
       it 'should create post' do
         expect do
-          post :create, params: { post: attributes_for(:post) }
+          post :create, params: { post: attributes_for(:post) }, xhr: true
         end.to change(Post, :count).from(0).to(1)
       end
     end
 
     context 'when invalid' do
       it 'should render error messages' do
-        post(:create, params: { post: invalid_post_params })
+        post(:create, params: { post: invalid_post_params }, xhr: true)
         expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
       end
 
       it 'should return 422 status' do
-        post :create, params: { post: invalid_post_params }
+        post :create, params: { post: invalid_post_params }, xhr: true
         expect(response).to have_http_status(422)
       end
     end

@@ -19,7 +19,7 @@ feature 'Add files to posts', %q(
     find('#post_title').set(Faker::Lorem.word)
     find('#post_body').set(Faker::Lorem.word)
     click_on t('titles.attachments.add')
-    find('input[type="file"]').set(Rails.root.join('app', 'javascript', 'images', '1782.png'))
+    find('input[type="file"]', visible: false).set(Rails.root.join('app', 'javascript', 'images', '1782.png'))
     expect do
       click_on t('titles.posts.create')
       sleep 1

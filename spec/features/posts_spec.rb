@@ -10,14 +10,15 @@ feature 'Posts', %q(
   given(:user) { create(:user) }
 
   context 'when user admin' do
-    scenario 'should create post' do
+    scenario 'should create post', js: true do
       login_as(admin, scope: :user, run_callbacks: false)
       visit admin_posts_path
       find('#add_post_btn').click
-      fill_in t('titles.posts.title'), with: 'Lorem ipsum'
-      fill_in t('titles.posts.body'), with: 'Dolor sit amet'
+      find('#post_title').set(Faker::Lorem.word)
+      find('#post_body').set(Faker::Lorem.word)
       expect do
         click_on t('titles.posts.create')
+        sleep 1
       end.to change(Post, :count).by(1)
     end
   end
@@ -35,13 +36,14 @@ feature 'Posts', %q(
 
       Capybara.using_session('admin') do
         find('#add_post_btn').click
-        fill_in t('titles.posts.title'), with: 'Lorem ipsum'
-        fill_in t('titles.posts.body'), with: 'Dolor sit amet'
+        find('#post_title').set('Lorem ipsum')
+        find('#post_body').set('Dolor sit amet')
         click_on t('titles.posts.create')
+        sleep 1
         expect(page).to have_content 'Lorem ipsum'
       end
 
-      Capybara.using_session('admin') do
+      Capybara.using_session('guest') do
         expect(page).to have_content 'Lorem ipsum'
       end
     end

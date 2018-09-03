@@ -39,23 +39,4 @@ $(document).on('turbolinks:load', () => {
       },
     });
   });
-
-  // $('.attachments').on('click', '.remove_file', (e) => {
-  //   e.preventDefault();
-  //   const fileNumber = $(e.currentTarget).data('file_number');
-  //   $(`#post_form_attachments_attributes_${fileNumber}_file`).val('');
-  // });
-  //
-  // $('.add_post_attachment').on('click', (e) => {
-  //   e.preventDefault();
-  //   const form = $(e.currentTarget).parent();
-  //   const fileInputs = form.find("input[type='file']");
-  //   let lastInd;
-  //   if (fileInputs.length) {
-  //     lastInd = fileInputs.last().data('attachment-number') + 1;
-  //   } else {
-  //     lastInd = 0;
-  //   }
-  //   form.find('.attachments').append(attachmentField(lastInd));
-  // });
 });

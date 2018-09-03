@@ -64,9 +64,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', path: '../capybara'
   gem 'capybara-selenium'
-  gem 'chromedriver-helper'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
