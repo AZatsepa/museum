@@ -13,17 +13,18 @@ import 'jquery-ui';
 import 'jquery-ujs';
 import Turbolinks from 'turbolinks';
 import 'datatables.net';
+import 'babel-polyfill';
 
 import '../images/1782.png';
 import '../images/1782_white.jpg';
 import '../images/1943.png';
 import '../images/2017.png';
 import '../images/background.jpg';
+import '../images/noavatar.png';
 import '../src/application.scss';
 
 import './cable';
-import './hello_vue';
-import './comments';
+import './vue_settings';
 import './imageMapResizer';
 import './jquery.maphilight';
 import './markitup';

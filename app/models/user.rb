@@ -29,6 +29,7 @@ class User < ApplicationRecord
   def self.find_for_oauth(auth)
     authentication = Authentication.find_by(provider: auth.provider, uid: auth.uid.to_s)
     return authentication.user if authentication.present?
+
     email = auth.info[:email]
     user = User.find_by(email: email)
     unless user
@@ -52,6 +53,6 @@ class User < ApplicationRecord
   end
 
   def image
-    image_url || ActionController::Base.helpers.asset_pack_path('images/noavatar.png')
+    image_url || ActionController::Base.helpers.asset_pack_path('noavatar.png')
   end
 end

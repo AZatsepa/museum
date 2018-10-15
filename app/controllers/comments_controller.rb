@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     if @comment_form.save
       render json: @comment
     else
-      render json: @comment_form.errors.full_messages, status: :unprocessable_entity
+      render json: @comment_form.errors.full_messages.to_json, status: :unprocessable_entity
     end
   end
 
@@ -40,15 +40,12 @@ class CommentsController < ApplicationController
   end
 
   def set_comment_post
-    @post = if params[:action].eql?('create')
-              Post.find(params[:post_id])
-            else
-              @comment.post
-            end
+    @post = params[:action].eql?('create') ? Post.find(params[:post_id]) : @comment.post
   end
 
   def change_comments
     return if @comment.errors.any?
+
     ActionCable.server.broadcast(
       "comments_for_post_#{params[:post_id]}",
       comment: CommentSerializer.new(@comment),
@@ -59,6 +56,7 @@ class CommentsController < ApplicationController
 
   def change_comments_by_form
     return if @comment_form.errors.any?
+
     ActionCable.server.broadcast(
       "comments_for_post_#{params[:post_id]}", comment: CommentSerializer.new(@comment_form.model.reload),
                                                action: params[:action],

@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 require_relative 'feature_helper'
-feature 'Posts', %q(
+describe 'Posts', %q(
   In order to creating posts
   I want to manage posts
 ) do
-  given(:post) { create(:post, user: user) }
-  given(:admin) { create(:user, :admin) }
-  given(:user) { create(:user) }
+  let(:post) { create(:post, user: user) }
+  let(:admin) { create(:user, :admin) }
+  let(:user) { create(:user) }
 
   context 'when user admin' do
-    scenario 'should create post', js: true do
+    it 'creates post', js: true do
       login_as(admin, scope: :user, run_callbacks: false)
       visit admin_posts_path
       find('#add_post_btn').click
@@ -23,8 +23,8 @@ feature 'Posts', %q(
     end
   end
 
-  context 'multiple sessions' do
-    scenario "post appears on another user's page", js: true do
+  context 'when multiple sessions' do
+    it "post appears on another user's page", js: true do
       Capybara.using_session('admin') do
         login_as(admin, scope: :user, run_callbacks: false)
         visit admin_posts_path
@@ -50,13 +50,13 @@ feature 'Posts', %q(
   end
 
   context 'when user not admin' do
-    background do
+    before do
       login_as(user, scope: :user, run_callbacks: false)
     end
 
-    scenario 'should redirect to root path' do
+    it 'redirects to root path' do
       visit admin_posts_path
-      expect(current_path).to eql root_path
+      expect(page).to have_current_path(root_path, ignore_query: true)
     end
   end
 end

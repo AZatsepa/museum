@@ -1,28 +1,18 @@
 .row.align-items-center.justify-content-center
-  #post-wrapper.text-center.opacity-light-post.col-lg-9.p-4[data-post_id=@post.id]
-    .row.border-bottom.align-items-center.justify-content-center
-      .col-lg-9
-        h2 = @post.title
-    .row.border-bottom.align-items-center.justify-content-center
-      .col-lg-9.p-3
-        .post-body-show
-          = @post.body.html_safe
-        ul.attachments
-          - @post.attachments.each do |a|
-            li= link_to a.file.url, class: 'col p-2'
+  - present(@post, PostPresenter) do |post|
+    #post-wrapper.text-center.opacity-light-post.col-lg-9.p-4[data-post_id=post.id]
+      .row.border-bottom.align-items-center.justify-content-center
+        .col-lg-9
+          h2 = post.title
+      .row.border-bottom.align-items-center.justify-content-center
+        .col-lg-9.p-3
+          .post-body-show
+            = post.html_body
+          ul.attachments
+            - post.attachments.each do |a|
+              li= link_to a.file.url, class: 'col p-2'
               = image_tag a.file.url, size: '250x200'
-    .row.text-left.p-3
-      .col-lg-9
-        .comments
-          - @post.comments.includes(:attachments, :user).order(:created_at).each do |comment|
-            = render 'shared/comment', comment: comment
-        - if can? :create, Comment
-          .row.text-left
-            = form_for [@post, @comment_form], as: :comment, url: post_comments_path(@post), authenticity_token: true  do |f|
-              .form-group
-                = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
-                .comment-errors
-                = f.text_area :text, id: 'new_comment_text', class: 'form-control form-control-lg', rows: 5
-                = render 'shared/attachments_form', f: f
-                a.add_comment_attachment[href='#'] = t('titles.attachments.add')
-              = f.submit t('titles.comments.add'), data: { 'disable-with' => t('saving') }
+      .row.text-left.p-3
+        = content_tag :div, nil, id: 'vue-comments-elem', data: { comments: post.comments,
+                post_id: post.id } do
+          app-comments :comments="comments" :post_id="postId"

@@ -2,19 +2,19 @@
 
 require_relative '../feature_helper'
 
-feature 'Add files to posts', %q(
+describe 'Add files to posts', %q(
   In order to illustrate my post
   As an admin
   I'd like to be able to attach files
 ) do
-  given(:admin) { create(:user, :admin) }
+  let(:admin) { create(:user, :admin) }
 
-  background do
+  before do
     login_as(admin, scope: :user, run_callbacks: false)
     visit admin_posts_path
   end
 
-  scenario 'User adds file when create post', js: true do
+  it 'User adds file when create post', js: true do
     find('#add_post_btn').click
     find('#post_title').set(Faker::Lorem.word)
     find('#post_body').set(Faker::Lorem.word)

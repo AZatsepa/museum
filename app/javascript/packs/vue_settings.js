@@ -9,12 +9,16 @@ import TurbolinksAdapter from 'vue-turbolinks';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VueResource from 'vue-resource';
-import PostsIndex from './components/admin/PostsIndex.vue.erb';
+import VueCanCan from 'vue-cancan';
+import Comments from './components/Comments.vue.erb';
 import store from './store';
+import PostsIndex from './components/admin/PostsIndex.vue.erb';
 
 Vue.use(TurbolinksAdapter);
 Vue.use(VueResource);
 Vue.use(Vuex);
+
+Vue.use(VueCanCan, { rules: gon.abilities.rules});
 
 export const eventBus = new Vue();
 
@@ -23,12 +27,32 @@ document.addEventListener('turbolinks:load', () => {
     Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   }
 
-  const el = document.getElementById('vue-elem');
+  const commentsEl = document.getElementById('vue-comments-elem');
 
-  if (el !== null) {
-    const posts = JSON.parse(el.dataset.posts);
+  if (commentsEl !== null) {
+    const comments = JSON.parse(commentsEl.dataset.comments);
+    const postId = JSON.parse(commentsEl.dataset.postId);
+    const postComments = new Vue({
+      el: commentsEl,
+      store,
+      components: {
+        appComments: Comments,
+      },
+      data() {
+        return {
+          comments,
+          postId,
+        };
+      },
+    });
+  }
+
+  const postsEl = document.getElementById('vue-elem');
+
+  if (postsEl !== null) {
+    const posts = JSON.parse(postsEl.dataset.posts);
     const adminPostsIndex = new Vue({
-      el,
+      el: postsEl,
       store,
       components: {
         PostsIndex,

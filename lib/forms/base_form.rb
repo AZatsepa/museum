@@ -19,6 +19,7 @@ class BaseForm
     @attachments_attributes = attributes
     @attachments_attributes.each do |_i, attachment_params|
       next if attachment_params[:file].blank?
+
       @attachments.push(Attachment.new(attachable: @model, file: attachment_params[:file]))
     end
   end
@@ -43,6 +44,7 @@ class BaseForm
 
   def destroy_attachments!
     return if attachments_attributes.blank?
+
     ids = []
     attachments_attributes.each_value do |v|
       ids << v[:id] if %w[on 1].include?(v[:_destroy])
@@ -52,6 +54,7 @@ class BaseForm
 
   def save_model
     return false unless model.save
+
     update_attachments
     true
   end

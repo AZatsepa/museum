@@ -2,20 +2,20 @@
 
 require_relative '../feature_helper'
 
-feature 'Edit comments', %q(
+describe 'Edit comments', %q(
   In order to manage comments
   As an admin
   I'd like to be able to delete comments
 ) do
-  given(:admin) { create(:user, :admin) }
-  given!(:comment) { create(:comment) }
+  let(:admin) { create(:user, :admin) }
 
-  background do
+  before do
+    create(:comment)
     login_as(admin, scope: :user, run_callbacks: false)
     visit admin_comments_path
   end
 
-  scenario 'User deletes comment', js: true do
+  it 'User deletes comment', js: true do
     expect do
       find(:xpath, "//a[@href='/admin/comments/1?locale=en'][@data-method='delete']").click
     end.to change(Comment, :count).by(-1)

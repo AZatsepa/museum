@@ -7,12 +7,12 @@ describe Admin::PostsController do
   let(:invalid_post_params) { { title: nil, body: nil } }
 
   before do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
+    request.env['devise.mapping'] = Devise.mappings[:user]
     sign_in admin_user
   end
 
   describe 'GET #index' do
-    it 'should assign @posts' do
+    it 'assigns @posts' do
       admin_post
       get 'index', xhr: true
       expect(assigns(:posts)).to eq([admin_post])
@@ -20,14 +20,14 @@ describe Admin::PostsController do
   end
 
   describe 'GET #show' do
-    it 'should show selected post' do
+    it 'shows selected post' do
       get 'show', params: { id: admin_post.id }
       expect(assigns(:post)).to eq(admin_post)
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'should delete post' do
+    it 'deletes post' do
       admin_post
       expect do
         delete 'destroy', params: { id: admin_post.id }
@@ -36,24 +36,24 @@ describe Admin::PostsController do
   end
 
   describe 'PATCH #update' do
-    it 'should update post' do
+    it 'updates post' do
       patch :update, params: { id: admin_post.id, post: valid_post_params }
       expect(admin_post.reload.title).to eql(valid_post_params[:title])
     end
 
-    it 'should render error messages' do
+    it 'renders error messages' do
       patch :update, params: { id: admin_post.id, post: invalid_post_params }
       expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
     end
 
-    it 'should return 422 status' do
+    it 'returns :unprocessable_entity status' do
       patch :update, params: { id: admin_post.id, post: invalid_post_params }
-      expect(response).to have_http_status(422)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
   describe 'GET #new' do
-    it 'should assigns new post' do
+    it 'assigns new post' do
       get :new, xhr: true
       expect(assigns(:post)).to be_a Post
     end
@@ -61,7 +61,7 @@ describe Admin::PostsController do
 
   describe 'POST #create' do
     context 'when valid' do
-      it 'should create post' do
+      it 'creates post' do
         expect do
           post :create, params: { post: attributes_for(:post) }, xhr: true
         end.to change(Post, :count).from(0).to(1)
@@ -69,14 +69,14 @@ describe Admin::PostsController do
     end
 
     context 'when invalid' do
-      it 'should render error messages' do
+      it 'renders error messages' do
         post(:create, params: { post: invalid_post_params }, xhr: true)
         expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
       end
 
-      it 'should return 422 status' do
+      it 'returns :unprocessable_entity status' do
         post :create, params: { post: invalid_post_params }, xhr: true
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

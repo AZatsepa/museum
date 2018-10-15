@@ -2,14 +2,14 @@
 
 FactoryBot.define do
   factory :user do
-    nickname { Faker::Internet.name }
+    nickname { Faker::Name.name }
     email { Faker::Internet.email }
-    password 'password'
+    password { 'password' }
     confirmed_at { Time.zone.now }
-    role 'user'
+    role { 'user' }
 
     trait :admin do
-      role 'admin'
+      role { 'admin' }
     end
   end
 end

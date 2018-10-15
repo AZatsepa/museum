@@ -56,6 +56,7 @@ module Admin
 
     def publish_post
       return if @post_form.errors.any?
+
       ActionCable.server.broadcast(
         'posts',
         ApplicationController.render(

@@ -14,6 +14,7 @@
                 url: admin_post_path(@post),
                 html: { id: :edit_post },
                 data: { post_id: @post.id },
+                method: :patch,
                 authenticity_token: true do |f|
           p
             = f.label :title, t('titles.posts.title')

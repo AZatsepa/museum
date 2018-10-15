@@ -20,6 +20,9 @@ coverage
 :environment
 /public/packs
 /public/packs-test
+/public/assets
+/public/javascripts
+/public/uploads
 /node_modules
 yarn-debug.log*
 .yarn-integrity

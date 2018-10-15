@@ -3,15 +3,15 @@
     <th>{{ post.id }}</th>
     <th>{{ post.user_id }}</th>
     <th>
-      <a :href="`/admin/posts/${post.id}?locale=uk`">{{ post.title }}</a>
+      <a :href="`/admin/posts/${post.id}?locale=<%= I18n.locale %>`">{{ post.title }}</a>
     </th>
     <th>
-      <a class="btn btn-link" :href="`/admin/posts/${post.id}/edit?locale=uk`">
+      <a class="btn btn-link" :href="`/admin/posts/${post.id}/edit?locale=<%= I18n.locale %>`">
         <span class="fa fa-pencil"></span>
       </a>
     </th>
     <th>
-      <a class="btn btn-danger" @click.prevent="deletePost">
+      <a class="btn btn-danger delete-post" @click.prevent="deletePost">
         <span class="fa fa-trash"></span>
       </a>
     </th>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { eventBus } from '../../hello_vue';
+  import { eventBus } from '../../vue_settings';
 
   export default {
     props: ['post'],
