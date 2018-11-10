@@ -34,7 +34,6 @@ gem 'sass-rails'
 gem 'sentry-raven'
 gem 'slim-rails'
 gem 'turbolinks'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier'
 gem 'unicorn'
 gem 'webpacker'
