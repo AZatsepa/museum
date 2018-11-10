@@ -13,6 +13,6 @@
               li= link_to a.file.url, class: 'col p-2'
               = image_tag a.file.url, size: '250x200'
       .row.text-left.p-3
-        = content_tag :div, nil, id: 'vue-comments-elem', data: { comments: post.comments,
+        = content_tag :div, nil, id: 'vue-comments-elem', data: { comments: post.post_comments,
                 post_id: post.id } do
           app-comments :comments="comments" :post_id="postId"

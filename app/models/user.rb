@@ -53,6 +53,6 @@ class User < ApplicationRecord
   end
 
   def image
-    image_url || ActionController::Base.helpers.asset_pack_path('noavatar.png')
+    image_url || ActionController::Base.helpers.asset_pack_path('images/noavatar.png')
   end
 end
