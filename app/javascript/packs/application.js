@@ -39,5 +39,3 @@ import './admin/users';
 Turbolinks.start();
 
 window.I18n = require('i18n-js');
-window.jst = require('jst');
-$.mobile.autoInitializePage = false;

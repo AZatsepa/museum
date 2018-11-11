@@ -4134,13 +4134,6 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jquery-mobile@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/jquery-mobile/-/jquery-mobile-1.4.1.tgz#4c5eaf3d20f99973d1481ed4c9c8921d016fe198"
-  integrity sha1-TF6vPSD5mXPRSB7UyciSHQFv4Zg=
-  dependencies:
-    jquery ">=1.8.3"
-
 jquery-ui@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
@@ -4153,7 +4146,7 @@ jquery-ujs@^1.2.2:
   dependencies:
     jquery ">=1.8.0"
 
-jquery@>=1.7, jquery@>=1.8.0, jquery@>=1.8.3, jquery@^3.3.1:
+jquery@>=1.7, jquery@>=1.8.0, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
