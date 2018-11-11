@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require action_cable
-//= require i18n/translations
 //= require_tree .
 
 var App = App || {};
