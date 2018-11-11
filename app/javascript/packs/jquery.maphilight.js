@@ -227,7 +227,7 @@
             }
 
             map = $(`map[name='${usemap.substr(1)}']`);
-            // debugger;
+
             if(!(img.is('img,input[type="image"]') && usemap && map.length > 0)) {
                 return;
             }

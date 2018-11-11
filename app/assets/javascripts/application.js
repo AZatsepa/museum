@@ -10,9 +10,4 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require action_cable
 //= require_tree .
-
-var App = App || {};
-App.cable = ActionCable.createConsumer();
-$.mobile.autoInitializePage = false;
