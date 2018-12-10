@@ -7,5 +7,6 @@ if vendored_cucumber_bin
 else
   require 'rubygems' unless ENV['NO_RUBYGEMS']
   require 'cucumber'
+  ENV['NODE_ENV'] = 'test'
   load Cucumber::BINARY
 end

@@ -8,7 +8,7 @@ describe CommentForm, type: :model do
     ActionDispatch::Http::UploadedFile.new(
       filename: '1782.png',
       type: 'image/png',
-      tempfile: File.new(Rails.root.join('app', 'assets', 'images', '1782.png'))
+      tempfile: File.new(Rails.root.join('app', 'javascript', 'images', '1782.png'))
     )
   end
   let(:subject_with_file) do
@@ -18,18 +18,18 @@ describe CommentForm, type: :model do
                         attachments_attributes: { 0 => { file: test_file } })
   end
 
-  it { should validate_presence_of :text }
-  it { should validate_presence_of :post }
-  it { should validate_presence_of :user }
+  it { is_expected.to validate_presence_of :text }
+  it { is_expected.to validate_presence_of :post }
+  it { is_expected.to validate_presence_of :user }
 
-  it 'should update comment' do
+  it 'updates comment' do
     comment_form = build(:comment_form, model: comment, text: 'Changed text')
     expect do
       comment_form.update
     end.to change(comment, :text).from('Comment text').to('Changed text')
   end
 
-  it 'should create comment' do
+  it 'creates comment' do
     comment_form = described_class.new(text: 'Comment text', user: user, post: post)
     expect do
       comment_form.save

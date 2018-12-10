@@ -7,7 +7,7 @@ module Admin
     respond_to :html
 
     def index
-      @posts = Post.all.includes(:user)
+      @posts = Post.all
       @post_form = PostForm.new
       authorize! :read, @posts
     end
@@ -26,10 +26,12 @@ module Admin
       @post_form = PostForm.new(post_params.merge(user: current_user))
       @post = @post_form.model
       authorize! :create, @post
-      if @post_form.save
-        redirect_to action: :index
-      else
-        render json: @post_form.errors.messages, status: :unprocessable_entity
+      respond_to do |format|
+        if @post_form.save
+          format.json { render json: @post }
+        else
+          format.json { render json: @post_form.errors.messages, status: :unprocessable_entity }
+        end
       end
     end
 
@@ -44,7 +46,6 @@ module Admin
 
     def destroy
       @post.destroy
-      redirect_to admin_posts_path
     end
 
     private
@@ -55,6 +56,7 @@ module Admin
 
     def publish_post
       return if @post_form.errors.any?
+
       ActionCable.server.broadcast(
         'posts',
         ApplicationController.render(

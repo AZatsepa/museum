@@ -9,18 +9,15 @@ end
 
 gem 'active_model_serializers'
 gem 'bootsnap', require: false
-gem 'bootstrap'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'coffee-rails'
 gem 'devise'
-gem 'doorkeeper'
+gem 'doorkeeper', '~> 4.3.2'
 gem 'execjs'
+gem 'foreman'
 gem 'gon'
-gem 'i18n-js'
 gem 'jbuilder'
-gem 'jquery-datatables'
-gem 'jquery-rails'
 gem 'oj'
 gem 'oj_mimic_json'
 gem 'omniauth'
@@ -35,12 +32,11 @@ gem 'rails-i18n'
 gem 'redcarpet'
 gem 'sass-rails'
 gem 'sentry-raven'
-gem 'skim'
 gem 'slim-rails'
 gem 'turbolinks'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier'
 gem 'unicorn'
+gem 'webpacker'
 
 group :production do
   gem 'rails_12factor'
@@ -49,7 +45,6 @@ end
 group :development do
   gem 'html2slim'
   gem 'listen'
-  gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'
@@ -63,10 +58,14 @@ group :development, :test do
   gem 'i18n-tasks'
   gem 'letter_opener'
   gem 'pry-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec'
 end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-selenium'
+  gem 'chromedriver-helper'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'

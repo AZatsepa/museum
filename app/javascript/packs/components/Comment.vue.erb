@@ -1,0 +1,86 @@
+<template>
+    <div class="border-bottom comment">
+    <% include ActionView::Helpers %>
+        {{ myComment.text }}
+        <div v-for="(attachment, index) in myComment.attachments" :attachment="attachment" :key="index">
+         <div class="row">
+           <a :href="attachment.url" class="col p-2">
+             <img :src="attachment.url" size="25x20">
+           </a>
+         </div>
+        </div>
+        <div class="row">
+         <a class="btn btn-link fa fa-pencil edit-comment-link"
+            @click.prevent="commentFormHide = !commentFormHide"
+            v-if="this.$can('update', 'Comment', myComment)">
+         </a>
+         <a @click.prevent="destroyComment"
+            class="btn btn-link fa fa-trash delete-comment-link"
+            v-if="this.$can('destroy', 'Comment', myComment)">
+         </a>
+        </div>
+        <div class="row" v-if="!commentFormHide">
+         <div class="col">
+           <form>
+             <div class="form-group">
+               <textarea class="form-control" rows="15" v-model="myComment.text" id="comment_text">
+               </textarea>
+             </div>
+             <div class="form-group">
+
+             </div>
+             <div class="form-group">
+               <button class="btn btn-success" @click.prevent="updateComment">
+                <%= t('titles.comments.edit') %>
+              </button>
+             </div>
+           </form>
+         </div>
+       </div>
+        <div class="row">
+          <div class="col-3 p-3">
+             <%= t('titles.author') %>: {{ myComment.user.name }}
+          </div>
+          <div class="col-9 p-3">
+             <%= t('created_at') %>: {{ myComment.created_at }}
+          </div>
+       </div>
+     </div>
+</template>
+
+<script>
+  import objectToFormData from '../shared/object_to_form_data';
+
+  export default {
+    name: 'Comment',
+    props: ['comment'],
+    data() {
+      return {
+        myComment: this.comment,
+        commentFormHide: true,
+      };
+    },
+    methods: {
+      destroyComment() {
+        this.$http.delete(`/posts/${this.comment.post_id}/comments/${this.comment.id}`).then(response => {
+        },  response => {
+          console.log(response);
+        });
+      },
+      updateComment() {
+        const commentToUpdate = objectToFormData(this.myComment, null, 'comment');
+        this.$http.patch(`/posts/${this.comment.post_id}/comments/${this.comment.id}`, commentToUpdate)
+          .then(response => {
+              this.commentFormHide = true;
+              this.myComment = response.data.comment;
+            },  response => {
+              console.log(response);
+          });
+      },
+    },
+  };
+</script>
+
+<style scoped>
+
+</style>

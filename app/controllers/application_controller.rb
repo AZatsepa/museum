@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
 
   protect_from_forgery with: :exception
-  before_action :set_locale
+  before_action :set_locale, :set_abilities
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -31,6 +31,11 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = extract_locale || I18n.default_locale
+  end
+
+  def set_abilities
+    gon.abilities = current_ability.as_json
+    gon.current_user = current_user.as_json
   end
 
   def extract_locale

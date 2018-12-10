@@ -6,28 +6,31 @@ class Ability
   attr_reader :user, :controller_namespace
 
   def initialize(user, controller_namespace)
-    @user = user
+    @user = user || User.new
     @controller_namespace = controller_namespace
-    if user
-      user.admin? ? admin_abilities : user_abilities
+    if @user.admin?
+      can :manage, :all
+    elsif @user.confirmed_at
+      return if controller_namespace == ADMIN_CONTROLLER
+
+      can :read, Post
+      can :manage, Comment, user_id: @user.id
+      can %i[read update], User, id: @user.id
     else
-      guest_abilities
+      return if controller_namespace == ADMIN_CONTROLLER
+
+      can :read, [Post, Comment]
     end
   end
 
-  def guest_abilities
-    return if controller_namespace == ADMIN_CONTROLLER
-    can :read, [Post, Comment]
-  end
-
-  def admin_abilities
-    can :manage, :all
-  end
-
-  def user_abilities
-    return if controller_namespace == ADMIN_CONTROLLER
-    guest_abilities
-    can :create, Comment
-    can %i[update destroy], Comment, user: user
+  def as_json
+    { rules: rules.map do |rule|
+      {
+        base_behavior: rule.base_behavior,
+        actions:       rule.actions.as_json,
+        subjects:      rule.subjects.map(&:to_s),
+        conditions:    rule.conditions.as_json
+      }
+    end }.as_json
   end
 end

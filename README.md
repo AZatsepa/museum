@@ -18,7 +18,7 @@ Run tests:
 
 _docker-compose run app bash_
 
-_bundle exec ruby script/ci/travis.rb_
+_bundle exec rspec_
 
 Run app locally in development mode with Docker:
 

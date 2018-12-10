@@ -8,19 +8,19 @@ describe CommentsController, type: :controller do
 
   describe 'POST #create' do
     before do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
+      request.env['devise.mapping'] = Devise.mappings[:user]
       sign_in user
     end
 
     context 'when valid' do
-      it 'should create comment' do
+      it 'creates comment' do
         expect do
           post :create, params: { comment: attributes_for(:comment), post_id: comment_post }, xhr: true
         end.to change(comment_post.comments, :count).by(1)
       end
 
       comment_allowed_fields.each do |field|
-        it "response should contain #{field}" do
+        it "response contains #{field}" do
           post :create, params: { comment: attributes_for(:comment), post_id: comment_post }, xhr: true
           expect(response.body).to have_json_path("comment/#{field}")
         end
@@ -28,20 +28,20 @@ describe CommentsController, type: :controller do
     end
 
     context 'when invalid' do
-      it 'should not create comment' do
+      it 'does not create comment' do
         expect do
           post :create, params: { comment: attributes_for(:comment, :invalid), post_id: comment_post }, xhr: true
-        end.to_not change(Comment, :count)
+        end.not_to change(Comment, :count)
       end
 
-      it 'should render error messages' do
+      it 'renders error messages' do
         post :create, params: { comment: attributes_for(:comment, :invalid), post_id: comment_post }, xhr: true
         expect(response.body).to be_json_eql(["Text can't be blank"].to_json)
       end
 
-      it 'should return 422 status' do
+      it 'returns :unprocessable_entity status' do
         post :create, params: { comment: attributes_for(:comment, :invalid), post_id: comment_post }, xhr: true
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -53,25 +53,26 @@ describe CommentsController, type: :controller do
     context 'when user' do
       context 'when own comment' do
         before do
-          @request.env['devise.mapping'] = Devise.mappings[:user]
+          request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in user
           patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
         end
-        it 'should assigns comment to @comment' do
+
+        it 'assigns comment to @comment' do
           expect(assigns(:comment)).to eql comment
         end
 
-        it 'should assigns post to @post' do
+        it 'assigns post to @post' do
           expect(assigns(:post)).to eql comment_post
         end
 
-        it 'should update comment' do
+        it 'updates comment' do
           comment.reload
           expect(comment.text).to eql('updated text')
         end
 
         comment_allowed_fields.each do |field|
-          it "response should contain #{field}" do
+          it "response contains #{field}" do
             comment.reload
             expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
           end
@@ -80,56 +81,56 @@ describe CommentsController, type: :controller do
 
       context "when other user's comment" do
         before do
-          @request.env['devise.mapping'] = Devise.mappings[:user]
+          request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in user
         end
 
-        it 'should not assigns post to @post' do
+        it 'does not assigns post to @post' do
           patch :update,
                 params: { id: other_users_comment, post_id: comment_post, comment: { text: 'updated text' } },
                 xhr: true
           expect(assigns(:post)).to be_nil
         end
 
-        it 'should not update comment' do
+        it 'does not update comment' do
           expect do
             patch :update,
                   params: { id: other_users_comment, post_id: comment_post, comment: { text: 'updated text' } },
                   xhr: true
-          end.to_not change(other_users_comment, :text)
+          end.not_to change(other_users_comment, :text)
         end
 
-        it 'should not render edit template' do
+        it 'does not render edit template' do
           expect(
             patch(:update,
                   params: { id: other_users_comment, post_id: comment_post, comment: { text: 'updated text' } },
                   xhr: true)
-          ).to_not render_template :update
+          ).not_to render_template :update
         end
       end
 
       context 'when admin' do
         before do
-          @request.env['devise.mapping'] = Devise.mappings[:user]
+          request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in admin
           patch :update, params: { id: comment, post_id: comment_post, comment: { text: 'updated text' } }, xhr: true
         end
 
-        it 'should assigns comment to @comment' do
+        it 'assigns comment to @comment' do
           expect(assigns(:comment)).to eql comment
         end
 
-        it 'should assigns post to @post' do
+        it 'assigns post to @post' do
           expect(assigns(:post)).to eql comment_post
         end
 
-        it 'should update comment' do
+        it 'updates comment' do
           comment.reload
           expect(comment.text).to eql('updated text')
         end
 
         comment_allowed_fields.each do |field|
-          it "response should contain #{field}" do
+          it "response contains #{field}" do
             comment.reload
             expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
           end
@@ -145,80 +146,81 @@ describe CommentsController, type: :controller do
     context 'when user' do
       context 'when own comment' do
         before do
-          @request.env['devise.mapping'] = Devise.mappings[:user]
+          request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in user
         end
-        it 'should assigns comment to @comment' do
+
+        it 'assigns comment to @comment' do
           delete :destroy, params: { id: comment, post_id: comment_post }, xhr: true
           expect(assigns(:comment)).to eql comment
         end
 
-        it 'should assigns post to @post' do
+        it 'assigns post to @post' do
           delete :destroy, params: { id: comment, post_id: comment_post }, xhr: true
           expect(assigns(:post)).to eql comment_post
         end
 
-        it 'should destroy comment' do
+        it 'destroys comment' do
           expect do
             delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
           end.to change(Comment, :count).by(-1)
         end
 
-        it 'should return no content status' do
+        it 'returns no content status' do
           delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
-          expect(response.status).to eql 204
+          expect(response.status).to be 204
         end
       end
 
       context "when other user's comment" do
         before do
-          @request.env['devise.mapping'] = Devise.mappings[:user]
+          request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in user
         end
 
-        it 'should not assigns post to @post' do
+        it 'does not assigns post to @post' do
           delete(:destroy, params: { id: other_users_comment, post_id: comment_post }, xhr: true)
           expect(assigns(:post)).to be_nil
         end
 
-        it 'should not destroy comment' do
+        it 'does not destroy comment' do
           expect do
             delete(:destroy, params: { id: other_users_comment, post_id: comment_post }, xhr: true)
-          end.to_not change(Comment, :count)
+          end.not_to change(Comment, :count)
         end
 
-        it 'should not render destroy template' do
+        it 'does not render destroy template' do
           expect(
             delete(:destroy, params: { id: other_users_comment, post_id: comment_post }, xhr: true)
-          ).to_not render_template :destroy
+          ).not_to render_template :destroy
         end
       end
 
       context 'when admin' do
         before do
-          @request.env['devise.mapping'] = Devise.mappings[:user]
+          request.env['devise.mapping'] = Devise.mappings[:user]
           sign_in admin
         end
 
-        it 'should assigns comment to @comment' do
+        it 'assigns comment to @comment' do
           delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
           expect(assigns(:comment)).to eql comment
         end
 
-        it 'should assigns post to @post' do
+        it 'sassigns post to @post' do
           delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
           expect(assigns(:post)).to eql comment_post
         end
 
-        it 'should destroy comment' do
+        it 'destroys comment' do
           expect do
             delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
           end.to change(Comment, :count).by(-1)
         end
 
-        it 'should return no content status' do
+        it 'returns no content status' do
           delete(:destroy, params: { id: comment, post_id: comment_post }, xhr: true)
-          expect(response.status).to eql 204
+          expect(response.status).to be 204
         end
       end
     end

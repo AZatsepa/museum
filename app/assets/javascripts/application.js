@@ -10,25 +10,4 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require datatables
-//= require jquery.maphilight.js
-//= require imageMapResizer.js
-//= require jquery.mobile-git
-//= require jquery.markitup
-//= require markitup_set
-//= require turbolinks
-//= require main
-//= require hilight
-//= require action_cable
-//= require i18n
-//= require i18n/translations
-//= require popper
-//= require bootstrap-sprockets
 //= require_tree .
-//= require_tree ../templates
-
-var App = App || {};
-App.cable = ActionCable.createConsumer();
-$.mobile.autoInitializePage = false;

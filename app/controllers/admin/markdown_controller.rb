@@ -2,8 +2,9 @@
 
 module Admin
   class MarkdownController < ApplicationController
+    layout false
     def preview
-      @text = params[:data]
+      render html: params[:data].html_safe
     end
   end
 end

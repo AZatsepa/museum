@@ -16,7 +16,7 @@
           .row.border-bottom.align-items-center.justify-content-center
             .col-lg-9.p-3
               .post-body-show
-                = markdown(@post.body)
+                = sanitize @post.body.html_safe
               ul.list-group.attachments
                 - @post.attachments.each do |a|
                   li.list-group-item= link_to a.file.url do
