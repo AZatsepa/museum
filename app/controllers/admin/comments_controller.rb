@@ -23,11 +23,9 @@ module Admin
     end
 
     def update
-      @comment_form = CommentForm.new(comment_params.merge(model: @comment, post: @post, user: current_user))
-      @comment = @comment_form.model
-      authorize! :update, @comment
+      @comment_form = CommentForm.new(update_comment_params.merge(comment: @comment))
       if @comment_form.update
-        redirect_to admin_comment_path(@comment)
+        render json: @comment.reload, serializer: CommentSerializer
       else
         render json: @comment_form.errors.full_messages, status: :unprocessable_entity
       end
@@ -49,6 +47,10 @@ module Admin
 
     def comment_params
       params.require(:comment).permit(:text, attachments_attributes: %i[file _destroy id])
+    end
+
+    def update_comment_params
+      params.require(:comment).permit(:text, images: [], destroy_images: [])
     end
   end
 end

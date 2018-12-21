@@ -3,27 +3,25 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource except: %i[create]
   before_action :set_comment_post
-  after_action :change_comments, only: %i[destroy]
-  after_action :change_comments_by_form, only: %i[create update]
+  after_action :change_comments, only: %i[create destroy]
+  after_action :change_comments_by_form, only: %i[update]
 
   respond_to :json
 
   def create
-    @comment_form = CommentForm.new(comment_params.merge(user: current_user, post: @post))
-    @comment = @comment_form.model
+    @comment = current_user.comments.build(comment_params.merge(post: @post))
     authorize! :create, @comment
-    if @comment_form.save
+    if @comment.save
       render json: @comment
     else
-      render json: @comment_form.errors.full_messages.to_json, status: :unprocessable_entity
+      render json: @comment.errors.full_messages.to_json, status: :unprocessable_entity
     end
   end
 
   def update
-    @comment_form = CommentForm.new(comment_params.merge(model: @comment, post: @post, user: current_user))
-    @comment = @comment_form.model
+    @comment_form = CommentForm.new(update_comment_params.merge(comment: @comment))
     if @comment_form.update
-      render json: @comment.reload
+      render json: @comment.reload, serializer: CommentSerializer
     else
       render json: @comment_form.errors.full_messages, status: :unprocessable_entity
     end
@@ -36,7 +34,11 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:text, attachments_attributes: %i[file _destroy id])
+    params.require(:comment).permit(:text, images: [])
+  end
+
+  def update_comment_params
+    params.require(:comment).permit(:text, images: [], destroy_images: [])
   end
 
   def set_comment_post
@@ -58,9 +60,9 @@ class CommentsController < ApplicationController
     return if @comment_form.errors.any?
 
     ActionCable.server.broadcast(
-      "comments_for_post_#{params[:post_id]}", comment: CommentSerializer.new(@comment_form.model.reload),
+      "comments_for_post_#{params[:post_id]}", comment: CommentSerializer.new(@comment_form.comment.reload),
                                                action: params[:action],
-                                               comment_id: @comment_form.model.id
+                                               comment_id: @comment_form.comment.id
     )
   end
 end

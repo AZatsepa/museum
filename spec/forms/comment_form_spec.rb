@@ -19,32 +19,11 @@ describe CommentForm, type: :model do
   end
 
   it { is_expected.to validate_presence_of :text }
-  it { is_expected.to validate_presence_of :post }
-  it { is_expected.to validate_presence_of :user }
 
   it 'updates comment' do
-    comment_form = build(:comment_form, model: comment, text: 'Changed text')
+    comment_form = build(:comment_form, comment: comment, text: 'Changed text')
     expect do
       comment_form.update
     end.to change(comment, :text).from('Comment text').to('Changed text')
-  end
-
-  it 'creates comment' do
-    comment_form = described_class.new(text: 'Comment text', user: user, post: post)
-    expect do
-      comment_form.save
-    end.to change(Comment, :count).by(1)
-  end
-
-  it_behaves_like 'form with attachment'
-
-  private
-
-  def form_attributes(model)
-    { user: user,
-      post: post,
-      model: model,
-      attachments_attributes: { 0 => { _destroy: 'on',
-                                       id: model.attachments.first.id } } }
   end
 end

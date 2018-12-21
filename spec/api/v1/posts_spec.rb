@@ -2,7 +2,7 @@
 
 describe 'Posts API' do
   POSTS_COUNT = 5
-  post_allowed_fields = %w[id title body user_id comments attachments created_at updated_at]
+  post_allowed_fields = %w[id title body user_id comments created_at updated_at]
   comment_allowed_fields = %w[id text post_id user_id created_at updated_at]
 
   describe 'GET /posts' do
@@ -11,7 +11,7 @@ describe 'Posts API' do
     context 'when authorized' do
       let(:user) { create(:user) }
       let(:access_token) { create(:access_token) }
-      let!(:posts) { create_list(:post, POSTS_COUNT, user: user) }
+      let!(:posts) { create_list(:post, POSTS_COUNT, :with_images, user: user) }
       let(:post) { posts.first }
       let!(:comment) { create(:comment, user: user, post: post) }
 
@@ -27,8 +27,14 @@ describe 'Posts API' do
 
       post_allowed_fields.each do |field|
         it "contains #{field}" do
+          post.reload
           expect(response.body).to be_json_eql(post.send(field.to_sym).to_json).at_path("posts/0/#{field}")
         end
+      end
+
+      it 'contains images' do
+        expect(response.body).to(be_json_eql(post.images.map { |image| ImageSerializer.new(image).as_json }.to_json)
+                                   .at_path('posts/0/images'))
       end
 
       context 'when comments' do
@@ -38,6 +44,8 @@ describe 'Posts API' do
 
         comment_allowed_fields.each do |field|
           it "contains #{field}" do
+            comment.reload
+            # binding.pry if field == 'created_at'
             expect(response.body).to(be_json_eql(comment.send(field.to_sym).to_json)
                                        .at_path("posts/0/comments/0/#{field}"))
           end
@@ -131,8 +139,13 @@ describe 'Posts API' do
 
     context 'when unauthorized' do
       it 'returns 401 status if access token is invalid' do
-        post '/api/v1/posts', params: { post: attributes_for(:post), acces_token: access_token.token, format: :json }
+        post '/api/v1/posts', params: { post: attributes_for(:post), access_token: 'random string', format: :json }
         expect(response.status).to be 401
+      end
+
+      it 'returns 403 status if user does not have permissions' do
+        post '/api/v1/posts', params: { post: attributes_for(:post), access_token: access_token.token, format: :json }
+        expect(response.status).to be 403
       end
     end
 

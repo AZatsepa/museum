@@ -17,7 +17,7 @@ en:
   errors:
     comment:
       text:
-        blank: Can't be blank
+        blank: can't be blank
   facebook-group: People's Museum of Izyumshchyna
   forgot_you_password: Forgot you password?
   hi: Hello

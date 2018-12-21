@@ -25,6 +25,6 @@ describe 'Add files to posts', %q(
       sleep 1
     end.to change(Post, :count).by(1)
     visit post_path(Post.last)
-    expect(page).to have_css("img[src*='/uploads/attachment/file/1/1782.png']")
+    expect(page).to have_css("img[src*='1782.png']")
   end
 end

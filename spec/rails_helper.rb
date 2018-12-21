@@ -5,10 +5,14 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require 'cancan/matchers'
 require 'webmock/rspec'
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each(&method(:require))
 ActiveRecord::Migration.maintain_test_schema!
 SimpleCov.start
 WebMock.disable_net_connect!(allow_localhost: true)
+Bullet.enable = true
+Bullet.raise = true
+Bullet.bullet_logger = true
+Bullet.rails_logger = true
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
@@ -31,13 +35,19 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   if Bullet.enable?
-    config.before(:each) do
+    config.before do
       Bullet.start_request
     end
 
-    config.after(:each) do
+    config.after do
       Bullet.perform_out_of_channel_notifications if Bullet.notification?
       Bullet.end_request
+    end
+
+    config.around(disable_bullet: true) do |example|
+      Bullet.enable = false
+      example.run
+      Bullet.enable = true
     end
   end
 end
@@ -47,4 +57,8 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+FactoryBot::SyntaxRunner.class_eval do
+  include ActionDispatch::TestProcess
 end

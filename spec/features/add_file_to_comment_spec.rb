@@ -26,7 +26,7 @@ describe 'Add files to comments', %q(
     expect(page).to have_current_path(post_path(post))
     within '.comments' do
       expect(page).to have_content 'Lorem ipsum'
-      expect(page).to have_css("img[src*='/uploads/attachment/file/1/1782.png']")
+      expect(page).to have_css("img[src*='1782.png']")
     end
   end
 end

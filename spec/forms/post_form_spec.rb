@@ -19,30 +19,11 @@ describe PostForm, type: :model do
 
   it { is_expected.to validate_presence_of :title }
   it { is_expected.to validate_presence_of :body }
-  it { is_expected.to validate_presence_of :user }
 
   it 'updates post' do
-    post_form = build(:post_form, model: post, title: 'Changed title')
+    post_form = build(:post_form, post: post, title: 'Changed title', body: 'Post body')
     expect do
       post_form.update
     end.to change(post, :title).from('Post title').to('Changed title')
-  end
-
-  it 'creates post' do
-    post_form = described_class.new(title: 'Post title', body: 'Post body', user: user)
-    expect do
-      post_form.save
-    end.to change(Post, :count).by(1)
-  end
-
-  it_behaves_like 'form with attachment'
-
-  private
-
-  def form_attributes(model)
-    { user: user,
-      model: model,
-      attachments_attributes: { 0 => { _destroy: 'on',
-                                       id: model.attachments.first.id } } }
   end
 end

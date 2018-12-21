@@ -1,7 +1,0 @@
-.attachments
-  = f.fields_for :attachments, f.object.model.attachments do |nf|
-    - if nf.object.persisted?
-      p= nf.object.file.file.identifier
-      = nf.check_box :_destroy
-      = t('titles.attachments.delete')
-

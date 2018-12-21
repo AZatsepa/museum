@@ -21,12 +21,8 @@ RSpec.describe PostsController do
   describe 'show' do
     before { get :show, params: { id: post.id } }
 
-    it 'shows selected post' do
+    it 'shows selected post', disable_bullet: true do
       expect(assigns(:post)).to eq(post)
-    end
-
-    it 'assigns new comment_form' do
-      expect(assigns(:comment_form).class).to eql CommentForm
     end
   end
 end

@@ -10,9 +10,14 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueResource from 'vue-resource';
 import VueCanCan from 'vue-cancan';
-import Comments from './components/Comments.vue.erb';
 import store from './store';
+import Comments from './components/Comments.vue.erb';
 import PostsIndex from './components/admin/PostsIndex.vue.erb';
+import PostEdit from './components/admin/PostEdit.vue.erb';
+
+if (process.env.NODE_ENV !== 'production' ) {
+  Vue.config.devtools = true;
+}
 
 Vue.use(TurbolinksAdapter);
 Vue.use(VueResource);
@@ -60,6 +65,24 @@ document.addEventListener('turbolinks:load', () => {
       data() {
         return {
           posts,
+        };
+      },
+    });
+  }
+
+  const postEl = document.getElementById('vue-post-edit-elem');
+
+  if (postEl !== null) {
+    const post = JSON.parse(postEl.dataset.post);
+    const adminPostEdit = new Vue({
+      el: postEl,
+      store,
+      components: {
+        PostEdit,
+      },
+      data() {
+        return {
+          post,
         };
       },
     });
