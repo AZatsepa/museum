@@ -11,6 +11,13 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
   config.action_dispatch.show_exceptions = false
   config.action_controller.allow_forgery_protection = false
+  config.action_controller.asset_host = proc do |_source, request|
+    scheme = request.try(:scheme).presence || 'http'
+    host = request.try(:host).presence || 'localhost:3000'
+    port = request.try(:port).presence || nil
+
+    ["#{scheme}://#{host}", port].reject(&:blank?).join(':')
+  end
 
   # Store uploaded files on the local file system in a temporary directory
   config.active_storage.service = :test

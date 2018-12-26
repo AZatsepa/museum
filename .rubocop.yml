@@ -1,4 +1,6 @@
+require: rubocop-rspec
 AllCops:
+  TargetRubyVersion: 2.5.1
   Exclude:
     - 'db/schema.rb'
     - 'db/seeds.rb'
@@ -10,6 +12,7 @@ AllCops:
     - 'spec/rails_helper.rb'
     - 'vendor/**/*'
     - 'bin/*'
+    - 'node_modules/**/*'
 
 Rails:
   Enabled: true
@@ -50,3 +53,14 @@ Metrics/MethodLength:
 Style/RedundantSelf:
   Exclude:
 #    - 'app/models/*'
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/features/**/*.rb'
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*.rb'
+    - 'spec/api/**/*.rb'
+RSpec/NestedGroups:
+  Max: 4

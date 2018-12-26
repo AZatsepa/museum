@@ -1,2 +1,6 @@
-.post id=dom_id(post)
-  = link_to post.title, post_path(post)
+.row.border-bottom.align-items-center.justify-content-center
+  a href="#{post_path(post)}"
+    .col
+      h4=post.title
+    .col
+      h6=post.body[0...100] + '...'

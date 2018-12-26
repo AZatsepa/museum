@@ -18,14 +18,16 @@ module Users
 
     # GET /resource/edit
     def edit
-      @user = current_user
+      super
+      # @user = current_user
     end
 
     # PUT /resource
-    def update
-      @user = current_user
-      render 'edit' if @user.update(user_params)
-    end
+    # def update
+    #   super
+    #   @user = current_user
+    #   render 'edit' if @user.update(user_params)
+    # end
 
     # DELETE /resource
     def destroy
@@ -41,7 +43,7 @@ module Users
     #   super
     # end
 
-    # protected
+    protected
 
     # If you have extra params to permit, append them to the sanitizer.
     # def configure_sign_up_params
@@ -50,9 +52,12 @@ module Users
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[attribute first_name last_name nickname])
     end
 
+    def after_update_path_for(resource)
+      user_path(resource)
+    end
     # The path used after sign up.
     # def after_sign_up_path_for(resource)
     #   super(resource)

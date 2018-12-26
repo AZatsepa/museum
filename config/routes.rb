@@ -3,17 +3,18 @@
 Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
-                                    confirmations: 'users/confirmations' }
+                                    confirmations: 'users/confirmations',
+                                    registrations: 'users/registrations' }
   root 'pages#main'
   #
   # devise_scope :user do
   #   get '/users/sign_out' => 'devise/sessions#destroy'
   # end
   #
-  resources :posts, only: %i[index show] do
+  resources :posts, only: %i[index show new create] do
     resources :comments
   end
-  resources :users
+  resources :users, only: %i[show]
 
   # get 'results', to: 'results#index', as: 'results'
   # get 'users/show', as: 'user_root'
@@ -25,9 +26,12 @@ Rails.application.routes.draw do
   get 'maps/1782', to: 'maps#map_1782'
   namespace :admin do
     post 'markdown/preview'
+    get 'main', to: 'admin#main'
     resources :posts do
       resources :comments
     end
+    resources :comments
+    resources :users
   end
 
   namespace :api do

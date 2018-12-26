@@ -2,82 +2,81 @@
 
 require_relative 'feature_helper'
 
-feature 'Comment editing', %q(
+describe 'Comment editing', %q(
   In order to fix mistake
   I'd like to be able to edit my comment
 ) do
-  given(:user) { create(:user) }
-  given(:admin) { create(:user, :admin) }
-  given(:another_user) { create(:user) }
-  given(:post) { create(:post, user: user) }
-  given!(:comment) { create(:comment, post: post, user: user) }
+  let(:user) { create(:user) }
+  let(:admin) { create(:user, :admin) }
+  let(:another_user) { create(:user) }
+  let(:post) { create(:post, user: user) }
+  let!(:comment) { create(:comment, post: post, user: user) }
 
-  context 'Unauthenticated user' do
-    scenario 'Unauthenticated user tries to edit comment', js: true do
+  context 'when Unauthenticated user', js: true do
+    it 'Unauthenticated user tries to edit comment' do
       visit post_path(post)
       within '.comments' do
-        expect(page).to_not have_link t('titles.comments.edit')
+        expect(page).not_to have_css 'a.edit-comment-link'
       end
     end
   end
 
-  context 'Authenticated user' do
+  context 'when Authenticated user', js: true do
     context 'when his comment' do
-      background do
+      before do
         login_as(user, scope: :user, run_callbacks: false)
         visit post_path(post)
       end
 
-      scenario "sees '#{t('titles.comments.edit')}' link" do
+      it 'sees edit link' do
         within '.comments' do
-          expect(page).to have_link t('titles.comments.edit')
+          expect(page).to have_css 'a.edit-comment-link'
         end
       end
 
-      scenario 'tries to edit', js: true do
+      it 'tries to edit', js: true do
+        find('a.edit-comment-link').click
+        find('#comment_text').set('edited comment')
         click_on t('titles.comments.edit')
-        fill_in 'comment_text', with: 'edited comment'
-        click_on t('change')
 
         within '.comments' do
-          expect(page).to_not have_content comment.text
+          expect(page).not_to have_content comment.text
           expect(page).to have_content 'edited comment'
-          expect(page).to_not have_selector 'textarea'
+          expect(page).not_to have_selector 'textarea'
         end
       end
     end
 
-    context "when other user's comment" do
-      background do
+    context "when other user's comment", js: true do
+      before do
         login_as(another_user, scope: :user, run_callbacks: false)
         visit post_path(post)
       end
 
-      scenario 'tries to edit' do
+      it 'tries to edit' do
         within '.comments' do
-          expect(page).to_not have_link t('titles.comments.edit')
+          expect(page).not_to have_link t('titles.comments.edit')
         end
       end
     end
   end
 
-  context 'Admin user' do
+  context 'when Admin user', js: true do
     context "when other user's comment" do
-      background do
+      before do
         login_as(admin, scope: :user, run_callbacks: false)
         visit post_path(post)
       end
 
-      scenario 'tries to edit', js: true do
+      it 'tries to edit', js: true do
+        find('a.edit-comment-link').click
+        find('#comment_text').set('edited comment')
         click_on t('titles.comments.edit')
-        fill_in 'comment_text', with: 'edited comment'
-        fill_in 'new_comment_text', with: 'edited comment'
-        click_on t('change')
 
         within '.comments' do
-          expect(page).to_not have_content comment.text
+          expect(page).not_to have_content comment.text
           expect(page).to have_content 'edited comment'
-          expect(page).to_not have_selector 'textarea'
+          expect(page).not_to have_selector 'textarea'
         end
       end
     end

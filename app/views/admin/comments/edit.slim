@@ -1,0 +1,22 @@
+.container-fluid.opacity-light.mh-100
+  .row
+    .col-sm-2.border-right
+      .border-bottom.p-2
+        = link_to t('titles.posts.all'), admin_posts_path
+      .border-bottom.p-2
+        = link_to t('titles.comments.all'), admin_comments_path
+      .border-bottom.p-2
+        = link_to t('titles.users.all'), admin_users_path
+    .col-sm-10
+      .row.text-left
+        = form_for CommentForm.new(comment: @comment), as: :comment,
+                                                     url: admin_comment_path(@comment),
+                                                     method: :patch,
+                                                     html: { class: 'col',
+                                                             id: 'edit_admin_comment' } do |f|
+          .form-group
+            = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
+            .comment-errors
+            = f.text_area :text, id: 'new_comment_text', class: 'form-control form-control-lg', rows: 5
+            a.add_comment_attachment[href='#'] = t('titles.attachments.add')
+          = f.submit t('titles.comments.edit'), data: { 'disable-with' => t('saving') }

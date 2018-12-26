@@ -1,23 +1,16 @@
 # frozen_string_literal: true
 
-class PostForm < BaseForm
-  attr_accessor :title,
-                :body
-  validates :title, :body, presence: true
-
-  def initialize(attributes = {})
-    super attributes
-    @title ||= model.title
-    @body ||= model.body
-  end
+class PostForm
+  include ActiveModel::Model
+  attr_accessor :post, :user, :destroy_images, :title, :body, :images
+  validates :title, presence: true
+  validates :body, presence: true
 
   def update
-    model.title = title
-    model.body = body
-    save
-  end
+    return false unless valid?
 
-  def model
-    @model ||= Post.new(title: title, body: body, user: user)
+    destroy_images&.each { |id| ActiveStorage::Attachment.find(id).purge }
+    post.images.attach(images) if images
+    post.update(title: title, body: body)
   end
 end

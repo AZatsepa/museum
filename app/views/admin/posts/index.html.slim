@@ -1,16 +1,11 @@
-h1
-  = link_to t('site_name'), root_path
-h2
-  = t('titles.posts.all')
-table.table.table-bordered.table-responsive.table-hover.admin-posts-list
-  tbody
-    - @posts.each do |post|
-      tr
-        td= link_to post.title, admin_post_path(post)
-        td= link_to edit_admin_post_path(post), class: 'btn btn-link'
-          span.glyphicon.glyphicon-pencil
-        td= link_to admin_post_path(post), method: :delete, data: { confirm: t('confirmation') }, class: 'btn btn-link'
-          span.glyphicon.glyphicon-trash
-a#add_post_btn.btn.btn-dark.fixed-action-btn
-  = t('titles.posts.add')
-.new-post= render 'form'
+.container-fluid.opacity-light.mh-100
+  .row
+    .col-sm-2.border-right
+      .border-bottom.p-2
+        = link_to t('titles.posts.all'), admin_posts_path
+      .border-bottom.p-2
+        = link_to t('titles.comments.all'), admin_comments_path
+      .border-bottom.p-2
+        = link_to t('titles.users.all'), admin_users_path
+    = content_tag :div, nil, id: 'vue-elem', class: 'col-sm-10', data: { posts: @posts.to_json } do
+      posts-index :posts="posts"

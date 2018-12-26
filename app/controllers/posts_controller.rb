@@ -6,8 +6,12 @@ class PostsController < ApplicationController
   def index; end
 
   def show
-    gon.user_role = current_user.present? ? current_user.role : nil
-    gon.user_id = current_user.present? ? current_user.id : nil
-    @comment_form = CommentForm.new
+    @post = Post.with_attached_images.find(params[:id])
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body, images: %i[])
   end
 end

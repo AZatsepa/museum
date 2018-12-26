@@ -1,0 +1,153 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+body {
+  min-height: 100%;
+  margin-bottom: 54px; /* Margin bottom by footer height */
+  font: 12px/14px  'Arial';
+  background: url('../images/background.jpg') 50%;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.comparison-wrapper {
+  @include dark-transparent;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.button {
+  box-shadow: 3px 3px 4px #000;
+  border-radius: 0.35em;
+  a {
+    color: #E0EEE0;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: #A20507;
+    }
+  }
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+#content {
+  display: block;
+  max-height: 100%;
+  margin-top: 54px;
+  margin-bottom: 60px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.footer {
+  @include dark-transparent;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.btn-facebook {
+  background: #3B5998;
+  color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #263961;
+}
+.btn-facebook:link, .btn-facebook:visited {
+  color: #fff;
+}
+.btn-facebook:active, .btn-facebook:hover {
+  background: #263961;
+  color: #fff;
+}
+
+.container.comparison-list {
+  padding-top: 1em;
+}
+
+@media (max-width: 1024px) {
+  #content {
+    margin-top: 108px;
+  }
+}
+
+@media (max-width: 767px) {
+  #content {
+    margin-top: 54px;
+  }
+}
+
+.opacity-light {
+  @include light-transparent;
+}
+
+.opacity-light-post {
+  margin-top: 60px;
+  @include light-transparent-08;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.table-user-information > tbody > tr {
+  border-top: 1px solid rgb(52, 52, 52);
+}
+
+.table-user-information > tbody > tr:first-child {
+  border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+  border-top: 0;
+}
+
+textarea.form-control, input.form-control {
+  font: 12px/14px 'Arial';
+}
+
+a {
+  color: rgba(0, 0, 0, 0.8);
+  &:hover {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+  }
+}

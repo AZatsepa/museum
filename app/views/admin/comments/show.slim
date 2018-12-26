@@ -1,0 +1,28 @@
+.container-fluid.opacity-light.mh-100
+  .row
+    .col-sm-2.border-right
+      .border-bottom.p-2
+        = link_to t('titles.posts.all'), admin_posts_path
+      .border-bottom.p-2
+        = link_to t('titles.comments.all'), admin_comments_path
+      .border-bottom.p-2
+        = link_to t('titles.users.all'), admin_users_path
+    .col-sm-10
+      .row.align-items-center.justify-content-center
+        .text-center.col.p-4
+          .row.border-bottom.align-items-center.justify-content-center
+            .col-lg-9
+              h2 = @comment.text
+              ul.list-group.attachments
+                - @comment.attachments.each do |a|
+                  li.list-group-item= link_to a.file.url do
+                    = image_tag a.file.url, height: '200'
+      .row.border-bottom
+        .col-6
+          = link_to t('titles.comments.edit'), edit_admin_comment_path(@comment), class: 'btn btn-secondary'
+        .col-6
+          = link_to t('titles.comments.delete'), admin_comment_path(@comment), method: :delete,
+                                                                            data: { confirm: t('confirmation') },
+                                                                            class: 'btn btn-danger'
+      .row.border-bottom
+        = link_to t('back'), :back, class: 'btn btn-secondary'

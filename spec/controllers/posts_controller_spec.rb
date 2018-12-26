@@ -5,9 +5,11 @@ require 'rails_helper'
 RSpec.describe PostsController do
   let!(:user) { create(:user) }
   let!(:post) { create(:post, user: user) }
+
   describe 'index action' do
     before { get :index }
-    it 'should assign @posts' do
+
+    it 'assigns @posts' do
       expect(assigns(:posts)).to eq([post])
     end
 
@@ -18,12 +20,9 @@ RSpec.describe PostsController do
 
   describe 'show' do
     before { get :show, params: { id: post.id } }
-    it 'should show selected post' do
-      expect(assigns(:post)).to eq(post)
-    end
 
-    it 'should should assign new comment_form' do
-      expect(assigns(:comment_form).class).to eql CommentForm
+    it 'shows selected post', disable_bullet: true do
+      expect(assigns(:post)).to eq(post)
     end
   end
 end

@@ -1,21 +1,21 @@
 doctype html
-html
+html lang="#{I18n.locale}"
   head
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type' /
     title= t('site_name')
     meta charset="utf-8" /
-    meta content="width=device-width, initial-scale=1" name="viewport" /
+    meta content="width=device-width, initial-scale=1" name="viewport"
     = render 'shared/google_tag_manager' if Rails.env.production?
-    link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css" /
-    link href='//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'
-    = javascript_include_tag src: '//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
-    = csrf_meta_tag
-    = stylesheet_link_tag :application, media: :all
-    = action_cable_meta_tag
-    = javascript_include_tag :application
-  body data-locale="#{I18n.locale}"
+    link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css"
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     = Gon::Base.render_data
+    = csrf_meta_tag
+    = stylesheet_pack_tag 'application', media: :all, 'data-turbolinks-track': 'reload'
+    = action_cable_meta_tag
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body data-locale="#{I18n.locale}"
     = render 'shared/google_tag_manager_noscript' if Rails.env.production?
-    p.notice= notice
-    p.alert= alert
-    = yield
+    = render 'shared/header'
+    main#content role="main"
+      = yield
+    = render 'shared/footer'

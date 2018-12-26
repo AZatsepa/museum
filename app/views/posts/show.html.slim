@@ -1,20 +1,18 @@
-.posts
-  #post-wrapper[data-post_id=@post.id]
-    .post-title-show
-      = @post.title
-    .post-body-show
-      = markdown(@post.body)
-    ul.attachments-list
-      - @post.attachments.each do |a|
-        li= link_to a.file.file.identifier, a.file.url
-    .comments
-      = render 'comments'
-    - if can? :create, Comment
-      = form_for [@post, @comment_form], as: :comment, url: post_comments_path(@post), authenticity_token: true  do |f|
-        = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
-        .comment-errors
-        = f.text_field :text, id: 'new_comment_text'
-        = render 'shared/attachments_form',  f: f
-        a.add_comment_attachment[href='#'] = t('titles.attachments.add')
-        = f.submit t('titles.comments.add')
-h3=link_to t('back'), posts_path
+.row.align-items-center.justify-content-center
+  - present(@post, PostPresenter) do |post|
+    #post-wrapper.text-center.opacity-light-post.col-lg-9.p-4[data-post_id=post.id]
+      .row.border-bottom.align-items-center.justify-content-center
+        .col-lg-9
+          h2 = post.title
+      .row.border-bottom.align-items-center.justify-content-center
+        .col-lg-9.p-3
+          .post-body-show
+            = post.html_body
+          ul.attachments
+            - post.images.each do |image|
+              li= link_to image, class: 'col p-2'
+                = image_tag image.variant(resize: '250x200')
+      .row.text-left.p-3
+        = content_tag :div, nil, id: 'vue-comments-elem', data: { comments: post.post_comments,
+                                                                  post_id: post.id } do
+          app-comments :comments="comments" :post_id="postId"

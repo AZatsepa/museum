@@ -1,24 +1,11 @@
-.posts
-  h1= t('titles.posts.edit')
-  .edit-post
-    = form_for PostForm.new(model: @post), as: :post,
-                                           url: admin_post_path(@post),
-                                           method: :patch,
-                                           html: { id: 'edit_post' },
-                                           data: { post_id: @post.id },
-                                           remote: true,
-                                           authenticity_token: true do |f|
-      p
-        = f.label :title, t('titles.posts.title')
-        br
-        = f.text_field :title, value: @post.title
-      p
-        = f.label :body, t('titles.posts.body')
-        br
-        = f.text_area :body, value: @post.body
-      = render 'shared/attachments_form', f: f
-      a.add_post_attachment[href='#' id='add_file'] = t('titles.attachments.add')
-      br
-      = f.submit t('titles.posts.edit')
-  .posts-margin
-  = link_to t('back'), :back
+.container-fluid.opacity-light.mh-100
+  .row
+    .col-sm-2.border-right
+      .border-bottom.p-2
+        = link_to t('titles.posts.all'), admin_posts_path
+      .border-bottom.p-2
+        = link_to t('titles.comments.all'), admin_comments_path
+      .border-bottom.p-2
+        = link_to t('titles.users.all'), admin_users_path
+    = content_tag :div, nil, id: 'vue-post-edit-elem', class: 'col-sm-10', data: { post: PostSerializer.new(@post).to_json } do
+      post-edit :post="post"
