@@ -14,29 +14,42 @@
           <textarea id="new_comment_text" class="form-control form-control-lg" rows="5" v-model="comment.text">
 
           </textarea>
-          <div v-for="(attachment, index) in comment.attachments_attributes"
+          <div v-for="(image, index) in comment.images"
                               class="attachments"
-                              :attachment="attachment"
+                              :image="image"
                               :key="index">
               <div>
                 <div class="custom-file">
                   <input type="file"
                          class="custom-file-input"
                          :id="`comment_attachment_${index}`"
-                         @change="onImageSelected($event, attachment)">
-                  <label class="custom-file-label">
-                    {{ fileLabel(attachment) }}
-                  </label>
-                </div>
-                <button class="btn btn-sm btn-small btn-danger remove_file">
-                  <%= t('titles.attachments.delete') %>
-                </button>
+                         @change="onImageSelected($event)">
+                <label class="custom-file-label">
+                  {{ image.name }}
+                </label>
+              </div>
+              <button class="btn btn-sm btn-small btn-danger remove_file">
+                <%= t('titles.attachments.delete') %>
+              </button>
+            </div>
+          </div>
+          <div class="attachments">
+            <div>
+              <div class="custom-file" v-if="showImageInput">
+                <input type="file"
+                       class="custom-file-input"
+                       @change="onImageSelected($event)">
+                <label class="custom-file-label">
+                  'Choose your image'
+                </label>
               </div>
             </div>
-          <a class="add_comment_attachment" @click.prevent="addAttachment">
+          </div>
+          <a class="add_comment_attachment" @click.prevent="showImageInput = !showImageInput">
             <%= t('titles.attachments.add') %>
           </a>
         </div>
+
         <button class="btn" data-disable-with="Збереження..." @click.prevent="createComment">
           <%= t('titles.comments.add') %>
         </button>
@@ -54,9 +67,10 @@
       return {
         comment: {
           text: '',
-          attachments_attributes: [],
+          images: [],
         },
         errors: [],
+        showImageInput: false
       };
     },
     methods: {
@@ -65,7 +79,7 @@
         this.$http.post(`/posts/${this.post_id}/comments`, comment).then((response) => {
           this.comment = {
             text: '',
-            attachments_attributes: [],
+            images: [],
            };
         this.errors = [];
         },
@@ -73,18 +87,9 @@
           this.errors = response.body;
         });
       },
-       addAttachment() {
-        this.comment.attachments_attributes.push({
-          id: null,
-          file: '',
-          _destroy: null,
-        });
-      },
-      onImageSelected(event, attachment) {
-        attachment.file = event.target.files[0];
-      },
-      fileLabel(attachment) {
-        return attachment.file ? attachment.file.name : 'Choose your image';
+      onImageSelected(event) {
+        this.comment.images.push(event.target.files[0]);
+        this.showImageInput = false;
       },
     },
   };

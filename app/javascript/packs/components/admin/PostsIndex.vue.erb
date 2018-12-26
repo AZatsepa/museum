@@ -24,7 +24,7 @@
         <%= t('titles.posts.add') %>
       </button>
     </div>
-      <post-form v-if="$store.state.createAdminPostForm"></post-form>
+      <post-form v-if="$store.state.createAdminPostForm" :method="'post'"></post-form>
     </div>
   </div>
 </template>

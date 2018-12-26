@@ -18,28 +18,14 @@
               .post-body-show
                 = sanitize @post.body.html_safe
               ul.list-group.attachments
-                - @post.attachments.each do |a|
-                  li.list-group-item= link_to a.file.url do
-                    = image_tag a.file.url, height: '200'
+                - @post.images.each do |image|
+                  li.list-group-item= link_to image, class: 'col p-2'
+                    = image_tag image.variant(resize: '250x200')
           .row.text-left.p-3
             .col-lg-9
-              .comments
-                - @post.comments.includes(:attachments, :user).order(:created_at).each do |comment|
-                  = render 'shared/comment', comment: comment
-              .row.text-left
-                .row.text-left
-                  = form_for @comment_form, as: :comment,
-                                            url: admin_comments_path,
-                                            authenticity_token: true,
-                                            html: { id: 'new_post_comment_form' } do |f|
-                    .form-group
-                      = f.hidden_field :post_id, value: @post.id
-                      = f.label :text, t('titles.comments.text'), for: 'new_comment_text'
-                      .comment-errors
-                      = f.text_area :text, id: 'new_comment_text', class: 'form-control form-control-lg', rows: 5
-                      = render 'shared/attachments_form', f: f
-                      a.add_comment_attachment[href='#'] = t('titles.attachments.add')
-                    = f.submit t('titles.comments.add'), data: { 'disable-with' => t('saving') }
+              = content_tag :div, nil, id: 'vue-comments-elem',
+                                       class: 'comments', data: { comments: @json_comments, post_id: @post.id } do
+                app-comments :comments="comments" :post_id="postId" :namespace="'admin'"
           .row.border-bottom
             .col-6
               = link_to t('titles.posts.edit'), edit_admin_post_path(@post), class: 'btn btn-secondary'

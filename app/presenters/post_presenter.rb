@@ -6,7 +6,9 @@ class PostPresenter < SimpleDelegator
   end
 
   def post_comments
-    comments.includes(:user, :attachments).order(:created_at).map do |comment|
+    comments.includes(:user, images_attachments: :blob)
+            .order(:created_at)
+            .map do |comment|
       CommentSerializer.new(comment).as_json
     end
   end

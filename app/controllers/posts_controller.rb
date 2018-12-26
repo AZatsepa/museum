@@ -6,6 +6,12 @@ class PostsController < ApplicationController
   def index; end
 
   def show
-    @comment_form = CommentForm.new
+    @post = Post.with_attached_images.find(params[:id])
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body, images: %i[])
   end
 end

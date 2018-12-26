@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples_for 'form with attachment' do
+shared_examples_for 'form with image' do
   it 'creates attachment' do
     expect do
       subject_with_file.save

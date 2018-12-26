@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe CommentsController, type: :controller do
-  comment_allowed_fields = %w[id user_id post_id text attachments created_at updated_at]
+  comment_allowed_fields = %w[id user_id post_id text created_at updated_at]
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
   let(:comment_post) { create(:post, user: user) }
@@ -47,8 +47,8 @@ describe CommentsController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    let(:comment) { create(:comment, post: comment_post, user: user) }
-    let(:other_users_comment) { create(:comment, post: comment_post) }
+    let(:comment) { create(:comment, :with_images, post: comment_post, user: user) }
+    let(:other_users_comment) { create(:comment, :with_images, post: comment_post) }
 
     context 'when user' do
       context 'when own comment' do
@@ -72,10 +72,17 @@ describe CommentsController, type: :controller do
         end
 
         comment_allowed_fields.each do |field|
-          it "response contains #{field}" do
+          it "contains #{field}" do
             comment.reload
             expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
           end
+        end
+
+        it 'contains images' do
+          expect(response.body).to(
+            be_json_eql(comment.images
+                               .map { |image| ImageSerializer.new(image).as_json }.to_json).at_path('comment/images')
+          )
         end
       end
 
@@ -130,10 +137,17 @@ describe CommentsController, type: :controller do
         end
 
         comment_allowed_fields.each do |field|
-          it "response contains #{field}" do
+          it "contains #{field}" do
             comment.reload
             expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
           end
+        end
+
+        it 'contains images' do
+          expect(response.body).to(
+            be_json_eql(comment.images
+                               .map { |image| ImageSerializer.new(image).as_json }.to_json).at_path('comment/images')
+          )
         end
       end
     end

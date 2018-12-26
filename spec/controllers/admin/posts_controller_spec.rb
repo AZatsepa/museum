@@ -20,7 +20,7 @@ describe Admin::PostsController do
   end
 
   describe 'GET #show' do
-    it 'shows selected post' do
+    it 'shows selected post', disable_bullet: true do
       get 'show', params: { id: admin_post.id }
       expect(assigns(:post)).to eq(admin_post)
     end
@@ -37,17 +37,17 @@ describe Admin::PostsController do
 
   describe 'PATCH #update' do
     it 'updates post' do
-      patch :update, params: { id: admin_post.id, post: valid_post_params }
+      patch :update, params: { id: admin_post.id, post: valid_post_params }, format: :json
       expect(admin_post.reload.title).to eql(valid_post_params[:title])
     end
 
     it 'renders error messages' do
-      patch :update, params: { id: admin_post.id, post: invalid_post_params }
+      patch :update, params: { id: admin_post.id, post: invalid_post_params }, format: :json
       expect(response.body).to be_json_eql({ title: ["can't be blank"], body: ["can't be blank"] }.to_json)
     end
 
     it 'returns :unprocessable_entity status' do
-      patch :update, params: { id: admin_post.id, post: invalid_post_params }
+      patch :update, params: { id: admin_post.id, post: invalid_post_params }, format: :json
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end

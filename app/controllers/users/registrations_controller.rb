@@ -26,7 +26,6 @@ module Users
     # def update
     #   super
     #   @user = current_user
-    #   binding.pry
     #   render 'edit' if @user.update(user_params)
     # end
 

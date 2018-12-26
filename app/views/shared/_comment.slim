@@ -1,11 +1,11 @@
 - if comment.persisted?
   .border-bottom.comment[id="comment_#{comment.id}"]
     = comment.text
-    - if comment.attachments.present?
-      - comment.attachments.each do |a|
+    - if comment.images.present?
+      - comment.images.each do |image|
         .row
-          = link_to a.file.url, class: 'col p-2' do
-            = image_tag a.file.url, size: '250x200'
+          li= link_to image, class: 'col p-2'
+            = image_tag image.variant(resize: '250x200')
     - if user_signed_in?
       .row
         - if can? :update, comment
@@ -16,7 +16,7 @@
                   method: :delete,
                   remote: true
       .row
-        .col= form_for [@post, CommentForm.new(model: comment)], as: :comment,
+        .col= form_for [@post, CommentForm.new(comment: comment)], as: :comment,
                                                                  url: post_comment_path(@post, comment),
                                                                  remote: true,
                                                                  html: { id: "edit-comment-#{comment.id}",
@@ -25,8 +25,6 @@
                                                                          comment_id: comment.id  } do |f|
           .form-group
             = f.text_area :text, class: 'form-control', rows: 15
-          .form-group
-            = render 'shared/attachments_form', f: f
           .form-group
             = f.submit t('change')
     .row

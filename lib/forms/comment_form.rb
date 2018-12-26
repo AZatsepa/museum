@@ -1,22 +1,15 @@
 # frozen_string_literal: true
 
-class CommentForm < BaseForm
-  attr_accessor :text,
-                :post
-
-  validates :text, :post, presence: true
-
-  def initialize(attributes = {})
-    super attributes
-    @text ||= model.text
-  end
+class CommentForm
+  include ActiveModel::Model
+  attr_accessor :comment, :post, :user, :destroy_images, :text, :images
+  validates :text, presence: true
 
   def update
-    model.text = text
-    save
-  end
+    return false unless valid?
 
-  def model
-    @model ||= Comment.new(text: text, user: user, post: post)
+    destroy_images&.each { |id| ActiveStorage::Attachment.find(id).purge }
+    comment.images.attach(images) if images
+    comment.update(text: text)
   end
 end
