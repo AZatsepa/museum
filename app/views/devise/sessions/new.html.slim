@@ -12,17 +12,3 @@
     .form-group
       = f.submit t('registration.sign_in'), class: 'btn btn-lg btn-primary btn-block'
     = render 'devise/shared/links'
-  / form#new_user.form-signin accept-charset="UTF-8" action="/users/sign_in?locale=uk" method="post" novalidate="novalidate"
-  /   input name="utf8" type="hidden" value="✓" /
-  /   input name="authenticity_token" type="hidden" value="vjXvdH0YBKP7MVA4ZADg1MYy9kn58+1L4K2sBIqL01yXZexliPiN7K1XTPJ2VNlZPfkrdOn9gFNF/vs+x9q0eg==" /
-  /   h2 Увійти
-  /   .form-group
-  /     input#email.form-control.valid autofocus="autofocus" name="email" placeholder=("Електронна пошта") type="email" value="" /
-  /   .form-group
-  /     input#password.form-control autocomplete="off" name="password" placeholder="Пароль" type="password" /
-  /   .checkbox.mb-3.text-left
-  /     input name="user[remember_me]" type="hidden" value="0" /
-  /     input#user_remember_me name="user[remember_me]" type="checkbox" value="1" /
-  /     label for="user_remember_me"  Запам'ятати мене
-  /   .form-group
-  /     input.btn.btn-lg.btn-primary.btn-block data-disable-with="Увійти" disabled="" name="commit" type="submit" value="Увійти" /

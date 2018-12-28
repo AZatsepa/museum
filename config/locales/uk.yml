@@ -21,9 +21,10 @@ uk:
   english: English
   errors:
     blank: Hе може бути порожнім
-    min_length: '%{number} символів мінімум.'
     form:
       email_format: Має бути схожим на email.
+      password_confirmation: Має бути ідентичним з паролем.
+    min_length: "%{number} символів мінімум."
   facebook-group: Народний музей Ізюмщини
   forgot_you_password: Забули пароль?
   hi: Вітаємо
