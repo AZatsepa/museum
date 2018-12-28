@@ -54,4 +54,19 @@ $(window).bind('turbolinks:load', () => {
       },
     },
   });
+
+  $('#resend_instructions').validate({
+    rules: {
+      'user[email]': {
+        required: true,
+        email: true,
+      },
+    },
+    messages: {
+      'user[email]': {
+        required: I18n.t('errors.form.email_format'),
+        email: I18n.t('errors.blank'),
+      },
+    },
+  });
 });
