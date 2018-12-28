@@ -36,10 +36,11 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   const commentsEl = document.getElementById('vue-comments-elem');
-  Vue.config.lang = document.querySelector('body').getAttribute('data-locale');
 
-  Object.keys(window.I18n.translations).forEach((lang) => {
-    Vue.locale(lang, window.I18n.translations[lang]);
+  // Create VueI18n instance with options
+  const i18n = new VueI18n({
+    locale: document.querySelector('body').getAttribute('data-locale'), // set locale
+    messages: window.I18n.translations, // set locale messages
   });
 
   if (commentsEl !== null) {
@@ -57,6 +58,7 @@ document.addEventListener('turbolinks:load', () => {
           postId,
         };
       },
+      i18n,
     });
   }
 
@@ -75,6 +77,7 @@ document.addEventListener('turbolinks:load', () => {
           posts,
         };
       },
+      i18n,
     });
   }
 
@@ -93,6 +96,7 @@ document.addEventListener('turbolinks:load', () => {
           post,
         };
       },
+      i18n,
     });
   }
 });

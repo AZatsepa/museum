@@ -1,6 +1,5 @@
 <template>
     <div class="row text-left">
-      <% include ActionView::Helpers %>
       <form class="new_comment" id="new_comment" >
         <div class="form-group">
           <label for="new_comment_text">

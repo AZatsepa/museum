@@ -1,6 +1,5 @@
 <template>
     <div class="border-bottom comment">
-    <% include ActionView::Helpers %>
         <template v-if="!editMode">
           {{ myComment.text }}
           <div v-for="(image, index) in myComment.images" :image="image" :key="index">
