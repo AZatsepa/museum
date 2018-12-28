@@ -11,5 +11,5 @@ describe Comment, type: :model do
 
   it { is_expected.to validate_presence_of :user }
   it { is_expected.to validate_presence_of :post }
-  it { is_expected.to validate_presence_of(:text).with_message(I18n.t('errors.comment.text.blank')) }
+  it { is_expected.to validate_presence_of(:text).with_message(I18n.t('errors.blank')) }
 end

@@ -1,0 +1,4 @@
+translations:
+- file: "app/javascript/packs/i18n/%{locale}.js"
+  only: '*'
+export_i18n_js: "app/javascript/packs/i18n"

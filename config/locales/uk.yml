@@ -20,9 +20,10 @@ uk:
   didnt_receive_unlock_instructions: Не отримали інструкцій з розблокування?
   english: English
   errors:
-    comment:
-      text:
-        blank: Hе може бути порожнім
+    blank: Hе може бути порожнім
+    min_length: '%{number} символів мінімум.'
+    form:
+      email_format: Має бути схожим на email.
   facebook-group: Народний музей Ізюмщини
   forgot_you_password: Забули пароль?
   hi: Вітаємо

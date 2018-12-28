@@ -15,9 +15,10 @@ en:
   didnt_receive_unlock_instructions: Didn't receive unlock instructions?
   english: English
   errors:
-    comment:
-      text:
-        blank: can't be blank
+    blank: can't be blank
+    min_length: '%{number} symbols min.'
+    form:
+      email_format: Must be an email format.
   facebook-group: People's Museum of Izyumshchyna
   forgot_you_password: Forgot you password?
   hi: Hello
