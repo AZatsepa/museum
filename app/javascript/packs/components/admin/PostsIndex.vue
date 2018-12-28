@@ -1,7 +1,6 @@
 <template>
   <div id="admin_posts_table">
     <div class="container-fluid opacity-light mh-100">
-      <% include ActionView::Helpers %>
       <div class="col-sm-10">
       <table class="table border-bottom border-bottom" id="admin_posts_table">
         <thead>
@@ -21,7 +20,7 @@
               id="add_post_btn"
               @click.prevent="$store.commit('createAdminPostFormShow')"
               v-if="!$store.state.createAdminPostForm">
-        <%= t('titles.posts.add') %>
+        {{ $t('titles.posts.add') }}
       </button>
     </div>
       <post-form v-if="$store.state.createAdminPostForm" :method="'post'"></post-form>
@@ -30,8 +29,8 @@
 </template>
 
 <script>
-  import PostRow from './PostRow.vue.erb';
-  import PostForm from './PostForm.vue.erb';
+  import PostRow from './PostRow.vue';
+  import PostForm from './PostForm.vue';
   import { eventBus } from '../../vue_settings';
 
   export default {

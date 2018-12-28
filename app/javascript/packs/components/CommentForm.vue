@@ -4,7 +4,7 @@
       <form class="new_comment" id="new_comment" >
         <div class="form-group">
           <label for="new_comment_text">
-            <%= "#{t('titles.comments.text')}:" %>
+            {{ $t('titles.comments.text') }}:
           </label>
           <div class="comment-errors">
             <span class="text-danger" v-for="(error, index) in errors" :key="index">
@@ -29,7 +29,7 @@
                 </label>
               </div>
               <button class="btn btn-sm btn-small btn-danger remove_file">
-                <%= t('titles.attachments.delete') %>
+                {{ $t('titles.attachments.delete') }}
               </button>
             </div>
           </div>
@@ -46,12 +46,12 @@
             </div>
           </div>
           <a class="add_comment_attachment" @click.prevent="showImageInput = !showImageInput">
-            <%= t('titles.attachments.add') %>
+            {{ $t('titles.attachments.add') }}
           </a>
         </div>
 
         <button class="btn" data-disable-with="Збереження..." @click.prevent="createComment">
-          <%= t('titles.comments.add') %>
+          {{ $t('titles.comments.add') }}
         </button>
       </form>
     </div>

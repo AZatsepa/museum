@@ -10,18 +10,21 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueResource from 'vue-resource';
 import VueCanCan from 'vue-cancan';
+import VueI18n from 'vue-i18n';
 import store from './store';
-import Comments from './components/Comments.vue.erb';
-import PostsIndex from './components/admin/PostsIndex.vue.erb';
-import PostEdit from './components/admin/PostEdit.vue.erb';
+import Comments from './components/Comments.vue';
+import PostsIndex from './components/admin/PostsIndex.vue';
+import PostEdit from './components/admin/PostEdit.vue';
 
-if (process.env.NODE_ENV !== 'production' ) {
+
+if (process.env.NODE_ENV !== 'production') {
   Vue.config.devtools = true;
 }
 
 Vue.use(TurbolinksAdapter);
 Vue.use(VueResource);
 Vue.use(Vuex);
+Vue.use(VueI18n);
 
 Vue.use(VueCanCan, { rules: gon.abilities.rules});
 
@@ -33,6 +36,11 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   const commentsEl = document.getElementById('vue-comments-elem');
+  Vue.config.lang = document.querySelector('body').getAttribute('data-locale');
+
+  Object.keys(window.I18n.translations).forEach((lang) => {
+    Vue.locale(lang, window.I18n.translations[lang]);
+  });
 
   if (commentsEl !== null) {
     const comments = JSON.parse(commentsEl.dataset.comments);

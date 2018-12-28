@@ -1,15 +1,14 @@
 <template>
     <div class="d-flex justify-content-center align-items-center container">
-      <% include ActionView::Helpers %>
       <div class="markdown" id="post_form">
         <form class="new_post" style="display: block;">
           <div class="form-group text-center align-items-center justify-content-center">
             <label class="control-label">
-              <%= t('titles.posts.title') %>
+              {{ $t('titles.posts.title') }}
             </label>
             <input class="form-control" type="text" v-model="myPost.title" id="post_title">
             <div class="form-group text-center align-items-center justify-content-center">
-              <label class="control-label" for="post_body"><%= t('titles.posts.body') %></label>
+              <label class="control-label" for="post_body">{{ $t('titles.posts.body') }}</label>
               <textarea class="form-control" v-model="myPost.body" id="post_body"></textarea>
             </div>
             <template v-if="post">
@@ -40,7 +39,7 @@
                   </label>
                 </div>
                 <button class="btn btn-sm btn-small btn-danger remove_file">
-                  <%= t('titles.attachments.delete') %>
+                  {{ $t('titles.attachments.delete') }}
                 </button>
               </div>
             </div>
@@ -57,17 +56,17 @@
               </div>
             </div>
             <button class="btn btn-sm btn-dark add_post_attachment" id="add_file" @click.prevent="showInput">
-              <%= t('titles.attachments.add') %>
+              {{ $t('titles.attachments.add') }}
             </button>
             <div class="form-group">
               <button class="btn btn-success" @click.prevent="createPost" v-if="method === 'post'">
-                <%= t('titles.posts.create') %>
+                {{ $t('titles.posts.create') }}
               </button>
               <button class="btn btn-success" @click.prevent="updatePost" v-else>
-                <%= t('titles.posts.edit') %>
+                {{ $t('titles.posts.edit') }}
               </button>
               <button class="btn btn-danger cancel-btn" @click.prevent="cancelForm">
-                <%= t('cancel') %>
+                {{ $t('cancel') }}
               </button>
             </div>
           </div>
