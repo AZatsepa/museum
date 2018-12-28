@@ -17,7 +17,11 @@ en:
   errors:
     blank: can't be blank
     form:
+      current_password: We need you current password for changes confirmation
       email_format: Must be an email format.
+      first_name: Fill last name, or nickname.
+      last_name: Fill first name, or nickname.
+      nickname: Fill first name and last name, or nickname.
       password_confirmation: Must be equals to password
     min_length: "%{number} symbols min."
   facebook-group: People's Museum of Izyumshchyna
