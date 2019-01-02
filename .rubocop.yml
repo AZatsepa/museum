@@ -64,3 +64,6 @@ RSpec/DescribeClass:
     - 'spec/api/**/*.rb'
 RSpec/NestedGroups:
   Max: 4
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'

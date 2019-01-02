@@ -1,11 +1,8 @@
-.user-data
+.container.text-center
   h2= t('forgot_you_password')
-  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, id: 'forgotten_password', class: 'form-signin', }) do |f|
     = devise_error_messages!
-    .field
-      = f.label :email
-      br
-      = f.email_field :email, autofocus: true
-    .actions
-      = f.submit t('resend_change_password_instructions')
-  = render 'devise/shared/links'
+    .form-group
+      = f.email_field :email, autofocus: true, placeholder: t('registration.email'), class: 'form-control'
+    .form-group
+      = f.submit t('resend_change_password_instructions'), class: 'btn btn-lg btn-primary btn-block'

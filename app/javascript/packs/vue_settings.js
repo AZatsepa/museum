@@ -10,18 +10,23 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueResource from 'vue-resource';
 import VueCanCan from 'vue-cancan';
+import VueI18n from 'vue-i18n';
+import Vuelidate from 'vuelidate';
 import store from './store';
-import Comments from './components/Comments.vue.erb';
-import PostsIndex from './components/admin/PostsIndex.vue.erb';
-import PostEdit from './components/admin/PostEdit.vue.erb';
+import Comments from './components/Comments.vue';
+import PostsIndex from './components/admin/PostsIndex.vue';
+import PostEdit from './components/admin/PostEdit.vue';
 
-if (process.env.NODE_ENV !== 'production' ) {
+
+if (process.env.NODE_ENV !== 'production') {
   Vue.config.devtools = true;
 }
 
 Vue.use(TurbolinksAdapter);
 Vue.use(VueResource);
 Vue.use(Vuex);
+Vue.use(VueI18n);
+Vue.use(Vuelidate);
 
 Vue.use(VueCanCan, { rules: gon.abilities.rules});
 
@@ -33,6 +38,12 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   const commentsEl = document.getElementById('vue-comments-elem');
+
+  // Create VueI18n instance with options
+  const i18n = new VueI18n({
+    locale: document.querySelector('body').getAttribute('data-locale'), // set locale
+    messages: window.I18n.translations, // set locale messages
+  });
 
   if (commentsEl !== null) {
     const comments = JSON.parse(commentsEl.dataset.comments);
@@ -49,6 +60,7 @@ document.addEventListener('turbolinks:load', () => {
           postId,
         };
       },
+      i18n,
     });
   }
 
@@ -67,6 +79,7 @@ document.addEventListener('turbolinks:load', () => {
           posts,
         };
       },
+      i18n,
     });
   }
 
@@ -85,6 +98,7 @@ document.addEventListener('turbolinks:load', () => {
           post,
         };
       },
+      i18n,
     });
   }
 });

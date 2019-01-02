@@ -14,6 +14,7 @@ import 'jquery-ujs';
 import Turbolinks from 'turbolinks';
 import 'datatables.net';
 import 'babel-polyfill';
+import 'jquery-validation';
 
 import '../images/1782.png';
 import '../images/1782_white.jpg';
@@ -29,6 +30,7 @@ import './imageMapResizer';
 import './jquery.maphilight';
 import './markitup';
 import './localizations';
+import './validations';
 import './main';
 import './markitup_html';
 import './posts';
@@ -39,3 +41,6 @@ import './admin/users';
 Turbolinks.start();
 
 window.I18n = require('i18n-js');
+
+require('./i18n/en');
+require('./i18n/uk');

@@ -1,6 +1,5 @@
 <template>
     <div class="border-bottom comment">
-    <% include ActionView::Helpers %>
         <template v-if="!editMode">
           {{ myComment.text }}
           <div v-for="(image, index) in myComment.images" :image="image" :key="index">
@@ -47,14 +46,14 @@
                </div>
              </div>
              <a class="add_comment_attachment" @click.prevent="showImageInput = !showImageInput">
-               <%= t('titles.attachments.add') %>
+               {{ $t('titles.attachments.add') }}
              </a>
              <div class="form-group">
                <button class="btn btn-success" @click.prevent="updateComment">
-                 <%= t('titles.comments.edit') %>
+                 {{ $t('titles.comments.edit') }}
                </button>
                <button class="btn btn-success" @click.prevent="editMode = false">
-                 <%= t('cancel') %>
+                 {{ $t('cancel') }}
                </button>
              </div>
            </form>
@@ -62,10 +61,10 @@
        </div>
         <div class="row">
           <div class="col-3 p-3">
-             <%= t('titles.author') %>: {{ myComment.user.name }}
+             {{ $t('titles.author') }}: {{ myComment.user.name }}
           </div>
           <div class="col-9 p-3">
-             <%= t('created_at') %>: {{ new Date(myComment.created_at).toDateString() }}
+             {{ `${$t('created_at')}: ${new Date(myComment.created_at).toDateString()}` }}
           </div>
        </div>
      </div>

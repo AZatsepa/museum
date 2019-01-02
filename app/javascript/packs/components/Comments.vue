@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import Comment from './Comment.vue.erb'
-  import CommentForm from './CommentForm.vue.erb'
+  import Comment from './Comment.vue'
+  import CommentForm from './CommentForm.vue'
 
   export default {
     name: 'Comments',

@@ -1,13 +1,12 @@
 <template>
   <div id="foo">
-    <% include ActionView::Helpers %>
-    <%= t('titles.posts.edit') %>
+    {{ $t('titles.posts.edit') }}
     <post-form :post="myPost" :method="'patch'"></post-form>
   </div>
 </template>
 
 <script>
-  import PostForm from './PostForm.vue.erb';
+  import PostForm from './PostForm.vue';
   export default {
     props: ['post'],
     data() {

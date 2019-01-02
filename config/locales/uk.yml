@@ -20,9 +20,15 @@ uk:
   didnt_receive_unlock_instructions: Не отримали інструкцій з розблокування?
   english: English
   errors:
-    comment:
-      text:
-        blank: Hе може бути порожнім
+    blank: Hе може бути порожнім
+    form:
+      current_password: Нам потрібен ваш діючий пароль для підтвердження змін.
+      email_format: Має бути схожим на email.
+      first_name: Заповніть прізвище, або ж нікнейм.
+      last_name: Заповніть ім'я, або ж нікнейм.
+      nickname: Заповніть прізвище та ім'я, або ж нікнейм.
+      password_confirmation: Має бути ідентичним з паролем.
+    min_length: "%{number} символів мінімум."
   facebook-group: Народний музей Ізюмщини
   forgot_you_password: Забули пароль?
   hi: Вітаємо

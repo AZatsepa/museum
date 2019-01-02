@@ -23,7 +23,8 @@ module Museum
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
+    config.load_defaults 5.2
     config.paths.add Rails.root.join('lib', 'forms').to_s, eager_load: true
+    config.middleware.use I18n::JS::Middleware
   end
 end

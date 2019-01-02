@@ -3,10 +3,10 @@
     <th>{{ post.id }}</th>
     <th>{{ post.user_id }}</th>
     <th>
-      <a :href="`/admin/posts/${post.id}?locale=<%= I18n.locale %>`">{{ post.title }}</a>
+      <a :href="`/admin/posts/${post.id}?locale=${$i18n.locale}`">{{ post.title }}</a>
     </th>
     <th>
-      <a class="btn btn-link" :href="`/admin/posts/${post.id}/edit?locale=<%= I18n.locale %>`">
+      <a class="btn btn-link" :href="`/admin/posts/${post.id}/edit?locale=${$i18n.locale}`">
         <span class="fa fa-pencil"></span>
       </a>
     </th>

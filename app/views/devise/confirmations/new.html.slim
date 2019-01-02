@@ -1,11 +1,13 @@
-.user-data
+.container.text-center
   h2= t('resend_confirmation_instructions')
-  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+  = form_for(resource, as: resource_name,
+                       url: confirmation_path(resource_name),
+                       html: { method: :post, class: 'form-signin', id: 'new_confirmation' }) do |f|
     = devise_error_messages!
-    .field
-      = f.label :email
-      br
-      = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-    .actions
-      = f.submit t('resend_confirmation_instructions')
-  = render 'devise/shared/links'
+    .form-group
+      = f.email_field :email, autofocus: true,
+                              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                              class: 'form-control',
+                              placeholder: t('registration.password_confirmation')
+    .form-group
+      = f.submit t('resend_confirmation_instructions'), class: 'btn btn-lg btn-primary btn-block'

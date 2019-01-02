@@ -1,19 +1,22 @@
 <template>
     <div class="row text-left">
-      <% include ActionView::Helpers %>
       <form class="new_comment" id="new_comment" >
-        <div class="form-group">
+        <div class="form-group" :class="{invalid: $v.comment.text.$error}">
           <label for="new_comment_text">
-            <%= "#{t('titles.comments.text')}:" %>
+            {{ $t('titles.comments.text') }}:
           </label>
           <div class="comment-errors">
             <span class="text-danger" v-for="(error, index) in errors" :key="index">
               {{error}}
             </span>
           </div>
-          <textarea id="new_comment_text" class="form-control form-control-lg" rows="5" v-model="comment.text">
-
+          <textarea id="new_comment_text"
+                    class="form-control form-control-lg"
+                    rows="5"
+                    v-model="comment.text"
+                    @input="$v.comment.text.$touch()">
           </textarea>
+          <small class="text-danger" v-if="$v.comment.text.$error">{{$t('errors.blank')}}</small>
           <div v-for="(image, index) in comment.images"
                               class="attachments"
                               :image="image"
@@ -29,7 +32,7 @@
                 </label>
               </div>
               <button class="btn btn-sm btn-small btn-danger remove_file">
-                <%= t('titles.attachments.delete') %>
+                {{ $t('titles.attachments.delete') }}
               </button>
             </div>
           </div>
@@ -46,12 +49,15 @@
             </div>
           </div>
           <a class="add_comment_attachment" @click.prevent="showImageInput = !showImageInput">
-            <%= t('titles.attachments.add') %>
+            {{ $t('titles.attachments.add') }}
           </a>
         </div>
 
-        <button class="btn" data-disable-with="Збереження..." @click.prevent="createComment">
-          <%= t('titles.comments.add') %>
+        <button class="btn"
+                data-disable-with="Збереження..."
+                @click.prevent="createComment"
+                :disabled="$v.$invalid">
+          {{ $t('titles.comments.add') }}
         </button>
       </form>
     </div>
@@ -59,6 +65,7 @@
 
 <script>
   import objectToFormData from '../shared/object_to_form_data';
+  import { required } from 'vuelidate/lib/validators';
 
   export default {
     props: ['post_id'],
@@ -72,6 +79,13 @@
         errors: [],
         showImageInput: false
       };
+    },
+    validations: {
+      comment: {
+        text: {
+          required,
+        },
+      },
     },
     methods: {
       createComment() {
@@ -96,5 +110,11 @@
 </script>
 
 <style scoped>
+    .invalid textarea {
+        border-color: #cd0a0a;
+    }
 
+    .invalid label {
+        color: #cd0a0a;
+    }
 </style>
