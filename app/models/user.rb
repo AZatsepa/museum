@@ -51,6 +51,6 @@ class User < ApplicationRecord
   end
 
   def name
-    nickname || first_name + ' ' + last_name
+    nickname || "#{first_name} #{last_name}"
   end
 end
