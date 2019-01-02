@@ -35,7 +35,22 @@ $(window).bind('turbolinks:load', () => {
       'user[password_confirmation]': {
         required: true,
         minlength: 6,
-        equalTo: 'user[password]',
+        equalTo: '#user_password',
+      },
+      'user[nickname]': {
+        required() {
+          return $('#user_first_name').val().length === 0 || $('#user_last_name').val().length === 0;
+        },
+      },
+      'user[first_name]': {
+        required() {
+          return $('#user_last_name').val().length === 0 && $('#user_nickname').val().length === 0;
+        },
+      },
+      'user[last_name]': {
+        required() {
+          return $('#user_first_name').val().length === 0 && $('#user_nickname').val().length === 0;
+        },
       },
     },
     messages: {
@@ -52,6 +67,9 @@ $(window).bind('turbolinks:load', () => {
         minlength: I18n.t('errors.min_length', { number: 6 }),
         equalTo: I18n.t('errors.form.password_confirmation'),
       },
+      'user[nickname]': I18n.t('errors.form.nickname'),
+      'user[first_name]': I18n.t('errors.form.first_name'),
+      'user[last_name]': I18n.t('errors.form.last_name'),
     },
   });
 

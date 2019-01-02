@@ -2,7 +2,7 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    # before_action :configure_sign_up_params, only: [:create]
+    before_action :configure_sign_up_params, only: %i[create]
     # before_action :configure_account_update_params, only: [:update]
     skip_before_action :verify_authenticity_token, only: :destroy
 
@@ -46,13 +46,13 @@ module Users
     protected
 
     # If you have extra params to permit, append them to the sanitizer.
-    # def configure_sign_up_params
-    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    # end
+    def configure_sign_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name nickname])
+    end
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: %i[attribute first_name last_name nickname])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name nickname])
     end
 
     def after_update_path_for(resource)
