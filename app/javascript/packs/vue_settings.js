@@ -11,6 +11,7 @@ import Vuex from 'vuex';
 import VueResource from 'vue-resource';
 import VueCanCan from 'vue-cancan';
 import VueI18n from 'vue-i18n';
+import Vuelidate from 'vuelidate';
 import store from './store';
 import Comments from './components/Comments.vue';
 import PostsIndex from './components/admin/PostsIndex.vue';
@@ -25,6 +26,7 @@ Vue.use(TurbolinksAdapter);
 Vue.use(VueResource);
 Vue.use(Vuex);
 Vue.use(VueI18n);
+Vue.use(Vuelidate);
 
 Vue.use(VueCanCan, { rules: gon.abilities.rules});
 

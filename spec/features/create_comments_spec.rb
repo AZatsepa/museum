@@ -83,7 +83,6 @@ describe 'Create comments', %q(
   it 'Authenticated user try to create invalid comment', js: true do
     login_as(user, scope: :user, run_callbacks: false)
     visit post_path(post)
-    click_on t('titles.comments.add')
-    expect(page).to have_content "Text can't be blank"
+    expect(page).to have_button(t('titles.comments.add'), disabled: true)
   end
 end

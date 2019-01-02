@@ -5,7 +5,10 @@ module Admin
     load_and_authorize_resource except: %i[create]
     before_action :set_comment_post, except: %i[index]
     respond_to :html
-    def index; end
+    def index
+      @comments = Comment.includes(:user, :post).all
+      authorize! :read, @comments
+    end
 
     def show; end
 

@@ -1,7 +1,7 @@
 <template>
     <div class="row text-left">
       <form class="new_comment" id="new_comment" >
-        <div class="form-group">
+        <div class="form-group" :class="{invalid: $v.comment.text.$error}">
           <label for="new_comment_text">
             {{ $t('titles.comments.text') }}:
           </label>
@@ -10,9 +10,13 @@
               {{error}}
             </span>
           </div>
-          <textarea id="new_comment_text" class="form-control form-control-lg" rows="5" v-model="comment.text">
-
+          <textarea id="new_comment_text"
+                    class="form-control form-control-lg"
+                    rows="5"
+                    v-model="comment.text"
+                    @input="$v.comment.text.$touch()">
           </textarea>
+          <small class="text-danger" v-if="$v.comment.text.$error">{{$t('errors.blank')}}</small>
           <div v-for="(image, index) in comment.images"
                               class="attachments"
                               :image="image"
@@ -49,7 +53,10 @@
           </a>
         </div>
 
-        <button class="btn" data-disable-with="Збереження..." @click.prevent="createComment">
+        <button class="btn"
+                data-disable-with="Збереження..."
+                @click.prevent="createComment"
+                :disabled="$v.$invalid">
           {{ $t('titles.comments.add') }}
         </button>
       </form>
@@ -58,6 +65,7 @@
 
 <script>
   import objectToFormData from '../shared/object_to_form_data';
+  import { required } from 'vuelidate/lib/validators';
 
   export default {
     props: ['post_id'],
@@ -71,6 +79,13 @@
         errors: [],
         showImageInput: false
       };
+    },
+    validations: {
+      comment: {
+        text: {
+          required,
+        },
+      },
     },
     methods: {
       createComment() {
@@ -95,5 +110,11 @@
 </script>
 
 <style scoped>
+    .invalid textarea {
+        border-color: #cd0a0a;
+    }
 
+    .invalid label {
+        color: #cd0a0a;
+    }
 </style>
