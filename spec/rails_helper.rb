@@ -7,7 +7,11 @@ require 'cancan/matchers'
 require 'webmock/rspec'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each(&method(:require))
 ActiveRecord::Migration.maintain_test_schema!
-SimpleCov.start
+SimpleCov.start('rails') do
+  add_filter do |source_file|
+    source_file.lines.count < 5
+  end
+end
 WebMock.disable_net_connect!(allow_localhost: true)
 Bullet.enable = true
 Bullet.raise = true
@@ -50,6 +54,8 @@ RSpec.configure do |config|
       Bullet.enable = true
     end
   end
+
+  Capybara.server = :puma, { Silent: true }
 end
 
 Shoulda::Matchers.configure do |config|

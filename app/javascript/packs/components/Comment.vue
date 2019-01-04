@@ -41,7 +41,7 @@
                         class="custom-file-input"
                         @change="onImageSelected($event)">
                  <label class="custom-file-label">
-                   'Choose your image'
+                   {{ $t('choose_image') }}
                  </label>
                </div>
              </div>
@@ -75,21 +75,29 @@
 
   export default {
     name: 'Comment',
-    props: ['comment', 'namespace'],
+    props: ['comment', 'namespace', 'edit_mode'],
     data() {
       return {
         myComment: this.comment,
-        editMode: false,
+        editMode: this.edit_mode,
         showImageInput: false,
         myNamespace: this.namespace ? `/${this.namespace}` : '',
       };
     },
     methods: {
       destroyComment() {
-        this.$http.delete(`/posts/${this.comment.post_id}/comments/${this.comment.id}`).then(response => {
-        },  response => {
-          console.log(response);
-        });
+        if (this.namespace) {
+          this.$http.delete(`/${this.namespace}/comments/${this.comment.id}`).then(response => {
+            Turbolinks.visit(response.headers.get('Location'));
+          },  response => {
+            console.log(response);
+          });
+        } else {
+          this.$http.delete(`/posts/${this.comment.post_id}/comments/${this.comment.id}`).then(response => {
+          },  response => {
+            console.log(response);
+          });
+        }
       },
       updateComment() {
         const commentToUpdate = objectToFormData(this.myComment, null, 'comment');
@@ -120,9 +128,6 @@
         } else {
           return image.filename;
         }
-      },
-      log(image) {
-        debugger;
       },
     },
   };

@@ -5,7 +5,5 @@ FactoryBot.define do
     user { create(:user) }
   end
 
-  factory :comment_form do
-    user { create(:user) }
-  end
+  factory :comment_form
 end

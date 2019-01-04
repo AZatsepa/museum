@@ -23,14 +23,14 @@
         {{ $t('titles.posts.add') }}
       </button>
     </div>
-      <post-form v-if="$store.state.createAdminPostForm" :method="'post'"></post-form>
+      <new-post-form v-if="$store.state.createAdminPostForm"></new-post-form>
     </div>
   </div>
 </template>
 
 <script>
   import PostRow from './PostRow.vue';
-  import PostForm from './PostForm.vue';
+  import NewPostForm from './NewPostForm.vue';
   import { eventBus } from '../../vue_settings';
 
   export default {
@@ -42,7 +42,7 @@
     },
     components: {
       PostRow,
-      PostForm,
+      NewPostForm,
     },
     created() {
       eventBus.$on('postDeleted', (id) => {

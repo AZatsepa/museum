@@ -2,7 +2,7 @@
 
 class CommentForm
   include ActiveModel::Model
-  attr_accessor :comment, :post, :user, :destroy_images, :text, :images
+  attr_accessor :comment, :post, :destroy_images, :text, :images
   validates :text, presence: true
 
   def update

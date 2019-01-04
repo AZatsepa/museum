@@ -17,10 +17,10 @@ module Users
     # end
 
     # GET /resource/edit
-    def edit
-      super
-      # @user = current_user
-    end
+    # def edit
+    #   super
+    #   @user = current_user
+    # end
 
     # PUT /resource
     # def update
@@ -30,9 +30,9 @@ module Users
     # end
 
     # DELETE /resource
-    def destroy
-      super
-    end
+    # def destroy
+    #   super
+    # end
 
     # GET /resource/cancel
     # Forces the session data which is usually expired after sign

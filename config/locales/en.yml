@@ -6,7 +6,7 @@ en:
   cancel: Cancel
   change: Change
   change_password: Change password
-  choose_file: Choose file
+  choose_image: Choose your image
   click_the_link_below_to_unlock_your_account: 'Click the link below to unlock your account:'
   comparisons: Comparisons
   confirm_my_account: Confirm my account
@@ -59,7 +59,6 @@ en:
   resend_change_password_instructions: Resend change password instructions
   resend_confirmation_instructions: Resend confirmation instructions
   resend_unlock_instructions: Resend unlock instructions
-  saving: Saving...
   search: Search
   search_results: Search results for
   send: Send
@@ -74,7 +73,6 @@ en:
     comments:
       add: Add comment
       all: Comments
-      delete: Delete comment
       edit: Edit comment
       text: 'Comment:'
     edit_profile: Edit profile

@@ -14,6 +14,7 @@ import VueI18n from 'vue-i18n';
 import Vuelidate from 'vuelidate';
 import store from './store';
 import Comments from './components/Comments.vue';
+import Comment from './components/Comment.vue';
 import PostsIndex from './components/admin/PostsIndex.vue';
 import PostEdit from './components/admin/PostEdit.vue';
 
@@ -28,7 +29,7 @@ Vue.use(Vuex);
 Vue.use(VueI18n);
 Vue.use(Vuelidate);
 
-Vue.use(VueCanCan, { rules: gon.abilities.rules});
+Vue.use(VueCanCan, { rules: gon.abilities.rules });
 
 export const eventBus = new Vue();
 
@@ -37,13 +38,13 @@ document.addEventListener('turbolinks:load', () => {
     Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   }
 
-  const commentsEl = document.getElementById('vue-comments-elem');
-
   // Create VueI18n instance with options
   const i18n = new VueI18n({
     locale: document.querySelector('body').getAttribute('data-locale'), // set locale
     messages: window.I18n.translations, // set locale messages
   });
+
+  const commentsEl = document.getElementById('vue-comments-elem');
 
   if (commentsEl !== null) {
     const comments = JSON.parse(commentsEl.dataset.comments);
@@ -58,6 +59,44 @@ document.addEventListener('turbolinks:load', () => {
         return {
           comments,
           postId,
+        };
+      },
+      i18n,
+    });
+  }
+
+  const commentEl = document.getElementById('vue-comment-elem');
+
+  if (commentEl !== null) {
+    const comment = JSON.parse(commentEl.dataset.comment);
+    const showComment = new Vue({
+      el: commentEl,
+      store,
+      components: {
+        appComment: Comment,
+      },
+      data() {
+        return {
+          comment,
+        };
+      },
+      i18n,
+    });
+  }
+
+  const editCommentEl = document.getElementById('vue-edit-comment-elem');
+
+  if (editCommentEl !== null) {
+    const comment = JSON.parse(editCommentEl.dataset.comment);
+    const editComment = new Vue({
+      el: editCommentEl,
+      store,
+      components: {
+        appComment: Comment,
+      },
+      data() {
+        return {
+          comment,
         };
       },
       i18n,
