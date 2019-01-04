@@ -27,7 +27,7 @@ describe 'Delete comments', %q(
         visit post_path(post)
       end
 
-      it "sees '#{t('titles.comments.delete')}' link" do
+      it 'sees delete link' do
         within '.comments' do
           expect(page).to have_css 'a.delete-comment-link', visible: false
         end

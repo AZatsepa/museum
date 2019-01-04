@@ -1,4 +1,4 @@
-(function($) {
+(($) => {
   $(document).on('turbolinks:load', () => {
     const postsList = $('.posts-list');
 

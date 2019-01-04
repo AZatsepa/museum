@@ -2,27 +2,22 @@
 
 module Admin
   class CommentsController < ApplicationController
-    load_and_authorize_resource except: %i[create]
-    before_action :set_comment_post, except: %i[index]
+    load_and_authorize_resource except: %i[index show create]
+    before_action :set_comment_post, except: %i[index show]
     respond_to :html
     def index
       @comments = Comment.includes(:user, :post).all
       authorize! :read, @comments
     end
 
-    def show; end
+    def show
+      authorize! :read, comment
+      @comment = CommentSerializer.new(comment)
+    end
 
-    def edit; end
-
-    def create
-      @comment_form = CommentForm.new(comment_params.merge(user: current_user, post: @post))
-      @comment = @comment_form.model
-      authorize! :create, @comment
-      if @comment_form.save
-        render json: @comment
-      else
-        render json: @comment_form.errors.full_messages, status: :unprocessable_entity
-      end
+    def edit
+      authorize! :update, comment
+      @comment = CommentSerializer.new(comment)
     end
 
     def update
@@ -54,6 +49,10 @@ module Admin
 
     def update_comment_params
       params.require(:comment).permit(:text, images: [], destroy_images: [])
+    end
+
+    def comment
+      @_comment ||= Comment.includes(:user).find(params[:id])
     end
   end
 end

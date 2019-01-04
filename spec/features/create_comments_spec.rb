@@ -50,7 +50,7 @@ describe 'Create comments', %q(
       Capybara.using_session('guest') do
         expect(page).to have_content 'Lorem ipsum'
         expect(page).not_to have_content t('titles.comments.edit')
-        expect(page).not_to have_content t('titles.comments.delete')
+        expect(page).not_to have_css 'a.delete-comment-link', visible: false
       end
     end
 

@@ -1,12 +1,12 @@
 <template>
   <div id="foo">
     {{ $t('titles.posts.edit') }}
-    <post-form :post="myPost" :method="'patch'"></post-form>
+    <edit-post-form :post="myPost"></edit-post-form>
   </div>
 </template>
 
 <script>
-  import PostForm from './PostForm.vue';
+  import EditPostForm from './EditPostForm.vue';
   export default {
     props: ['post'],
     data() {
@@ -15,7 +15,7 @@
       };
     },
     components: {
-      PostForm,
+      EditPostForm,
     },
   }
 </script>

@@ -21,19 +21,6 @@
               </textarea>
               <small class="text-danger" v-if="$v.myPost.body.$error">{{$t('errors.blank')}}</small>
             </div>
-            <template v-if="post">
-              <div v-for="(image, index) in post.images"
-                                          class="attachments"
-                                          :image="image"
-                                          :key="index">
-                <div>
-                  <div class="row">
-                    {{ image.filename }}
-                    <input type="checkbox" @click="destroyImage(image)"> destroy
-                  </div>
-                </div>
-              </div>
-            </template>
             <div v-for="(image, index) in myPost.images"
                                           class="attachments"
                                           :image="image"
@@ -60,7 +47,7 @@
                          class="custom-file-input"
                          @change="onImageSelected($event)">
                   <label class="custom-file-label">
-                    'Choose your image'
+                    {{ $t('choose_image') }}
                   </label>
                 </div>
               </div>
@@ -69,11 +56,8 @@
               {{ $t('titles.attachments.add') }}
             </button>
             <div class="form-group">
-              <button class="btn btn-success" @click.prevent="createPost" v-if="method === 'post'" :disabled="$v.$invalid">
+              <button class="btn btn-success" @click.prevent="createPost" :disabled="$v.$invalid">
                 {{ $t('titles.posts.create') }}
-              </button>
-              <button class="btn btn-success" @click.prevent="updatePost" v-else>
-                {{ $t('titles.posts.edit') }}
               </button>
               <button class="btn btn-danger cancel-btn" @click.prevent="cancelForm">
                 {{ $t('cancel') }}
@@ -91,12 +75,12 @@
   import { required } from 'vuelidate/lib/validators';
 
   export default {
-    props: ['post', 'method'],
+    props: ['post'],
     data() {
       return {
         myPost: {
-          title: this.post ? this.post.title : '',
-          body: this.post ? this.post.body : '',
+          title: '',
+          body: '',
           images: [],
           destroy_images: [],
         },
@@ -127,15 +111,6 @@
           console.log(response);
         });
       },
-      updatePost() {
-        const post = objectToFormData(this.myPost, null, 'post');
-        this.$http.patch(`/admin/posts/${this.post.id}`, post).then((response) => {
-          Turbolinks.visit(response.headers.get('Location'))
-        },
-         (response) => {
-          console.log(response);
-        });
-      },
       onImageSelected(event) {
         this.myPost.images.push(event.target.files[0]);
         this.showImageInput = false;
@@ -147,11 +122,7 @@
         this.myPost.destroy_images.push(image.id);
       },
       cancelForm() {
-        if (this.method === 'post') {
-          this.$store.commit('createAdminPostFormHide');
-        } else {
-          Turbolinks.visit(`/admin/posts/${this.post.id}`);
-        }
+        this.$store.commit('createAdminPostFormHide');
       },
     },
   };

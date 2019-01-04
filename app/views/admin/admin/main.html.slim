@@ -1,9 +1,3 @@
 .container-fluid.opacity-light.mh-100
   .row
-    .col-sm-2.border-right
-      .border-bottom.p-2
-        = link_to t('titles.posts.all'), admin_posts_path
-      .border-bottom.p-2
-        = link_to t('titles.comments.all'), admin_comments_path
-      .border-bottom.p-2
-        = link_to t('titles.users.all'), admin_users_path
+    = render 'admin/shared/links'

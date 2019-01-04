@@ -1,7 +1,7 @@
 <template>
     <div class="row text-left">
       <form class="new_comment" id="new_comment" >
-        <div class="form-group" :class="{invalid: $v.comment.text.$error}">
+        <div class="form-group" :class="{invalid: $v.myComment.text.$error}">
           <label for="new_comment_text">
             {{ $t('titles.comments.text') }}:
           </label>
@@ -16,8 +16,8 @@
                     v-model="comment.text"
                     @input="$v.comment.text.$touch()">
           </textarea>
-          <small class="text-danger" v-if="$v.comment.text.$error">{{$t('errors.blank')}}</small>
-          <div v-for="(image, index) in comment.images"
+          <small class="text-danger" v-if="$v.myComment.text.$error">{{$t('errors.blank')}}</small>
+          <div v-for="(image, index) in myComment.images"
                               class="attachments"
                               :image="image"
                               :key="index">
@@ -43,7 +43,7 @@
                        class="custom-file-input"
                        @change="onImageSelected($event)">
                 <label class="custom-file-label">
-                  'Choose your image'
+                  {{ $t('choose_image') }}
                 </label>
               </div>
             </div>
@@ -68,29 +68,26 @@
   import { required } from 'vuelidate/lib/validators';
 
   export default {
-    props: ['post_id'],
-    name: 'CommentForm',
+    props: ['comment'],
+    name: 'NewCommentForm',
     data() {
       return {
-        comment: {
-          text: '',
-          images: [],
-        },
+        myComment: this.comment,
         errors: [],
         showImageInput: false
       };
     },
     validations: {
-      comment: {
+      myComment: {
         text: {
           required,
         },
       },
     },
     methods: {
-      createComment() {
+      updateComment() {
         const comment = objectToFormData(this.comment, null, 'comment');
-        this.$http.post(`/posts/${this.post_id}/comments`, comment).then((response) => {
+        this.$http.patch(`/posts/${this.post_id}/comments/${this.comment.id}`, comment).then((response) => {
           this.comment = {
             text: '',
             images: [],
