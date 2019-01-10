@@ -11,7 +11,6 @@ gem 'active_model_serializers'
 gem 'activestorage'
 gem 'bootsnap', require: false
 gem 'cancancan'
-gem 'carrierwave'
 gem 'coffee-rails'
 gem 'devise'
 gem 'doorkeeper', '~> 4.4.0'
