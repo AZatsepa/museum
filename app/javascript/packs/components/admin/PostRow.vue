@@ -3,10 +3,10 @@
     <th>{{ post.id }}</th>
     <th>{{ post.user_id }}</th>
     <th>
-      <a :href="`/admin/posts/${post.id}?locale=${$i18n.locale}`">{{ post.title }}</a>
+      <a :href="`/${$i18n.locale}/admin/posts/${post.id}`">{{ post.title }}</a>
     </th>
     <th>
-      <a class="btn btn-link" :href="`/admin/posts/${post.id}/edit?locale=${$i18n.locale}`">
+      <a class="btn btn-link" :href="`/${$i18n.locale}/admin/posts/${post.id}/edit`">
         <span class="fa fa-pencil"></span>
       </a>
     </th>
@@ -25,7 +25,7 @@
     props: ['post'],
     methods: {
       deletePost() {
-        this.$http.delete(`/admin/posts/${this.post.id}`).then(response => {
+        this.$http.delete(`/${this.$i18n.locale}/admin/posts/${this.post.id}`).then(response => {
           eventBus.$emit('postDeleted', this.post.id);
         },  response => {
           console.log(response);

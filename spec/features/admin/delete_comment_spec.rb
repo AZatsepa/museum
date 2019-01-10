@@ -17,7 +17,7 @@ describe 'Edit comments', %q(
 
   it 'User deletes comment', js: true do
     expect do
-      find(:xpath, "//a[@href='/admin/comments/1?locale=en'][@data-method='delete']").click
+      find(:xpath, "//a[@href='/en/admin/comments/1'][@data-method='delete']").click
     end.to change(Comment, :count).by(-1)
   end
 end

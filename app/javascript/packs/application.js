@@ -15,6 +15,7 @@ import Turbolinks from 'turbolinks';
 import 'datatables.net';
 import 'babel-polyfill';
 import 'jquery-validation';
+import 'flag-icon-css/css/flag-icon.css';
 
 import '../images/1782.png';
 import '../images/1782_white.jpg';

@@ -58,6 +58,7 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-Capybara.javascript_driver = :poltergeist # use Capybara.javascript_driver = :selenium_chrome if you want to see steps
+Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :selenium_chrome # use it if you want to see steps
 Capybara.server = :puma, { Silent: true }
 Webpacker.compile

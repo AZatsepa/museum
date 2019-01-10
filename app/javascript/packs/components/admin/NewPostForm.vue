@@ -103,7 +103,7 @@
     methods: {
       createPost() {
         const postParams = objectToFormData(this.myPost, null, 'post');
-        this.$http.post('/admin/posts', postParams).then((response) => {
+        this.$http.post(`/${this.$i18n.locale}/admin/posts`, postParams).then((response) => {
           eventBus.$emit('postCreated', response.data.post);
           this.$store.commit('createAdminPostFormHide');
         },

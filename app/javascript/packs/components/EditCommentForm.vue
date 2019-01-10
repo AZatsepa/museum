@@ -87,7 +87,7 @@
     methods: {
       updateComment() {
         const comment = objectToFormData(this.comment, null, 'comment');
-        this.$http.patch(`/posts/${this.post_id}/comments/${this.comment.id}`, comment).then((response) => {
+        this.$http.patch(`/${this.$i18n.locale}/posts/${this.post_id}/comments/${this.comment.id}`, comment).then((response) => {
           this.comment = {
             text: '',
             images: [],

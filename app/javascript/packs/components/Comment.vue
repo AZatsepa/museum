@@ -87,13 +87,13 @@
     methods: {
       destroyComment() {
         if (this.namespace) {
-          this.$http.delete(`/${this.namespace}/comments/${this.comment.id}`).then(response => {
+          this.$http.delete(`/${this.$i18n.locale}${this.myNamespace}/comments/${this.comment.id}`).then(response => {
             Turbolinks.visit(response.headers.get('Location'));
           },  response => {
             console.log(response);
           });
         } else {
-          this.$http.delete(`/posts/${this.comment.post_id}/comments/${this.comment.id}`).then(response => {
+          this.$http.delete(`/${this.$i18n.locale}/posts/${this.comment.post_id}/comments/${this.comment.id}`).then(response => {
           },  response => {
             console.log(response);
           });
@@ -102,7 +102,7 @@
       updateComment() {
         const commentToUpdate = objectToFormData(this.myComment, null, 'comment');
         this.$http
-            .patch(`${this.myNamespace}/posts/${this.comment.post_id}/comments/${this.comment.id}`, commentToUpdate)
+            .patch(`/${this.$i18n.locale}${this.myNamespace}/posts/${this.comment.post_id}/comments/${this.comment.id}`, commentToUpdate)
             .then(response => {
                 this.editMode = false;
                 this.myComment = response.data.comment;

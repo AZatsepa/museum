@@ -17,7 +17,7 @@ describe 'Edit comments', %q(
   end
 
   it 'User changes comment', js: true do
-    find(:xpath, "//a[@href='/admin/comments/1/edit?locale=en']").click
+    find(:xpath, "//a[@href='/en/admin/comments/1/edit']").click
     expect do
       find('a.edit-comment-link').click
       find('#comment_text').set('edited comment')
