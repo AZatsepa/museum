@@ -14,14 +14,14 @@ describe Admin::PostsController do
   describe 'GET #index' do
     it 'assigns @posts' do
       admin_post
-      get 'index', xhr: true
+      get :index, xhr: true
       expect(assigns(:posts)).to eq([admin_post])
     end
   end
 
   describe 'GET #show' do
     it 'shows selected post', disable_bullet: true do
-      get 'show', params: { id: admin_post.id }
+      get :show, params: { id: admin_post.id }
       expect(assigns(:post)).to eq(admin_post)
     end
   end

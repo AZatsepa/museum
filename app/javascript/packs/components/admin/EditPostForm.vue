@@ -102,7 +102,7 @@
     methods: {
       updatePost() {
         const post = objectToFormData(this.myPost, null, 'post');
-        this.$http.patch(`/admin/posts/${this.post.id}`, post).then((response) => {
+        this.$http.patch(`/${this.$i18n.locale}/admin/posts/${this.post.id}`, post).then((response) => {
           Turbolinks.visit(response.headers.get('Location'))
         },
          (response) => {
@@ -120,7 +120,7 @@
         this.myPost.destroy_images.push(image.id);
       },
       cancelForm() {
-        Turbolinks.visit(`/admin/posts/${this.post.id}`);
+        Turbolinks.visit(`/${this.$i18n.locale}/admin/posts/${this.post.id}`);
       },
     },
   };

@@ -90,7 +90,7 @@
     methods: {
       createComment() {
         const comment = objectToFormData(this.comment, null, 'comment');
-        this.$http.post(`/posts/${this.post_id}/comments`, comment).then((response) => {
+        this.$http.post(`/${this.$i18n.locale}/posts/${this.post_id}/comments`, comment).then((response) => {
           this.comment = {
             text: '',
             images: [],

@@ -18,7 +18,6 @@ uk:
   confirmation: Ви впевнені?
   created_at: Створено
   didnt_receive_unlock_instructions: Не отримали інструкцій з розблокування?
-  english: English
   errors:
     blank: Hе може бути порожнім
     form:
@@ -33,7 +32,6 @@ uk:
   forgot_you_password: Забули пароль?
   hi: Вітаємо
   if_you_didnt_request_this_please_ignore_this_email: Якщо ви не робили цього, будь ласка, ігноруйте це повідомлення.
-  language: Мова
   main: Головна
   maps_and_plans: Мапи та плани
   new_password: Новий пароль
@@ -91,7 +89,6 @@ uk:
       title: Заголовок
     users:
       all: Користувачі
-  ukrainian: Українська
   unlock_my_account: Розблокувати мій обліковий запис
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: Повідомляємо вам, що ваш пароль було змінено.
   you_can_confirm_your_account_email_through_the_link_below: 'Ви можете підтвердити вашу електронну адресу за цим посиланням:'

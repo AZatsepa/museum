@@ -5,7 +5,7 @@ describe 'Posts API' do
   post_allowed_fields = %w[id title body user_id comments created_at updated_at]
   comment_allowed_fields = %w[id text post_id user_id created_at updated_at]
 
-  describe 'GET /posts' do
+  describe 'GET /en/posts' do
     it_behaves_like 'API Authenticable'
 
     context 'when authorized' do
@@ -15,7 +15,7 @@ describe 'Posts API' do
       let(:post) { posts.first }
       let!(:comment) { create(:comment, user: user, post: post) }
 
-      before { get '/api/v1/posts', params: { format: :json, access_token: access_token.token } }
+      before { get '/en/api/v1/posts', params: { format: :json, access_token: access_token.token } }
 
       it 'returns 200 status' do
         expect(response).to be_successful
@@ -45,7 +45,6 @@ describe 'Posts API' do
         comment_allowed_fields.each do |field|
           it "contains #{field}" do
             comment.reload
-            # binding.pry if field == 'created_at'
             expect(response.body).to(be_json_eql(comment.send(field.to_sym).to_json)
                                        .at_path("posts/0/comments/0/#{field}"))
           end
@@ -54,11 +53,11 @@ describe 'Posts API' do
     end
 
     def do_request(_options = {})
-      get '/api/v1/posts', params: { format: :json }
+      get '/en/api/v1/posts', params: { format: :json }
     end
   end
 
-  describe 'GET /posts/:id' do
+  describe 'GET /:en/posts/:id' do
     let(:user) { create(:user) }
     let(:access_token) { create(:access_token) }
     let!(:posts) { create_list(:post, POSTS_COUNT, user: user) }
@@ -68,7 +67,7 @@ describe 'Posts API' do
     it_behaves_like 'API Authenticable'
 
     context 'when authorized' do
-      before { get "/api/v1/posts/#{post.id}", params: { format: :json, access_token: access_token.token } }
+      before { get "/en/api/v1/posts/#{post.id}", params: { format: :json, access_token: access_token.token } }
 
       it 'returns 200 status' do
         expect(response).to be_successful
@@ -95,11 +94,11 @@ describe 'Posts API' do
     end
 
     def do_request(_options = {})
-      get "/api/v1/posts/#{post.id}", params: { format: :json }
+      get "/en/api/v1/posts/#{post.id}", params: { format: :json }
     end
   end
 
-  describe 'GET /posts/:id/comments' do
+  describe 'GET /en/posts/:id/comments' do
     let(:user) { create(:user) }
     let(:access_token) { create(:access_token) }
     let(:post) { create(:post, user: user) }
@@ -109,7 +108,7 @@ describe 'Posts API' do
     it_behaves_like 'API Authenticable'
 
     context 'when authorized' do
-      before { get "/api/v1/posts/#{post.id}/comments", params: { format: :json, access_token: access_token.token } }
+      before { get "/en/api/v1/posts/#{post.id}/comments", params: { format: :json, access_token: access_token.token } }
 
       it 'returns 200 status' do
         expect(response).to be_successful
@@ -128,23 +127,25 @@ describe 'Posts API' do
     end
 
     def do_request(_options = {})
-      get "/api/v1/posts/#{post.id}/comments", params: { format: :json }
+      get "/en/api/v1/posts/#{post.id}/comments", params: { format: :json }
     end
   end
 
-  describe 'POST /api/v1/posts' do
+  describe 'POST /en/api/v1/posts' do
     let(:admin) { create(:user, :admin) }
     let(:access_token) { create(:access_token) }
     let(:admin_access_token) { create(:access_token, resource_owner_id: admin.id) }
 
     context 'when unauthorized' do
       it 'returns 401 status if access token is invalid' do
-        post '/api/v1/posts', params: { post: attributes_for(:post), access_token: 'random string', format: :json }
+        post '/en/api/v1/posts', params: { post: attributes_for(:post), access_token: 'random string', format: :json }
         expect(response.status).to be 401
       end
 
       it 'returns 403 status if user does not have permissions' do
-        post '/api/v1/posts', params: { post: attributes_for(:post), access_token: access_token.token, format: :json }
+        post '/en/api/v1/posts', params: { post: attributes_for(:post),
+                                           access_token: access_token.token,
+                                           format: :json }
         expect(response.status).to be 403
       end
     end
@@ -154,9 +155,9 @@ describe 'Posts API' do
     context 'when authorized' do
       context 'when valid' do
         before do
-          post '/api/v1/posts', params: { post: attributes_for(:post),
-                                          access_token: admin_access_token.token,
-                                          format: :json }
+          post '/en/api/v1/posts', params: { post: attributes_for(:post),
+                                             access_token: admin_access_token.token,
+                                             format: :json }
         end
 
         it 'returns 200 status' do
@@ -165,9 +166,9 @@ describe 'Posts API' do
 
         it 'creates post' do
           expect do
-            post '/api/v1/posts', params: { post: attributes_for(:post),
-                                            access_token: admin_access_token.token,
-                                            format: :json }
+            post '/en/api/v1/posts', params: { post: attributes_for(:post),
+                                               access_token: admin_access_token.token,
+                                               format: :json }
           end.to change(Post, :count).by(1)
         end
 
@@ -180,9 +181,9 @@ describe 'Posts API' do
 
       context 'when invalid' do
         before do
-          post '/api/v1/posts', params: { post: { title: nil, body: nil },
-                                          access_token: admin_access_token.token,
-                                          format: :json }
+          post '/en/api/v1/posts', params: { post: { title: nil, body: nil },
+                                             access_token: admin_access_token.token,
+                                             format: :json }
         end
 
         it 'returns 422 status' do
@@ -191,9 +192,9 @@ describe 'Posts API' do
 
         it 'does not create comment' do
           expect do
-            post '/api/v1/posts', params: { post: { title: nil, body: nil },
-                                            acces_token: admin_access_token.token,
-                                            format: :json }
+            post '/en/api/v1/posts', params: { post: { title: nil, body: nil },
+                                               acces_token: admin_access_token.token,
+                                               format: :json }
           end.not_to change(Comment, :count)
         end
 
@@ -206,7 +207,7 @@ describe 'Posts API' do
     end
 
     def do_request(_options = {})
-      post '/api/v1/posts', params: { post: attributes_for(:post), format: :json }
+      post '/en/api/v1/posts', params: { post: attributes_for(:post), format: :json }
     end
   end
 end
