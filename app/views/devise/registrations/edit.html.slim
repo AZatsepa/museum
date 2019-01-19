@@ -1,7 +1,7 @@
 .row.align-items-center.justify-content-center
   .col-6.opacity-light.mt-5.text-center.border-bottom
-    h2= t('titles.edit_profile')
-    = form_for(resource, url: registration_path(resource_name), html: { id: 'edit_user' })do |f|
+    h2 = t('titles.edit_profile')
+    = form_for(resource, url: registration_path(resource_name), html: { id: 'edit_user' }) do |f|
       = devise_error_messages!
       .form-group.row
         = f.label :email, t('registration.email'), class: 'col-sm-2 col-form-label'
@@ -25,7 +25,9 @@
       .form-group.row
         = f.label :password, t('registration.password'), class: 'col-sm-2 col-form-label'
         .col-sm-10
-          = f.password_field :password, autocomplete: :off, class: 'form-control', placeholder: t('registration.leave_blank_password')
+          = f.password_field :password, autocomplete: :off,
+                                        class: 'form-control',
+                                        placeholder: t('registration.leave_blank_password')
       .form-group.row
         = f.label :password_confirmation, t('registration.password_confirmation'), class: 'col-sm-2 col-form-label'
         .col-sm-10
@@ -33,7 +35,10 @@
       .form-group.row
         = f.label :current_password, t('registration.current_password'), class: 'col-sm-2 col-form-label'
         .col-sm-10
-          = f.password_field :current_password, autocomplete: :off, class: 'form-control', placeholder: t('registration.need_password_to_confirm')
+          = f.password_field :current_password,
+                             autocomplete: :off,
+                             class: 'form-control',
+                             placeholder: t('registration.need_password_to_confirm')
       .form-group.row.text-left
         .col-sm-10
           = f.submit t('change'), class: 'btn btn-primary'

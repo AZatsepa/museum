@@ -20,13 +20,15 @@
         tbody
           - @comments.each do |comment|
             tr
-              th= comment.id
-              th= link_to comment.post.title, admin_post_path(comment.post)
-              th= comment.user.name
-              th= link_to comment.text, admin_comment_path(comment)
+              th = comment.id
+              th = link_to comment.post.title, admin_post_path(comment.post)
+              th = comment.user.name
+              th = link_to comment.text, admin_comment_path(comment)
               th
                 = link_to edit_admin_comment_path(comment), class: 'btn btn-link edit-comment-link'
                   span.fa.fa-pencil
               th
-                = link_to admin_comment_path(comment), method: :delete, class: 'btn btn-danger delete-comment-link', data: { confirm: t('confirmation') }
+                = link_to admin_comment_path(comment), method: :delete,
+                                                       class: 'btn btn-danger delete-comment-link',
+                                                       data: { confirm: t('confirmation') }
                   span.fa.fa-trash

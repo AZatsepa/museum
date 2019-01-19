@@ -1,6 +1,11 @@
 nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
-  a.navbar-brand[href="#"]= t('site_name')
-  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"]
+  a.navbar-brand[href="#"] = t('site_name')
+  button.navbar-toggler[type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarsExampleDefault"
+                        aria-controls="navbarsExampleDefault"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"]
     span.navbar-toggler-icon
   #navbarsExampleDefault.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
@@ -21,12 +26,14 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
           = link_to url_for(params.permit!.to_h.merge(locale: :en)), class: 'dropdown-item' do
             span.flag-icon.flag-icon-us
       - if user_signed_in?
-        li.nav-item= link_to t('registration.profile'), user_path(current_user), class: "nav-link #{add_active_class(user_path(current_user))}"
+        li.nav-item = link_to t('registration.profile'),
+                              user_path(current_user), class: "nav-link #{add_active_class(user_path(current_user))}"
         - if current_user.admin?
-          li.nav-item= link_to t('admin'), admin_main_path, class: "nav-link #{add_active_class(admin_main_path)}"
-        li.nav-item= link_to t('registration.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'
+          li.nav-item = link_to t('admin'), admin_main_path, class: "nav-link #{add_active_class(admin_main_path)}"
+        li.nav-item = link_to t('registration.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'
       - else
-        li.nav-item= link_to t('registration.sign_in'), new_user_session_path, class: "nav-link #{add_active_class(new_user_session_path)}"
+        li.nav-item = link_to t('registration.sign_in'),
+                                new_user_session_path, class: "nav-link #{add_active_class(new_user_session_path)}"
     form.form-inline.my-2.my-lg-0
       input.form-control.mr-sm-2[type="text" placeholder="#{t('search')}" aria-label="#{t('search')}"]
-      button.btn.btn-outline-success.my-2.my-sm-0[type="submit"]= t('search')
+      button.btn.btn-outline-success.my-2.my-sm-0[type="submit"] = t('search')
