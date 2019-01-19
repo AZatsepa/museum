@@ -62,6 +62,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
+  gem 'slim_lint'
 end
 
 group :test do

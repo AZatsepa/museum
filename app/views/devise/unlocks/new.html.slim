@@ -1,5 +1,5 @@
 .user-data
-  h2= t('resend_unlock_instructions')
+  h2 = t('resend_unlock_instructions')
   = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
     = devise_error_messages!
     .field

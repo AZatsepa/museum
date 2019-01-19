@@ -10,7 +10,7 @@
             = post.html_body
           ul.attachments
             - post.images.each do |image|
-              li= link_to image, class: 'col p-2'
+              li = link_to image, class: 'col p-2'
                 = image_tag image.variant(resize: '250x200')
       .row.text-left.p-3
         = content_tag :div, nil, id: 'vue-comments-elem', data: { comments: post.post_comments,
