@@ -1,14 +1,11 @@
-html {
-  position: relative;
-  min-height: 100%;
+html, body {
+  height: 100%;
 }
 
 
 body {
-  min-height: 100%;
-  margin-bottom: 54px; /* Margin bottom by footer height */
-  font: 12px/14px  'Arial';
-  background: url('../images/background.jpg') 50%;
+  font-family: 'Arial', sans-serif;
+  background: url('../images/background.jpg') 50%  no-repeat fixed;
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -37,48 +34,25 @@ body {
 -------------------------------------------------- */
 
 #content {
-  display: block;
-  max-height: 100%;
-  margin-top: 54px;
-  margin-bottom: 60px;
+  padding-top: 54px;
 }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+.wrapper {
+  min-height: 100%;
 }
-.form-signin .checkbox {
-  font-weight: 400;
+
+.w1 {
+  padding-bottom: 70px;
 }
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+
 .footer {
-  @include dark-transparent;
-  position: absolute;
-  bottom: 0;
+  position: relative;
   width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
-  line-height: 60px; /* Vertically center the text there */
+  height: 60px;
+  margin-top: -60px;
+  background-color: #ff0000;
+
+  @include dark-transparent;
 }
 
 .btn-facebook {
@@ -87,28 +61,14 @@ body {
   border-width: 1px;
   border-style: solid;
   border-color: #263961;
-}
-.btn-facebook:link, .btn-facebook:visited {
-  color: #fff;
-}
-.btn-facebook:active, .btn-facebook:hover {
-  background: #263961;
-  color: #fff;
-}
 
-.container.comparison-list {
-  padding-top: 1em;
-}
-
-@media (max-width: 1024px) {
-  #content {
-    margin-top: 108px;
+  &:link, &:visited {
+    color: #fff;
   }
-}
 
-@media (max-width: 767px) {
-  #content {
-    margin-top: 54px;
+  &:active, &:hover {
+    background: #263961;
+    color: #fff;
   }
 }
 
@@ -117,7 +77,6 @@ body {
 }
 
 .opacity-light-post {
-  margin-top: 60px;
   @include light-transparent-08;
 }
 
@@ -140,10 +99,6 @@ body {
   border-top: 0;
 }
 
-textarea.form-control, input.form-control {
-  font: 12px/14px 'Arial';
-}
-
 a {
   color: rgba(0, 0, 0, 0.8);
   &:hover {
@@ -152,6 +107,6 @@ a {
   }
 }
 
-.main-top {
-  margin-top: 108px;
+.dropdown_flags {
+  min-width: auto;
 }

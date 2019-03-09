@@ -1,9 +1,8 @@
 <template>
-    <div class="row text-left">
-      <form class="new_comment" id="new_comment" >
+    <form class="new_comment" id="new_comment" >
         <div class="form-group" :class="{invalid: $v.comment.text.$error}">
-          <label for="new_comment_text">
-            {{ $t('titles.comments.text') }}:
+          <label for="new_comment_text" class="font-weight-bold">
+            {{ $t('titles.comments.text') }}
           </label>
           <div class="comment-errors">
             <span class="text-danger" v-for="(error, index) in errors" :key="index">
@@ -16,9 +15,9 @@
                     v-model="comment.text"
                     @input="$v.comment.text.$touch()">
           </textarea>
-          <small class="text-danger" v-if="$v.comment.text.$error">{{$t('errors.blank')}}</small>
+          <small class="text-danger pt-2 d-block" v-if="$v.comment.text.$error">{{$t('errors.blank')}}</small>
           <div v-for="(image, index) in comment.images"
-                              class="attachments"
+                              class="attachments mt-3"
                               :image="image"
                               :key="index">
               <div>
@@ -31,14 +30,14 @@
                   {{ image.name }}
                 </label>
               </div>
-              <button class="btn btn-sm btn-small btn-danger remove_file">
+              <button class="btn btn-sm btn-small btn-danger mt-2">
                 {{ $t('titles.attachments.delete') }}
               </button>
             </div>
           </div>
           <div class="attachments">
             <div>
-              <div class="custom-file" v-if="showImageInput">
+              <div class="custom-file mt-3" v-if="showImageInput">
                 <input type="file"
                        class="custom-file-input"
                        @change="onImageSelected($event)">
@@ -48,19 +47,24 @@
               </div>
             </div>
           </div>
-          <a class="add_comment_attachment" @click.prevent="showImageInput = !showImageInput">
-            {{ $t('titles.attachments.add') }}
-          </a>
+          <div class="mt-3">
+              <button class="btn btn-default add_comment_attachment" @click.prevent="showImageInput = !showImageInput">
+                  {{ $t('titles.attachments.add') }}
+              </button>
+          </div>
         </div>
 
-        <button class="btn"
-                data-disable-with="Збереження..."
-                @click.prevent="createComment"
-                :disabled="$v.$invalid">
-          {{ $t('titles.comments.add') }}
-        </button>
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <button class="btn btn-success btn-block"
+                        :class="[$v.$invalid ? 'comment_add' : 'comment_add_active']"
+                        data-disable-with="Збереження..."
+                        @click.prevent="createComment">
+                    {{ $t('titles.comments.add') }}
+                </button>
+            </div>
+        </div>
       </form>
-    </div>
 </template>
 
 <script>
@@ -77,7 +81,7 @@
           images: [],
         },
         errors: [],
-        showImageInput: false
+        showImageInput: false,
       };
     },
     validations: {
@@ -116,5 +120,15 @@
 
     .invalid label {
         color: #cd0a0a;
+    }
+
+    .comment_add {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .comment_add_active {
+        opacity: 1;
+        visibility: visible;
     }
 </style>

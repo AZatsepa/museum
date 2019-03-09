@@ -17,6 +17,6 @@ module ApplicationHelper
   end
 
   def locale_span
-    tag :span, class: "flag-icon #{LOCALES_ICONS[I18n.locale]}"
+    tag.span class: "flag-icon #{LOCALES_ICONS[I18n.locale]}"
   end
 end
