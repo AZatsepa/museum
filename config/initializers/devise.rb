@@ -248,14 +248,14 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :facebook,
-                  Rails.application.secrets.facebook_app_id,
-                  Rails.application.secrets.facebook_app_secret,
+                  Rails.application.credentials.dig(Rails.env.to_sym, :oauth, :facebook, :app_id),
+                  Rails.application.credentials.dig(Rails.env.to_sym, :oauth, :facebook, :app_secret),
                   scope: 'email',
                   info_fields: 'email,last_name,first_name'
 
   config.omniauth :google_oauth2,
-                  Rails.application.secrets.google_app_id,
-                  Rails.application.secrets.google_app_secret
+                  Rails.application.credentials.dig(Rails.env.to_sym, :oauth, :google, :app_id),
+                  Rails.application.credentials.dig(Rails.env.to_sym, :oauth, :google, :app_secret)
 
 
   # ==> Warden configuration
@@ -280,5 +280,5 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.secret_key = 'a56ce4af7f24f000a53c3a2ce78eab987cc752074ebe7d89059eb82141e04558d2e753d2b8cba82009eb6eb5b21cf202194f1a7dfaa047722582e50e83249bba'
+  config.secret_key = Rails.application.credentials[:secret_key_base]
 end
