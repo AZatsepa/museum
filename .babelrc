@@ -1,4 +1,5 @@
 {
+  "compact": false,
   "presets": [
     ["env", {
       "modules": false,
@@ -9,7 +10,6 @@
       "useBuiltIns": true
     }]
   ],
-
   "plugins": [
     "syntax-dynamic-import",
     "transform-object-rest-spread",

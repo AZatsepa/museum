@@ -68,14 +68,16 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "museum_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL_HOST'] }
+  config.action_mailer.default_url_options = {
+    host: Rails.application.credentials[:production][:default_url_host]
+  }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    port: ENV['SMTP_PORT'].to_i,
-    address: ENV['SMTP_HOST'],
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
-    domain: ENV['SMTP_DOMAIN'],
+    port: Rails.application.credentials[:production][:smtp][:port].to_i,
+    address: Rails.application.credentials[:production][:smtp][:host],
+    user_name: Rails.application.credentials[:production][:smtp][:username],
+    password: Rails.application.credentials[:production][:smtp][:password],
+    domain: Rails.application.credentials[:production][:smtp][:domain],
     enable_starttls_auto: true,
     authentication: 'plain'
   }
