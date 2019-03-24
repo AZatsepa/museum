@@ -1,5 +1,6 @@
-RailsAdmin.config do |config|
+# frozen_string_literal: true
 
+RailsAdmin.config do |config|
   ### Popular gems integration
 
   ## == Devise ==
@@ -23,6 +24,17 @@ RailsAdmin.config do |config|
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
+  config.model 'Post' do
+    edit do
+      field :body, :actiontext
+    end
+  end
+
+  config.model 'Comment' do
+    edit do
+      field :text, :actiontext
+    end
+  end
 
   config.actions do
     dashboard                     # mandatory

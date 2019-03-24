@@ -2,7 +2,7 @@
 
 require_relative 'feature_helper'
 
-describe 'Comment editing', %q(
+xdescribe 'Comment editing', %q(
   In order to fix mistake
   I'd like to be able to edit my comment
 ) do

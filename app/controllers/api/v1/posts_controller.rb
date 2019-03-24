@@ -6,11 +6,11 @@ module Api
       load_and_authorize_resource
 
       def index
-        respond_with Post.includes(:comments, images_attachments: :blob).order(:id).all
+        respond_with Post.includes(:comments, :rich_text_body).order(:id).all
       end
 
       def show
-        respond_with Post.with_attached_images.includes(:comments).find(params[:id])
+        respond_with Post.includes(:comments).find(params[:id])
       end
 
       def create

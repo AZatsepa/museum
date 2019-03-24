@@ -8,4 +8,4 @@
             .col
               h4 = post.title
             .col
-              h6 = post.body[0...100] + '...'
+              h6 = strip_tags(post.body.to_s).truncate(30)

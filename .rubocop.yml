@@ -44,6 +44,7 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
     - 'lib/tasks/cucumber.rake'
     - 'config/routes.rb'
+    - 'config/initializers/rails_admin.rb'
 
 
 Metrics/MethodLength:

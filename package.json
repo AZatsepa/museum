@@ -6,6 +6,7 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "actioncable": "^5.2.0",
+    "actiontext": "https://github.com/kobaltz/actiontext",
     "activestorage": "^5.2.2",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.1",

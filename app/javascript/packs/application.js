@@ -29,15 +29,14 @@ import './cable';
 import './vue_settings';
 import './imageMapResizer';
 import './jquery.maphilight';
-import './markitup';
 import './localizations';
 import './validations';
 import './main';
-import './markitup_html';
 import './posts';
 import './hilight';
 import './admin/comments';
 import './admin/users';
+import 'actiontext'
 
 Turbolinks.start();
 
