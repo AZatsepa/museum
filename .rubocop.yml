@@ -70,3 +70,7 @@ Rails/LexicallyScopedActionFilter:
     - 'app/controllers/users/registrations_controller.rb'
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
+
+Metrics/AbcSize:
+  Exclude:
+    - 'config/initializers/active_storage.rb'

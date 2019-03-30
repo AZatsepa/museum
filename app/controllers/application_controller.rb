@@ -29,18 +29,26 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
-  def set_locale
-    I18n.locale = extract_locale || I18n.default_locale
-  end
-
   def set_abilities
     gon.abilities = current_ability.as_json
     gon.current_user = current_user.as_json
   end
 
+  def set_locale
+    I18n.locale = extract_locale
+  end
+
   def extract_locale
     parsed_locale = params[:locale]
-    I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
+    return parsed_locale if I18n.available_locales.map(&:to_s).include?(parsed_locale)
+
+    extract_locale_from_header || I18n.locale
+  end
+
+  def extract_locale_from_header
+    request.env['HTTP_ACCEPT_LANGUAGE']&.scan(/[a-z]{2}/)&.map(&:to_sym)&.find do |locale|
+      I18n.available_locales.include?(locale)
+    end
   end
 
   def current_ability

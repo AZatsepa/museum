@@ -26,6 +26,8 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
   config.model 'Post' do
     edit do
+      field :title
+      field :user
       field :body, :actiontext
     end
   end

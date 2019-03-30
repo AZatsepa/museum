@@ -10,8 +10,6 @@ Rails.application.routes.draw do
                                     registrations: 'users/registrations' }
 
   scope '(/:locale)', locale: /#{I18n.available_locales.join('|')}/, defaults: { locale: I18n.locale } do
-    root 'pages#main', as: :root_with_locale
-
     resources :posts, only: %i[index show new create] do
       resources :comments
     end
