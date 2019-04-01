@@ -9,7 +9,7 @@ Rails.application.routes.draw do
                                     confirmations: 'users/confirmations',
                                     registrations: 'users/registrations' }
 
-  scope '(/:locale)', locale: /#{I18n.available_locales.join('|')}/, defaults: { locale: I18n.locale } do
+  scope '(/:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     resources :posts, only: %i[index show new create] do
       resources :comments
     end
