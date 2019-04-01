@@ -29,8 +29,9 @@ Vue.use(Vuex);
 Vue.use(VueI18n);
 Vue.use(Vuelidate);
 
-Vue.use(VueCanCan, { rules: gon.abilities.rules });
-
+if(typeof gon !== 'undefined') {
+  Vue.use(VueCanCan, {rules: gon.abilities.rules});
+}
 export const eventBus = new Vue();
 
 document.addEventListener('turbolinks:load', () => {

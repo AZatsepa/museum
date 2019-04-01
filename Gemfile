@@ -7,8 +7,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'actiontext', github: 'kobaltz/actiontext', branch: 'archive', require: 'action_text'
 gem 'active_model_serializers'
 gem 'activestorage'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'cancancan'
 gem 'coffee-rails'
@@ -18,6 +20,7 @@ gem 'execjs'
 gem 'foreman'
 gem 'gon'
 gem 'i18n-js'
+gem 'image_processing'
 gem 'jbuilder'
 gem 'mini_magick'
 gem 'oj'
@@ -31,6 +34,8 @@ gem 'puma'
 gem 'rack', '>= 2.0.6'
 gem 'rails', '~> 5.2.2.1'
 gem 'rails-i18n'
+gem 'rails_admin'
+gem 'rails_admin_actiontext', path: 'vendor/rails_admin_actiontext-master'
 gem 'redcarpet'
 gem 'sass-rails'
 gem 'sentry-raven'

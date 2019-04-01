@@ -2,7 +2,7 @@
 
 require_relative 'feature_helper'
 
-describe 'Add files to comments', %q(
+xdescribe 'Add files to comments', %q(
   In order to illustrate my comment
   As a user
   I'd like to be able to attach files

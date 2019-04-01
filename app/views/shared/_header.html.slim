@@ -29,7 +29,7 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
         li.nav-item = link_to t('registration.profile'),
                               user_path(current_user), class: "nav-link #{add_active_class(user_path(current_user))}"
         - if current_user.admin?
-          li.nav-item = link_to t('admin'), admin_main_path, class: "nav-link #{add_active_class(admin_main_path)}"
+          li.nav-item = link_to t('admin_page'), rails_admin_path, class: "nav-link #{add_active_class(rails_admin_path)}"
         li.nav-item = link_to t('registration.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'
       - else
         li.nav-item = link_to t('registration.sign_in'),

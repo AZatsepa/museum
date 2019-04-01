@@ -4,11 +4,11 @@ module Api
   module V1
     class CommentsController < Api::V1::BaseController
       def index
-        respond_with Post.find(params[:post_id]).comments.with_attached_images.includes(:user).order(:created_at)
+        respond_with Post.find(params[:post_id]).comments.includes(:user, :rich_text_text).order(:created_at)
       end
 
       def show
-        respond_with Comment.with_attached_images.includes(:user).find(params[:id])
+        respond_with Comment.includes(:user, :rich_text_text).find(params[:id])
       end
 
       def create

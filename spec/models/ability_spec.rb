@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Ability do
-  subject(:ability) { described_class.new(user, controller_namespace) }
+  subject(:ability) { described_class.new(user) }
 
   let(:post_user) { create(:user) }
   let(:post) { create(:post, user: post_user) }
@@ -18,23 +18,12 @@ describe Ability do
 
       it { is_expected.not_to be_able_to :manage, :all }
     end
-
-    context 'when Admin controller' do
-      let(:controller_namespace) { 'Admin' }
-
-      it { is_expected.not_to be_able_to :read, Post }
-      it { is_expected.not_to be_able_to :read, Comment }
-
-      it { is_expected.not_to be_able_to :manage, :all }
-    end
   end
 
   describe 'for user' do
     let(:user) { create(:user) }
 
     context 'when not Admin controller' do
-      let(:controller_namespace) { nil }
-
       it { is_expected.not_to be_able_to :manage, User }
       it { is_expected.not_to be_able_to :manage, :all }
 
@@ -66,24 +55,6 @@ describe Ability do
 
       it { is_expected.to be_able_to :destroy, create(:comment, user: user, post: post), user: user }
       it { is_expected.not_to be_able_to :destroy, create(:post, user: user), user: user }
-    end
-
-    context 'when Admin controller' do
-      let(:controller_namespace) { 'Admin' }
-
-      it { is_expected.not_to be_able_to :read, Post }
-      it { is_expected.not_to be_able_to :read, Comment }
-
-      it { is_expected.not_to be_able_to :create, create(:comment, user: user, post: post), user: user }
-      it { is_expected.not_to be_able_to :create, create(:post, user: user), user: user }
-
-      it { is_expected.not_to be_able_to :update, create(:comment, user: user, post: post), user: user }
-      it { is_expected.not_to be_able_to :update, create(:post, user: user), user: user }
-
-      it { is_expected.not_to be_able_to :destroy, create(:comment, user: user, post: post), user: user }
-      it { is_expected.not_to be_able_to :destroy, create(:post, user: user), user: user }
-
-      it { is_expected.not_to be_able_to :manage, :all }
     end
   end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'feature_helper'
-describe 'Create comments', %q(
+xdescribe 'Create comments', %q(
   I want to manage comments
 ) do
   let!(:post) { create(:post, user: user) }

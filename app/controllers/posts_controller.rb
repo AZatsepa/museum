@@ -3,15 +3,9 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
 
-  def index; end
-
-  def show
-    @post = Post.with_attached_images.find(params[:id])
+  def index
+    @posts = @posts.includes(:rich_text_body)
   end
 
-  private
-
-  def post_params
-    params.require(:post).permit(:title, :body, images: %i[])
-  end
+  def show; end
 end

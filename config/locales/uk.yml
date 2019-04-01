@@ -6,7 +6,7 @@ uk:
       post:
         body: Текст статті
         title: Заголовок
-  admin: Адмінка
+  admin_page: Адмінка
   back: Повернутися
   cancel: Відмінити
   change: Змінити

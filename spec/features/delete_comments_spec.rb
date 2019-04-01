@@ -2,7 +2,7 @@
 
 require_relative 'feature_helper'
 
-describe 'Delete comments', %q(
+xdescribe 'Delete comments', %q(
   I want to manage comments
 ) do
   let(:user) { create(:user) }

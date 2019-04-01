@@ -3,7 +3,7 @@
 describe 'API Comments' do
   COMMENT_ALLOWED_FIELDS = %w[id user_id post_id text created_at updated_at].freeze
   describe 'GET /:locale/api/v1/comments/:id' do
-    let(:comment) { create(:comment, :with_images) }
+    let(:comment) { create(:comment) }
     let(:access_token) { create(:access_token) }
 
     context 'when unauthorized' do
@@ -31,11 +31,6 @@ describe 'API Comments' do
         it "contains #{field}" do
           expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
         end
-      end
-
-      it 'contains images' do
-        expect(response.body).to(be_json_eql(comment.images.map { |image| ImageSerializer.new(image).as_json }.to_json)
-                                   .at_path('comment/images'))
       end
     end
 

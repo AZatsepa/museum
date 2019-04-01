@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe CommentForm, type: :model do
+xdescribe CommentForm, type: :model do
   let(:comment) { create(:comment) }
   let(:post) { create(:post) }
 
