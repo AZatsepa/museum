@@ -1,0 +1,20 @@
+.post__btn-blog {
+  color: #ffffff;
+  background-color: #1e7e34;
+  border-color: #1e7e34;
+  border-radius: 3px;
+  margin-bottom:10px
+}
+
+.post__btn-blog:hover,
+.post__btn-blog:focus,
+.post__btn-blog:active,
+.post__btn-blog.active {
+  color: white;
+  background-color: #1e7e34;
+  border-color: #1e7e34;
+}
+
+h2.post__title {
+  color: #343434;
+}

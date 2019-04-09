@@ -38,6 +38,9 @@ uk:
   main: Головна
   maps_and_plans: Мапи та плани
   new_password: Новий пароль
+  post:
+    author_label: 'Автор: %{name}'
+  read_more: Читати
   registration:
     confirmation:
       question: Не отримали інструкцій для підтвердження?
@@ -77,21 +80,17 @@ uk:
       delete: Видалити світлину
     author: Автор
     comments:
-      add: Додати комент
-      all: Коменти
-      edit: Редагувати комент
-      text: 'Комент:'
+      add: Add
+      edit: Edit
+      text: Text
     edit_profile: Редагувати профіль
     posts:
       add: Додати пост
       all: Пости
       body: Текст
       create: Створити пост
-      delete: Видалити пост
       edit: Редагувати
       title: Заголовок
-    users:
-      all: Користувачі
   unlock_my_account: Розблокувати мій обліковий запис
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: Повідомляємо вам, що ваш пароль було змінено.
   you_can_confirm_your_account_email_through_the_link_below: 'Ви можете підтвердити вашу електронну адресу за цим посиланням:'

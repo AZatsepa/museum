@@ -9,7 +9,7 @@ RSpec.describe PostsController do
   describe 'index action' do
     before { get :index }
 
-    it 'assigns @posts' do
+    it 'assigns @posts', disable_bullet: true do
       expect(assigns(:posts)).to eq([post])
     end
 
