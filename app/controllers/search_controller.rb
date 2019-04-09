@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-class ResultsController < ApplicationController
+class SearchController < ApplicationController
   def index
-    @search_results = Post.search_everywhere(params[:query])
+    @posts = Post.search_everywhere(params[:query])
+    render 'posts/index'
   end
 
   private

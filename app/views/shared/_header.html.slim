@@ -34,9 +34,12 @@ nav.navbar.navbar-expand-xl.navbar-dark.bg-dark.fixed-top
       - else
         li.nav-item = link_to t('registration.sign_in'),
                                 new_user_session_path, class: "nav-link #{add_active_class(new_user_session_path)}"
-    form.form-inline.my-2.my-lg-0
+    = form_tag search_path(locale), class: 'form-inline my-2 my-lg-0', method: :get do
       .input-group
-        input.form-control[type="text" placeholder="#{t('search')}" aria-label="#{t('search')}"]
+        = text_field_tag :query, nil, class: 'form-control',
+                                      placeholder: "#{t('search')}",
+                                      'aria-label' => "#{t('search')}" do
         .input-group-append
-          button.btn.btn-success[type="submit"]
+          = button_tag class: 'btn btn-success', type: :submit do
             i.fa.fa-search
+
