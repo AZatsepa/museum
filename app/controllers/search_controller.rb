@@ -2,7 +2,7 @@
 
 class SearchController < ApplicationController
   def index
-    @posts = Post.search_everywhere(params[:query])
+    @posts = Post.includes(:rich_text_body, :user).search_everywhere(params[:query])
     render 'posts/index'
   end
 
