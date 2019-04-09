@@ -32,3 +32,5 @@ storage/
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 tmp/
+app/javascript/packs/i18n/en.js
+app/javascript/packs/i18n/uk.js
