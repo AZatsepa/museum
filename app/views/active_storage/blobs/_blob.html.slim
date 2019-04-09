@@ -1,6 +1,7 @@
 figure class="attachment attachment--#{ blob.representable? ? "preview" : "file" } attachment--#{ blob.filename.extension }"
   - if blob.representable?
-    = image_tag = image_tag polymorphic_url(blob.representation(resize: local_assigns[:in_gallery] ? "800x600" : "1024x768"), class: 'img-fluid', script_name: nil)
+    = link_to rails_blob_path(blob) do
+      = image_tag polymorphic_url(blob.representation(resize: local_assigns[:in_gallery] ? "800x600" : "1024x768"), class: 'img-fluid', script_name: nil)
 
   figcaption.attachment__caption
     - if caption = blob.try(:caption)
