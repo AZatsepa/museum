@@ -92,6 +92,7 @@ search:
 ignore_missing:
   - 'activerecord.attributes.post.{body,title}'
   - 'errors.warning'
+  - 'errors.messages.not_saved'
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
 # - '{devise,simple_form}.*'
 

@@ -8,10 +8,8 @@ uk:
       already_authenticated: Ви вже зареєстровані.
       inactive: Ваш обліковий запис ще не активовано.
       invalid: "Invalid %{authentication_keys} or password."
-      invalid: "Invalid %{authentication_keys} or password."
       locked: Ваш обліковий запис заблоковано
       last_attempt: Ви маєте останню спробу перед тим, як ваш обліковий запис буде заблоковано.
-      not_found_in_database: "Invalid %{authentication_keys} or password."
       not_found_in_database: "Invalid %{authentication_keys} or password."
       timeout: Термін дії сесії вичерпано. Будь ласка, увійдіть наново для продовження.
       unauthenticated: Ви маєте увійти або зареєструватися для продовження.
@@ -27,8 +25,6 @@ uk:
         subject: Пароль змінено
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
-      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
-      success: "Successfully authenticated from %{kind} account."
       success: "Successfully authenticated from %{kind} account."
     passwords:
       no_token: Ви не можете отримати доступ до цієї сторінки, не виконавши інструкції з листа для зміни пароля. Якщо вам надійшов лист для зміни пароля, переконайтеся, що ви використали повне посилання.
@@ -56,12 +52,9 @@ uk:
     messages:
       already_confirmed: вже підтверджено, будь ласка, увійдіть в обліковий запис.
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
-      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: вже недійсний, будь ласка, запитайте новий.
       not_found: не знайдено
       not_locked: не було заблоковано
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
