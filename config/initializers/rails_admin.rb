@@ -28,13 +28,17 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :user
-      field :body, :actiontext
+      field :body do
+        js_location { bindings[:view].asset_pack_path 'actiontext.js' }
+      end
     end
   end
 
   config.model 'Comment' do
     edit do
-      field :text, :actiontext
+      field :text do
+        js_location { bindings[:view].asset_pack_path 'actiontext.js' }
+      end
     end
   end
 

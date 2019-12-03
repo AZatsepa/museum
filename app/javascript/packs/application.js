@@ -36,7 +36,7 @@ import './posts';
 import './hilight';
 import './admin/comments';
 import './admin/users';
-import 'actiontext'
+import 'actiontext';
 
 Turbolinks.start();
 

@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.5.1
+  - 2.6.3
 env:
   - RAILS_ENV=test MUSEUM_DATABASE_TEST_NAME=travis_ci_test ADMIN_AUTH_NAME=name ADMIN_AUTH_PASSWORD=password NODE_ENV=test
 addons:

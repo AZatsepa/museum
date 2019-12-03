@@ -27,7 +27,7 @@ gem 'oj'
 gem 'oj_mimic_json'
 gem 'omniauth'
 gem 'omniauth-facebook', '~> 5.0.0 '
-gem 'omniauth-google-oauth2', '~> 0.5.3'
+gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'pg_search'
 gem 'puma'
@@ -35,7 +35,6 @@ gem 'rack', '>= 2.0.6'
 gem 'rails', '~> 5.2.2.1'
 gem 'rails-i18n'
 gem 'rails_admin'
-gem 'rails_admin_actiontext', path: 'vendor/rails_admin_actiontext-master'
 gem 'redcarpet'
 gem 'sass-rails'
 gem 'sentry-raven'
@@ -50,11 +49,10 @@ group :production do
 end
 
 group :development do
-  gem 'capistrano', '~> 3.11'
-  gem 'capistrano-local-precompile', '~> 1.2.0', require: false
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rails', '~> 1.4'
-  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+  gem 'capistrano', '~> 3.11', require: false
+  gem 'capistrano-rails', '~> 1.4', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano3-puma', require: false
   gem 'html2slim'
   gem 'listen'
   gem 'spring'
@@ -93,4 +91,3 @@ group :test do
   gem 'simplecov'
   gem 'webmock'
 end
-ruby '2.5.1'

@@ -4,6 +4,7 @@
   "description": "This site was created for peoples who are interested in the old Izjum fortress location.",
   "main": "index.js",
   "dependencies": {
+    "@rails/actiontext": "^6.0.1",
     "@rails/webpacker": "3.5",
     "actioncable": "^5.2.0",
     "actiontext": "https://github.com/kobaltz/actiontext",
@@ -29,6 +30,7 @@
     "popper.js": "^1.14.3",
     "resolve-url-loader": "^2.3.0",
     "slim-lang-loader": "^0.0.7",
+    "trix": "^1.2.1",
     "turbolinks": "^5.1.1",
     "vue": "^2.5.17",
     "vue-cancan": "https://github.com/AZatsepa/vue-cancan",
