@@ -251,8 +251,7 @@ Devise.setup do |config|
                   Rails.application.credentials.dig(Rails.env.to_sym, :oauth, :facebook, :app_id),
                   Rails.application.credentials.dig(Rails.env.to_sym, :oauth, :facebook, :app_secret),
                   scope: 'email',
-                  info_fields: 'email,last_name,first_name',
-                  callback_url: 'https://izyum-fortress.in.ua/users/auth/facebook/callback'
+                  info_fields: 'email,last_name,first_name'
 
   config.omniauth :google_oauth2,
                   Rails.application.credentials.dig(Rails.env.to_sym, :oauth, :google, :app_id),
