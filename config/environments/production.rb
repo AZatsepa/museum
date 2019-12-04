@@ -78,7 +78,6 @@ Rails.application.configure do
     user_name: Rails.application.credentials[:production][:smtp][:username],
     password: Rails.application.credentials[:production][:smtp][:password],
     domain: Rails.application.credentials[:production][:smtp][:domain],
-    enable_starttls_auto: true,
     authentication: 'plain'
   }
 
