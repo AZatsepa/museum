@@ -22,6 +22,10 @@ en:
       last_name: Fill first name, or nickname.
       nickname: Fill first name and last name, or nickname.
       password_confirmation: Must be equals to password
+    messages:
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"
     min_length: "%{number} symbols min."
   facebook-group: People's Museum of Izyumshchyna
   forgot_you_password: Forgot you password?
