@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@rails/actiontext": "^6.0.1",
+    "@rails/activestorage": "^6.0.1",
     "@rails/webpacker": "3.5",
     "actioncable": "^5.2.0",
     "actiontext": "https://github.com/kobaltz/actiontext",
