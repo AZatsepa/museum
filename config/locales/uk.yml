@@ -27,6 +27,10 @@ uk:
       last_name: Заповніть ім'я, або ж нікнейм.
       nickname: Заповніть прізвище та ім'я, або ж нікнейм.
       password_confirmation: Має бути ідентичним з паролем.
+    messages:
+      not_saved:
+        one: '1 помилка не дає зберегти %{resource}:'
+        other: "%{count} помилок не дають зберегти %{resource}:"
     min_length: "%{number} символів мінімум."
   facebook-group: Народний музей Ізюмщини
   forgot_you_password: Забули пароль?
