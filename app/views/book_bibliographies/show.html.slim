@@ -1,0 +1,30 @@
+.container
+  .row
+    .col-2
+    .col-8
+      table.table.bibliography
+        tbody
+          tr
+            th = t('bibliography.authors')
+            td = @book_bibliography.authors
+          tr
+            th = t('bibliography.title')
+            td = @book_bibliography.title
+          tr
+            th = t('bibliography.publishing_year')
+            td = @book_bibliography.publishing_year
+          tr
+            th = t('bibliography.events_years')
+            td = @book_bibliography.events_years
+          tr
+            th = t('bibliography.page')
+            td = @book_bibliography.page
+          tr
+            th = t('bibliography.annotation')
+            td = @book_bibliography.annotation
+          - if can?(:edit, @book_bibliography)
+            tr
+              th = t('actions.edit')
+              td = link_to edit_book_bibliography_path(@book_bibliography), class: 'btn btn-secondary'
+                span.fa.fa-pencil
+    .col-2

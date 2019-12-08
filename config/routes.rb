@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index show new create] do
       resources :comments
     end
+    resources :book_bibliographies
     resources :users, only: %i[show]
 
     get 'comparison/1782_1943', to: 'comparison#_1782_1943'

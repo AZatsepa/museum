@@ -7,12 +7,12 @@ class Ability
     user ||= User.new
     if user.admin?
       can :manage, :all
+    elsif user.author?
+      author_abilities(user)
     elsif user.confirmed_at
-      can :read, Post
-      can :manage, Comment, user_id: user.id
-      can %i[read update], User, id: user.id
+      confirmed_user_abilities(user)
     else
-      can :read, [Post, Comment]
+      guest_abilities
     end
   end
 
@@ -25,5 +25,25 @@ class Ability
         conditions:    rule.conditions.as_json
       }
     end }.as_json
+  end
+
+  private
+
+  def guest_abilities
+    can :read, [Post, Comment]
+    can :read, BookBibliography, published: true
+  end
+
+  def author_abilities(user)
+    can :create, BookBibliography
+    can :read, BookBibliography, published: true
+    can :manage, BookBibliography, user_id: user.id
+  end
+
+  def confirmed_user_abilities(user)
+    can :read, Post
+    can :read, BookBibliography, published: true
+    can :manage, Comment, user_id: user.id
+    can %i[read update], User, id: user.id
   end
 end

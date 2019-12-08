@@ -18,5 +18,6 @@ install:
 script:
   - bundle audit check --update
   - bundle exec rubocop .
+  - bundle exec slim-lint . -c .slim_lint.yml
   - bundle exec rspec
   - bundle exec cucumber

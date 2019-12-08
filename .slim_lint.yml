@@ -2,5 +2,4 @@ linters:
   LineLength:
     exclude:
       - 'app/views/comparison/*'
-      - 'app/views/chronology/index.html.slim'
     max: 120

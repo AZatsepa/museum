@@ -1,0 +1,47 @@
+table.table.bibliography
+  thead
+    tr
+      th
+        = link_to book_bibliographies_path(order: :id, direction: sort_order)
+          = sort_icon('#', :id)
+      th
+        = link_to book_bibliographies_path(order: :authors, direction: sort_order)
+          = sort_icon(t('bibliography.authors'), :authors).html_safe
+      th
+        = link_to book_bibliographies_path(order: :title, direction: sort_order)
+          = sort_icon(t('bibliography.title'), :title)
+      th
+        = link_to book_bibliographies_path(order: :publishing_year, direction: sort_order)
+          = sort_icon(t('bibliography.publishing_year'), :publishing_year)
+      th
+        = link_to book_bibliographies_path(order: :events_years, direction: sort_order)
+          = sort_icon(t('bibliography.events_years'), :events_years)
+      th
+        = link_to book_bibliographies_path(order: :page, direction: sort_order)
+          = sort_icon(t('bibliography.page'), :page)
+      th
+        = link_to book_bibliographies_path(order: :annotation, direction: sort_order)
+          = sort_icon(t('bibliography.annotation'), :annotation)
+      th
+        - if can?(:create, BookBibliography.new)
+          = link_to t('bibliography.add_new'), new_book_bibliography_path
+  - if @book_bibliographies.present?
+    - @book_bibliographies.each do |bibliography|
+      tr
+        td = link_to(bibliography.id, bibliography)
+        td = bibliography.authors
+        td = bibliography.title
+        td = bibliography.publishing_year
+        td = bibliography.events_years
+        td = bibliography.page
+        td = "#{bibliography.annotation[0..20]}..."
+        td
+          - if can?(:manage, bibliography)
+            = link_to edit_book_bibliography_path(bibliography), class: 'btn btn-link'
+              span.fa.fa-pencil
+            = link_to book_bibliography_path(bibliography), class: 'btn btn-link', method: :delete
+              span.fa.fa-trash
+.container-fluid
+  .row
+    .col-12
+      = paginate @book_bibliographies

@@ -1,6 +1,9 @@
 ---
 uk:
   about_us: Про наше об'єднання
+  actions:
+    create: Створити
+    edit: Редагувати
   activerecord:
     attributes:
       post:
@@ -8,6 +11,20 @@ uk:
         title: Заголовок
   admin_page: Адмінка
   back: Повернутися
+  bibliography:
+    add_new: Додати нову
+    annotation: Анотація
+    authors: Автори
+    editing: Редагування
+    events_years: Роки подій
+    page: Сторінка
+    publishing_year: Рік видання
+    title: Назва
+  book_bibliographies: Бібліографії
+  book_bibliography:
+    notice:
+      created: Книжкова бібліографія створена успішно
+      unpublished: Книжкова бібліографія створена успішно, але не опублікована
   cancel: Відмінити
   change: Змінити
   change_password: Змінити пароль
@@ -32,7 +49,6 @@ uk:
         one: '1 помилка не дає зберегти %{resource}:'
         other: "%{count} помилок не дають зберегти %{resource}:"
     min_length: "%{number} символів мінімум."
-  facebook-group: Народний музей Ізюмщини
   forgot_you_password: Забули пароль?
   hi: Вітаємо
   if_you_didnt_request_this_please_ignore_this_email: Якщо ви не робили цього, будь ласка, ігноруйте це повідомлення.
@@ -66,7 +82,6 @@ uk:
   resend_change_password_instructions: Надіслати інструкцію зі зміни паролю.
   resend_confirmation_instructions: Надіслати інструкції з підтвердження ще раз
   resend_unlock_instructions: Надіслати інструкції з розблокування.
-  search: Пошук
   search_results: Результати пошуку за запитом
   send: Надіслати
   sign_in_with: Увійти через
@@ -94,6 +109,13 @@ uk:
     users:
       all: Користувачі
   unlock_my_account: Розблокувати мій обліковий запис
+  views:
+    pagination:
+      first: "&laquo; Перша"
+      last: Остання &raquo;
+      next: Наступна &rsaquo;
+      previous: "&lsaquo; Попередня"
+      truncate: "&hellip;"
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: Повідомляємо вам, що ваш пароль було змінено.
   you_can_confirm_your_account_email_through_the_link_below: 'Ви можете підтвердити вашу електронну адресу за цим посиланням:'
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Ваш обліковий запис було заблоковано через високу кількість неправильних спроб входу.
