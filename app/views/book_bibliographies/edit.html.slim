@@ -1,0 +1,42 @@
+.row.align-items-center.justify-content-center
+  .col-6.opacity-light.mt-5.text-center.border-bottom
+    h2 = t('bibliography.editing')
+    = form_for(@book_bibliography) do |f|
+      - if @book_bibliography.errors.present?
+        ul
+          - @book_bibliography.errors.full_messages.each do |msg|
+            li
+              = msg
+      .form-group.row
+        = f.label :authors, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_field :authors, autofocus: true, class: 'form-control'
+      .form-group.row
+        = f.label :title, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_field :title, class: 'form-control'
+      .form-group.row
+        = f.label :publishing_year, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.number_field :publishing_year, class: 'form-control'
+      .form-group.row
+        = f.label :events_years, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_field :events_years, class: 'form-control'
+      .form-group.row
+        = f.label :page, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.number_field :page, class: 'form-control'
+      .form-group.row
+        = f.label :annotation, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_area :annotation, class: 'form-control'
+      .form-group.row
+        = f.label :published, class: 'col-sm-2 col-form-label'
+        .col-sm-10.text-left
+          = f.check_box :published, class: 'form-control'
+      .form-group.row.text-left
+        .col-sm-10
+          = f.submit t('change'), class: 'btn btn-primary'
+    .row.border-bottom.p-2
+      = link_to t('back'), :back, class: 'btn btn-secondary'

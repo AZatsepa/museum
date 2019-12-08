@@ -1,8 +1,25 @@
 ---
 en:
   about_us: About us
+  actions:
+    create: Create
+    edit: Edit
   admin_page: Admin
   back: Back
+  bibliography:
+    add_new: Add new
+    annotation: Annotation
+    authors: Authors
+    editing: Editing
+    events_years: Events years
+    page: Page
+    publishing_year: Publishing year
+    title: Title
+  book_bibliographies: Book bibliographies
+  book_bibliography:
+    notice:
+      created: Book bibliography has been created
+      unpublished: Book bibliography has been created but unpublished
   cancel: Cancel
   change: Change
   change_password: Change password
@@ -27,7 +44,6 @@ en:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
     min_length: "%{number} symbols min."
-  facebook-group: People's Museum of Izyumshchyna
   forgot_you_password: Forgot you password?
   hi: Hello
   if_you_didnt_request_this_please_ignore_this_email: If you didn't request this, please ignore this email.
@@ -61,7 +77,6 @@ en:
   resend_change_password_instructions: Resend change password instructions
   resend_confirmation_instructions: Resend confirmation instructions
   resend_unlock_instructions: Resend unlock instructions
-  search: Search
   search_results: Search results for
   send: Send
   sign_in_with: Sign in with
@@ -89,6 +104,13 @@ en:
     users:
       all: Users
   unlock_my_account: Unlock my account
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: Last &raquo;
+      next: Next &rsaquo;
+      previous: "&lsaquo; Prev"
+      truncate: "&hellip;"
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: We're contacting you to notify you that your password has been changed.
   you_can_confirm_your_account_email_through_the_link_below: 'You can confirm your account email through the link below:'
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Your account has been locked due to an excessive number of unsuccessful sign in attempts.

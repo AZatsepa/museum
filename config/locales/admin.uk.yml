@@ -66,24 +66,24 @@ uk:
         menu: "Dashboard"
         breadcrumb: "Dashboard"
       index:
-        title: "List of %{model_label_plural}"
-        menu: "List"
+        title: "Перелік %{model_label_plural}"
+        menu: "Список"
         breadcrumb: "%{model_label_plural}"
       show:
         title: "Details for %{model_label} '%{object_label}'"
         menu: "Show"
         breadcrumb: "%{object_label}"
       show_in_app:
-        menu: "Show in app"
+        menu: "Показати на сайті"
       new:
         title: "New %{model_label}"
         menu: "Add new"
         breadcrumb: "New"
         link: "Add a new %{model_label}"
-        done: "created"
+        done: "створено"
       edit:
         title: "Edit %{model_label} '%{object_label}'"
-        menu: "Edit"
+        menu: "Редагувати"
         breadcrumb: "Edit"
         link: "Edit this %{model_label}"
         done: "updated"
@@ -92,7 +92,7 @@ uk:
         menu: "Delete"
         breadcrumb: "Delete"
         link: "Delete '%{object_label}'"
-        done: "deleted"
+        done: "Видалено"
       bulk_delete:
         title: "Delete %{model_label_plural}"
         menu: "Multiple delete"
