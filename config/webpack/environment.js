@@ -1,12 +1,10 @@
 const { environment } = require('@rails/webpacker');
+const { VueLoaderPlugin } = require('vue-loader')
 const webpack = require('webpack');
-const coffee = require('./loaders/coffee');
-const vue = require('./loaders/vue');
+const vue = require('./loaders/vue')
 const customConfig = require('./custom');
 
 environment.config.merge(customConfig);
-environment.loaders.append('coffee', coffee);
-environment.loaders.append('vue', vue);
 
 environment.plugins.prepend('Provide', new webpack.ProvidePlugin({
   $: 'jquery',
@@ -15,4 +13,6 @@ environment.plugins.prepend('Provide', new webpack.ProvidePlugin({
   jst: 'jst',
 }));
 
+environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
+environment.loaders.prepend('vue', vue)
 module.exports = environment;
