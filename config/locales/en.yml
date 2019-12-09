@@ -27,7 +27,6 @@ en:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
     min_length: "%{number} symbols min."
-  facebook-group: People's Museum of Izyumshchyna
   forgot_you_password: Forgot you password?
   hi: Hello
   if_you_didnt_request_this_please_ignore_this_email: If you didn't request this, please ignore this email.

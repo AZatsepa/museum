@@ -32,7 +32,6 @@ uk:
         one: '1 помилка не дає зберегти %{resource}:'
         other: "%{count} помилок не дають зберегти %{resource}:"
     min_length: "%{number} символів мінімум."
-  facebook-group: Народний музей Ізюмщини
   forgot_you_password: Забули пароль?
   hi: Вітаємо
   if_you_didnt_request_this_please_ignore_this_email: Якщо ви не робили цього, будь ласка, ігноруйте це повідомлення.

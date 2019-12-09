@@ -13,7 +13,6 @@ import 'jquery-ui';
 import 'jquery-ujs';
 import Turbolinks from 'turbolinks';
 import 'datatables.net';
-import 'babel-polyfill';
 import 'jquery-validation';
 import 'flag-icon-css/css/flag-icon.css';
 

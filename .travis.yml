@@ -11,6 +11,8 @@ services:
 install:
   - gem install bundler
   - bundle install
+  - nvm install v12
+  - nvm use v12
   - yarn
   - ./bin/rails webpacker:binstubs
   - bundle exec rake db:create

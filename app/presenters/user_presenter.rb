@@ -2,6 +2,6 @@
 
 class UserPresenter < SimpleDelegator
   def image
-    image_url || ApplicationController.helpers.asset_pack_path('images/noavatar.png')
+    image_url || ApplicationController.helpers.asset_pack_path('media/images/noavatar.png')
   end
 end
