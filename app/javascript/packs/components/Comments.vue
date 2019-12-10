@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-9">
+  <div>
     <div class="comments">
       <app-comment v-for="(comment, index) in mutableComments" :comment="comment" :key="index"></app-comment>
     </div>

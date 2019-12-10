@@ -1,5 +1,0 @@
-.container-fluid.opacity-light.mh-100
-  .row
-    = render 'admin/shared/links'
-    = content_tag :div, nil, id: 'vue-elem', class: 'col-sm-10', data: { posts: @posts.to_json } do
-      posts-index :posts="posts"

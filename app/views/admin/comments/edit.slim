@@ -1,6 +1,0 @@
-.container-fluid.opacity-light.mh-100
-  .row
-    = render 'admin/shared/links'
-    .col-sm-10
-      = content_tag :div, nil, id: 'vue-edit-comment-elem', class: 'comments col-sm-10', data: { comment: @comment } do
-        app-comment :comment="comment" :namespace="'admin'" :edit_mode="true"

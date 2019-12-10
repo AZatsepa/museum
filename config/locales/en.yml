@@ -33,6 +33,9 @@ en:
   main: Main
   maps_and_plans: Maps and plans
   new_password: New password
+  post:
+    author_label: 'Автор: %{name}'
+  read_more: Читати
   registration:
     confirmation:
       question: Didn't receive confirmation instructions?
@@ -72,21 +75,17 @@ en:
       delete: Delete image
     author: Author
     comments:
-      add: Add comment
-      all: Comments
-      edit: Edit comment
-      text: 'Comment:'
+      add: Add
+      edit: Edit
+      text: Text
     edit_profile: Edit profile
     posts:
       add: Add post
       all: Posts
       body: Body
       create: Create post
-      delete: Remove post
       edit: Edit
       title: Title
-    users:
-      all: Users
   unlock_my_account: Unlock my account
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: We're contacting you to notify you that your password has been changed.
   you_can_confirm_your_account_email_through_the_link_below: 'You can confirm your account email through the link below:'

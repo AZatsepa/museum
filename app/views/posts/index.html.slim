@@ -1,11 +1,13 @@
-.row.align-items-center.justify-content-center
-  .text-center.opacity-light-post.col-lg-9.p-4
-    h1.border-bottom = t('titles.posts.all')
-    .posts-list
-      - @posts.each do |post|
-        .row.border-bottom.align-items-center.justify-content-center
-          = link_to post_path(post)
-            .col
-              h4 = post.title
-            .col
-              h6 = strip_tags(post.body.to_s).truncate(30)
+.row.justify-content-center
+  .col-lg-9.pt-4.mb-4.opacity-light-post
+    - @posts.each do |post|
+      .row.justify-content-center
+        .col-md-10.border-bottom
+          h2.post__title = post.title
+          = image_tag asset_pack_path('media/images/noavatar.png'), alt: 'Author image',
+                                                                    class: 'pull-left img-responsive thumb mb-2 mr-2 img-thumbnail'
+          article
+            p = strip_tags(post.body.to_s).truncate(200)
+          = link_to t('read_more'), post_path(post), class: "btn post__btn-blog pull-right mp-10 mb-10"
+          p = t('post.author_label', name: post.user.name)
+

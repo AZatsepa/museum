@@ -1,7 +1,0 @@
-.container-fluid.opacity-light.mh-100
-  .row
-    = render 'admin/shared/links'
-    = content_tag :div, nil, id: 'vue-comment-elem', class: 'comments col-sm-10', data: { comment: @comment } do
-      app-comment :comment="comment" :namespace="'admin'"
-      .row.border-bottom
-        = link_to t('back'), :back, class: 'btn btn-secondary'

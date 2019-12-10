@@ -29,6 +29,8 @@ Rails.application.routes.draw do
       end
     end
 
+    get 'search', to: 'search#index'
+
     mount ActionCable.server => '/cable'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
