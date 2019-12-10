@@ -26,7 +26,7 @@ Rails.application.config.content_security_policy do |policy|
                       :unsafe_eval,
                       :unsafe_inline
   else
-    policy.script_src :self, :https
+    policy.script_src :self, :https, :unsafe_eval, 'https://izyum-fortress.in.ua'
   end
 
   #   Specify URI for violation reports
