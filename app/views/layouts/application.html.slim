@@ -18,6 +18,7 @@ html lang="#{I18n.locale}"
     .wrapper
       .w1
         = render 'shared/header'
-        main#content.container-fluid role="main"
+        = render 'shared/flash_messages'
+        main.container-fluid role="main"
           = yield
     = render 'shared/footer'

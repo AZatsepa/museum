@@ -12,7 +12,6 @@ import 'jquery';
 import 'jquery-ui';
 import 'jquery-ujs';
 import Turbolinks from 'turbolinks';
-import 'datatables.net';
 import 'jquery-validation';
 import 'flag-icon-css/css/flag-icon.css';
 
@@ -33,8 +32,6 @@ import './validations';
 import './main';
 import './posts';
 import './hilight';
-import './admin/comments';
-import './admin/users';
 
 Turbolinks.start();
 

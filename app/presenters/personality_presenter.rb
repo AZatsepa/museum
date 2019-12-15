@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserPresenter < BasePresenter
+class PersonalityPresenter < BasePresenter
   def img_url
     if image.attached?
       rails_blob_path(image)

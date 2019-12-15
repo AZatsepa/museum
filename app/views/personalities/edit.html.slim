@@ -1,0 +1,14 @@
+.row.align-items-center.justify-content-center
+  .col-6.opacity-light.text-center.border-bottom
+    h2 = t('personalities.label.edit')
+    = render 'form'
+    .row.border-top.p-2.justify-content-between
+      = link_to personalities_path, class: 'btn btn-secondary' do
+        span.fa.fa-angle-left
+      = button_to personality_path(@personality),
+              data: { confirm: t('confirmation') },
+              class: 'btn btn-danger',
+              method: :delete do
+        span.fa.fa-trash
+      = link_to @personality, class: 'btn btn-secondary' do
+        span.fa.fa-eye

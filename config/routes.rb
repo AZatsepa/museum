@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :comments
     end
     resources :users, only: %i[show]
+    resources :personalities
 
     get 'comparison/1782_1943', to: 'comparison#_1782_1943'
     get 'comparison/1943_2017', to: 'comparison#_1943_2017'

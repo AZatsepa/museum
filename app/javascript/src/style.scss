@@ -33,10 +33,6 @@ body {
 /* Sticky footer styles
 -------------------------------------------------- */
 
-#content {
-  padding-top: 54px;
-}
-
 .wrapper {
   min-height: 100%;
 }
@@ -82,10 +78,17 @@ body {
 
 .avatar {
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 250px;
+  height: auto;
+  border-radius: 5%;
 }
+
+.profile-avatar {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
 .table-user-information > tbody > tr {
   border-top: 1px solid rgb(52, 52, 52);
 }
@@ -109,4 +112,8 @@ a {
 
 .dropdown_flags {
   min-width: auto;
+}
+
+.alert {
+  border-radius: unset;
 }

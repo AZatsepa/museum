@@ -1,0 +1,6 @@
+.row.align-items-center.justify-content-center
+  .col-6.opacity-light.text-center.border-bottom
+    h2 = t('personalities.label.add')
+    = render 'form'
+    .row.border-bottom.p-2
+      = link_to t('back'), personalities_path, class: 'btn btn-secondary'

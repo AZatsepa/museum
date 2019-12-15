@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_154551) do
+ActiveRecord::Schema.define(version: 2019_12_10_192900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,30 @@ ActiveRecord::Schema.define(version: 2019_04_09_154551) do
     t.index ["user_id"], name: "index_authenticates_on_user_id"
   end
 
+  create_table "book_bibliographies", force: :cascade do |t|
+    t.string "authors", null: false
+    t.string "title", null: false
+    t.integer "publishing_year", null: false
+    t.string "events_years", null: false
+    t.string "page", null: false
+    t.text "annotation", null: false
+    t.boolean "published", default: false, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_book_bibliographies_on_user_id"
+  end
+
+  create_table "chronologies", force: :cascade do |t|
+    t.integer "year", null: false
+    t.text "events", default: [], array: true
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chronologies_on_user_id"
+    t.index ["year"], name: "index_chronologies_on_year"
+  end
+
   create_table "comments", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -115,6 +139,19 @@ ActiveRecord::Schema.define(version: 2019_04_09_154551) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "personalities", force: :cascade do |t|
+    t.string "name"
+    t.string "life_years"
+    t.text "information"
+    t.string "definition"
+    t.boolean "published", default: false
+    t.boolean "locked", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_personalities_on_user_id"
+  end
+
   create_table "posts", id: :serial, force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -153,8 +190,11 @@ ActiveRecord::Schema.define(version: 2019_04_09_154551) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authenticates", "users"
+  add_foreign_key "book_bibliographies", "users"
+  add_foreign_key "chronologies", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "personalities", "users"
 end

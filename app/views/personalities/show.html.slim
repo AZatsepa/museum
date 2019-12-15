@@ -1,0 +1,27 @@
+-present(@personality) do |personality|
+  .row.align-items-center.justify-content-center
+    .col-6.opacity-light.mt-5
+      .row
+        .col-md-12.text-center
+          = image_tag personality.img_url, class: 'avatar mt-4'
+      .row
+        .col-md-12
+          table.table.table-user-information
+            tbody
+              tr.row
+                td.col-3 = t('activerecord.attributes.personality.name')
+                td.col = personality.name
+              tr.row
+                td.col-3 = t('activerecord.attributes.personality.life_years')
+                td.col = personality.life_years
+              tr.row
+                td.col-3 = t('activerecord.attributes.personality.definition')
+                td.col = personality.definition
+              tr.row
+                td.col-3 = t('activerecord.attributes.personality.information')
+                td.col = personality.information
+              - if can? :edit, personality
+                tr.row
+                  td.col.text-left
+                    = link_to edit_personality_path(personality), class: 'btn btn-secondary' do
+                      span.fa.fa-pencil

@@ -90,7 +90,8 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
-  - 'activerecord.attributes.post.{body,title}'
+  - 'activerecord.attributes.post.*'
+  - 'activerecord.attributes.personality.*'
   - 'errors.warning'
   - 'errors.messages.not_saved'
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'

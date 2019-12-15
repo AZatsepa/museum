@@ -576,6 +576,7 @@ DEPENDENCIES
   image_processing
   jbuilder
   json_spec
+  kaminari
   launchy
   letter_opener
   listen
