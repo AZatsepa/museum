@@ -28,7 +28,7 @@ table.table.opacity-light.table-hover
     - @personalities.each do |personality|
       tr
         td
-          = link_to personality, class: 'btn btn-info'
+          = link_to personality, class: 'btn btn-info', data: { show_personality: personality.id }
             span.fa.fa-eye
         td = personality.name
         td = personality.life_years
@@ -37,9 +37,13 @@ table.table.opacity-light.table-hover
         td
           - if can?(:manage, personality)
             .btn-group
-              = link_to edit_personality_path(personality), class: 'btn btn-lg btn-warning'
+              = link_to edit_personality_path(personality), class: 'btn btn-lg btn-warning',
+                                                            data: { edit_personality: personality.id } do
                 span.fa.fa-pencil
-              = link_to personality_path(personality), class: 'btn btn-lg btn-danger', method: :delete
+              = link_to personality_path(personality), class: 'btn btn-lg btn-danger',
+                                                       data: { delete_personality: personality.id,
+                                                               confirm: I18n.t('confirmation') },
+                                                       method: :delete do
                 span.fa.fa-trash
 .d-flex.justify-content-center
   = paginate @personalities

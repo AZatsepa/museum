@@ -77,7 +77,6 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-selenium'
-  gem 'chromedriver-helper'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
@@ -90,5 +89,6 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'webdrivers'
   gem 'webmock'
 end
