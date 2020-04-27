@@ -31,6 +31,21 @@ en:
   hi: Hello
   if_you_didnt_request_this_please_ignore_this_email: If you didn't request this, please ignore this email.
   main: Main
+  maps:
+    map_1740: 1740 year
+    map_1752: 1752 year
+    map_1761: 1761 year
+    map_1766: 1766 year
+    map_1768: 1768 year
+    map_1770: 1778 year
+    map_1782: 1782 year
+    map_1786: 1786 year
+    map_1787_1786: 1786-1786 years
+    map_1845: 1845 year
+    map_1910: 1910 year
+    map_moscovian_crimean_gates: Moscovian and Crimean gates
+    map_unknown_year: Unknown year
+    map_unknown_year_2: Unknown year 2
   maps_and_plans: Maps and plans
   new_password: New password
   personalities:
