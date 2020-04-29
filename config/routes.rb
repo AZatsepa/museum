@@ -16,10 +16,12 @@ Rails.application.routes.draw do
     resources :users, only: %i[show]
     resources :personalities
 
-    get 'comparison/1782_1943', to: 'comparison#_1782_1943'
-    get 'comparison/1943_2017', to: 'comparison#_1943_2017'
     get 'comparison',           to: 'comparison#index'
+    get 'comparison/1782_1943', to: 'comparison#_1782_1943'
+    get 'comparison/1845_1943', to: 'comparison#_1845_1943'
+    get 'comparison/1943_2017', to: 'comparison#_1943_2017'
     get 'comparison/1782_2017', to: 'comparison#_1782_2017'
+    get 'comparison/1845_2017', to: 'comparison#_1845_2017'
 
     resources :maps, only: %i[index] do
       get 'map_1740',            to: 'maps#map_1740',            on: :collection
