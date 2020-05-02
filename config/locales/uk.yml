@@ -3,6 +3,14 @@ uk:
   about_us: Про наше об'єднання
   activerecord:
     attributes:
+      personality:
+        definition: Визначення
+        image: Зображення
+        information: Інформація
+        life_years: Роки життя
+        locked: Заблоковано
+        name: Ім'я
+        published: Опубліковано
       post:
         body: Текст статті
         title: Заголовок
@@ -38,6 +46,21 @@ uk:
   main: Головна
   maps_and_plans: Мапи та плани
   new_password: Новий пароль
+  personalities:
+    all: Персоналії
+    button:
+      create: Створити
+    create:
+      success: Створено успішно
+      unpublished: Створено успішно, але ще не опубліковано
+    destroy:
+      success: Видалено успішно
+    label:
+      add: Створити запис
+      edit: Редагувати запис
+    update:
+      success: Оновлено успішно
+      unpublished: Оновлено успішно, але ще не опубліковано
   post:
     author_label: 'Автор: %{name}'
   read_more: Читати
@@ -80,9 +103,9 @@ uk:
       delete: Видалити світлину
     author: Автор
     comments:
-      add: Add
-      edit: Edit
-      text: Text
+      add: Додати
+      edit: Редагувати
+      text: Текст коменту
     edit_profile: Редагувати профіль
     posts:
       add: Додати пост
@@ -92,6 +115,13 @@ uk:
       edit: Редагувати
       title: Заголовок
   unlock_my_account: Розблокувати мій обліковий запис
+  views:
+    pagination:
+      first: Перша
+      last: Остання
+      next: Наступна
+      previous: Попередня
+      truncate: "..."
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: Повідомляємо вам, що ваш пароль було змінено.
   you_can_confirm_your_account_email_through_the_link_below: 'Ви можете підтвердити вашу електронну адресу за цим посиланням:'
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Ваш обліковий запис було заблоковано через високу кількість неправильних спроб входу.

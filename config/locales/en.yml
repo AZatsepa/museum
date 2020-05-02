@@ -33,9 +33,24 @@ en:
   main: Main
   maps_and_plans: Maps and plans
   new_password: New password
+  personalities:
+    all: Personalities
+    button:
+      create: Create personality
+    create:
+      success: Personality has been created successfully
+      unpublished: Personality has been created successfully, but is unpublished yet.
+    destroy:
+      success: Personality has been deleted
+    label:
+      add: Create a new personality
+      edit: Edit a personality
+    update:
+      success: Personality has been updated successfully
+      unpublished: Personality has been updated successfully, but is unpublished yet.
   post:
-    author_label: 'Автор: %{name}'
-  read_more: Читати
+    author_label: 'Author: %{name}'
+  read_more: Read more
   registration:
     confirmation:
       question: Didn't receive confirmation instructions?
@@ -87,6 +102,13 @@ en:
       edit: Edit
       title: Title
   unlock_my_account: Unlock my account
+  views:
+    pagination:
+      first: First
+      last: Last
+      next: Next
+      previous: Previous
+      truncate: "..."
   we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: We're contacting you to notify you that your password has been changed.
   you_can_confirm_your_account_email_through_the_link_below: 'You can confirm your account email through the link below:'
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Your account has been locked due to an excessive number of unsuccessful sign in attempts.

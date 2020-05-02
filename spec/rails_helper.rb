@@ -12,7 +12,12 @@ SimpleCov.start('rails') do
     source_file.lines.count < 5
   end
 end
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: [
+    'chromedriver.storage.googleapis.com',
+  ],
+)
 Bullet.enable = true
 Bullet.raise = true
 Bullet.bullet_logger = true

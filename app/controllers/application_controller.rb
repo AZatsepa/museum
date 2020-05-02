@@ -54,4 +54,12 @@ class ApplicationController < ActionController::Base
   def current_ability
     Ability.new(current_user)
   end
+
+  def sort_params
+    if params[:order].present?
+      { params[:order] => (params[:direction].presence || 'asc') }
+    else
+      { id: :asc }
+    end
+  end
 end

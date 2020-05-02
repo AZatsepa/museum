@@ -1,0 +1,41 @@
+= form_for @personality do |f|
+  - if @personality.errors.any?
+    #error_explanation
+      h2
+        = t("errors.messages.not_saved", count: @personality.errors.count,
+                resource: @personality.class.model_name.human.downcase)
+      ul
+        - @personality.errors.full_messages.each do |message|
+          li = message
+  - if @personality.image.attached?
+    .form-group.row.justify-content-center
+      .col-sm-10
+        = image_tag rails_blob_path(@personality.image), class: 'avatar mt-4'
+  .form-group.row
+    = f.label :image, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.file_field :image
+  .form-group.row
+    = f.label :name, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  .form-group.row
+    = f.label :life_years, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :life_years, class: 'form-control'
+  .form-group.row
+    = f.label :definition, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :definition, class: 'form-control'
+  .form-group.row
+    = f.label :information, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_area :information, class: 'form-control', rows: 10
+  .form-group.row
+    .col-sm-2
+      = f.label :published, class: 'col-form-label'
+    .col-sm-10
+      = f.check_box :published, class: 'form-control'
+  .form-group.row.text-left
+    .col-sm-10
+      = f.submit t('personalities.button.create'), class: 'btn btn-primary'
