@@ -20,4 +20,6 @@
   - resource_class.omniauth_providers.each do |provider|
     .form-group
       = link_to "#{t('sign_in_with')} #{OmniAuth::Utils.camelize(provider)}",
-              omniauth_authorize_path(resource_name, provider), class: 'btn btn-md btn-secondary btn-block'
+              omniauth_authorize_path(resource_name, provider),
+              class: 'btn btn-md btn-secondary btn-block',
+              method: :post
