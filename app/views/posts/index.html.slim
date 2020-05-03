@@ -1,6 +1,13 @@
-h1
-  = link_to t('titles.main'), root_path
-h2.post-title-show Статті
-- @posts.each do |post|
-  .post
-    = link_to post.title, post_path(post)
+.row.justify-content-center
+  .col-lg-9.pt-4.mb-4.opacity-light-post
+    - @posts.each do |post|
+      .row.justify-content-center
+        .col-md-10.border-bottom
+          h2.post__title = post.title
+          = image_tag asset_pack_path('media/images/noavatar.png'), alt: 'Author image',
+                                                                    class: 'pull-left img-responsive thumb mb-2 mr-2 img-thumbnail'
+          article
+            p = strip_tags(post.body.to_s).truncate(200)
+          = link_to t('read_more'), post_path(post), class: "btn post__btn-blog pull-right mp-10 mb-10"
+          p = t('post.author_label', name: post.user.name)
+

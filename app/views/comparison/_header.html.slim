@@ -1,9 +1,11 @@
-h1
-  = link_to t('titles.main'), root_path
-ul.horizontal
-  li.button
-    = link_to '1782 - 1943', comparison_1782_1943_path, 'data-no-turbolink': true
-  li.button
-    = link_to '1943 - 2017', comparison_1943_2017_path, 'data-no-turbolink': true
-  li.button
-    = link_to '1782 - 2017', comparison_1782_2017_path, 'data-no-turbolink': true
+ul.list-inline.text-center
+  li.list-inline-item.button
+    = link_to '1782 - 1943', comparison_1782_1943_path, 'data-no-turbolink': true, class: 'btn', role: 'button'
+  li.list-inline-item.button
+    = link_to '1845 - 1943', comparison_1845_1943_path, 'data-no-turbolink': true, class: 'btn', role: 'button'
+  li.list-inline-item.button
+    = link_to '1943 - 2017', comparison_1943_2017_path, 'data-no-turbolink': true, class: 'btn', role: 'button'
+  li.list-inline-item.button
+    = link_to '1782 - 2017', comparison_1782_2017_path, 'data-no-turbolink': true, class: 'btn', role: 'button'
+  li.list-inline-item.button
+    = link_to '1845 - 2017', comparison_1845_2017_path, 'data-no-turbolink': true, class: 'btn', role: 'button'

@@ -1,0 +1,49 @@
+table.table.opacity-light.table-hover
+  thead
+    tr
+      th
+        = link_to personalities_path(order: :id, direction: sort_order), class: 'd-flex justify-content-between'
+          span #
+          = sort_icon(:id)
+      th
+        = link_to personalities_path(order: :name, direction: sort_order), class: 'd-flex justify-content-between'
+          span = t('activerecord.attributes.personality.name')
+          = sort_icon(:name)
+      th
+        = link_to personalities_path(order: :life_years, direction: sort_order), class: 'd-flex justify-content-between'
+          span = t('activerecord.attributes.personality.life_years')
+          = sort_icon(:life_years)
+      th
+        = link_to personalities_path(order: :definition, direction: sort_order), class: 'd-flex justify-content-between'
+          span = t('activerecord.attributes.personality.definition')
+          = sort_icon(:definition)
+      th
+        = link_to personalities_path(order: :information, direction: sort_order), class: 'd-flex justify-content-between'
+          span = t('activerecord.attributes.personality.information')
+          = sort_icon(:information)
+      th
+        - if can?(:create, Personality)
+          = link_to t('personalities.label.add'), new_personality_path
+  - if @personalities.present?
+    - @personalities.each do |personality|
+      tr
+        td
+          = link_to personality, class: 'btn btn-info', data: { show_personality: personality.id }
+            span.fa.fa-eye
+        td = personality.name
+        td = personality.life_years
+        td = personality.definition
+        td = "#{personality.information[0..20]}..."
+        td
+          - if can?(:manage, personality)
+            .btn-group
+              = link_to edit_personality_path(personality), class: 'btn btn-lg btn-warning',
+                                                            data: { edit_personality: personality.id } do
+                span.fa.fa-pencil
+              = link_to personality_path(personality), class: 'btn btn-lg btn-danger',
+                                                       data: { delete_personality: personality.id,
+                                                               confirm: I18n.t('confirmation') },
+                                                       method: :delete do
+                span.fa.fa-trash
+.d-flex.justify-content-center
+  = paginate @personalities

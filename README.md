@@ -14,3 +14,17 @@ Here you can see:
 
 * Comparison between 1943 and 2017 years
 
+Run tests:
+
+_docker-compose run app bash_
+
+_bundle exec rspec_
+
+Run app locally in development mode with Docker:
+
+_docker-compose up -d_
+
+Run app locally in production mode with Docker:
+
+_docker-compose -f docker-compose.production.yml up --build -d_
+

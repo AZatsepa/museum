@@ -1,18 +1,143 @@
 ---
 uk:
+  about_us: Про наше об'єднання
   activerecord:
     attributes:
+      personality:
+        definition: Визначення
+        image: Зображення
+        information: Інформація
+        life_years: Роки життя
+        locked: Заблоковано
+        name: Ім'я
+        published: Опубліковано
       post:
         body: Текст статті
         title: Заголовок
+  admin_page: Адмінка
+  back: Повернутися
+  cancel: Відмінити
+  change: Змінити
+  change_password: Змінити пароль
+  choose_image: Оберіть зображення
+  click_the_link_below_to_unlock_your_account: 'Перейдіть за цим посиланням для підтвердження вашого облікового запису:'
+  comparisons: Порівняння
+  confirm_my_account: Підтвердити мій обліковий запис
+  confirmation: Ви впевнені?
+  created_at: Створено
+  didnt_receive_unlock_instructions: Не отримали інструкцій з розблокування?
   errors:
-    warning: 'Виникли помилки при створенні статті:'
+    blank: Hе може бути порожнім
+    form:
+      current_password: Нам потрібен ваш діючий пароль для підтвердження змін.
+      email_format: Має бути схожим на email.
+      first_name: Заповніть прізвище, або ж нікнейм.
+      last_name: Заповніть ім'я, або ж нікнейм.
+      nickname: Заповніть прізвище та ім'я, або ж нікнейм.
+      password_confirmation: Має бути ідентичним з паролем.
+    messages:
+      not_saved:
+        one: '1 помилка не дає зберегти %{resource}:'
+        other: "%{count} помилок не дають зберегти %{resource}:"
+    min_length: "%{number} символів мінімум."
+  forgot_you_password: Забули пароль?
+  hi: Вітаємо
+  if_you_didnt_request_this_please_ignore_this_email: Якщо ви не робили цього, будь ласка, ігноруйте це повідомлення.
+  main: Головна
+  maps:
+    map_1740: 1740 рік
+    map_1752: 1752 рік
+    map_1761: 1761 рік
+    map_1766: 1766 рік
+    map_1768: 1768 рік
+    map_1770: 1778 рік
+    map_1782: 1782 рік
+    map_1786: 1786 рік
+    map_1787_1786: 1786-1786 рр
+    map_1845: 1845 рік
+    map_1910: 1910 рік
+    map_moscovian_crimean_gates: Московські та Кримські ворота
+    map_unknown_year: Невідомий рік
+    map_unknown_year_2: Невідомий рік 2
+  maps_and_plans: Мапи та плани
+  new_password: Новий пароль
+  personalities:
+    all: Персоналії
+    button:
+      create: Створити
+    create:
+      success: Створено успішно
+      unpublished: Створено успішно, але ще не опубліковано
+    destroy:
+      success: Видалено успішно
+    label:
+      add: Створити запис
+      edit: Редагувати запис
+    update:
+      success: Оновлено успішно
+      unpublished: Оновлено успішно, але ще не опубліковано
+  post:
+    author_label: 'Автор: %{name}'
+  read_more: Читати
+  registration:
+    confirmation:
+      question: Не отримали інструкцій для підтвердження?
+    current_password: Діючий пароль
+    delete_account: Видалити обліковий запис
+    email: Електронна пошта
+    first_name: Прізвище
+    forgot_password_question: Забули пароль?
+    last_changes: Останні зміни
+    last_name: Ім'я
+    leave_blank_password: "(залиште поле порожнім, якщо ви не бажаєте змінювати пароль)"
+    need_password_to_confirm: "(нам потрібен ваш діючий пароль для підтвердження змін)"
+    nickname: Нікнейм
+    password: Пароль
+    password_confirmation: Підтвердження паролю
+    password_min: символів мінімум
+    profile: Профіль
+    registered: Зареєстрований
+    remember_me: Запам'ятати мене
+    sign_in: Увійти
+    sign_out: Вийти
+    sign_up: Зареєструватися
+    title: Реєстрація
+    wait_email_confirmation: 'Очікуємо підтвердження адреси:'
+  resend_change_password_instructions: Надіслати інструкцію зі зміни паролю.
+  resend_confirmation_instructions: Надіслати інструкції з підтвердження ще раз
+  resend_unlock_instructions: Надіслати інструкції з розблокування.
+  search: Пошук
+  search_results: Результати пошуку за запитом
+  send: Надіслати
+  sign_in_with: Увійти через
+  site_name: Ізюмська фортеця
+  someone_has_requested_a_link_to_change_your_password_you_can_do_this_through_the_link_below: Хтось зробив запит зміни вашого пароля. Ви можете зробити це за посиланням нижче.
   titles:
-    back: Повернутися назад
-    confirmation: Ви впевнені?
-    main: Ізюмська фортеця
-    posts:
-      all: Пости
-      delete: Видалити пост
+    attachments:
+      add: Додати світлину
+      delete: Видалити світлину
+    author: Автор
+    comments:
+      add: Додати
       edit: Редагувати
-      new: Новий пост
+      text: Текст коменту
+    edit_profile: Редагувати профіль
+    posts:
+      add: Додати пост
+      all: Пости
+      body: Текст
+      create: Створити пост
+      edit: Редагувати
+      title: Заголовок
+  unlock_my_account: Розблокувати мій обліковий запис
+  views:
+    pagination:
+      first: Перша
+      last: Остання
+      next: Наступна
+      previous: Попередня
+      truncate: "..."
+  we_are_contacting_you_to_notify_you_that_your_password_has_been_changed: Повідомляємо вам, що ваш пароль було змінено.
+  you_can_confirm_your_account_email_through_the_link_below: 'Ви можете підтвердити вашу електронну адресу за цим посиланням:'
+  your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Ваш обліковий запис було заблоковано через високу кількість неправильних спроб входу.
+  your_password_wont_change_until_you_access_the_link_above_and_create_a_new_one: Ваш пароль не зміниться, доки ви не перейдете за посиланням та не створите новий.

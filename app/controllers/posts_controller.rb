@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @posts = Post.all
+    @posts = @posts.includes(:rich_text_body, :user)
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
+  def show; end
 end

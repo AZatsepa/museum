@@ -1,0 +1,31 @@
+version: '2'
+
+volumes:
+  db-data:
+    external: false
+
+services:
+  db:
+    env_file: .env
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    image: postgres:9.5
+    volumes:
+      - db-data:/usr/local/psql/data
+    logging:
+      driver: none
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    env_file: .env
+    environment:
+      - 'MUSEUM_DATABASE_HOST=db'
+      - 'PATH="$PATH:/usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/"'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true

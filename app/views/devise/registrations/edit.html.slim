@@ -1,0 +1,59 @@
+.row.align-items-center.justify-content-center
+  .col-6.opacity-light.mt-5.text-center.border-bottom
+    h2 = t('titles.edit_profile')
+    = form_for(resource, url: registration_path(resource_name), html: { id: 'edit_user' }) do |f|
+      = render 'devise/shared/error_messages'
+      - if resource.image.attached?
+        .form-group.row.justify-content-center
+          .col-sm-10
+            = image_tag rails_blob_path(resource.image), class: 'avatar mt-4'
+      .form-group.row
+        = f.label :image, class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.file_field :image
+      .form-group.row
+        = f.label :email, t('registration.email'), class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.email_field :email, autofocus: true, class: 'form-control'
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        = t('registration.wait_email_confirmation')
+          = resource.unconfirmed_email
+      .form-group.row
+        = f.label :nickname, t('registration.nickname'), class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_field :nickname, class: 'form-control'
+      .form-group.row
+        = f.label :first_name, t('registration.first_name'), class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_field :first_name, class: 'form-control'
+      .form-group.row
+        = f.label :last_name, t('registration.last_name'), class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_field :last_name, class: 'form-control'
+      .form-group.row
+        = f.label :password, t('registration.password'), class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.password_field :password, autocomplete: :off,
+                                        class: 'form-control',
+                                        placeholder: t('registration.leave_blank_password')
+      .form-group.row
+        = f.label :password_confirmation, t('registration.password_confirmation'), class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.password_field :password_confirmation, autocomplete: :off, class: 'form-control'
+      .form-group.row
+        = f.label :current_password, t('registration.current_password'), class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.password_field :current_password,
+                             autocomplete: :off,
+                             class: 'form-control',
+                             placeholder: t('registration.need_password_to_confirm')
+      .form-group.row.text-left
+        .col-sm-10
+          = f.submit t('change'), class: 'btn btn-primary'
+    .row.border-bottom.p-2
+      = link_to t('back'), :back, class: 'btn btn-secondary'
+    .row.border-bottom.align-items-center.justify-content-center.p-2
+      = button_to t('registration.delete_account'), registration_path(resource_name),
+                                                    data: { confirm: t('confirmation') },
+                                                    class: 'btn btn-danger',
+                                                    method: :delete

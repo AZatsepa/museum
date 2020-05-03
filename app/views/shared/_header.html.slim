@@ -1,0 +1,46 @@
+nav.navbar.navbar-expand-xl.navbar-dark.bg-dark
+  a.navbar-brand[href="#"] = t('site_name')
+  button.navbar-toggler[type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarsExampleDefault"
+                        aria-controls="navbarsExampleDefault"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"]
+    span.navbar-toggler-icon
+  #navbarsExampleDefault.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        = link_to t('main'), root_path, class: "nav-link #{add_active_class(root_path)}"
+      li.nav-item
+        = link_to t('comparisons'), comparison_path, class: "nav-link #{add_active_class(comparison_path)}"
+      li.nav-item
+        = link_to t('maps_and_plans'), maps_path, class: "nav-link #{add_active_class(maps_path)}"
+      li.nav-item
+        = link_to t('titles.posts.all'), posts_path, class: "nav-link #{add_active_class(posts_path)}"
+      li.nav-item
+        = link_to t('personalities.all'), personalities_path, class: "nav-link #{add_active_class(personalities_path)}"
+      li.nav-item.dropdown
+        a#dropdown01.nav-link.dropdown-toggle[href='#' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+          = locale_span
+        .dropdown-menu.dropdown_flags.bg-dark[aria-labelledby="dropdown01"]
+          = link_to url_for(params.permit!.to_h.merge(locale: :uk)), class: 'dropdown-item' do
+            span.flag-icon.flag-icon-ua
+          = link_to url_for(params.permit!.to_h.merge(locale: :en)), class: 'dropdown-item' do
+            span.flag-icon.flag-icon-us
+      - if user_signed_in?
+        li.nav-item = link_to t('registration.profile'),
+                              user_path(current_user), class: "nav-link #{add_active_class(user_path(current_user))}"
+        - if current_user.admin?
+          li.nav-item = link_to t('admin_page'), rails_admin_path, class: "nav-link #{add_active_class(rails_admin_path)}"
+        li.nav-item = link_to t('registration.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item = link_to t('registration.sign_in'),
+                                new_user_session_path, class: "nav-link #{add_active_class(new_user_session_path)}"
+    = form_tag search_path(locale), class: 'form-inline my-2 my-lg-0', method: :get do
+      .input-group
+        = text_field_tag :query, nil, class: 'form-control',
+                                      placeholder: "#{t('search')}",
+                                      'aria-label' => "#{t('search')}" do
+        .input-group-append
+          = button_tag class: 'btn btn-success', type: :submit do
+            i.fa.fa-search

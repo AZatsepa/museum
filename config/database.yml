@@ -1,20 +1,20 @@
 default: &default
   adapter: postgresql
-  username: <%= ENV['MUSEUM_DATABASE_USERNAME'] %>
-  password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
-  database: <%= ENV['MUSEUM_DATABASE_DEV_NAME'] %>
+  database: <%= Rails.application.credentials.dig(Rails.env.to_sym, :db, :name) %>
+  username: <%= Rails.application.credentials.dig(Rails.env.to_sym, :db, :username) %>
+  password: <%= Rails.application.credentials.dig(Rails.env.to_sym, :db, :password) %>
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= Rails.application.credentials.dig(Rails.env.to_sym, :db, :host) %>
 
 development:
   <<: *default
 
-test:
+test: &test
   <<: *default
-  database: <%= ENV['MUSEUM_DATABASE_TEST_NAME'] %>
 
 production:
   <<: *default
-  database: <%= ENV['MUSEUM_DATABASE_PROD_NAME'] %>
-  username: <%= ENV['MUSEUM_DATABASE_USERNAME'] %>
-  password: <%= ENV['MUSEUM_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test

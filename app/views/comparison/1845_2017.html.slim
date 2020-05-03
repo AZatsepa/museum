@@ -1,0 +1,14 @@
+.container.pt-3
+  = render 'header'
+  .comparison-wrapper
+    figure.cd-image-container
+      = image_tag asset_pack_path('media/images/2017.png'), alt: 'New', usemap: '#map-2017'
+      span.cd-image-label data-type="original"  2017 р
+      .cd-resize-img usemap="#map-2017"
+        = image_tag asset_pack_path('media/images/1845.jpg'), alt: 'Old', usemap: '#map-1845'
+        span.cd-image-label data-type="modified"  1845 р
+      map name="map-1845"
+        = render 'plan_1845'
+      map name="map-2017"
+        = render 'photo_2017'
+      span.cd-handle

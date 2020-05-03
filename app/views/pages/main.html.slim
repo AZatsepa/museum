@@ -1,22 +1,6 @@
-body.home
-  #wrapper
-    #header
-      .h-top
-        .logo
-          a href="#" 
-            = image_tag "fortress.png"
-            span Ізюмська фортеця
-        ul#nav
-          li
-            a href="#"  Плани
-          li
-            a href="#"  Креслення
-          li
-            = link_to 'Порівняння', comparison_path
-          li
-            a href="#"  Світлини
-          li
-            = link_to 'Тексти', posts_path
-    #content
-      .img-bottom
-        = image_tag "kozackiy-benket.png"
+.main-top
+  .container
+    figure.cd-image-container.plan
+      = image_tag asset_pack_path('media/images/1782_white.jpg'), usemap: '#map-1782', id: 'plan', class: 'bg-white'
+      map name="map-1782"
+        = render 'comparison/plan_1782'

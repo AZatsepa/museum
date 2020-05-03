@@ -1,0 +1,19 @@
+.user-data
+  h2 = t('change_password')
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+    = render 'devise/shared/error_messages'
+    = f.hidden_field :reset_password_token
+    .field
+      = f.label :password, t('new_password')
+      br
+      - if @minimum_password_length
+        em = t('registration.password_min')
+        br
+      = f.password_field :password, autofocus: true, autocomplete: :off
+    .field
+      = f.label :password_confirmation, t('registration.password_confirmation')
+      br
+      = f.password_field :password_confirmation, autocomplete: :off
+    .actions
+      = f.submit t('change')
+  = render 'devise/shared/links'

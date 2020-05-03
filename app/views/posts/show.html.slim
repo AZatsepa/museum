@@ -1,7 +1,10 @@
-.posts
-  .post-title-show
-    = @post.title
-  .post-body-show
-    = markdown(@post.body)
-h3
-  =link_to t('titles.back'), posts_path
+.row.justify-content-center
+  #post-wrapper.opacity-light-post.col-lg-9.p-4
+    .row.border-bottom.justify-content-center.text-center
+      .col-lg-9
+        h2 = @post.title
+    .row.border-bottom.justify-content-center
+      .col-lg-9.p-3
+        .post-body-show
+          = @post.body.to_s.html_safe
+    p.ml-4 = t('post.author_label', name: @post.user.name)

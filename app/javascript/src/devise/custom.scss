@@ -1,0 +1,9 @@
+@import '~bootstrap/scss/_functions.scss',
+'~bootstrap/scss/_variables.scss',
+'~bootstrap/scss/_mixins.scss';
+.custom-checkbox {
+  label {
+    font-size: 15px;
+    cursor: pointer;
+  }
+}

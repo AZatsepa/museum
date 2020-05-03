@@ -1,13 +1,18 @@
+require: rubocop-rspec
 AllCops:
+  TargetRubyVersion: 2.5.1
   Exclude:
     - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'db/migrate/*'
     - 'config/initializers/devise.rb'
     - 'config/initializers/backtrace_silencers.rb'
+    - 'config/initializers/doorkeeper.rb'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
     - 'vendor/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
 
 Rails:
   Enabled: true
@@ -15,23 +20,57 @@ Rails:
 Rails/OutputSafety:
   Enabled: false
 
+Rails/Output:
+  Exclude:
+    - 'config/unicorn.rb'
+
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Exclude:
+    - 'features/support/locale.rb'
 
 Style/Documentation:
   Enabled: false
 
-Lint/AssignmentInCondition:
+Style/UnneededPercentQ:
   Exclude:
-    - 'bin/spring'
-
-Style/ConditionalAssignment:
-  Enabled: false
+    - 'spec/**/*_spec.rb'
 
 Metrics/LineLength:
   Max: 120
 
 Metrics/BlockLength:
   Exclude:
-    - 'config/deploy.rb'
+    - 'config/environments/*rb'
     - 'spec/**/*_spec.rb'
+    - 'lib/tasks/cucumber.rake'
+    - 'config/routes.rb'
+    - 'config/initializers/rails_admin.rb'
+
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/ability.rb'
+
+Style/RedundantSelf:
+  Exclude:
+#    - 'app/models/*'
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/features/**/*.rb'
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*.rb'
+    - 'spec/api/**/*.rb'
+RSpec/NestedGroups:
+  Max: 4
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+Metrics/AbcSize:
+  Exclude:
+    - 'config/initializers/active_storage.rb'

@@ -5,19 +5,30 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
-/.locales/secrets.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*
-/tmp/*
+tmp/*
 !/log/.keep
-!/tmp/.keep
 
 # Ignore Byebug command history file.
 .byebug_history
 .idea
-config/database.yml
-./public/assets
+public/uploads
 .env
 coverage
+:environment
+/public/packs
+/public/packs-test
+/public/assets
+/public/javascripts
+/public/uploads
+/node_modules
+yarn-debug.log*
+yarn-error.log*
+.yarn-integrity
+storage/
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+tmp/
