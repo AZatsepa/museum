@@ -7,7 +7,7 @@ RSpec.describe MapsController, type: :controller do
     it 'renders template' do
       expect(
         get('map_1782')
-      ).to render_template('maps/1782')
+      ).to render_template('maps/map_1782')
     end
   end
 end

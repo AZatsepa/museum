@@ -16,6 +16,7 @@ import 'jquery-validation';
 import 'flag-icon-css/css/flag-icon.css';
 
 import '../images/1782.png';
+import '../images/1845.jpg';
 import '../images/1782_white.jpg';
 import '../images/1943.png';
 import '../images/2017.png';
