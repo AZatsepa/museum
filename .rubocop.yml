@@ -14,29 +14,21 @@ AllCops:
     - 'bin/*'
     - 'node_modules/**/*'
 
-Rails:
+Layout/LineLength:
+  Max: 120
+
+Lint/RaiseException:
   Enabled: true
 
-Rails/OutputSafety:
-  Enabled: false
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 
-Rails/Output:
+Lint/StructNewOverride:
+  Enabled: true
+
+Metrics/AbcSize:
   Exclude:
-    - 'config/unicorn.rb'
-
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'features/support/locale.rb'
-
-Style/Documentation:
-  Enabled: false
-
-Style/UnneededPercentQ:
-  Exclude:
-    - 'spec/**/*_spec.rb'
-
-Metrics/LineLength:
-  Max: 120
+    - 'config/initializers/active_storage.rb'
 
 Metrics/BlockLength:
   Exclude:
@@ -46,31 +38,50 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/initializers/rails_admin.rb'
 
-
 Metrics/MethodLength:
   Exclude:
     - 'app/models/ability.rb'
 
-Style/RedundantSelf:
-  Exclude:
-#    - 'app/models/*'
-RSpec/ExampleLength:
-  Enabled: false
-RSpec/MultipleExpectations:
-  Exclude:
-    - 'spec/features/**/*.rb'
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+Rails:
+  Enabled: true
+
 RSpec/DescribeClass:
   Exclude:
     - 'spec/features/**/*.rb'
     - 'spec/api/**/*.rb'
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/features/**/*.rb'
+
 RSpec/NestedGroups:
   Max: 4
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-Naming/MemoizedInstanceVariableName:
-  EnforcedStyleForLeadingUnderscores: required
 
-Metrics/AbcSize:
+Style/ClassAndModuleChildren:
   Exclude:
-    - 'config/initializers/active_storage.rb'
+    - 'features/support/locale.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/RedundantPercentQ:
+  Exclude:
+    - 'spec/**/*_spec.rb'

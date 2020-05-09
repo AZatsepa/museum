@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.6.3
 env:
-  - RAILS_ENV=test MUSEUM_DATABASE_TEST_NAME=travis_ci_test ADMIN_AUTH_NAME=name ADMIN_AUTH_PASSWORD=password NODE_ENV=test
+  - ADMIN_AUTH_NAME=name ADMIN_AUTH_PASSWORD=password NODE_ENV=test
 addons:
   apt:
     update: true
@@ -11,14 +11,15 @@ services:
 install:
   - gem install bundler
   - bundle install
+  - gem install bundler-audit
   - nvm install v12
   - nvm use v12
   - yarn
   - ./bin/rails webpacker:binstubs
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
+  - bundle exec rails db:create
+  - bundle exec rails db:migrate
 script:
-  - bundle audit check --update --ignore CVE-2015-9284
+  - bundle-audit check --update --ignore CVE-2015-9284
   - bundle exec rubocop .
   - bundle exec rspec
   - bundle exec cucumber

@@ -11,7 +11,7 @@ xdescribe 'Delete comments', %q(
   let(:post) { create(:post, user: user) }
   let!(:comment) { create(:comment, post: post, user: user) }
 
-  context 'Unauthenticated user', js: true do
+  context 'with unauthenticated user', js: true do
     it 'Unauthenticated user tries to delete comment', js: true do
       visit post_path(post)
       within '.comments' do
@@ -20,7 +20,7 @@ xdescribe 'Delete comments', %q(
     end
   end
 
-  context 'Authenticated user', js: true do
+  context 'with authenticated user', js: true do
     context 'when his comment' do
       before do
         login_as(user, scope: :user, run_callbacks: false)
@@ -55,7 +55,7 @@ xdescribe 'Delete comments', %q(
     end
   end
 
-  context 'Admin user', js: true do
+  context 'with admin user', js: true do
     context 'when multiple sessions' do
       it "comment appears on another user's page" do
         Capybara.using_session('user') do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'Posts API' do
-  POSTS_COUNT = 5
+  posts_count = 5
   post_allowed_fields = %w[id title user_id created_at updated_at]
   comment_allowed_fields = %w[id post_id user_id created_at updated_at]
 
@@ -11,7 +11,7 @@ describe 'Posts API' do
     context 'when authorized' do
       let(:user) { create(:user) }
       let(:access_token) { create(:access_token) }
-      let!(:posts) { create_list(:post, POSTS_COUNT, user: user) }
+      let!(:posts) { create_list(:post, posts_count, user: user) }
       let(:post) { posts.first }
       let!(:comment) { create(:comment, user: user, post: post) }
 
@@ -22,7 +22,7 @@ describe 'Posts API' do
       end
 
       it 'returns list of posts' do
-        expect(response.body).to have_json_size(POSTS_COUNT).at_path('posts')
+        expect(response.body).to have_json_size(posts_count).at_path('posts')
       end
 
       post_allowed_fields.each do |field|
@@ -55,7 +55,7 @@ describe 'Posts API' do
   describe 'GET /:en/posts/:id' do
     let(:user) { create(:user) }
     let(:access_token) { create(:access_token) }
-    let!(:posts) { create_list(:post, POSTS_COUNT, user: user) }
+    let!(:posts) { create_list(:post, posts_count, user: user) }
     let(:post) { posts.first }
     let!(:comment) { create(:comment, user: user, post: post) }
 
@@ -168,7 +168,7 @@ describe 'Posts API' do
         end
 
         post_allowed_fields.each do |field|
-          it "should contain #{field}" do
+          it "contains #{field}" do
             expect(response.body).to have_json_path("post/#{field}")
           end
         end
@@ -194,7 +194,7 @@ describe 'Posts API' do
         end
 
         %w[title body].each do |field|
-          it "should contain #{field} error messages" do
+          it "contains #{field} error messages" do
             expect(response.body).to be_json_eql(["can't be blank"].to_json).at_path("errors/#{field}")
           end
         end

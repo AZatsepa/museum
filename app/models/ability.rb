@@ -21,9 +21,9 @@ class Ability
     { rules: rules.map do |rule|
       {
         base_behavior: rule.base_behavior,
-        actions:       rule.actions.as_json,
-        subjects:      rule.subjects.map(&:to_s),
-        conditions:    rule.conditions.as_json
+        actions: rule.actions.as_json,
+        subjects: rule.subjects.map(&:to_s),
+        conditions: rule.conditions.as_json
       }
     end }.as_json
   end
