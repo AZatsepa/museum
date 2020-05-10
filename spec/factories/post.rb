@@ -5,5 +5,7 @@ FactoryBot.define do
     title { 'Post title' }
     body { 'Post body' }
     user { create(:user) }
+    published { true }
+    locked { false }
   end
 end
