@@ -10,6 +10,7 @@ Rails.application.routes.draw do
                                     registrations: 'users/registrations' }
 
   scope '(/:locale)', locale: /#{I18n.available_locales.join('|')}/ do
+    get '/feeds', to: 'pages#feeds', format: :rss
     resources :posts, only: %i[index show new create] do
       resources :comments
     end

@@ -9,5 +9,7 @@ class PagesController < ApplicationController
     @posts = Post.search(params[:search]).order('created_at DESC')
   end
 
+  def feeds; end
+
   def about; end
 end
