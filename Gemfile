@@ -44,6 +44,7 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'unicorn'
 gem 'webpacker'
+gem 'whenever'
 
 group :production do
   gem 'rails_12factor'
