@@ -18,5 +18,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def robots
+    @posts = Post.where(published: false)
+    @personalities = Personality.where(published: false)
+  end
+
   def about; end
 end

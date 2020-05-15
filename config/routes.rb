@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root 'pages#main'
   get '/sitemap', to: 'pages#sitemap'
+  get '/robots', to: 'pages#robots', format: :text
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
                                     confirmations: 'users/confirmations',
