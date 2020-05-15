@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   use_doorkeeper
 
   root 'pages#main'
+  get '/sitemap', to: 'pages#sitemap'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
                                     confirmations: 'users/confirmations',
