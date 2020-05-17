@@ -109,4 +109,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.force_ssl = true
+
+  config.hosts << 'izyum-fortress.in.ua'
 end

@@ -28,6 +28,8 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :user
+      field :published
+      field :locked
       field :body do
         js_location { ApplicationController.helpers.asset_pack_url 'actiontext.js' }
       end

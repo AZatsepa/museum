@@ -14,15 +14,56 @@ AllCops:
     - 'bin/*'
     - 'node_modules/**/*'
 
+Layout/LineLength:
+  Max: 120
+
+Lint/RaiseException:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Metrics/AbcSize:
+  Exclude:
+    - 'config/initializers/active_storage.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/*rb'
+    - 'spec/**/*_spec.rb'
+    - 'lib/tasks/cucumber.rake'
+    - 'config/routes.rb'
+    - 'config/sitemap.rb'
+    - 'config/initializers/rails_admin.rb'
+    - 'app/views/pages/feeds.builder'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/ability.rb'
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
 Rails:
   Enabled: true
 
-Rails/OutputSafety:
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*.rb'
+    - 'spec/api/**/*.rb'
+
+RSpec/ExampleLength:
   Enabled: false
 
-Rails/Output:
+RSpec/MultipleExpectations:
   Exclude:
-    - 'config/unicorn.rb'
+    - 'spec/features/**/*.rb'
+
+RSpec/NestedGroups:
+  Max: 4
 
 Style/ClassAndModuleChildren:
   Exclude:
@@ -31,46 +72,18 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-Style/UnneededPercentQ:
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/RedundantPercentQ:
   Exclude:
     - 'spec/**/*_spec.rb'
-
-Metrics/LineLength:
-  Max: 120
-
-Metrics/BlockLength:
-  Exclude:
-    - 'config/environments/*rb'
-    - 'spec/**/*_spec.rb'
-    - 'lib/tasks/cucumber.rake'
-    - 'config/routes.rb'
-    - 'config/initializers/rails_admin.rb'
-
-
-Metrics/MethodLength:
-  Exclude:
-    - 'app/models/ability.rb'
-
-Style/RedundantSelf:
-  Exclude:
-#    - 'app/models/*'
-RSpec/ExampleLength:
-  Enabled: false
-RSpec/MultipleExpectations:
-  Exclude:
-    - 'spec/features/**/*.rb'
-RSpec/DescribeClass:
-  Exclude:
-    - 'spec/features/**/*.rb'
-    - 'spec/api/**/*.rb'
-RSpec/NestedGroups:
-  Max: 4
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-Naming/MemoizedInstanceVariableName:
-  EnforcedStyleForLeadingUnderscores: required
-
-Metrics/AbcSize:
-  Exclude:
-    - 'config/initializers/active_storage.rb'

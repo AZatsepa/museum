@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'API Comments' do
-  COMMENT_ALLOWED_FIELDS = %w[id user_id post_id text created_at updated_at].freeze
+  comment_allowed_fields = %w[id user_id post_id text created_at updated_at].freeze
   describe 'GET /:locale/api/v1/comments/:id' do
     let(:comment) { create(:comment) }
     let(:access_token) { create(:access_token) }
@@ -27,7 +27,7 @@ describe 'API Comments' do
         expect(response).to be_successful
       end
 
-      COMMENT_ALLOWED_FIELDS.each do |field|
+      comment_allowed_fields.each do |field|
         it "contains #{field}" do
           expect(response.body).to be_json_eql(comment.send(field.to_sym).to_json).at_path("comment/#{field}")
         end
@@ -79,7 +79,7 @@ describe 'API Comments' do
           end.to change(Comment, :count).by(1)
         end
 
-        COMMENT_ALLOWED_FIELDS.each do |field|
+        comment_allowed_fields.each do |field|
           it "contains #{field}" do
             expect(response.body).to have_json_path("comment/#{field}")
           end

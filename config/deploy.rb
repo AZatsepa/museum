@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.11.0'
+lock '~> 3.14.0'
 
 set :application, 'museum'
 set :repo_url, 'git@github.com:AZatsepa/museum.git'
@@ -81,6 +81,18 @@ namespace :deploy do
 
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
+end
+
+after 'deploy:updating', 'sitemaps:create_symlink'
+
+namespace :sitemaps do
+  task :create_symlink do
+    on roles(:app) do
+      execute "mkdir -p #{shared_path}/sitemaps"
+      execute "rm -rf #{release_path}/public/sitemaps"
+      execute "ln -s #{shared_path}/sitemaps #{release_path}/public/sitemaps"
+    end
+  end
 end
 
 # Default deploy_to directory is /var/www/my_app_name

@@ -20,6 +20,7 @@ class PersonalitiesController < ApplicationController
     @personality = Personality.new(personality_params.merge(user: current_user))
     authorize!(:create, @personality)
     render(:new) && return unless @personality.save
+
     if @personality.published?
       redirect_to @personality, flash: { notice: t('personalities.create.success') }
     else
@@ -29,6 +30,7 @@ class PersonalitiesController < ApplicationController
 
   def update
     render(:edit) && return unless @personality.update(personality_params)
+
     if @personality.published?
       redirect_to @personality, flash: { notice: t('personalities.update.success') }
     else

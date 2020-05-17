@@ -1,0 +1,10 @@
+User-agent: *
+<% @posts.each do |post| %>
+Disallow: <%= post_url(:en, post) %>
+Disallow: <%= post_url(:uk, post) %>
+<% end %>
+<% @personalities.each do |personality| %>
+Disallow: <%= personality_url(:en, personality) %>
+Disallow: <%= personality_url(:uk, personality) %>
+<% end %>
+Sitemap: https://izyum-fortress.in.ua/sitemap.xml

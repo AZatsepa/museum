@@ -1,6 +1,15 @@
 doctype html
 html lang="#{I18n.locale}"
   head
+    - if content_for?(:meta_og)
+      = yield :meta_og
+    - else
+      meta property="og:title" content="#{I18n.t('site_name')}"
+      meta property="og:type" content="website"
+      meta property="og:url" content="https://izyum-fortress.in.ua/"
+      = tag :meta, property: 'og:image', content: asset_pack_path('media/images/background.jpg')
+    meta property="fb:app_id" content="849014045276937"
+    meta property="og:locale" content="uk_UA"
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type' /
     title = t('site_name')
     meta charset="utf-8" /
@@ -8,6 +17,7 @@ html lang="#{I18n.locale}"
     = render 'shared/google_tag_manager' if Rails.env.production?
     link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css"
     link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    = auto_discovery_link_tag :rss, feeds_url(format: :rss)
     = Gon::Base.render_data
     = csrf_meta_tag
     = stylesheet_pack_tag 'application', media: :all, 'data-turbolinks-track': 'reload'

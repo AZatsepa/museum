@@ -37,6 +37,8 @@ uk:
       password_confirmation: Має бути ідентичним з паролем.
     messages:
       not_saved:
+        few: "%{count} помилок не дають зберегти %{resource}:"
+        many: "%{count} помилок не дають зберегти %{resource}:"
         one: '1 помилка не дає зберегти %{resource}:'
         other: "%{count} помилок не дають зберегти %{resource}:"
     min_length: "%{number} символів мінімум."

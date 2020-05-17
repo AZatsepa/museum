@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   use_doorkeeper
 
   root 'pages#main'
+  get '/sitemap', to: 'pages#sitemap'
+  get '/robots', to: 'pages#robots', format: :text
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
                                     confirmations: 'users/confirmations',
                                     registrations: 'users/registrations' }
 
   scope '(/:locale)', locale: /#{I18n.available_locales.join('|')}/ do
+    get '/feeds', to: 'pages#feeds', format: :rss
     resources :posts, only: %i[index show new create] do
       resources :comments
     end
