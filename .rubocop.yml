@@ -36,7 +36,9 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
     - 'lib/tasks/cucumber.rake'
     - 'config/routes.rb'
+    - 'config/sitemap.rb'
     - 'config/initializers/rails_admin.rb'
+    - 'app/views/pages/feeds.builder'
 
 Metrics/MethodLength:
   Exclude:

@@ -12,7 +12,8 @@ class Ability
     elsif user.confirmed_at
       confirmed_user_abilities(user)
     else
-      can :read, [Post, Comment]
+      can :read, Comment
+      can :read, Post, published: true
       can :read, Personality, published: true
     end
   end
@@ -34,10 +35,13 @@ class Ability
     can :manage, Personality, user_id: user.id, locked: false
     can :create, Personality
     can :read, Personality, published: true
+    can :manage, Post, user_id: user.id, locked: false
+    can :create, Post
+    can :read, Post, published: true
   end
 
   def confirmed_user_abilities(user)
-    can :read, Post
+    can :read, Post, published: true
     can :read, Personality, published: true
     can :manage, Comment, user_id: user.id
     can %i[read update], User, id: user.id

@@ -10,4 +10,5 @@ $custom-file-text: (
 @import 'style';
 @import 'devise/custom';
 @import 'posts';
-@import '../../../node_modules/trix/dist/trix';
+@import '~trix/dist/trix';
+@import 'trix_override';

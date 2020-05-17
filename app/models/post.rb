@@ -15,6 +15,8 @@ class Post < ApplicationRecord
   validates :body, presence: true
   validates :user, presence: true
 
+  scope :published, -> { where(published: true) }
+
   def update_searchable_body!
     self.searchable_body = body.to_plain_text
   end

@@ -1,0 +1,7 @@
+= content_for(:meta_og) do
+  meta property="og:type" content="website"
+  meta property="og:title" content="#{personality.name}"
+  meta property="og:url" content="https://#{request.host}#{personality_path(personality)}"
+  = tag :meta, property: 'og:image', content: personality.img_url
+  - if personality.information
+    meta property="og:description" content="#{truncate(personality.information, length: 100)}"

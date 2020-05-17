@@ -77,6 +77,7 @@ function drags(dragElement, resizeElement, container, labelContainer, labelResiz
 
 $(document).on('load turbolinks:load', () => {
   const $container = $('.cd-image-container');
+  if (!$container) { return; }
   // check if the .cd-image-container is in the viewport
   // if yes, animate it
   checkPosition($container);

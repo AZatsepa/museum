@@ -83,6 +83,18 @@ namespace :deploy do
   after  :finishing,    :cleanup
 end
 
+after 'deploy:updating', 'sitemaps:create_symlink'
+
+namespace :sitemaps do
+  task :create_symlink do
+    on roles(:app) do
+      execute "mkdir -p #{shared_path}/sitemaps"
+      execute "rm -rf #{release_path}/public/sitemaps"
+      execute "ln -s #{shared_path}/sitemaps #{release_path}/public/sitemaps"
+    end
+  end
+end
+
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
 
