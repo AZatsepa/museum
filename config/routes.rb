@@ -46,6 +46,10 @@ Rails.application.routes.draw do
 
     namespace :api do
       namespace :v1 do
+        devise_for :users, controllers: { confirmations: 'api/v1/users/confirmations',
+                                          registrations: 'api/v1/users/registrations',
+                                          passwords: 'api/v1/users/passwords' },
+                           skip: :omniauth_callbacks
         resources :posts, shallow: true, only: %i[index show create] do
           resources :comments, only: %i[index show create]
         end

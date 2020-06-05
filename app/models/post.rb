@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
 
   before_save :update_searchable_body!
 
