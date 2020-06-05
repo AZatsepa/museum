@@ -45,6 +45,11 @@ class User < ApplicationRecord
     def create_user!(email, password)
       User.create!(email: email, password: password, confirmed_at: Time.zone.now)
     end
+
+    def authenticate(email, password)
+      user = User.find_for_authentication(email: email)
+      user.try(:valid_password?, password) ? user : nil
+    end
   end
 
   def create_authentication(auth)
