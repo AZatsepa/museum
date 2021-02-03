@@ -87,10 +87,10 @@ uk:
     current_password: Діючий пароль
     delete_account: Видалити обліковий запис
     email: Електронна пошта
-    first_name: Прізвище
+    first_name: Ім'я
     forgot_password_question: Забули пароль?
     last_changes: Останні зміни
-    last_name: Ім'я
+    last_name: Прізвище
     leave_blank_password: "(залиште поле порожнім, якщо ви не бажаєте змінювати пароль)"
     need_password_to_confirm: "(нам потрібен ваш діючий пароль для підтвердження змін)"
     nickname: Нікнейм
