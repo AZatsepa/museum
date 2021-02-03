@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.6.3
+  - 2.7.2
 env:
   - ADMIN_AUTH_NAME=name ADMIN_AUTH_PASSWORD=password NODE_ENV=test
 addons:
@@ -19,7 +19,7 @@ install:
   - bundle exec rails db:create
   - bundle exec rails db:migrate
 script:
-  - bundle-audit check --update --ignore CVE-2015-9284
+  - bundle-audit check --update
   - bundle exec rubocop .
   - bundle exec rspec
   - bundle exec cucumber

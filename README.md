@@ -4,7 +4,7 @@ This site was created for peoples who are interested of an old Izjum fortress lo
 
 The site is hosted at:
 
-[izjum-fortress.herokuapp.com](https://izjum-fortress.herokuapp.com "izjum-fortress.herokuapp.com")
+[https://izyum-fortress.in.ua/](https://https://izyum-fortress.in.ua/ "https://izyum-fortress.in.ua/")
  
 Here you can see:
 
@@ -27,4 +27,3 @@ _docker-compose up -d_
 Run app locally in production mode with Docker:
 
 _docker-compose -f docker-compose.production.yml up --build -d_
-
