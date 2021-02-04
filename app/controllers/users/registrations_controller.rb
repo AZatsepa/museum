@@ -16,7 +16,7 @@ module Users
       if verify_recaptcha
         super
       else
-        render :new
+        redirect_to action: :new
       end
     end
 
