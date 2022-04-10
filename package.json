@@ -44,7 +44,7 @@
     "kind-of": "^6.0.3",
     "lodash": "^4.17.19",
     "markitup": "^3.0.0-0",
-    "minimist": "^1.2.3",
+    "minimist": "^1.2.6",
     "mixin-deep": "^2.0.1",
     "popper.js": "^1.16.0",
     "postcss-flexbugs-fixes": "^4.1.0",
