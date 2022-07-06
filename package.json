@@ -37,7 +37,7 @@
     "jquery": "^3.5.0",
     "jquery-ui": "^1.12.1",
     "jquery-ujs": "^1.2.2",
-    "jquery-validation": "^1.19.3",
+    "jquery-validation": "^1.19.5",
     "js-yaml": "^3.13.1",
     "json-loader": "^0.5.7",
     "jst": "^0.0.13",
