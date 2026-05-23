@@ -52,10 +52,12 @@ group :production do
 end
 
 group :development do
+  gem 'bcrypt_pbkdf', '~> 1.0'
   gem 'capistrano', '~> 3.11', require: false
   gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano3-puma', require: false
+  gem 'ed25519', '~> 1.2'
   gem 'html2slim'
   gem 'listen'
   gem 'spring'
