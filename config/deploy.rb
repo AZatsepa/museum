@@ -22,7 +22,7 @@ append :linked_dirs,
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 5
 
-server '128.199.47.121', user: 'donets', roles: %w[app db web]
+server '128.199.47.121', user: 'donets', roles: %w[app db web], port: 224
 
 # Optionally, you can symlink your database.yml and/or secrets.yml file from the shared directory during deploy
 # This is useful if you don't want to use ENV variables
@@ -47,7 +47,7 @@ set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.error.log"
 set :puma_error_log,  "#{release_path}/log/puma.access.log"
-set :ssh_options,     forward_agent: true, user: fetch(:user), keys: %w[~/.ssh/id_ed25519_2.pub]
+set :ssh_options,     forward_agent: true, user: fetch(:user), keys: %w[~/.ssh/id_ed25519_2]
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, false # Change to true if using ActiveRecord
